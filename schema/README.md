@@ -7,7 +7,7 @@ format files, and validate this schema.
 ## Fields
 
 - `schema_version`: `1`.
-- `id`: a permanent positive integer. IDs do not encode
+- `id`: a permanent positive integer. The pilot uses 1 through 10. IDs do not encode
   a spelling, reading, source row, or sense number.
 - `canonical_tl`: a verified TL filing reading, including tone marks.
 - `preferred_form`: recommended output; may be Hanji, romanization, or mixed.

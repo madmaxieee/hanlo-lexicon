@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "bih"
+id = 6
+moe_forms = ["覕"]
+preferred_form = "bih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 59
+snapshot = "lkk-2024-05-10"

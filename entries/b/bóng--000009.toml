@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "bóng"
+id = 9
+moe_forms = ["罔"]
+preferred_form = "bóng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 68
+snapshot = "lkk-2024-05-10"

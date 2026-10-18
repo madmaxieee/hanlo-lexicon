@@ -1,0 +1,11 @@
+alternate_readings = ["bueh"]
+canonical_tl = "beh"
+id = 5
+moe_forms = ["欲"]
+preferred_form = "beh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 55
+snapshot = "lkk-2024-05-10"

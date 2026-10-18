@@ -38,3 +38,13 @@ The tool checks existing entries, the full LKK snapshot, and a checksum-pinned
 copy of the original MOE ODS. On first use the tool downloads that exact snapshot
 from TaigiKeyboard GitHub into ignored `.cache/dictionaries/moe/`; later lookups
 work offline. New IDs come from `id-sequence.toml` under a local writer lock.
+
+## Pilot batch
+
+The ten pilot entries are `at`, `au`, `a̍h`, `bat`, `beh`, `bih`, `bái`, `bî`,
+`bóng`, and `bông`. Alternate readings include `pat` for `bat` and `bueh` for
+`beh`, as recorded in the LKK source.
+
+Each entry cites the original LKK snapshot and row. Original spreadsheet content
+remains in the archived TSV. All ten records are imported and await editorial
+review; no rationale is inferred.

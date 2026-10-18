@@ -1,0 +1,4 @@
+interface:
+  display_name: "Maintain Han-Lo Lexicon"
+  short_description: "Check, add, and format local vocabulary entries"
+  default_prompt: "Use $maintain-lexicon to check and maintain a vocabulary entry in this repository."

@@ -1,76 +1,43 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Han-Lo vocabulary entry",
-  "type": "object",
   "additionalProperties": false,
-  "required": [
-    "schema_version",
-    "id",
-    "canonical_tl",
-    "preferred_form",
-    "alternate_readings",
-    "moe_forms",
-    "other_spellings",
-    "mandarin_meanings",
-    "examples",
-    "review_status",
-    "sources"
-  ],
   "properties": {
-    "schema_version": {
-      "const": 1
-    },
-    "id": {
-      "type": "string",
-      "pattern": "^e[0-9]{6}$"
+    "alternate_readings": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
     },
     "canonical_tl": {
-      "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "type": "string"
     },
-    "preferred_form": {
-      "type": "string",
-      "minLength": 1
+    "editorial_rationale": {
+      "minLength": 1,
+      "type": "string"
     },
-    "alternate_readings": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "minLength": 1
-      },
-      "uniqueItems": true
+    "id": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "identity_note": {
+      "description": "Distinguishes unrelated homographs; not a full definition.",
+      "minLength": 1,
+      "type": "string"
     },
     "moe_forms": {
-      "type": "array",
       "items": {
-        "type": "string",
-        "minLength": 1
+        "minLength": 1,
+        "type": "string"
       },
+      "type": "array",
       "uniqueItems": true
     },
-    "other_spellings": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "minLength": 1
-      },
-      "uniqueItems": true
-    },
-    "mandarin_meanings": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "minLength": 1
-      },
-      "uniqueItems": true
-    },
-    "examples": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "minLength": 1
-      },
-      "uniqueItems": true
+    "preferred_form": {
+      "minLength": 1,
+      "type": "string"
     },
     "review_status": {
       "enum": [
@@ -79,43 +46,70 @@
         "disputed"
       ]
     },
-    "usage_notes": {
-      "type": "string",
-      "minLength": 1
-    },
-    "editorial_rationale": {
-      "type": "string",
-      "minLength": 1
+    "schema_version": {
+      "const": 1
     },
     "sources": {
-      "type": "array",
-      "minItems": 1,
       "items": {
-        "type": "object",
         "additionalProperties": false,
-        "required": [
-          "snapshot",
-          "row",
-          "fields"
+        "anyOf": [
+          {
+            "required": [
+              "snapshot",
+              "row"
+            ],
+            "type": "object"
+          },
+          {
+            "required": [
+              "url",
+              "locator"
+            ],
+            "type": "object"
+          }
         ],
         "properties": {
-          "snapshot": {
-            "type": "string",
-            "minLength": 1
+          "locator": {
+            "minLength": 1,
+            "type": "string"
           },
           "row": {
-            "type": "integer",
-            "minimum": 1
+            "minimum": 1,
+            "type": "integer"
           },
-          "fields": {
-            "type": "object",
-            "minProperties": 1,
-            "additionalProperties": {
-              "type": "string"
-            }
+          "sheet": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "snapshot": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "url": {
+            "minLength": 1,
+            "type": "string"
           }
-        }
-      }
+        },
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "usage_notes": {
+      "minLength": 1,
+      "type": "string"
     }
-  }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "canonical_tl",
+    "preferred_form",
+    "alternate_readings",
+    "moe_forms",
+    "review_status",
+    "sources"
+  ],
+  "title": "Han-Lo vocabulary entry",
+  "type": "object"
 }

@@ -1,5 +1,97 @@
-# Data tooling
+# Maintenance commands
 
-Validation and deterministic CSV/JSON export commands will live here. The pilot
-currently supplies an entry schema; automated exporters are not implemented yet.
-Future release workflows should call the same commands contributors run locally.
+Run from the repository root with Python 3.11 or newer. The tool has no third-party
+dependencies. Dictionary searches run offline after the first-use download.
+
+## Dictionary cache
+
+The first command that needs MOE automatically downloads the exact ODS snapshot
+from TaigiKeyboard's GitHub repository at the revision pinned in
+`references/moe.toml`. It verifies SHA-256 before atomically saving the file under
+`.cache/dictionaries/moe/<sha256>/kautian.ods`. This directory is ignored by VCS.
+No second repository, machine-local path, or manual setup is required.
+
+To populate or verify the cache explicitly:
+
+```sh
+python3 tools/lexicon.py fetch-moe
+```
+
+Subsequent lookups read only the cached copy and check its checksum. A download
+failure or checksum mismatch stops the operation; there is no unverified fallback
+or automatic repinning. Remove a corrupt cache file to reacquire the same pin.
+
+MOE lookup reads the original ODS headword, alternate/contraction/colloquial reading,
+dialect, word-comparison, name, surname, variant-character, and definition sheets.
+Results retain original headwords/readings and cite the snapshot, sheet, and row.
+Numeric MOE headword IDs are preserved from ODS cell values. MOE hits are review
+evidence, not a prohibition on a community spelling recommendation.
+
+## Check and add
+
+Create a temporary JSON request outside the tracked tree. For a lookup, the minimum
+is:
+
+```json
+{
+  "preferred_form": "beh",
+  "canonical_tl": "beh"
+}
+```
+
+```sh
+python3 tools/lexicon.py check /path/to/request.json
+```
+
+The JSON result reports potential matches in current entries, the entire LKK list,
+and the pinned MOE dictionary. Inspect sense/etymology and reading before deciding.
+It does not prove identity or absence of a word. Related dictionary spellings can
+be supplied in `moe_forms`; alternate input readings in `alternate_readings`.
+
+Before adding, include `sources` with original evidence, as documented in
+`schema/README.md`. Do not supply an ID. Optional prose fields are accepted;
+otherwise array fields default to empty and status defaults to `imported`.
+
+```sh
+python3 tools/lexicon.py add /path/to/request.json
+python3 tools/lexicon.py validate
+python3 tools/lexicon.py format --check
+```
+
+`add` repeats the full offline checks, blocks an existing form/reading or alias pair
+unless an explicit distinct-word `identity_note` is provided, reserves the next ID,
+and writes the sorted TOML file. Repeating the same identity note also blocks a
+duplicate. Unicode input is normalized to NFC. No raw source cells are copied.
+
+## Existing entries and IDs
+
+```sh
+python3 tools/lexicon.py next-id
+python3 tools/lexicon.py format
+python3 tools/lexicon.py validate
+```
+
+`next-id` only previews. `format` retains IDs, sorts keys and set-like arrays, and
+renames/moves entries to the canonical path after deliberate spelling edits.
+`validate` checks the full entry schema, source checksums and locators, ID uniqueness,
+homograph distinctions, counter bounds, and canonical formatting/filing. It does
+not infer whether a cited source supports an editorial choice.
+
+The writer lock serializes local `add` and `format` operations. If a process crashes,
+confirm it has stopped before removing `.lexicon.lock/`. The tracked counter must
+never move backwards; failed writes may leave reserved gaps. Independently edited
+clones require merge-time ID conflict resolution.
+
+Repository validation needs only local source snapshots unless entries themselves
+cite MOE. Candidate `check` and `add` always require the pinned MOE copy. All commands
+accept `--root PATH` before the subcommand for another checkout or a test fixture.
+
+## Tests and exports
+
+```sh
+python3 -m unittest discover -s tests -v
+```
+
+Tests use small temporary ODS/TSV fixtures and cover duplicate/alias behavior,
+homographs, source verification, ID allocation, concurrency, formatting, and Unicode.
+CSV/JSON release exporters and GitHub release workflows are not implemented yet.

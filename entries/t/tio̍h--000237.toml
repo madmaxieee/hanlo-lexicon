@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tio̍h"
+id = 237
+moe_forms = ["著"]
+preferred_form = "tio̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 705
+snapshot = "lkk-2024-05-10"

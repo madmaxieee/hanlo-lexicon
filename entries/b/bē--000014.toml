@@ -1,0 +1,11 @@
+alternate_readings = ["buē"]
+canonical_tl = "bē"
+id = 14
+moe_forms = ["袂"]
+preferred_form = "bē"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 53
+snapshot = "lkk-2024-05-10"

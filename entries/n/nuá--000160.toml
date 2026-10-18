@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "nuá"
+id = 160
+moe_forms = ["撋"]
+preferred_form = "nuá"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 451
+snapshot = "lkk-2024-05-10"

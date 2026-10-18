@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "tīng"
+id = 316
+identity_note = "LKK row 701: 𠕇."
+moe_forms = ["𠕇"]
+preferred_form = "tīng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 701
+snapshot = "lkk-2024-05-10"

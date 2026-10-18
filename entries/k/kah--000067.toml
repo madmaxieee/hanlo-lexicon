@@ -1,0 +1,12 @@
+alternate_readings = ["kap"]
+canonical_tl = "kah"
+id = 67
+identity_note = "LKK row 226: 佮."
+moe_forms = ["佮"]
+preferred_form = "kah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 226
+snapshot = "lkk-2024-05-10"

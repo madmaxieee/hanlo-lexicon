@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "hân-bān"
+id = 48
+moe_forms = ["頇顢"]
+preferred_form = "hân-bān"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 120
+snapshot = "lkk-2024-05-10"

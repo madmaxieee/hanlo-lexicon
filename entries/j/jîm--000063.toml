@@ -1,0 +1,11 @@
+alternate_readings = ["lîm"]
+canonical_tl = "jîm"
+id = 63
+moe_forms = ["撏"]
+preferred_form = "jîm"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 206
+snapshot = "lkk-2024-05-10"

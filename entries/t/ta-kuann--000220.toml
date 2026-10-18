@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ta-kuann"
+id = 220
+moe_forms = ["大官"]
+preferred_form = "ta-kuann"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 614
+snapshot = "lkk-2024-05-10"

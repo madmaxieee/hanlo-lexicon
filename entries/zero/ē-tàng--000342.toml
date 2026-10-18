@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ē-tàng"
+id = 342
+moe_forms = ["會當"]
+preferred_form = "ē-tàng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 85
+snapshot = "lkk-2024-05-10"

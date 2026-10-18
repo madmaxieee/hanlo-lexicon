@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lâng-sn̂g"
+id = 138
+moe_forms = ["籠床"]
+preferred_form = "lâng-sn̂g"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 369
+snapshot = "lkk-2024-05-10"

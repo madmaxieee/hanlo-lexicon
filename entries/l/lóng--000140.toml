@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lóng"
+id = 140
+moe_forms = ["攏"]
+preferred_form = "lóng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 406
+snapshot = "lkk-2024-05-10"

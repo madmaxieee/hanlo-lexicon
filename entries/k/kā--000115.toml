@@ -1,0 +1,11 @@
+alternate_readings = ["kāng"]
+canonical_tl = "kā"
+id = 115
+moe_forms = ["共"]
+preferred_form = "kā"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 224
+snapshot = "lkk-2024-05-10"

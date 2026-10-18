@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tân"
+id = 308
+moe_forms = ["霆"]
+preferred_form = "tân"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 626
+snapshot = "lkk-2024-05-10"

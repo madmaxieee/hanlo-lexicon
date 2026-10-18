@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "thái-ko"
+id = 231
+moe_forms = ["癩𰣻"]
+preferred_form = "thái-ko"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 646
+snapshot = "lkk-2024-05-10"

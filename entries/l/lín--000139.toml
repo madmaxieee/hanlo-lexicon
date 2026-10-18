@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lín"
+id = 139
+moe_forms = ["恁"]
+preferred_form = "lín"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 391
+snapshot = "lkk-2024-05-10"

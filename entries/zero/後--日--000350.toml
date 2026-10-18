@@ -1,0 +1,11 @@
+alternate_readings = ["āu--li̍t"]
+canonical_tl = "āu--ji̍t"
+id = 350
+moe_forms = []
+preferred_form = "後--日"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 35
+snapshot = "lkk-2024-05-10"

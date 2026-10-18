@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "huah"
+id = 44
+moe_forms = ["喝"]
+preferred_form = "huah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 157
+snapshot = "lkk-2024-05-10"

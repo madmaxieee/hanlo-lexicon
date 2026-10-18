@@ -1,0 +1,15 @@
+alternate_readings = []
+canonical_tl = "tiānn-tiānn"
+id = 241
+moe_forms = ["定定"]
+preferred_form = "tiānn-tiānn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 691
+snapshot = "lkk-2024-05-10"
+
+[[sources]]
+row = 692
+snapshot = "lkk-2024-05-10"

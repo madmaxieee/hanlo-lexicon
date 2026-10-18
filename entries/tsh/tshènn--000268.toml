@@ -1,0 +1,11 @@
+alternate_readings = ["tshìnn"]
+canonical_tl = "tshènn"
+id = 268
+moe_forms = ["腥"]
+preferred_form = "tshènn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 753
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "siunn"
+id = 202
+moe_forms = ["傷"]
+preferred_form = "siunn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 585
+snapshot = "lkk-2024-05-10"

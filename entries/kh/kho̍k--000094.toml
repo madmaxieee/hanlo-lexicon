@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kho̍k"
+id = 94
+moe_forms = ["硞"]
+preferred_form = "kho̍k"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 293
+snapshot = "lkk-2024-05-10"

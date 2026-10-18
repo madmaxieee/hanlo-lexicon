@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "siânn"
+id = 205
+moe_forms = ["唌"]
+preferred_form = "siânn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 561
+snapshot = "lkk-2024-05-10"

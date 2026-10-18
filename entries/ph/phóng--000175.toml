@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "phóng"
+id = 175
+moe_forms = ["捧"]
+preferred_form = "phóng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 486
+snapshot = "lkk-2024-05-10"

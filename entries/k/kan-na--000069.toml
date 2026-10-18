@@ -1,0 +1,11 @@
+alternate_readings = ["kan-tann", "ta"]
+canonical_tl = "kan-na"
+id = 69
+moe_forms = ["干焦"]
+preferred_form = "kan-na"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 236
+snapshot = "lkk-2024-05-10"

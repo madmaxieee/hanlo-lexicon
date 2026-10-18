@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsiah-nī"
+id = 278
+moe_forms = ["遮爾"]
+preferred_form = "tsiah-nī"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 822
+snapshot = "lkk-2024-05-10"

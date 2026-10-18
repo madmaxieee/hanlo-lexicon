@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tuh-ku"
+id = 299
+moe_forms = ["盹龜"]
+preferred_form = "tuh-ku"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 876
+snapshot = "lkk-2024-05-10"

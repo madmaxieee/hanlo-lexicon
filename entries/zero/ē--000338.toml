@@ -1,0 +1,11 @@
+alternate_readings = ["uē"]
+canonical_tl = "ē"
+id = 338
+moe_forms = ["會"]
+preferred_form = "ē"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 81
+snapshot = "lkk-2024-05-10"

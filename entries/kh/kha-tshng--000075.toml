@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kha-tshng"
+id = 75
+moe_forms = ["尻川"]
+preferred_form = "kha-tshng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 252
+snapshot = "lkk-2024-05-10"

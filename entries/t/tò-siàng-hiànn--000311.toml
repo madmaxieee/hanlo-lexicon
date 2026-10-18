@@ -1,0 +1,11 @@
+alternate_readings = ["tò-siak-hiànn"]
+canonical_tl = "tò-siàng-hiànn"
+id = 311
+moe_forms = ["倒摔向"]
+preferred_form = "tò-siàng-hiànn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 719
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = ["lih", "lit", "tsit"]
+canonical_tl = "eh"
+id = 351
+moe_forms = []
+preferred_form = "得"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 709
+snapshot = "lkk-2024-05-10"

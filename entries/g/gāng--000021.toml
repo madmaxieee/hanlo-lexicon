@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "gāng"
+id = 21
+moe_forms = ["愣"]
+preferred_form = "gāng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 92
+snapshot = "lkk-2024-05-10"

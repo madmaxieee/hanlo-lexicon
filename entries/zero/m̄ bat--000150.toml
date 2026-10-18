@@ -1,0 +1,11 @@
+alternate_readings = ["m̄-pat"]
+canonical_tl = "m̄-bat"
+id = 150
+moe_forms = []
+preferred_form = "m̄ bat"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 422
+snapshot = "lkk-2024-05-10"

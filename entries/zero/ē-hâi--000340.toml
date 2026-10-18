@@ -1,0 +1,11 @@
+alternate_readings = ["ē-huâi"]
+canonical_tl = "ē-hâi"
+id = 340
+moe_forms = ["下頦"]
+preferred_form = "ē-hâi"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 82
+snapshot = "lkk-2024-05-10"

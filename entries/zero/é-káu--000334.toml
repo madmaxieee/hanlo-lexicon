@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "é-káu"
+id = 334
+moe_forms = ["啞口"]
+preferred_form = "é-káu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 90
+snapshot = "lkk-2024-05-10"

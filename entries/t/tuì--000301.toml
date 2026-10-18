@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tuì"
+id = 301
+moe_forms = ["對"]
+preferred_form = "tuì"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 878
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = ["tué"]
+canonical_tl = "té"
+id = 309
+moe_forms = ["貯"]
+preferred_form = "té"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 641
+snapshot = "lkk-2024-05-10"

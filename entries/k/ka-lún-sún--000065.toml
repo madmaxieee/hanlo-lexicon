@@ -1,0 +1,11 @@
+alternate_readings = ["ka-líng-sún"]
+canonical_tl = "ka-lún-sún"
+id = 65
+moe_forms = ["交懍恂"]
+preferred_form = "ka-lún-sún"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 220
+snapshot = "lkk-2024-05-10"

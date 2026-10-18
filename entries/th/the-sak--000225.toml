@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "the-sak"
+id = 225
+moe_forms = ["推捒"]
+preferred_form = "the-sak"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 537
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "khioh"
+id = 88
+moe_forms = ["抾"]
+preferred_form = "khioh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 284
+snapshot = "lkk-2024-05-10"

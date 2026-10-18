@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "thuh"
+id = 228
+identity_note = "LKK row 680: 黜."
+moe_forms = ["黜"]
+preferred_form = "thuh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 680
+snapshot = "lkk-2024-05-10"

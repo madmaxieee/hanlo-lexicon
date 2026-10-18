@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sîn"
+id = 214
+moe_forms = ["承"]
+preferred_form = "sîn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 573
+snapshot = "lkk-2024-05-10"

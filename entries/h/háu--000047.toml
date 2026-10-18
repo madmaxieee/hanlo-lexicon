@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "háu"
+id = 47
+moe_forms = ["吼"]
+preferred_form = "háu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 121
+snapshot = "lkk-2024-05-10"

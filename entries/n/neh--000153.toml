@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "neh"
+id = 153
+moe_forms = ["呢"]
+preferred_form = "neh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 435
+snapshot = "lkk-2024-05-10"

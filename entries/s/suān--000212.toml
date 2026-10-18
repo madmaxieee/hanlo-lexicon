@@ -1,0 +1,11 @@
+alternate_readings = ["suan"]
+canonical_tl = "suān"
+id = 212
+moe_forms = ["漩"]
+preferred_form = "suān"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 602
+snapshot = "lkk-2024-05-10"

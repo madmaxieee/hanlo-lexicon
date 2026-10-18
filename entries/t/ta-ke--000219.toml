@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ta-ke"
+id = 219
+moe_forms = ["大家"]
+preferred_form = "ta-ke"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 613
+snapshot = "lkk-2024-05-10"

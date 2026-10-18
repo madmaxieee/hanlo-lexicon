@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sann-kap"
+id = 194
+moe_forms = ["相佮"]
+preferred_form = "sann-kap"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 542
+snapshot = "lkk-2024-05-10"

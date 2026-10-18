@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kue̍h"
+id = 109
+moe_forms = ["橛"]
+preferred_form = "kue̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 352
+snapshot = "lkk-2024-05-10"

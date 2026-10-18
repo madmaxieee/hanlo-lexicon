@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tshū"
+id = 270
+moe_forms = ["跙"]
+preferred_form = "tshū"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 799
+snapshot = "lkk-2024-05-10"

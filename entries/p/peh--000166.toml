@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "peh"
+id = 166
+moe_forms = ["擘"]
+preferred_form = "peh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 466
+snapshot = "lkk-2024-05-10"

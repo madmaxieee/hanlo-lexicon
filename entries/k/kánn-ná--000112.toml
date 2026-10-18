@@ -1,0 +1,11 @@
+alternate_readings = ["ká-ná", "kán-ná"]
+canonical_tl = "kánn-ná"
+id = 112
+moe_forms = ["敢若"]
+preferred_form = "kánn-ná"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 223
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "that"
+id = 224
+moe_forms = ["窒"]
+preferred_form = "that"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 653
+snapshot = "lkk-2024-05-10"

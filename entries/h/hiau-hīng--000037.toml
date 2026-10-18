@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "hiau-hīng"
+id = 37
+moe_forms = ["僥倖"]
+preferred_form = "hiau-hīng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 139
+snapshot = "lkk-2024-05-10"

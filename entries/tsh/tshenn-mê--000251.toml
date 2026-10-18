@@ -1,0 +1,11 @@
+alternate_readings = ["tshinn-mî"]
+canonical_tl = "tshenn-mê"
+id = 251
+moe_forms = ["青盲"]
+preferred_form = "tshenn-mê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 765
+snapshot = "lkk-2024-05-10"

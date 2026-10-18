@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kong-ke"
+id = 106
+moe_forms = ["公家"]
+preferred_form = "kong-ke"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 330
+snapshot = "lkk-2024-05-10"

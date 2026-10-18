@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ka̍k"
+id = 71
+moe_forms = ["捔"]
+preferred_form = "ka̍k"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 230
+snapshot = "lkk-2024-05-10"

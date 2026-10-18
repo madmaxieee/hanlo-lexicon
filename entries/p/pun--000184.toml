@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "pun"
+id = 184
+moe_forms = ["分"]
+preferred_form = "pun"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 528
+snapshot = "lkk-2024-05-10"

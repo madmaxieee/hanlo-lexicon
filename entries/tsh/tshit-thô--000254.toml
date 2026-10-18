@@ -1,0 +1,11 @@
+alternate_readings = ["thit-thô"]
+canonical_tl = "tshit-thô"
+id = 254
+moe_forms = ["𨑨迌"]
+preferred_form = "tshit-thô"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 791
+snapshot = "lkk-2024-05-10"

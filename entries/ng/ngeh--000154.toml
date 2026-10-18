@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ngeh"
+id = 154
+moe_forms = ["夾"]
+preferred_form = "ngeh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 438
+snapshot = "lkk-2024-05-10"

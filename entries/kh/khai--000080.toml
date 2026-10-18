@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "khai"
+id = 80
+moe_forms = ["開"]
+preferred_form = "khai"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 259
+snapshot = "lkk-2024-05-10"

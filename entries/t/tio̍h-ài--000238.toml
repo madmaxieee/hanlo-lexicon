@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tio̍h-ài"
+id = 238
+moe_forms = ["著愛"]
+preferred_form = "tio̍h-ài"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 706
+snapshot = "lkk-2024-05-10"

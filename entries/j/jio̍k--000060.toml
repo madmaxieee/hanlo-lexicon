@@ -1,0 +1,11 @@
+alternate_readings = ["lio̍k"]
+canonical_tl = "jio̍k"
+id = 60
+moe_forms = ["搙"]
+preferred_form = "jio̍k"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 208
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kha̍h"
+id = 83
+moe_forms = ["卡"]
+preferred_form = "kha̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 258
+snapshot = "lkk-2024-05-10"

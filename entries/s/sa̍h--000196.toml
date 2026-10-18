@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sa̍h"
+id = 196
+moe_forms = ["煠"]
+preferred_form = "sa̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 533
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tshiau"
+id = 253
+moe_forms = ["搜"]
+preferred_form = "tshiau"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 773
+snapshot = "lkk-2024-05-10"

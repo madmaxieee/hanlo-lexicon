@@ -1,0 +1,11 @@
+alternate_readings = ["giú"]
+canonical_tl = "khiú"
+id = 90
+moe_forms = ["搝"]
+preferred_form = "khiú"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 287
+snapshot = "lkk-2024-05-10"

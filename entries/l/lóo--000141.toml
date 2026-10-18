@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lóo"
+id = 141
+moe_forms = ["惱"]
+preferred_form = "lóo"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 409
+snapshot = "lkk-2024-05-10"

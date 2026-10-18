@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tse"
+id = 249
+moe_forms = ["這"]
+preferred_form = "tse"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 751
+snapshot = "lkk-2024-05-10"

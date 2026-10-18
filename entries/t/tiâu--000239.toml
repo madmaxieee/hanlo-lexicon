@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tiâu"
+id = 239
+moe_forms = ["牢"]
+preferred_form = "tiâu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 694
+snapshot = "lkk-2024-05-10"

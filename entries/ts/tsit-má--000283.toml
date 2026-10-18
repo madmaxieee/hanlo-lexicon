@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsit-má"
+id = 283
+moe_forms = ["這馬"]
+preferred_form = "tsit-má"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 852
+snapshot = "lkk-2024-05-10"

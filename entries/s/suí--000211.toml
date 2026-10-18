@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "suí"
+id = 211
+moe_forms = ["媠"]
+preferred_form = "suí"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 607
+snapshot = "lkk-2024-05-10"

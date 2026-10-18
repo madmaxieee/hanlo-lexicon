@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tshiám"
+id = 256
+moe_forms = ["攕"]
+preferred_form = "tshiám"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 770
+snapshot = "lkk-2024-05-10"

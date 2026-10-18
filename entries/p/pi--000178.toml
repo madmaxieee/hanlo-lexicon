@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "pi"
+id = 178
+moe_forms = ["觱"]
+preferred_form = "pi"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 496
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lap"
+id = 119
+moe_forms = ["塌"]
+preferred_form = "lap"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 371
+snapshot = "lkk-2024-05-10"

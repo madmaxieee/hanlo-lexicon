@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "khiàng"
+id = 89
+moe_forms = ["勥"]
+preferred_form = "khiàng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 277
+snapshot = "lkk-2024-05-10"

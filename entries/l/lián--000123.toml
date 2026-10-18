@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lián"
+id = 123
+moe_forms = ["撚"]
+preferred_form = "lián"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 383
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = ["án-ni"]
+canonical_tl = "án-ne"
+id = 331
+moe_forms = ["按呢"]
+preferred_form = "án-ne"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 21
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "koo-tsiânn"
+id = 107
+moe_forms = ["姑情"]
+preferred_form = "koo-tsiânn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 336
+snapshot = "lkk-2024-05-10"

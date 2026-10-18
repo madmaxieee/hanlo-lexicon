@@ -1,0 +1,11 @@
+alternate_readings = ["ka-tshiùnn"]
+canonical_tl = "kha-tshiùnn"
+id = 74
+moe_forms = []
+preferred_form = "kha-tshiùnn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 251
+snapshot = "lkk-2024-05-10"

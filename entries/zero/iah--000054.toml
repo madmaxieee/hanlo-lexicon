@@ -1,0 +1,11 @@
+alternate_readings = ["ah", "a̍h", "ia̍h"]
+canonical_tl = "iah"
+id = 54
+moe_forms = ["抑"]
+preferred_form = "iah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 176
+snapshot = "lkk-2024-05-10"

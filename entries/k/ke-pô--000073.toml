@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ke-pô"
+id = 73
+moe_forms = []
+preferred_form = "ke-pô"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 245
+snapshot = "lkk-2024-05-10"

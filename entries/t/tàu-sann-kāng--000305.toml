@@ -1,0 +1,11 @@
+alternate_readings = ["tàu-sio-kāng"]
+canonical_tl = "tàu-sann-kāng"
+id = 305
+moe_forms = ["鬥相共"]
+preferred_form = "tàu-sann-kāng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 637
+snapshot = "lkk-2024-05-10"

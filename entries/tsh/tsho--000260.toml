@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsho"
+id = 260
+moe_forms = ["臊"]
+preferred_form = "tsho"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 754
+snapshot = "lkk-2024-05-10"

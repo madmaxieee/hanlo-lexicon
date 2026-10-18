@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sông"
+id = 215
+moe_forms = ["倯"]
+preferred_form = "sông"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 592
+snapshot = "lkk-2024-05-10"

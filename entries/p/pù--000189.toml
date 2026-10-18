@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "pù"
+id = 189
+moe_forms = ["富"]
+preferred_form = "pù"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 517
+snapshot = "lkk-2024-05-10"

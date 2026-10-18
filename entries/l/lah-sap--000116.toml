@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lah-sap"
+id = 116
+moe_forms = ["垃圾"]
+preferred_form = "lah-sap"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 361
+snapshot = "lkk-2024-05-10"

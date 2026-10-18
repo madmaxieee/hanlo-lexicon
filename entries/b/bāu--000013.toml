@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "bāu"
+id = 13
+moe_forms = ["貿"]
+preferred_form = "bāu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 52
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = ["liam-pinn"]
+canonical_tl = "liam-mi"
+id = 121
+moe_forms = ["連鞭"]
+preferred_form = "liam-mi"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 381
+snapshot = "lkk-2024-05-10"

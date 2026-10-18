@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "pûn"
+id = 191
+moe_forms = ["歕"]
+preferred_form = "pûn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 530
+snapshot = "lkk-2024-05-10"

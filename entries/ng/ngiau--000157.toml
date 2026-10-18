@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ngiau"
+id = 157
+moe_forms = ["擽"]
+preferred_form = "ngiau"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 442
+snapshot = "lkk-2024-05-10"

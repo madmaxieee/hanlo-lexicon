@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsa̍t"
+id = 248
+moe_forms = ["實"]
+preferred_form = "tsa̍t"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 745
+snapshot = "lkk-2024-05-10"

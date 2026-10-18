@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tok-ku"
+id = 245
+moe_forms = ["啄龜"]
+preferred_form = "tok-ku"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 724
+snapshot = "lkk-2024-05-10"

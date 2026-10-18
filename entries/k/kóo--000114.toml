@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kóo"
+id = 114
+moe_forms = ["鈷"]
+preferred_form = "kóo"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 337
+snapshot = "lkk-2024-05-10"

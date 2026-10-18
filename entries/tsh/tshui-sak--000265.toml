@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tshui-sak"
+id = 265
+moe_forms = ["推捒"]
+preferred_form = "tshui-sak"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 536
+snapshot = "lkk-2024-05-10"

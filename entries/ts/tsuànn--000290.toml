@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsuànn"
+id = 290
+moe_forms = ["炸"]
+preferred_form = "tsuànn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 866
+snapshot = "lkk-2024-05-10"

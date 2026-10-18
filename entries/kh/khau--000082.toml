@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "khau"
+id = 82
+identity_note = "LKK row 268: 剾."
+moe_forms = ["剾"]
+preferred_form = "khau"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 268
+snapshot = "lkk-2024-05-10"

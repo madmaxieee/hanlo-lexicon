@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "thóng"
+id = 234
+moe_forms = ["捅"]
+preferred_form = "thóng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 673
+snapshot = "lkk-2024-05-10"

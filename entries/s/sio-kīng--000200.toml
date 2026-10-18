@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sio-kīng"
+id = 200
+moe_forms = ["相楗"]
+preferred_form = "sio-kīng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 576
+snapshot = "lkk-2024-05-10"

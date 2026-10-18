@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "khiau"
+id = 87
+moe_forms = ["曲"]
+preferred_form = "khiau"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 278
+snapshot = "lkk-2024-05-10"

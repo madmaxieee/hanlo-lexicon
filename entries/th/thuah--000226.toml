@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "thuah"
+id = 226
+moe_forms = ["挩"]
+preferred_form = "thuah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 677
+snapshot = "lkk-2024-05-10"

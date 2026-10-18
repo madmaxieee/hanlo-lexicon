@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "pua̍h-pue"
+id = 183
+moe_forms = ["跋桮"]
+preferred_form = "pua̍h-pue"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 521
+snapshot = "lkk-2024-05-10"

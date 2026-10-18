@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "pha"
+id = 167
+moe_forms = ["葩"]
+preferred_form = "pha"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 467
+snapshot = "lkk-2024-05-10"

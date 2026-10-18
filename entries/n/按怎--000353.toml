@@ -1,0 +1,11 @@
+alternate_readings = ["ná", "àn-tsuánn"]
+canonical_tl = "nuá"
+id = 353
+moe_forms = []
+preferred_form = "按怎"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 22
+snapshot = "lkk-2024-05-10"

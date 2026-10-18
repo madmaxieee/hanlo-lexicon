@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "tsiânn"
+id = 285
+identity_note = "LKK row 829: 誠."
+moe_forms = ["誠"]
+preferred_form = "tsiânn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 829
+snapshot = "lkk-2024-05-10"

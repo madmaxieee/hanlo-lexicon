@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sió-khuá"
+id = 348
+moe_forms = []
+preferred_form = "小可"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 577
+snapshot = "lkk-2024-05-10"

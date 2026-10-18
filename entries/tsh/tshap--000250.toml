@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tshap"
+id = 250
+moe_forms = ["插"]
+preferred_form = "tshap"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 759
+snapshot = "lkk-2024-05-10"

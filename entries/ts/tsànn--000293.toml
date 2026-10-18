@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsànn"
+id = 293
+moe_forms = ["乍"]
+preferred_form = "tsànn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 742
+snapshot = "lkk-2024-05-10"

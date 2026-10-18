@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshì-môo-thâng"
+id = 362
+moe_forms = ["刺毛蟲"]
+preferred_form = "刺毛蟲"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 3617
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 766
+snapshot = "lkk-2024-05-10"

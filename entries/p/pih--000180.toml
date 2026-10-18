@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "pih"
+id = 180
+moe_forms = ["撆"]
+preferred_form = "pih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 502
+snapshot = "lkk-2024-05-10"

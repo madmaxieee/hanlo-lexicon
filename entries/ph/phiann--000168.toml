@@ -1,0 +1,11 @@
+alternate_readings = ["piann"]
+canonical_tl = "phiann"
+id = 168
+moe_forms = ["抨"]
+preferred_form = "phiann"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 480
+snapshot = "lkk-2024-05-10"

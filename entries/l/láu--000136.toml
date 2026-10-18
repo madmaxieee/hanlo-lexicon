@@ -1,0 +1,11 @@
+alternate_readings = ["náu"]
+canonical_tl = "láu"
+id = 136
+moe_forms = ["扭"]
+preferred_form = "láu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 372
+snapshot = "lkk-2024-05-10"

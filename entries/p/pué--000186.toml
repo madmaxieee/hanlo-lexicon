@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "pué"
+id = 186
+moe_forms = ["掰"]
+preferred_form = "pué"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 526
+snapshot = "lkk-2024-05-10"

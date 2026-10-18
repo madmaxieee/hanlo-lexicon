@@ -1,0 +1,11 @@
+alternate_readings = ["hia-pai"]
+canonical_tl = "hiau-pai"
+id = 38
+moe_forms = ["囂俳"]
+preferred_form = "hiau-pai"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 140
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ui"
+id = 324
+moe_forms = ["揻"]
+preferred_form = "ui"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 889
+snapshot = "lkk-2024-05-10"

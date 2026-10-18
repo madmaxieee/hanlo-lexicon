@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "nih"
+id = 159
+moe_forms = ["呢"]
+preferred_form = "nih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 445
+snapshot = "lkk-2024-05-10"

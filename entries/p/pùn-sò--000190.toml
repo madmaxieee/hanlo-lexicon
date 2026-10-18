@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "pùn-sò"
+id = 190
+moe_forms = ["糞埽"]
+preferred_form = "pùn-sò"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 529
+snapshot = "lkk-2024-05-10"

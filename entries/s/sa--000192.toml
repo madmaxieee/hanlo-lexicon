@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sa"
+id = 192
+moe_forms = ["捎"]
+preferred_form = "sa"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 532
+snapshot = "lkk-2024-05-10"

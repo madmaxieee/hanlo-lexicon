@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "gia̍t-siâu"
+id = 19
+moe_forms = ["孽潲"]
+preferred_form = "gia̍t-siâu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 98
+snapshot = "lkk-2024-05-10"

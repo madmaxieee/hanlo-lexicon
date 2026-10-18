@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "tsiah"
+id = 276
+identity_note = "LKK row 821: 遮."
+moe_forms = ["遮"]
+preferred_form = "tsiah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 821
+snapshot = "lkk-2024-05-10"

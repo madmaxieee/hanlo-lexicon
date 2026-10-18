@@ -1,0 +1,11 @@
+alternate_readings = ["kuê"]
+canonical_tl = "kê"
+id = 113
+moe_forms = ["膎"]
+preferred_form = "kê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 248
+snapshot = "lkk-2024-05-10"

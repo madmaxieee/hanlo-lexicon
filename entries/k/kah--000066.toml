@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "kah"
+id = 66
+identity_note = "LKK row 225: 蓋."
+moe_forms = ["蓋"]
+preferred_form = "kah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 225
+snapshot = "lkk-2024-05-10"

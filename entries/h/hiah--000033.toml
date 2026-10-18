@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "hiah"
+id = 33
+moe_forms = ["遐"]
+preferred_form = "hiah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 129
+snapshot = "lkk-2024-05-10"

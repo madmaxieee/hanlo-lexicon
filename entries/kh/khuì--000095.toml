@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "khuì"
+id = 95
+moe_forms = ["氣"]
+preferred_form = "khuì"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 300
+snapshot = "lkk-2024-05-10"

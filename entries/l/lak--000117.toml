@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "lak"
+id = 117
+identity_note = "LKK row 363: 橐."
+moe_forms = ["橐"]
+preferred_form = "lak"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 363
+snapshot = "lkk-2024-05-10"

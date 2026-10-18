@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sio̍h"
+id = 201
+moe_forms = ["液"]
+preferred_form = "sio̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 578
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "ha̍h"
+id = 27
+identity_note = "LKK row 112: 合."
+moe_forms = ["合"]
+preferred_form = "ha̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 112
+snapshot = "lkk-2024-05-10"

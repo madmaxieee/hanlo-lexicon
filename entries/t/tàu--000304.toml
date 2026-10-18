@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tàu"
+id = 304
+moe_forms = []
+preferred_form = "tàu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 636
+snapshot = "lkk-2024-05-10"

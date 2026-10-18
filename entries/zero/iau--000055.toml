@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "iau"
+id = 55
+moe_forms = ["枵"]
+preferred_form = "iau"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 183
+snapshot = "lkk-2024-05-10"

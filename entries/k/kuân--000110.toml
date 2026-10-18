@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kuân"
+id = 110
+moe_forms = ["懸"]
+preferred_form = "kuân"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 345
+snapshot = "lkk-2024-05-10"

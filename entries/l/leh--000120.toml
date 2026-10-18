@@ -1,0 +1,11 @@
+alternate_readings = ["teh"]
+canonical_tl = "leh"
+id = 120
+moe_forms = ["咧"]
+preferred_form = "leh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 376
+snapshot = "lkk-2024-05-10"

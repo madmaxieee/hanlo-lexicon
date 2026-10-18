@@ -1,0 +1,11 @@
+alternate_readings = ["luê"]
+canonical_tl = "juê"
+id = 62
+moe_forms = ["挼"]
+preferred_form = "juê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 217
+snapshot = "lkk-2024-05-10"

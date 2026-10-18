@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "liōng-siōng"
+id = 127
+moe_forms = ["冗剩"]
+preferred_form = "liōng-siōng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 395
+snapshot = "lkk-2024-05-10"

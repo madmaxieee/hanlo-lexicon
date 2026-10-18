@@ -1,0 +1,11 @@
+alternate_readings = ["tng-tih"]
+canonical_tl = "tng-leh"
+id = 242
+moe_forms = ["當咧"]
+preferred_form = "tng-leh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 713
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "suh"
+id = 209
+moe_forms = ["欶"]
+preferred_form = "suh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 606
+snapshot = "lkk-2024-05-10"

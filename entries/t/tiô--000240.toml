@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tiô"
+id = 240
+moe_forms = ["趒"]
+preferred_form = "tiô"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 704
+snapshot = "lkk-2024-05-10"

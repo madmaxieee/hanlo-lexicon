@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsūn"
+id = 298
+moe_forms = ["陣"]
+preferred_form = "tsūn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 868
+snapshot = "lkk-2024-05-10"

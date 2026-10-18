@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ài"
+id = 328
+moe_forms = ["愛"]
+preferred_form = "ài"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 16
+snapshot = "lkk-2024-05-10"

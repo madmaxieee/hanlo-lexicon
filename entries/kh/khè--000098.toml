@@ -1,0 +1,11 @@
+alternate_readings = ["khuè"]
+canonical_tl = "khè"
+id = 98
+moe_forms = ["齧"]
+preferred_form = "khè"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 269
+snapshot = "lkk-2024-05-10"

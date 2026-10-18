@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "phí"
+id = 173
+moe_forms = ["庀"]
+preferred_form = "phí"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 478
+snapshot = "lkk-2024-05-10"

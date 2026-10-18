@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "puânn-nuá"
+id = 185
+moe_forms = ["盤撋"]
+preferred_form = "puânn-nuá"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 523
+snapshot = "lkk-2024-05-10"

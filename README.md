@@ -39,12 +39,19 @@ copy of the original MOE ODS. On first use the tool downloads that exact snapsho
 from TaigiKeyboard GitHub into ignored `.cache/dictionaries/moe/`; later lookups
 work offline. New IDs come from `id-sequence.toml` under a local writer lock.
 
-## Pilot batch
+## Personal curated batch
 
-The ten pilot entries are `at`, `au`, `a̍h`, `bat`, `beh`, `bih`, `bái`, `bî`,
-`bóng`, and `bông`. Alternate readings include `pat` for `bat` and `bueh` for
-`beh`, as recorded in the LKK source.
+The personal lists dated 2026-10-18 contain 397 romanized input/output pairs and
+25 Hanji pairs. Their full batch is represented by 362 entries, including the
+original ten pilot entries with IDs 1 through 10. New entries use IDs 11 through
+362; the next unused ID is 363.
 
-Each entry cites the original LKK snapshot and row. Original spreadsheet content
-remains in the archived TSV. All ten records are imported and await editorial
-review; no rationale is inferred.
+Alternate readings stay with their word. Unrelated source homographs remain
+separate records with distinct identity notes. The maintainer selected `leh` and
+`kánn-ná` as preferred forms and MOE's `tshì-môo-thâng` reading for `刺毛蟲`.
+See [the import decisions](decisions/personal-curated-import-2026-10-19.md) for
+input checksums, coverage, and source interpretation.
+
+Each entry cites original LKK evidence; the corrected `刺毛蟲` reading also cites
+the pinned MOE dictionary. Original spreadsheet content remains in the archived
+TSV. All 362 records are `imported` and await editorial review.

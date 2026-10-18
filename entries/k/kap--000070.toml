@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kap"
+id = 70
+moe_forms = ["敆"]
+preferred_form = "kap"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 240
+snapshot = "lkk-2024-05-10"

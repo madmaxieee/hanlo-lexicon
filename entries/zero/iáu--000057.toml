@@ -1,0 +1,11 @@
+alternate_readings = ["ah", "iah", "iá", "á"]
+canonical_tl = "iáu"
+id = 57
+moe_forms = ["猶"]
+preferred_form = "iáu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 184
+snapshot = "lkk-2024-05-10"

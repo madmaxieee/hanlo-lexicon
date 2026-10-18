@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kám"
+id = 111
+moe_forms = ["敢"]
+preferred_form = "kám"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 232
+snapshot = "lkk-2024-05-10"

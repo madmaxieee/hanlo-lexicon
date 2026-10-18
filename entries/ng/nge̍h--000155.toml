@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "nge̍h"
+id = 155
+moe_forms = ["挾"]
+preferred_form = "nge̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 440
+snapshot = "lkk-2024-05-10"

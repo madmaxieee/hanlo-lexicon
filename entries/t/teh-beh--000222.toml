@@ -1,0 +1,11 @@
+alternate_readings = ["teh-bueh", "tih-beh", "tih-bueh"]
+canonical_tl = "teh-beh"
+id = 222
+moe_forms = ["咧欲"]
+preferred_form = "teh-beh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 643
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = ["lā-hio̍h"]
+canonical_tl = "bā-hio̍h"
+id = 12
+moe_forms = ["鴟鴞"]
+preferred_form = "bā-hio̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 39
+snapshot = "lkk-2024-05-10"

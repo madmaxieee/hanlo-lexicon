@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ueh"
+id = 322
+moe_forms = ["喂"]
+preferred_form = "ueh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 887
+snapshot = "lkk-2024-05-10"

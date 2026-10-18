@@ -1,0 +1,11 @@
+alternate_readings = ["liâu"]
+canonical_tl = "jiâu"
+id = 61
+moe_forms = ["皺"]
+preferred_form = "jiâu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 205
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tshiah"
+id = 252
+moe_forms = ["刺"]
+preferred_form = "tshiah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 769
+snapshot = "lkk-2024-05-10"

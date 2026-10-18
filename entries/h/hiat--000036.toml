@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "hiat"
+id = 36
+moe_forms = ["㧒"]
+preferred_form = "hiat"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 138
+snapshot = "lkk-2024-05-10"

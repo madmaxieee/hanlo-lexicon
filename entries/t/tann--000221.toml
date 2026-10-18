@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tann"
+id = 221
+moe_forms = ["今"]
+preferred_form = "tann"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 631
+snapshot = "lkk-2024-05-10"

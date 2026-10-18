@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "koh-khah"
+id = 105
+moe_forms = ["閣較"]
+preferred_form = "koh-khah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 329
+snapshot = "lkk-2024-05-10"

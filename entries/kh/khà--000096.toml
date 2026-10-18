@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "khà"
+id = 96
+moe_forms = ["敲"]
+preferred_form = "khà"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 255
+snapshot = "lkk-2024-05-10"

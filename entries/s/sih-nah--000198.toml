@@ -1,0 +1,11 @@
+alternate_readings = ["sih-nà", "sinnh-nà"]
+canonical_tl = "sih-nah"
+id = 198
+moe_forms = ["爍爁"]
+preferred_form = "sih-nah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 567
+snapshot = "lkk-2024-05-10"

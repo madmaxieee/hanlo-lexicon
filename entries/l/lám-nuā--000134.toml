@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lám-nuā"
+id = 134
+moe_forms = ["荏懶"]
+preferred_form = "lám-nuā"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 365
+snapshot = "lkk-2024-05-10"

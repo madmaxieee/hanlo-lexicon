@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tī"
+id = 314
+moe_forms = ["佇"]
+preferred_form = "tī"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 684
+snapshot = "lkk-2024-05-10"

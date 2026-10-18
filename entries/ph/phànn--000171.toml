@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "phànn"
+id = 171
+moe_forms = ["冇"]
+preferred_form = "phànn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 477
+snapshot = "lkk-2024-05-10"

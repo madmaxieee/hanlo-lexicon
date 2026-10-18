@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "liú-lia̍h"
+id = 125
+moe_forms = ["扭掠"]
+preferred_form = "liú-lia̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 399
+snapshot = "lkk-2024-05-10"

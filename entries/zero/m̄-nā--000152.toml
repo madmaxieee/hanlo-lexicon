@@ -1,0 +1,11 @@
+alternate_readings = ["m̄-niā"]
+canonical_tl = "m̄-nā"
+id = 152
+moe_forms = ["毋但"]
+preferred_form = "m̄-nā"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 424
+snapshot = "lkk-2024-05-10"

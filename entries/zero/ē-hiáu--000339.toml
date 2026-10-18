@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ē-hiáu"
+id = 339
+moe_forms = ["會曉"]
+preferred_form = "ē-hiáu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 83
+snapshot = "lkk-2024-05-10"

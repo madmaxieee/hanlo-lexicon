@@ -1,0 +1,11 @@
+alternate_readings = ["buē-tàng"]
+canonical_tl = "bē-tàng"
+id = 15
+moe_forms = ["袂當"]
+preferred_form = "bē-tàng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 54
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tìm"
+id = 310
+moe_forms = ["抌"]
+preferred_form = "tìm"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 696
+snapshot = "lkk-2024-05-10"

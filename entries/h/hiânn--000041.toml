@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "hiânn"
+id = 41
+moe_forms = ["燃"]
+preferred_form = "hiânn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 137
+snapshot = "lkk-2024-05-10"

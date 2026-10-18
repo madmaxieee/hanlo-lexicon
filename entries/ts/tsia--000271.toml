@@ -1,0 +1,11 @@
+alternate_readings = ["tsiâ"]
+canonical_tl = "tsia"
+id = 271
+moe_forms = ["遮"]
+preferred_form = "tsia"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 815
+snapshot = "lkk-2024-05-10"

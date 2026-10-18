@@ -1,0 +1,11 @@
+alternate_readings = ["lip"]
+canonical_tl = "jiok"
+id = 59
+moe_forms = ["逐"]
+preferred_form = "jiok"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 207
+snapshot = "lkk-2024-05-10"

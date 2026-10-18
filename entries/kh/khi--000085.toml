@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "khi"
+id = 85
+moe_forms = ["敧"]
+preferred_form = "khi"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 271
+snapshot = "lkk-2024-05-10"

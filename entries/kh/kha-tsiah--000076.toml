@@ -1,0 +1,11 @@
+alternate_readings = ["ka-tsiah"]
+canonical_tl = "kha-tsiah"
+id = 76
+moe_forms = ["尻脊"]
+preferred_form = "kha-tsiah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 253
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "hú"
+id = 51
+moe_forms = ["拊"]
+preferred_form = "hú"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 156
+snapshot = "lkk-2024-05-10"

@@ -86,12 +86,58 @@ Repository validation needs only local source snapshots unless entries themselve
 cite MOE. Candidate `check` and `add` always require the pinned MOE copy. All commands
 accept `--root PATH` before the subcommand for another checkout or a test fixture.
 
-## Tests and exports
+## Build CSV
+
+```sh
+python3 tools/lexicon.py build-csv
+```
+
+The command validates the repository and atomically writes `dist/lexicon.csv`.
+The UTF-8 file has an exact `preferred_form,tl` header, LF line endings, and rows
+sorted by written form and then reading using Unicode code-point order. Identical
+rows are emitted once, including rows shared by unrelated homographs. The TOML
+records, IDs, source snapshots, and allocation counter are unchanged.
+
+Each entry contributes its `preferred_form` with its `canonical_tl`. For each
+`alternate_readings` value:
+
+- If the preferred form contains only Hanji, retain that form for every reading.
+  Punctuation, spaces, and combining marks are ignored for this classification,
+  so `後--日` retains its written form for both `āu--ji̍t` and `āu--li̍t`.
+- Otherwise, including romanized and mixed forms, use the alternate reading as
+  both the written output and the TL value.
+
+For example, `beh` with alternate `bueh` produces:
+
+```csv
+preferred_form,tl
+beh,beh
+bueh,bueh
+```
+
+A Hanji entry `欲` with readings `beh` and `bueh` instead produces `欲,beh` and
+`欲,bueh`. A mixed entry `beh食飯` with alternate `bueh-tsiah-pn̄g` produces the
+alias row `bueh-tsiah-pn̄g,bueh-tsiah-pn̄g`. `moe_forms` are evidence fields and do
+not generate output rows. All review statuses are included; exporting does not
+mark entries reviewed. Tone marks, spaces, and single/double hyphens are preserved.
+
+`dist/` is ignored. A validation failure leaves an existing CSV untouched. The
+build shares the maintenance writer lock to avoid racing with `add` or `format`.
+MOE is fetched and verified only when required by source citations, using the
+same pinned cache as validation.
+
+The manual **Build CSV** GitHub Actions workflow runs tests and this same command,
+then makes `lexicon.csv` available in the `hanlo-lexicon-csv` run artifact. It
+requires an explicitly published repository before it can be run on GitHub.
+Local builds need no GitHub account or remote. Release publishing and JSON exports
+remain unimplemented.
+
+## Tests
 
 ```sh
 python3 -m unittest discover -s tests -v
 ```
 
 Tests use small temporary ODS/TSV fixtures and cover duplicate/alias behavior,
-homographs, source verification, ID allocation, concurrency, formatting, and Unicode.
-CSV/JSON release exporters and GitHub release workflows are not implemented yet.
+homographs, source verification, ID allocation, concurrency, formatting, Unicode,
+and the CSV output rules above.

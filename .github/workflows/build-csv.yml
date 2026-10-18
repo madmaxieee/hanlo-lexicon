@@ -1,0 +1,28 @@
+name: Build CSV
+
+"on":
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+      - name: Test maintenance tools
+        run: python3 -m unittest discover -s tests -v
+      - name: Validate entries and build CSV
+        run: python3 tools/lexicon.py build-csv
+      - name: Upload CSV artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: hanlo-lexicon-csv
+          path: dist/lexicon.csv
+          if-no-files-found: error

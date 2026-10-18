@@ -424,11 +424,41 @@ def validate(root, formatting=True):
     return {'entries': len(current), 'next_id': next_id(root, current), 'sources': len(lkk)}
 
 
+def is_hanji(form):
+    """Ignore separators and marks, but require every remaining character to be Hanji."""
+    characters = [char for char in form if ud.category(char)[0] not in {'P', 'Z', 'M'}]
+    return bool(characters) and all(
+        ud.name(char, '').startswith(('CJK UNIFIED IDEOGRAPH-', 'CJK COMPATIBILITY IDEOGRAPH-'))
+        or char in '〇々〆'
+        for char in characters
+    )
+
+
+def build_csv(root):
+    """Build a flat spelling/reading CSV without changing editorial records."""
+    with writer_lock(root):
+        validate(root)
+        current = entries(root)
+        rows = set()
+        for _, entry in current:
+            form = entry['preferred_form']
+            rows.add((form, entry['canonical_tl']))
+            for reading in entry['alternate_readings']:
+                rows.add((form if is_hanji(form) else reading, reading))
+        stream = io.StringIO(newline='')
+        writer = csv.writer(stream, lineterminator='\n')
+        writer.writerow(('preferred_form', 'tl'))
+        writer.writerows(sorted(rows))
+        target = root / 'dist/lexicon.csv'
+        atomic_write(target, stream.getvalue())
+    return {'csv': str(target.relative_to(root)), 'entries': len(current), 'rows': len(rows)}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
     sub = parser.add_subparsers(dest='command', required=True)
-    for name in ('validate', 'next-id', 'fetch-moe'):
+    for name in ('validate', 'next-id', 'fetch-moe', 'build-csv'):
         sub.add_parser(name)
     formatting = sub.add_parser('format')
     formatting.add_argument('--check', action='store_true')
@@ -443,6 +473,8 @@ def main():
             result = {'snapshot': pin['id'], 'cache': str(path.relative_to(root)), 'sha256': pin['sha256']}
         elif args.command == 'next-id':
             result = {'next_id': next_id(root, entries(root)), 'reserved': False}
+        elif args.command == 'build-csv':
+            result = build_csv(root)
         elif args.command == 'validate' or args.command == 'format' and args.check:
             result = validate(root)
         elif args.command == 'format':

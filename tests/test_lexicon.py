@@ -1,6 +1,7 @@
 """Behavioral tests with tiny original-source fixtures; no network or user-data writes."""
 
 import concurrent.futures
+import csv
 import hashlib
 import importlib.util
 import io
@@ -263,6 +264,72 @@ class MaintenanceTests(unittest.TestCase):
         self.assertFalse((self.root / '.lexicon.lock').exists())
         self.assertEqual(self.run_cli('next-id')['next_id'], 2)
         self.assertEqual(self.run_cli('add', str(request))['id'], 2)
+
+    def csv_rows(self):
+        with (self.root / 'dist/lexicon.csv').open(encoding='utf-8', newline='') as stream:
+            return list(csv.reader(stream))
+
+    def test_build_csv_romanized_aliases_map_to_themselves(self):
+        self.run_cli('add', str(self.request(alternate_readings=['bueh'])))
+        result = self.run_cli('build-csv')
+        self.assertEqual(result, {'csv': 'dist/lexicon.csv', 'entries': 1, 'rows': 2})
+        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl'], ['beh', 'beh'], ['bueh', 'bueh']])
+
+    def test_build_csv_hanji_keeps_form_and_mixed_alias_maps_to_itself(self):
+        self.run_cli('add', str(self.request(form='欲', alternate_readings=['bueh'])))
+        self.run_cli('add', str(self.request(form='beh食飯', reading='beh-tsiah-pn̄g', alternate_readings=['bueh-tsiah-pn̄g'])))
+        self.run_cli('build-csv')
+        self.assertEqual(self.csv_rows(), [
+            ['preferred_form', 'tl'],
+            ['beh食飯', 'beh-tsiah-pn̄g'],
+            ['bueh-tsiah-pn̄g', 'bueh-tsiah-pn̄g'],
+            ['欲', 'beh'], ['欲', 'bueh'],
+        ])
+
+    def test_build_csv_deduplicates_rows_without_merging_homographs(self):
+        self.run_cli('add', str(self.request(alternate_readings=['bueh'])))
+        self.run_cli('add', str(self.request(alternate_readings=['bueh'], identity_note='A separate fixture lexeme.')))
+        self.run_cli('add', str(self.request(form='bueh', reading='bueh')))
+        before = {path: path.read_bytes() for path, _ in lex.entries(self.root)}
+        counter = (self.root / 'id-sequence.toml').read_bytes()
+        self.assertEqual(self.run_cli('build-csv')['rows'], 2)
+        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl'], ['beh', 'beh'], ['bueh', 'bueh']])
+        self.assertEqual({path: path.read_bytes() for path, _ in lex.entries(self.root)}, before)
+        self.assertEqual((self.root / 'id-sequence.toml').read_bytes(), counter)
+        self.assertEqual(self.run_cli('validate')['entries'], 3)
+
+    def test_build_csv_preserves_unicode_quotes_and_neutral_markers(self):
+        self.run_cli('add', str(self.request(form='後--日', reading='āu--ji̍t', alternate_readings=['āu--li̍t'])))
+        self.run_cli('add', str(self.request(form='「欲,愛」', reading='bóng')))
+        self.run_cli('build-csv')
+        target = self.root / 'dist/lexicon.csv'
+        before = target.read_bytes()
+        self.assertNotIn(b'\r', before)
+        self.assertEqual(self.csv_rows(), [
+            ['preferred_form', 'tl'], ['「欲,愛」', 'bóng'],
+            ['後--日', 'āu--ji̍t'], ['後--日', 'āu--li̍t'],
+        ])
+        self.run_cli('build-csv')
+        self.assertEqual(target.read_bytes(), before)
+
+    def test_build_csv_rejects_invalid_data_before_replacing_output(self):
+        self.run_cli('add', str(self.request()))
+        self.run_cli('build-csv')
+        target = self.root / 'dist/lexicon.csv'
+        before = target.read_bytes()
+        source = self.root / 'sources/lkk-fixture/word-list.tsv'
+        source.write_bytes(source.read_bytes() + b'changed')
+        self.run_cli('build-csv', expected=2)
+        self.assertEqual(target.read_bytes(), before)
+        self.assertFalse((self.root / '.lexicon.lock').exists())
+
+    def test_build_csv_empty_repository_and_writer_lock(self):
+        (self.root / '.lexicon.lock').mkdir()
+        self.run_cli('build-csv', expected=2)
+        self.assertFalse((self.root / 'dist/lexicon.csv').exists())
+        (self.root / '.lexicon.lock').rmdir()
+        self.assertEqual(self.run_cli('build-csv')['rows'], 0)
+        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl']])
 
 
 if __name__ == '__main__':

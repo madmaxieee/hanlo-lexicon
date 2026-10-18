@@ -10,9 +10,9 @@ starting from the LKK word list. The project is a local pilot.
 - `sources/`: unmodified source snapshots and their metadata.
 - `decisions/`: editorial decisions affecting multiple entries.
 - `schema/`: the entry schema and field conventions.
-- `tools/`: offline maintenance commands; release exports are planned.
+- `tools/`: maintenance commands and CSV builds.
 - `.agents/skills/maintain-lexicon/`: project-local vocabulary maintenance skill.
-- `.github/workflows/`: reserved for validation and release workflows.
+- `.github/workflows/`: manual CSV build and artifact workflow.
 
 Entries are filed by the complete consonantal initial of the first syllable of
 `canonical_tl`. `zero/` holds zero-initial entries, including syllabic nasals.
@@ -25,9 +25,13 @@ Correcting a canonical reading may move a file without changing its ID.
 Preserve unrelated homographs even when spelling and reading both match, using a
 distinct identity note. Canonical readings select a filing reference, not a superior dialect.
 
-TOML files are the editable source. CSV and JSON downloads will be generated;
-generated exports belong in `dist/` locally and in release assets when published.
-Release automation and contribution forms are not implemented in this pilot.
+TOML files are the editable source. Build a CSV locally with
+`python3 tools/lexicon.py build-csv`; the result is `dist/lexicon.csv` with columns
+`preferred_form,tl`. Romanized and mixed aliases map to their own spellings;
+Hanji-only forms retain the same suggested Hanji for every reading. Identical
+CSV rows are deduplicated while distinct TOML word identities are preserved.
+See `tools/README.md` for examples and the manual GitHub Actions build workflow.
+JSON exports, release publishing, and contribution forms are not implemented.
 
 See `schema/README.md` for record conventions and `RIGHTS.md` for source rights.
 

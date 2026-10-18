@@ -1,0 +1,15 @@
+id = "lkk-2024-05-10"
+title = "LKK用字_雲端版_台羅正式版_2024_5_10更新"
+original_filename = "LKK用字_雲端版_台羅正式版_2024_5_10更新 - 字表.tsv"
+file = "word-list.tsv"
+sheet = "字表"
+edition = "2024-05-10"
+edition_basis = "Original filename; not independently verified."
+imported_on = 2026-10-18
+format = "tsv"
+has_header = true
+encoding = "UTF-8"
+sha256 = "903c4193aa011163493289dde79b01e1be7e19b0c5afecb4c7216dd4205431c1"
+attribution_status = "unverified"
+license_status = "unverified"
+notes = "Unmodified local export. Original spreadsheet URL is not established."

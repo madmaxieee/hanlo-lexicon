@@ -434,6 +434,63 @@ def is_hanji(form):
     )
 
 
+def written_form(form, canonical, reading):
+    """Render a sourced alternate in the same Han/romanized writing pattern.
+
+    Mixed forms require one Han character or romanized syllable per reading
+    syllable. Fail on contractions or mismatched romanization, rather than
+    silently replacing the Han characters with a full romanized reading.
+    """
+    if is_hanji(form):
+        return form
+    if not any(is_hanji(char) for char in form):
+        return form if key(canonical) == key(reading) else reading
+    units = []
+    i = 0
+    while i < len(form):
+        start = i
+        char = form[i]
+        if is_hanji(char):
+            units.append((i, i + 1, True))
+            i += 1
+        elif 'LATIN' in ud.name(char, ''):
+            i += 1
+            while i < len(form) and ('LATIN' in ud.name(form[i], '')
+                                    or ud.category(form[i]).startswith('M')
+                                    or form[i].isdigit() or form[i] in "'’"):
+                i += 1
+            units.append((start, i, False))
+        elif ud.category(char)[0] in {'P', 'Z', 'M'}:
+            i += 1
+        else:
+            raise Error(f'Cannot align mixed written form {form!r}; review its spelling.')
+    primary = list(re.finditer(r'[^\s-]+', canonical))
+    alternate = list(re.finditer(r'[^\s-]+', reading))
+    if len(units) != len(primary) or len(primary) != len(alternate):
+        raise Error(f'Cannot align alternate {reading!r} to mixed form {form!r}; syllable counts differ.')
+    output, cursor = [], 0
+    for index, (start, end, hanji) in enumerate(units):
+        if not hanji and key(form[start:end]) != key(primary[index].group()):
+            raise Error(f'Cannot align romanized part of {form!r} with {canonical!r}.')
+        # A changed neutral-tone boundary needs explicit spelling review.
+        def neutral(tokens, value):
+            previous = tokens[index - 1].end() if index else 0
+            return '--' in value[previous:tokens[index].start()]
+        if not hanji and neutral(primary, canonical) != neutral(alternate, reading):
+            raise Error(f'Neutral-tone boundary changes in {form!r}; review the alternate spelling.')
+        output.extend((form[cursor:start], form[start:end] if hanji else alternate[index].group()))
+        cursor = end
+    output.append(form[cursor:])
+    return ''.join(output)
+
+
+def spelling_readings(entry):
+    """All recommended output pairs, retaining one editorial identity."""
+    form, canonical = entry['preferred_form'], entry['canonical_tl']
+    return [(written_form(form, canonical, reading), reading)
+            for reading in [canonical, *entry['alternate_readings']]]
+
+
 def build_csv(root):
     """Build a flat spelling/reading CSV without changing editorial records."""
     with writer_lock(root):
@@ -441,10 +498,7 @@ def build_csv(root):
         current = entries(root)
         rows = set()
         for _, entry in current:
-            form = entry['preferred_form']
-            rows.add((form, entry['canonical_tl']))
-            for reading in entry['alternate_readings']:
-                rows.add((form if is_hanji(form) else reading, reading))
+            rows.update(spelling_readings(entry))
         stream = io.StringIO(newline='')
         writer = csv.writer(stream, lineterminator='\n')
         writer.writerow(('preferred_form', 'tl'))

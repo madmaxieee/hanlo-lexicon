@@ -12,7 +12,9 @@ format files, and validate this schema.
 - `canonical_tl`: a verified TL filing reading, including tone marks.
 - `preferred_form`: recommended output; may be Hanji, romanization, or mixed.
 - `alternate_readings`: explicitly supported alternate input readings, excluding
-  `canonical_tl` itself. An alias does not replace the preferred output.
+  `canonical_tl` itself. Generated alternate outputs retain Han characters and
+  change the corresponding romanized syllables; alternate readings remain part
+  of the same editorial identity. See `tools/README.md` for alignment rules.
 - `moe_forms`: verified MOE spellings, distinct from the preferred recommendation.
 - `review_status`: `imported`, `reviewed`, or `disputed`.
 - `identity_note`: optional concise explanation distinguishing an unrelated word

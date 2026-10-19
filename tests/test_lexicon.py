@@ -275,16 +275,43 @@ class MaintenanceTests(unittest.TestCase):
         self.assertEqual(result, {'csv': 'dist/lexicon.csv', 'entries': 1, 'rows': 2})
         self.assertEqual(self.csv_rows(), [['preferred_form', 'tl'], ['beh', 'beh'], ['bueh', 'bueh']])
 
-    def test_build_csv_hanji_keeps_form_and_mixed_alias_maps_to_itself(self):
+    def test_build_csv_hanji_keeps_form_and_mixed_alias_preserves_hanji(self):
         self.run_cli('add', str(self.request(form='欲', alternate_readings=['bueh'])))
         self.run_cli('add', str(self.request(form='beh食飯', reading='beh-tsiah-pn̄g', alternate_readings=['bueh-tsiah-pn̄g'])))
         self.run_cli('build-csv')
         self.assertEqual(self.csv_rows(), [
             ['preferred_form', 'tl'],
             ['beh食飯', 'beh-tsiah-pn̄g'],
-            ['bueh-tsiah-pn̄g', 'bueh-tsiah-pn̄g'],
+            ['bueh食飯', 'bueh-tsiah-pn̄g'],
             ['欲', 'beh'], ['欲', 'bueh'],
         ])
+
+    def test_mixed_alternates_change_only_romanized_syllables(self):
+        cases = [
+            ('想beh', 'siūnn-beh', 'siūnn-bueh', '想bueh'),
+            ('hip相', 'hip-siòng', 'hip-siōng', 'hip相'),
+            ('想beh食飯', 'siūnn-beh-tsiah-pn̄g', 'siūnn-bueh-tsiah-pn̄g', '想bueh食飯'),
+            ('好--ah', 'hó--ah', 'hó--a', '好--a'),
+            ('m̄知', 'm̄ tsai', 'm̄ chai', 'm̄知'),
+        ]
+        for form, canonical, alternate, expected in cases:
+            with self.subTest(form=form):
+                self.assertEqual(lex.written_form(form, canonical, alternate), expected)
+        self.assertEqual(lex.written_form('想bèh', 'siūnn-bèh', 'siūnn-bueh'), '想bueh')
+
+    def test_ambiguous_mixed_alternate_fails_before_csv_replacement(self):
+        self.run_cli('add', str(self.request(form='想beh', reading='siūnn-beh')))
+        self.run_cli('build-csv')
+        before = (self.root / 'dist/lexicon.csv').read_bytes()
+        path, entry = lex.entries(self.root)[0]
+        entry['alternate_readings'] = ['sióng']
+        path.write_text(lex.render(entry))
+        self.run_cli('build-csv', expected=2)
+        self.assertEqual((self.root / 'dist/lexicon.csv').read_bytes(), before)
+        with self.assertRaisesRegex(lex.Error, 'romanized part'):
+            lex.written_form('想beh', 'siūnn-bueh', 'siūnn-beh')
+        with self.assertRaisesRegex(lex.Error, 'Neutral-tone'):
+            lex.written_form('想beh', 'siūnn-beh', 'siūnn--beh')
 
     def test_build_csv_deduplicates_rows_without_merging_homographs(self):
         self.run_cli('add', str(self.request(alternate_readings=['bueh'])))

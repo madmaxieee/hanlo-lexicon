@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thìng-hāu"
+id = 590
+moe_forms = ["聽候"]
+preferred_form = "thìng候"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 27; normalized source characters 1730:1736; written form thìng候"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 13233
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

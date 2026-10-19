@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "làu-the"
+id = 685
+moe_forms = ["落胎"]
+preferred_form = "làu胎"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 1027:1031; written form làu胎"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e_0833371607.html"
+
+[[sources]]
+row = 9927
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

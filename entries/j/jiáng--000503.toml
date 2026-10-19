@@ -1,0 +1,21 @@
+alternate_readings = ["jióng", "lióng"]
+canonical_tl = "jiáng"
+id = 503
+moe_forms = ["嚷"]
+preferred_form = "jiáng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 527:532; written form jiáng"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 12942
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 989
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"

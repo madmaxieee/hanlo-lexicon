@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sio-lám"
+id = 575
+moe_forms = ["相攬"]
+preferred_form = "sio攬"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 16; normalized source characters 126:130; written form sio攬"
+url = "https://tsbp.tgb.org.tw/2016/09/mai.html"
+
+[[sources]]
+row = 5302
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

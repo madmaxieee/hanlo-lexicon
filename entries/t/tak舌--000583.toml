@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tak-tsi̍h"
+id = 583
+moe_forms = ["觸舌"]
+preferred_form = "tak舌"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 51; normalized source characters 3609:3613; written form tak舌"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 13011
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

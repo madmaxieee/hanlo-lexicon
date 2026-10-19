@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pau-kuat"
+id = 694
+moe_forms = ["包括"]
+preferred_form = "包kuat"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 1097:1101; source written form 包kuà; preferred form corrected to 包kuat by explicit reviewer request"
+url = "https://tsbp.tgb.org.tw/2016/09/sa-mgau.html"
+
+[[sources]]
+row = 18780
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

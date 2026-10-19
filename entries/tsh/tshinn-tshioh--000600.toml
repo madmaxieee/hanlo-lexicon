@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshinn-tshioh"
+id = 600
+moe_forms = ["鮮沢"]
+preferred_form = "tshinn-tshioh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 14; normalized source characters 991:1004; written form tshinn-tshioh"
+url = "https://tsbp.tgb.org.tw/2016/09/30-30.html"
+
+[[sources]]
+row = 12440
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

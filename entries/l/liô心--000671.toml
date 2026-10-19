@@ -1,0 +1,20 @@
+alternate_readings = []
+canonical_tl = "liô-sim"
+id = 671
+moe_forms = []
+preferred_form = "liô心"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 549:553; written form liô心"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+locator = "Article text line 72; normalized source characters 2417:2421; written form liô心"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 793
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

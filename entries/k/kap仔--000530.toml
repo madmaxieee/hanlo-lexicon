@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kap-á"
+id = 530
+moe_forms = ["蛤仔"]
+preferred_form = "kap仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 10; normalized source characters 77:81; written form kap仔"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01456297451.html"
+
+[[sources]]
+row = 8993
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

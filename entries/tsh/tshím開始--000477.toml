@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshím-khai-sí"
+id = 477
+moe_forms = ["寢開始"]
+preferred_form = "tshím開始"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 433:440; written form chhím開始"
+url = "https://tsbp.tgb.org.tw/2016/09/30-e.html"
+
+[[sources]]
+row = 27732
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

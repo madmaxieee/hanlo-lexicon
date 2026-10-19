@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "má-se-má-se"
+id = 688
+moe_forms = ["馬西馬西"]
+preferred_form = "má-se-má-se"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 21; normalized source characters 1452:1463; written form má-se-má-se"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 6820
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

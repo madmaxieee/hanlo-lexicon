@@ -1,0 +1,21 @@
+alternate_readings = ["hip-siōng"]
+canonical_tl = "hip-siòng"
+id = 492
+moe_forms = ["翕相"]
+preferred_form = "hip相"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 70; normalized source characters 2347:2351; written form hip相"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 725
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 8911
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

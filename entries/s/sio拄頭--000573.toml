@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sio-tú-thâu"
+id = 573
+moe_forms = ["相拄頭"]
+preferred_form = "sio拄頭"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 12; normalized source characters 114:119; written form sio拄頭"
+url = "https://tsbp.tgb.org.tw/2016/09/blog-post_25.html"
+
+[[sources]]
+row = 15276
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

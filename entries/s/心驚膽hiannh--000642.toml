@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sim-kiann-tánn-hiannh"
+id = 642
+moe_forms = ["心驚膽嚇"]
+preferred_form = "心驚膽hiannh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 13:22; written form 心驚膽hiannh"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e_0833371607.html"
+
+[[sources]]
+row = 1211
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

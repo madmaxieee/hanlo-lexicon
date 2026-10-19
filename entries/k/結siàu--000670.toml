@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kiat-siàu"
+id = 670
+moe_forms = ["結數"]
+preferred_form = "結siàu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 12; normalized source characters 763:768; written form 結siàu"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01515107482.html"
+
+[[sources]]
+row = 8886
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

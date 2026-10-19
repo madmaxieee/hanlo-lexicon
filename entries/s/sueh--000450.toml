@@ -1,0 +1,21 @@
+alternate_readings = ["seh", "serh"]
+canonical_tl = "sueh"
+id = 450
+moe_forms = ["說"]
+preferred_form = "sueh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 37; normalized source characters 2300:2304; written form sueh"
+url = "https://tsbp.tgb.org.tw/2016/09/sa-mgau.html"
+
+[[sources]]
+row = 10819
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 236
+sheet = "語音差異"
+snapshot = "moe-kautian-3e0b2023e0bd"

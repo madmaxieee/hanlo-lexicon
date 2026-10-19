@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsih-la̍t"
+id = 480
+moe_forms = ["接力"]
+preferred_form = "tsih力"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 62; normalized source characters 2062:2067; written form chih力"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 7318
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pún-tsiânn"
+id = 655
+moe_forms = ["本成"]
+preferred_form = "本tsiânn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 245:251; written form 本chiâⁿ"
+url = "https://tsbp.tgb.org.tw/2016/09/2026_01167110936.html"
+
+[[sources]]
+row = 1705
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

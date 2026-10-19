@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khok-á"
+id = 681
+moe_forms = ["觳仔"]
+preferred_form = "khok仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 254:259; written form khok仔"
+url = "https://tsbp.tgb.org.tw/2016/09/30-e.html"
+
+[[sources]]
+row = 12367
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

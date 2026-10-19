@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "iau-kuí"
+id = 500
+moe_forms = ["枵鬼"]
+preferred_form = "iau鬼"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 99; normalized source characters 3315:3319; written form Iau鬼"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 5111
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

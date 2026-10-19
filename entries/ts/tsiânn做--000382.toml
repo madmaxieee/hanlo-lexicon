@@ -1,0 +1,16 @@
+alternate_readings = ["tsiânn-tsò"]
+canonical_tl = "tsiânn-tsuè"
+id = 382
+moe_forms = ["成做"]
+preferred_form = "tsiânn做"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 487:494; written form tsiânn做"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e.html"
+
+[[sources]]
+row = 2521
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

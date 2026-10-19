@@ -1,0 +1,21 @@
+alternate_readings = ["put-sám-sî"]
+canonical_tl = "put-sam-sî"
+id = 457
+moe_forms = ["不三時"]
+preferred_form = "不sam時"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 231:236; written form 不sám時"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e.html"
+
+[[sources]]
+row = 1195
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 15126
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ka-tsua̍h"
+id = 378
+moe_forms = ["虼蚻"]
+preferred_form = "ka-tsua̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 31; normalized source characters 1082:1091; written form ka-choa̍h"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 5489
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

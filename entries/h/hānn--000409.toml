@@ -1,0 +1,21 @@
+alternate_readings = ["hâ"]
+canonical_tl = "hānn"
+id = 409
+moe_forms = ["迒"]
+preferred_form = "hānn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 64; normalized source characters 2796:2800; written form hānn"
+url = "https://tsbp.tgb.org.tw/2016/09/seh-seh-ahuihu-li-lian.html"
+
+[[sources]]
+row = 4489
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 77
+sheet = "語音差異"
+snapshot = "moe-kautian-3e0b2023e0bd"

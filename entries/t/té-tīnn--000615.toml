@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "té-tīnn"
+id = 615
+moe_forms = []
+preferred_form = "té-tīnn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 10; normalized source characters 90:97; written form té-tīnn"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0840429614.html"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kàu-tann"
+id = 422
+moe_forms = ["到今"]
+preferred_form = "到tann"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 1142:1146; written form 到taⁿ"
+url = "https://tsbp.tgb.org.tw/2016/09/2026_01167110936.html"
+
+[[sources]]
+row = 3614
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

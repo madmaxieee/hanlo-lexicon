@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phah-pho̍k-á"
+id = 649
+moe_forms = ["拍噗仔"]
+preferred_form = "拍pho̍k仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 14; normalized source characters 924:931; written form 拍pho̍k仔"
+url = "https://tsbp.tgb.org.tw/2016/09/30-30.html"
+
+[[sources]]
+row = 4139
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

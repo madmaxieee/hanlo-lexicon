@@ -1,0 +1,26 @@
+alternate_readings = ["juā-nī", "luā-nī"]
+canonical_tl = "guā-nī"
+id = 632
+moe_forms = ["偌爾"]
+preferred_form = "偌nī"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 436:439; written form 偌nī"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-lane.html"
+
+[[sources]]
+row = 551
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 552
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 6987
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

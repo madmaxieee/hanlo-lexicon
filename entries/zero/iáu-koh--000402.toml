@@ -1,0 +1,36 @@
+alternate_readings = ["ah-koh", "iah-koh", "iá-koh", "á-koh"]
+canonical_tl = "iáu-koh"
+id = 402
+moe_forms = ["猶閣"]
+preferred_form = "iáu-koh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 922:929; written form iáu-koh"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-puah-kiau.html"
+
+[[sources]]
+row = 710
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 711
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 712
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 713
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 8661
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

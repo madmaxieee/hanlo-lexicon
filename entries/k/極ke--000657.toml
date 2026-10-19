@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ki̍k-ke"
+id = 657
+moe_forms = ["極加"]
+preferred_form = "極ke"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 105; normalized source characters 3563:3566; written form 極ke"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 14377
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

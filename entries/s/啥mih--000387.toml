@@ -1,0 +1,21 @@
+alternate_readings = ["siánn-mi̍h"]
+canonical_tl = "siánn-mih"
+id = 387
+moe_forms = ["啥物"]
+preferred_form = "啥mih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 31; normalized source characters 1052:1056; written form 啥mih"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 564
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 7099
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tńg--khì"
+id = 619
+moe_forms = ["轉去"]
+preferred_form = "tńg去"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 117; normalized source characters 4530:4534; written form tńg去"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 12619
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

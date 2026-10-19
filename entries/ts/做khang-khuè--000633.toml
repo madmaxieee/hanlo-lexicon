@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsò-khang-khuè"
+id = 633
+moe_forms = ["做工課"]
+preferred_form = "做khang-khuè"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 37; normalized source characters 2463:2474; written form 做khang-khuè"
+url = "https://tsbp.tgb.org.tw/2016/09/sa-mgau.html"
+
+[[sources]]
+row = 11157
+sheet = "詞彙比較"
+snapshot = "moe-kautian-3e0b2023e0bd"

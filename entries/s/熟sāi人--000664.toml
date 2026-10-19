@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "si̍k-sāi-lâng"
+id = 664
+moe_forms = ["熟似人"]
+preferred_form = "熟sāi人"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 1123:1128; written form 熟sāi人"
+url = "https://tsbp.tgb.org.tw/2016/09/hite.html"
+
+[[sources]]
+row = 11192
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

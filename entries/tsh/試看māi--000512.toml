@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshì khuànn-māi"
+id = 512
+moe_forms = ["試看覓"]
+preferred_form = "試看māi"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 592:597; written form 試看māi"
+url = "https://tsbp.tgb.org.tw/2016/09/sa-mgau.html"
+
+[[sources]]
+row = 10013
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

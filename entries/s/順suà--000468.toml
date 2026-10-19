@@ -1,0 +1,20 @@
+alternate_readings = []
+canonical_tl = "sūn-suà"
+id = 468
+moe_forms = ["順紲"]
+preferred_form = "順suà"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 42; normalized source characters 1912:1916; written form 順suà"
+url = "https://tsbp.tgb.org.tw/2016/09/seh-seh-ahuihu-li-lian.html"
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 86:90; written form 順sòa"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 9261
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "m̄ tsai-iánn"
+id = 406
+moe_forms = ["毋知影"]
+preferred_form = "m̄知影"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 49; normalized source characters 1545:1549; written form m̄知影"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 980
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

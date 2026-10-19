@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kho̍k-kho̍k"
+id = 441
+moe_forms = ["硞硞"]
+preferred_form = "kho̍k-kho̍k"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 763:774; written form kho̍k-kho̍k"
+url = "https://tsbp.tgb.org.tw/2016/09/hite.html"
+
+[[sources]]
+row = 14913
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

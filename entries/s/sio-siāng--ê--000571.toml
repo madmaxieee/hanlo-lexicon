@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sio-siāng--ê"
+id = 571
+moe_forms = []
+preferred_form = "sio-siāng--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 642:654; written form sio-siāng--ê"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e.html"

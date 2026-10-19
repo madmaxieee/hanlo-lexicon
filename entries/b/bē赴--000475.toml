@@ -1,0 +1,16 @@
+alternate_readings = ["buē-hù"]
+canonical_tl = "bē-hù"
+id = 475
+moe_forms = ["袂赴"]
+preferred_form = "bē赴"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 55; normalized source characters 1817:1820; written form bē赴"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 6648
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

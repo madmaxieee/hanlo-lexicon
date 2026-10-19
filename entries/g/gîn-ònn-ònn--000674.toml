@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "gîn-ònn-ònn"
+id = 674
+moe_forms = []
+preferred_form = "gîn-ònn-ònn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 862:873; written form gîn-ònn-ònn"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e_0833371607.html"

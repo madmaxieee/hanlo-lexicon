@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ua̋i-siat-tsuh"
+id = 622
+moe_forms = []
+preferred_form = "ua̋i-siat-tsuh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 325:339; written form ua̋i-siat-tsuh"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01515107482.html"
+
+[[sources]]
+row = 24408
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

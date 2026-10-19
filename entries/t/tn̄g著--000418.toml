@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tn̄g-tio̍h"
+id = 418
+moe_forms = ["搪著"]
+preferred_form = "tn̄g著"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 47; normalized source characters 3339:3344; written form tn̄g著"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 9536
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "môo-tn̄g"
+id = 549
+moe_forms = []
+preferred_form = "môo-tn̄g"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 208:216; written form môo-tn̄g"
+url = "https://tsbp.tgb.org.tw/2016/09/2026.html"

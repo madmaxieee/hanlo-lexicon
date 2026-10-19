@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshia-iānn"
+id = 599
+moe_forms = ["奢颺"]
+preferred_form = "tshia-iānn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 56; normalized source characters 3989:3999; written form tshia-iānn"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 7128
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

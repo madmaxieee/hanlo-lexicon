@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "mā sī"
+id = 379
+moe_forms = ["嘛是"]
+preferred_form = "mā是"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 62; normalized source characters 2664:2667; written form mā是"
+url = "https://tsbp.tgb.org.tw/2016/09/seh-seh-ahuihu-li-lian.html"
+
+[[sources]]
+row = 10388
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

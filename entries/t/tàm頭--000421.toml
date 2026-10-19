@@ -1,0 +1,21 @@
+alternate_readings = ["tìm-thâu"]
+canonical_tl = "tàm-thâu"
+id = 421
+moe_forms = ["頕頭"]
+preferred_form = "tàm頭"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 643:647; written form tàm頭"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 10933
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 836
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "àu-sái"
+id = 625
+moe_forms = ["漚屎"]
+preferred_form = "àu屎"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 103; normalized source characters 3502:3505; written form àu屎"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 13797
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

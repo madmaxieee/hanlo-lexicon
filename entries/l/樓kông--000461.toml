@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lâu-kông"
+id = 461
+moe_forms = ["樓栱"]
+preferred_form = "樓kông"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 718:723; written form 樓kông"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 13811
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,21 @@
+alternate_readings = ["kiám-sī"]
+canonical_tl = "kám-sī"
+id = 413
+moe_forms = ["敢是"]
+preferred_form = "kám是"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 115; normalized source characters 4433:4437; written form kám是"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 1110
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 14314
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

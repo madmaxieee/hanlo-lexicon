@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ka-la̍uh"
+id = 679
+moe_forms = ["交落"]
+preferred_form = "ka-la̍uh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 296:304; written form ka-la̍uh"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 2090
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

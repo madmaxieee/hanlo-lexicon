@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ba̍k-tsa̍t-á"
+id = 469
+moe_forms = ["墨賊仔"]
+preferred_form = "ba̍k-tsa̍t仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 989:1000; written form ba̍k-tsa̍t仔"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e_0833371607.html"
+
+[[sources]]
+row = 10991
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

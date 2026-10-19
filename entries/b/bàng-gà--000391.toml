@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bàng-gà"
+id = 391
+moe_forms = []
+preferred_form = "bàng-gà"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 29; normalized source characters 1870:1877; written form bàng-gà"
+url = "https://tsbp.tgb.org.tw/2016/09/sa-mgau.html"
+
+[[sources]]
+row = 24255
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

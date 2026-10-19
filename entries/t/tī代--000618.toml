@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tī-tāi"
+id = 618
+moe_forms = ["底代"]
+preferred_form = "tī代"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 53; normalized source characters 1745:1748; written form tī代"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 3828
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

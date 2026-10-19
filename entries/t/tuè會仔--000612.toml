@@ -1,0 +1,16 @@
+alternate_readings = ["tè-hē-á"]
+canonical_tl = "tuè-huē-á"
+id = 612
+moe_forms = ["綴會仔"]
+preferred_form = "tuè會仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 207:212; written form tuè會仔"
+url = "https://tsbp.tgb.org.tw/2016/09/hite.html"
+
+[[sources]]
+row = 10770
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lim tsiú"
+id = 404
+moe_forms = ["啉酒"]
+preferred_form = "lim酒"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 1202:1206; written form lim酒"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 7046
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

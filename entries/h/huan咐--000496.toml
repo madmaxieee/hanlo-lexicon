@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "huan-hù"
+id = 496
+moe_forms = ["吩咐"]
+preferred_form = "huan咐"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 118:123; written form huan咐"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01515107482.html"
+
+[[sources]]
+row = 2986
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

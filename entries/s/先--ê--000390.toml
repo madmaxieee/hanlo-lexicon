@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sian--ê"
+id = 390
+moe_forms = ["先的"]
+preferred_form = "先--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 44:48; written form 先--ê"
+url = "https://tsbp.tgb.org.tw/2016/09/2026.html"
+
+[[sources]]
+row = 13645
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

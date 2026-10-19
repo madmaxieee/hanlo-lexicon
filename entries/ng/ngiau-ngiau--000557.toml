@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ngiau-ngiau"
+id = 557
+moe_forms = []
+preferred_form = "ngiau-ngiau"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 503:514; written form ngiau-ngiau"
+url = "https://tsbp.tgb.org.tw/2016/09/30-e.html"

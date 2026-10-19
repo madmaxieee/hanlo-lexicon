@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bá-suh"
+id = 470
+moe_forms = []
+preferred_form = "bá-suh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 124:130; written form bá-suh"
+url = "https://tsbp.tgb.org.tw/2016/09/2026.html"
+
+[[sources]]
+row = 24249
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

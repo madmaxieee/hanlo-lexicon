@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "gâu-tsá"
+id = 490
+moe_forms = ["𠢕早"]
+preferred_form = "gâu早"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 17:21; written form gâu早"
+url = "https://tsbp.tgb.org.tw/2016/09/mai.html"
+
+[[sources]]
+row = 13467
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

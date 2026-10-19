@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sim-kuann-ínn-á"
+id = 459
+moe_forms = ["心肝穎仔"]
+preferred_form = "心肝ínn仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 1179:1185; written form 心肝ínn仔"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e_0833371607.html"
+
+[[sources]]
+row = 14860
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kuānn"
+id = 683
+moe_forms = ["捾"]
+preferred_form = "kuānn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 1003:1008; written form kuānn"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e_0833371607.html"
+
+[[sources]]
+row = 7290
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

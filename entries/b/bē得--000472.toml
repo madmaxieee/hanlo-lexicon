@@ -1,0 +1,16 @@
+alternate_readings = ["buē-tit"]
+canonical_tl = "bē-tit"
+id = 472
+moe_forms = ["袂得"]
+preferred_form = "bē得"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 10; normalized source characters 48:51; written form bē得"
+url = "https://tsbp.tgb.org.tw/2016/09/blog-post_505.html"
+
+[[sources]]
+row = 13705
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

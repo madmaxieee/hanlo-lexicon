@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thàu-lām"
+id = 517
+moe_forms = ["透濫"]
+preferred_form = "透lām"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 149:153; written form 透lām"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e.html"
+
+[[sources]]
+row = 14294
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

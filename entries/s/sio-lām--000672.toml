@@ -1,0 +1,15 @@
+alternate_readings = []
+canonical_tl = "sio-lām"
+id = 672
+moe_forms = []
+preferred_form = "sio-lām"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 330:337; written form sio-lām"
+url = "https://tsbp.tgb.org.tw/2016/09/30-30.html"
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 657:664; written form sio-lām"
+url = "https://tsbp.tgb.org.tw/2016/09/30-30.html"

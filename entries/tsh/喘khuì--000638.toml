@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshuán-khuì"
+id = 638
+moe_forms = ["喘氣"]
+preferred_form = "喘khuì"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 85; normalized source characters 2906:2911; written form 喘khùi"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 8209
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khan--ê"
+id = 380
+moe_forms = ["牽的"]
+preferred_form = "牽--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 256:260; written form 牽--ê"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 7593
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

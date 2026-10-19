@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kheh-á"
+id = 523
+moe_forms = ["篋仔"]
+preferred_form = "kheh仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 425:430; written form kheh仔"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 11282
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "suí-khuì"
+id = 417
+moe_forms = ["媠氣"]
+preferred_form = "suí-khuì"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 440:448; written form súi-khùi"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-lane.html"
+
+[[sources]]
+row = 8308
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

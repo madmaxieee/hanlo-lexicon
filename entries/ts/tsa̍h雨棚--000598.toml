@@ -1,0 +1,16 @@
+alternate_readings = ["tsa̍h-hōo-pînn"]
+canonical_tl = "tsa̍h-hōo-pênn"
+id = 598
+moe_forms = ["閘雨棚"]
+preferred_form = "tsa̍h雨棚"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 269:276; written form tsa̍h雨棚"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 14415
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

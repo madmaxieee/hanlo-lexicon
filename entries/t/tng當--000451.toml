@@ -1,0 +1,16 @@
+alternate_readings = ["tng-tong"]
+canonical_tl = "tng-tang"
+id = 451
+moe_forms = ["當當"]
+preferred_form = "tng當"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 1040:1044; written form Tng當"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-puah-kiau.html"
+
+[[sources]]
+row = 15139
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

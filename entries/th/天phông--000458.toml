@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thian-phông"
+id = 458
+moe_forms = ["天篷"]
+preferred_form = "天phông"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 31; normalized source characters 1028:1034; written form 天phông"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 5368
+sheet = "詞彙比較"
+snapshot = "moe-kautian-3e0b2023e0bd"

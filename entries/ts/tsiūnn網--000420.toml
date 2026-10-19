@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsiūnn-bāng"
+id = 420
+moe_forms = ["上網"]
+preferred_form = "tsiūnn網"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 41; normalized source characters 2864:2871; written form tsiūnn網"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 22092
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hit pîng"
+id = 437
+moe_forms = ["彼爿"]
+preferred_form = "hit爿"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 95; normalized source characters 3149:3153; written form hit爿"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 3896
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

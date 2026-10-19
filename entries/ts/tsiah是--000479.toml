@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsiah-sī"
+id = 479
+moe_forms = ["才是"]
+preferred_form = "tsiah是"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 109; normalized source characters 3965:3971; written form chiah是"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 387
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "huán-tò-tńg"
+id = 635
+moe_forms = ["反倒轉"]
+preferred_form = "反倒tńg"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 55; normalized source characters 3867:3872; written form 反倒tńg"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 1012
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

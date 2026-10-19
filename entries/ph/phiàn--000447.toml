@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phiàn"
+id = 447
+moe_forms = ["片"]
+preferred_form = "phiàn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 798:803; written form phiàn"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e_01697817624.html"
+
+[[sources]]
+row = 15618
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

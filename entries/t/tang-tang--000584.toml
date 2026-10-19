@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tang-tang"
+id = 584
+moe_forms = []
+preferred_form = "tang-tang"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 341:350; written form tang-tang"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01515107482.html"

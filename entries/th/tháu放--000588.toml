@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tháu-pàng"
+id = 588
+moe_forms = ["敨放"]
+preferred_form = "tháu放"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 85; normalized source characters 2858:2863; written form tháu放"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 14316
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

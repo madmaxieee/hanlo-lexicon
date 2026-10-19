@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "înn-kùn-kùn"
+id = 639
+moe_forms = ["圓棍棍"]
+preferred_form = "圓kùn-kùn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 219:227; written form 圓kùn-kùn"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 14839
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

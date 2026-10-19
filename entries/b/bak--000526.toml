@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bak"
+id = 526
+moe_forms = ["沐"]
+preferred_form = "bak"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 53; normalized source characters 1702:1705; written form bak"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 3284
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

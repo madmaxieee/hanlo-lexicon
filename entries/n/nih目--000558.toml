@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "nih-ba̍k"
+id = 558
+moe_forms = ["𥍉目"]
+preferred_form = "nih目"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 20; normalized source characters 1459:1463; written form nih目"
+url = "https://tsbp.tgb.org.tw/2016/09/hite.html"
+
+[[sources]]
+row = 13525
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

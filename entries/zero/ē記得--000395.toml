@@ -1,0 +1,36 @@
+alternate_readings = ["ē-kì--eh", "ē-kì--lih", "ē-kì--lit", "ē-kì--tsit"]
+canonical_tl = "ē-kì--tit"
+id = 395
+moe_forms = ["會記得"]
+preferred_form = "ē記得"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 12; normalized source characters 879:882; written form ē記得"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01515107482.html"
+
+[[sources]]
+row = 1050
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 1051
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 1052
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 1053
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 13767
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

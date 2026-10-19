@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hònn-kî"
+id = 498
+moe_forms = ["好奇"]
+preferred_form = "hònn奇"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 41; normalized source characters 2841:2846; written form hònn奇"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 2337
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

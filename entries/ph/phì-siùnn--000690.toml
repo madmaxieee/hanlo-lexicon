@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phì-siùnn"
+id = 690
+moe_forms = ["譬相"]
+preferred_form = "phì-siùnn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 682:691; written form phì-siùnn"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e_0833371607.html"
+
+[[sources]]
+row = 13017
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

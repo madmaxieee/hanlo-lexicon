@@ -1,0 +1,20 @@
+alternate_readings = []
+canonical_tl = "huānn"
+id = 497
+moe_forms = ["扞"]
+preferred_form = "huānn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 109; normalized source characters 4008:4012; written form hōaⁿ"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 681:686; written form huānn"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e.html"
+
+[[sources]]
+row = 2431
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

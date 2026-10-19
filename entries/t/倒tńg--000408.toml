@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tò-tńg"
+id = 408
+moe_forms = ["倒轉"]
+preferred_form = "倒tńg"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 640:644; written form 倒tńg"
+url = "https://tsbp.tgb.org.tw/2016/09/sa-mgau.html"
+
+[[sources]]
+row = 5784
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

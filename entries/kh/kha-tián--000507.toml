@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kha-tián"
+id = 507
+moe_forms = []
+preferred_form = "kha-tián"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 14; normalized source characters 144:152; written form kha-tián"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0840429614.html"
+
+[[sources]]
+row = 24297
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

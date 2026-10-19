@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hōo i"
+id = 389
+moe_forms = ["予伊"]
+preferred_form = "hōo伊"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 790:794; written form hōo伊"
+url = "https://tsbp.tgb.org.tw/2016/09/sa-mgau.html"
+
+[[sources]]
+row = 644
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

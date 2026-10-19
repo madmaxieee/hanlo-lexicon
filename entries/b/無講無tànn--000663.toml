@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bô-kóng-bô-tànn"
+id = 663
+moe_forms = ["無講無呾"]
+preferred_form = "無講無tànn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 648:654; written form 無講無tàⁿ"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 8677
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

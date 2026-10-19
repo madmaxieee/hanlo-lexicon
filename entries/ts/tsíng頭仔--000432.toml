@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsíng-thâu-á"
+id = 432
+moe_forms = ["指頭仔"]
+preferred_form = "tsíng頭仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 202:209; written form chéng頭仔"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 5054
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

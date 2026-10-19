@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "giâu-gî"
+id = 488
+moe_forms = ["憢疑"]
+preferred_form = "giâu疑"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 158:163; written form giâu疑"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e_01697817624.html"
+
+[[sources]]
+row = 11083
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

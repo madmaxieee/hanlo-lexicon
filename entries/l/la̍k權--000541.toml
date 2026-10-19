@@ -1,0 +1,21 @@
+alternate_readings = ["la̍k-kuân"]
+canonical_tl = "la̍k-khuân"
+id = 541
+moe_forms = ["搦權"]
+preferred_form = "la̍k權"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 533:538; written form la̍k權"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e.html"
+
+[[sources]]
+row = 754
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 9561
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

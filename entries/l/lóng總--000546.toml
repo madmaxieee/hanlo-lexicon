@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lóng-tsóng"
+id = 546
+moe_forms = ["攏總"]
+preferred_form = "lóng總"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 154:159; written form lóng總"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e.html"
+
+[[sources]]
+row = 12784
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

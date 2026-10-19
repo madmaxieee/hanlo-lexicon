@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kuānn-tiānn"
+id = 684
+moe_forms = ["捾定"]
+preferred_form = "kuānn定"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 343:349; written form kuānn定"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 14269
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

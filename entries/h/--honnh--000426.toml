@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "--honnh"
+id = 426
+moe_forms = ["乎"]
+preferred_form = "--honnh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 36; normalized source characters 1317:1324; written form --honnh"
+url = "https://tsbp.tgb.org.tw/2016/09/seh-seh-ahuihu-li-lian.html"
+
+[[sources]]
+row = 1299
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

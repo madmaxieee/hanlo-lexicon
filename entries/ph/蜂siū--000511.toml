@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phang-siū"
+id = 511
+moe_forms = ["蜂岫"]
+preferred_form = "蜂siū"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 633:637; written form 蜂siū"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 10009
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

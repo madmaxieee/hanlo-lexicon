@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsit-siann"
+id = 607
+moe_forms = ["這聲"]
+preferred_form = "tsit聲"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 770:775; written form tsit聲"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e.html"
+
+[[sources]]
+row = 7990
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

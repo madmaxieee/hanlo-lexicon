@@ -1,0 +1,16 @@
+alternate_readings = ["buē-su"]
+canonical_tl = "bē-su"
+id = 392
+moe_forms = ["袂輸"]
+preferred_form = "bē輸"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 35; normalized source characters 1197:1200; written form bē輸"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 6660
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

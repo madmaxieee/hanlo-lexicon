@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ànn-thâu"
+id = 626
+moe_forms = ["向頭"]
+preferred_form = "ànn頭"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 99; normalized source characters 3394:3397; written form àⁿ頭"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 29411
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

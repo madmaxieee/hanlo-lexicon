@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pua̍h"
+id = 448
+moe_forms = ["跋"]
+preferred_form = "pua̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 616:621; written form pua̍h"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-puah-kiau.html"
+
+[[sources]]
+row = 9096
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

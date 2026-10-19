@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khia-khang"
+id = 533
+moe_forms = ["欹空"]
+preferred_form = "khia空"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 334:339; written form khia空"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e.html"
+
+[[sources]]
+row = 13734
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

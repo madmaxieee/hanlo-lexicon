@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshiú-lông-á"
+id = 644
+moe_forms = ["手囊仔"]
+preferred_form = "手lông仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 908:914; written form 手lông仔"
+url = "https://tsbp.tgb.org.tw/2016/09/hite.html"
+
+[[sources]]
+row = 5323
+sheet = "詞彙比較"
+snapshot = "moe-kautian-3e0b2023e0bd"

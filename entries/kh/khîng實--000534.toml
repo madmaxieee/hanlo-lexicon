@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khîng-si̍t"
+id = 534
+moe_forms = ["窮實"]
+preferred_form = "khîng實"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 51; normalized source characters 1623:1629; written form khêng實"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 28439
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

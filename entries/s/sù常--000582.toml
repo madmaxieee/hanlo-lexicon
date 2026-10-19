@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sù-siông"
+id = 582
+moe_forms = ["四常"]
+preferred_form = "sù常"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 12; normalized source characters 802:805; written form sù常"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01515107482.html"
+
+[[sources]]
+row = 1531
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

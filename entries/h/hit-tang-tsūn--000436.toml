@@ -1,0 +1,20 @@
+alternate_readings = []
+canonical_tl = "hit-tang-tsūn"
+id = 436
+moe_forms = ["彼當陣"]
+preferred_form = "hit-tang-tsūn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 293:306; written form hit-tang-chūn"
+url = "https://tsbp.tgb.org.tw/2016/09/30-e.html"
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 569:582; written form Hit-tang-tsūn"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 14079
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

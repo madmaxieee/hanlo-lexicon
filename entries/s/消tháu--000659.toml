@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "siau-tháu"
+id = 659
+moe_forms = ["消敨"]
+preferred_form = "消tháu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 850:855; written form 消tháu"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e_0833371607.html"
+
+[[sources]]
+row = 14205
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

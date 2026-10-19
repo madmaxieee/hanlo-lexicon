@@ -1,0 +1,15 @@
+alternate_readings = []
+canonical_tl = "sia̋n-pái"
+id = 524
+moe_forms = []
+preferred_form = "sia̋n-pái"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 2:11; written form sia̋n-pái"
+url = "https://tsbp.tgb.org.tw/2016/09/e.html"
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 465:473; written form siăn-pái"
+url = "https://tsbp.tgb.org.tw/2016/09/30-e.html"

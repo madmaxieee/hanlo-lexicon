@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsit ê"
+id = 374
+moe_forms = ["這个"]
+preferred_form = "tsit个"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 775:780; written form tsit个"
+url = "https://tsbp.tgb.org.tw/2016/09/2026.html"
+
+[[sources]]
+row = 28548
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,21 @@
+alternate_readings = ["niâ"]
+canonical_tl = "niā-niā"
+id = 415
+moe_forms = ["爾爾"]
+preferred_form = "niā-niā"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 263:270; written form niā-niā"
+url = "https://tsbp.tgb.org.tw/2016/09/2026_01167110936.html"
+
+[[sources]]
+row = 10650
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 46
+sheet = "合音唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"

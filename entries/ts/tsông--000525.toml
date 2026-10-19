@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsông"
+id = 525
+moe_forms = ["傱"]
+preferred_form = "tsông"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 1257:1262; written form tsông"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 9283
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

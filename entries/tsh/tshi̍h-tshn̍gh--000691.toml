@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshi̍h-tshn̍gh"
+id = 691
+moe_forms = ["嗤噌"]
+preferred_form = "tshi̍h-tshn̍gh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 35; normalized source characters 2429:2443; written form tshi̍h-tshn̍gh"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 15044
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

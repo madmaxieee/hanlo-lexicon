@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "m̄ sī"
+id = 372
+moe_forms = ["毋是"]
+preferred_form = "m̄是"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 942:945; written form m̄是"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-lane.html"
+
+[[sources]]
+row = 991
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

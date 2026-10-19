@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ná-tshiūnn"
+id = 446
+moe_forms = ["若像"]
+preferred_form = "ná像"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 28; normalized source characters 285:288; written form Ná像"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0840429614.html"
+
+[[sources]]
+row = 5484
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

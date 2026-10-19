@@ -1,0 +1,21 @@
+alternate_readings = ["sio-siâng"]
+canonical_tl = "sio-siāng"
+id = 675
+moe_forms = ["相𫝛"]
+preferred_form = "sio-siāng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 29; normalized source characters 1883:1892; written form sio-siāng"
+url = "https://tsbp.tgb.org.tw/2016/09/sa-mgau.html"
+
+[[sources]]
+row = 417
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 5229
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

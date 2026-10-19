@@ -1,0 +1,31 @@
+alternate_readings = ["buē-kì-eh", "buē-kì-lit", "buē-kì-tit", "buē-kì-tsit", "bē-kì-eh", "bē-kì-tit", "bē-kì-tsit"]
+canonical_tl = "bē-kì-lit"
+id = 474
+moe_forms = ["袂記得"]
+preferred_form = "bē記得"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 43; normalized source characters 3133:3137; written form bē記得"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 521
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 522
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 523
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 6651
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

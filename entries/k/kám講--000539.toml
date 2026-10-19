@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kám-kóng"
+id = 539
+moe_forms = ["敢講"]
+preferred_form = "kám講"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 53; normalized source characters 1757:1761; written form kám講"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 8469
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

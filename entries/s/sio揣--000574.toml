@@ -1,0 +1,21 @@
+alternate_readings = ["sann-tshē"]
+canonical_tl = "sio-tshuē"
+id = 574
+moe_forms = ["相揣"]
+preferred_form = "sio揣"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 320:324; written form sio揣"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 1092
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 14145
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

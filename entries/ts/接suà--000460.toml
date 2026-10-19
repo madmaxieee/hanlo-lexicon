@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsiap-suà"
+id = 460
+moe_forms = ["接紲"]
+preferred_form = "接suà"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 737:741; written form 接sòa"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 15505
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

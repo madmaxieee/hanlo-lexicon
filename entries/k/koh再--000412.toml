@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "koh-tsài"
+id = 412
+moe_forms = ["閣再"]
+preferred_form = "koh再"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 524:528; written form koh再"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e.html"
+
+[[sources]]
+row = 10906
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,21 @@
+alternate_readings = ["hâm"]
+canonical_tl = "hām"
+id = 383
+moe_forms = ["和"]
+preferred_form = "hām"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 166:169; written form hām"
+url = "https://tsbp.tgb.org.tw/2016/09/30-e.html"
+
+[[sources]]
+row = 288
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 3697
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

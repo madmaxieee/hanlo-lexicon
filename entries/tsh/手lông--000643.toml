@@ -1,0 +1,21 @@
+alternate_readings = ["tshiú-long"]
+canonical_tl = "tshiú-lông"
+id = 643
+moe_forms = ["手囊"]
+preferred_form = "手lông"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 908:913; written form 手lông"
+url = "https://tsbp.tgb.org.tw/2016/09/hite.html"
+
+[[sources]]
+row = 103
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 1204
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

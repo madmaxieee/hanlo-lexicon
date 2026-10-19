@@ -1,0 +1,21 @@
+alternate_readings = ["buē-saih", "buē-sái", "bē-saih"]
+canonical_tl = "bē-sái"
+id = 528
+moe_forms = ["袂使"]
+preferred_form = "bē-sái"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 105; normalized source characters 3568:3574; written form bē-sái"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 516
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 6642
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

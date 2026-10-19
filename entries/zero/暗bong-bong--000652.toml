@@ -1,0 +1,21 @@
+alternate_readings = ["àm-moo-moo"]
+canonical_tl = "àm-bong-bong"
+id = 652
+moe_forms = ["暗摸摸"]
+preferred_form = "暗bong-bong"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 40; normalized source characters 1716:1726; written form 暗bong-bong"
+url = "https://tsbp.tgb.org.tw/2016/09/seh-seh-ahuihu-li-lian.html"
+
+[[sources]]
+row = 1164
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 14810
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

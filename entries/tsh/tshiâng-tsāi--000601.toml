@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshiâng-tsāi"
+id = 601
+moe_forms = ["常在"]
+preferred_form = "tshiâng-tsāi"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 394:406; written form tshiâng-tsāi"
+url = "https://tsbp.tgb.org.tw/2016/09/2026.html"
+
+[[sources]]
+row = 7190
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

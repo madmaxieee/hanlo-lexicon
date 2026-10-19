@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "íng-kuè"
+id = 628
+moe_forms = ["往過"]
+preferred_form = "íng過"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 430:434; written form íng過"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e.html"
+
+[[sources]]
+row = 3925
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

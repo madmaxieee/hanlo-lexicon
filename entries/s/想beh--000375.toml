@@ -1,0 +1,21 @@
+alternate_readings = ["siūnn-bueh"]
+canonical_tl = "siūnn-beh"
+id = 375
+moe_forms = ["想欲"]
+preferred_form = "想beh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 116:120; written form 想beh"
+url = "https://tsbp.tgb.org.tw/2016/09/30-30.html"
+
+[[sources]]
+row = 1115
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 14364
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

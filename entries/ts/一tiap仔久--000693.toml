@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsi̍t-tiap-á-kú"
+id = 693
+moe_forms = ["一霎仔久"]
+preferred_form = "一tiap仔久"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 14; normalized source characters 929:936; written form 一tiap仔久"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01515107482.html"
+
+[[sources]]
+row = 35
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,36 @@
+alternate_readings = ["ah-sī", "iah-sī", "iá-sī", "á-sī"]
+canonical_tl = "iáu-sī"
+id = 410
+moe_forms = ["猶是"]
+preferred_form = "iáu是"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 12; normalized source characters 838:842; written form iáu是"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01515107482.html"
+
+[[sources]]
+row = 697
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 698
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 699
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 700
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 8615
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

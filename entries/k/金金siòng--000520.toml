@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kim-kim-siòng"
+id = 520
+moe_forms = ["金金相"]
+preferred_form = "金金siòng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 14; normalized source characters 992:999; written form 金金siòng"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01515107482.html"
+
+[[sources]]
+row = 14108
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

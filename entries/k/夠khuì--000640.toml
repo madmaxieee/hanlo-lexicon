@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kàu-khuì"
+id = 640
+moe_forms = ["夠氣"]
+preferred_form = "夠khuì"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 1317:1322; written form 夠khuì"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 7107
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

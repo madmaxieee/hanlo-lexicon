@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sui-bóng"
+id = 424
+moe_forms = ["雖罔"]
+preferred_form = "雖bóng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 40; normalized source characters 1634:1639; written form 雖bóng"
+url = "https://tsbp.tgb.org.tw/2016/09/seh-seh-ahuihu-li-lian.html"
+
+[[sources]]
+row = 14776
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

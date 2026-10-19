@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "mooh"
+id = 548
+moe_forms = ["𢯾"]
+preferred_form = "mooh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 772:776; written form mo͘h"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 13461
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

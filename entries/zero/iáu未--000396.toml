@@ -1,0 +1,36 @@
+alternate_readings = ["ah-buē", "ah-bē", "iah-buē", "iah-bē", "iá-buē", "iá-bē", "iáu-bē", "á-buē", "á-bē"]
+canonical_tl = "iáu-buē"
+id = 396
+moe_forms = ["猶未"]
+preferred_form = "iáu未"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 4; normalized source characters 45:49; written form iáu未"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0840429614.html"
+
+[[sources]]
+row = 691
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 692
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 693
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 694
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 8594
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

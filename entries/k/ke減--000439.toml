@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ke-kiám"
+id = 439
+moe_forms = ["加減"]
+preferred_form = "ke減"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 66; normalized source characters 2929:2932; written form ke減"
+url = "https://tsbp.tgb.org.tw/2016/09/seh-seh-ahuihu-li-lian.html"
+
+[[sources]]
+row = 1554
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

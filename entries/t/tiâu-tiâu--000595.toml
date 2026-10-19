@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tiâu-tiâu"
+id = 595
+moe_forms = []
+preferred_form = "tiâu-tiâu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 258:267; written form tiâu-tiâu"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01379590837.html"

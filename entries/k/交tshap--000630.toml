@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kau-tshap"
+id = 630
+moe_forms = ["交插"]
+preferred_form = "交tshap"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 628:634; written form 交tshap"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e_01697817624.html"
+
+[[sources]]
+row = 2080
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

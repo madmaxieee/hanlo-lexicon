@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "jió-toh"
+id = 504
+moe_forms = []
+preferred_form = "jió-toh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 117; normalized source characters 4565:4572; written form jió-toh"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 24292
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

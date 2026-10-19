@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khiau-ku"
+id = 532
+moe_forms = ["曲痀"]
+preferred_form = "khiau-ku"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 23:31; written form Khiau-ku"
+url = "https://tsbp.tgb.org.tw/2016/09/blog-post_25.html"
+
+[[sources]]
+row = 2514
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

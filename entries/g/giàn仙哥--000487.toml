@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "giàn-sian-ko"
+id = 487
+moe_forms = ["癮仙哥"]
+preferred_form = "giàn仙哥"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 875:881; written form giàn仙哥"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 13227
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

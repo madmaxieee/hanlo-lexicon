@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tng-bīn"
+id = 596
+moe_forms = ["當面"]
+preferred_form = "tng面"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 382:386; written form tng面"
+url = "https://tsbp.tgb.org.tw/2016/09/2026_01167110936.html"
+
+[[sources]]
+row = 9749
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

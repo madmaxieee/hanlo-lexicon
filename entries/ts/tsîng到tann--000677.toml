@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsîng-kàu-tann"
+id = 677
+moe_forms = ["從到今"]
+preferred_form = "tsîng到tann"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 59:68; written form Chêng到taⁿ"
+url = "https://tsbp.tgb.org.tw/2016/09/30-e.html"
+
+[[sources]]
+row = 7243
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

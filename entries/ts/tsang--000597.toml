@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsang"
+id = 597
+moe_forms = ["㨑"]
+preferred_form = "tsang"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 45:50; written form tsang"
+url = "https://tsbp.tgb.org.tw/2016/09/hite.html"
+
+[[sources]]
+row = 13527
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

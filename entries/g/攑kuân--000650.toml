@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "gia̍h-kuân"
+id = 650
+moe_forms = ["攑懸"]
+preferred_form = "攑kuân"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 755:760; written form 攑koân"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 13105
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsiūnn-tâi"
+id = 608
+moe_forms = ["上台"]
+preferred_form = "tsiūnn台"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 386:393; written form tsiūnn台"
+url = "https://tsbp.tgb.org.tw/2016/09/sa-mgau.html"
+
+[[sources]]
+row = 20215
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

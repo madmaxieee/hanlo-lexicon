@@ -1,0 +1,16 @@
+alternate_readings = ["kun-tè"]
+canonical_tl = "kin-tuè"
+id = 515
+moe_forms = ["跟綴"]
+preferred_form = "跟tuè"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 1156:1160; written form 跟tòe"
+url = "https://tsbp.tgb.org.tw/2016/09/2026_01167110936.html"
+
+[[sources]]
+row = 10115
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

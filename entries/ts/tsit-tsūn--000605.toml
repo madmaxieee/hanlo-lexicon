@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsit-tsūn"
+id = 605
+moe_forms = ["這陣"]
+preferred_form = "tsit-tsūn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 469:478; written form tsit-tsūn"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e.html"
+
+[[sources]]
+row = 7954
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

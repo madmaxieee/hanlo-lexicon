@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "m̄ kiann"
+id = 414
+moe_forms = ["毋驚"]
+preferred_form = "m̄驚"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 8; normalized source characters 75:78; written form m̄驚"
+url = "https://tsbp.tgb.org.tw/2016/09/blog-post_25.html"
+
+[[sources]]
+row = 1210
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

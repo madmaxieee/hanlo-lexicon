@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tò-píng"
+id = 631
+moe_forms = ["倒反"]
+preferred_form = "倒píng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 666:671; written form 倒píng"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 5726
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

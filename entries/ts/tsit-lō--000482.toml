@@ -1,0 +1,21 @@
+alternate_readings = ["tsit-hō"]
+canonical_tl = "tsit-lō"
+id = 482
+moe_forms = ["這號"]
+preferred_form = "tsit-lō"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 369:376; written form chit-lō"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-lane.html"
+
+[[sources]]
+row = 1160
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 14773
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

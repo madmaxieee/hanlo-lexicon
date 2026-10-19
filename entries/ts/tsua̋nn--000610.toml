@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsua̋nn"
+id = 610
+moe_forms = []
+preferred_form = "tsua̋nn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 29; normalized source characters 1739:1746; written form tsua̋nn"
+url = "https://tsbp.tgb.org.tw/2016/09/sa-mgau.html"

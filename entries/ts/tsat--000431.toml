@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsat"
+id = 431
+moe_forms = ["節"]
+preferred_form = "tsat"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 469:473; written form chat"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-lane.html"
+
+[[sources]]
+row = 642
+sheet = "名"
+snapshot = "moe-kautian-3e0b2023e0bd"

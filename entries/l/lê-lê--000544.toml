@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lê-lê"
+id = 544
+moe_forms = []
+preferred_form = "lê-lê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 10; normalized source characters 604:609; written form lê-lê"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01515107482.html"

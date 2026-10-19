@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshiò-bi-bi"
+id = 509
+moe_forms = ["笑微微"]
+preferred_form = "笑bi-bi"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 959:965; written form 笑bi-bi"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 14219
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

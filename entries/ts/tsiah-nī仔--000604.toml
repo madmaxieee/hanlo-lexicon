@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsiah-nī-á"
+id = 604
+moe_forms = ["遮爾仔"]
+preferred_form = "tsiah-nī仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 787:796; written form tsiah-nī仔"
+url = "https://tsbp.tgb.org.tw/2016/09/2026.html"
+
+[[sources]]
+row = 11504
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

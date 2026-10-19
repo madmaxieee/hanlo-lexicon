@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ng-iap"
+id = 555
+moe_forms = ["掩揜"]
+preferred_form = "ng-iap"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 1112:1118; written form ng-iap"
+url = "https://tsbp.tgb.org.tw/2016/09/hite.html"
+
+[[sources]]
+row = 15141
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

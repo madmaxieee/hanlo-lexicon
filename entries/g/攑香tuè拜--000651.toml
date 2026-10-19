@@ -1,0 +1,16 @@
+alternate_readings = ["gia̍h-hiunn-tè-pài"]
+canonical_tl = "gia̍h-hiunn-tuè-pài"
+id = 651
+moe_forms = ["攑香綴拜"]
+preferred_form = "攑香tuè拜"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 1235:1241; written form 攑香tuè拜"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-puah-kiau.html"
+
+[[sources]]
+row = 14529
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

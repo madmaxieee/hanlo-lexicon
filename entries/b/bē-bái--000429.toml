@@ -1,0 +1,16 @@
+alternate_readings = ["buē-bái"]
+canonical_tl = "bē-bái"
+id = 429
+moe_forms = ["袂䆀"]
+preferred_form = "bē-bái"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 10; normalized source characters 662:668; written form bē-bái"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01379590837.html"
+
+[[sources]]
+row = 6633
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

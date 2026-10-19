@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kueh-hīnn-khang"
+id = 536
+moe_forms = ["胳耳空"]
+preferred_form = "kueh-hīnn空"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 711:720; written form koeh-hīⁿ空"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 10187
+sheet = "詞彙比較"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sio-sî"
+id = 577
+moe_forms = ["相辭"]
+preferred_form = "sio辭"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 14; normalized source characters 981:985; written form sio辭"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01515107482.html"
+
+[[sources]]
+row = 5298
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

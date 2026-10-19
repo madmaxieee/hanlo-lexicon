@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hit tsióng"
+id = 495
+moe_forms = ["彼種"]
+preferred_form = "hit種"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 840:844; written form Hit種"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 28553
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

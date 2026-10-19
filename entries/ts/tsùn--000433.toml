@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsùn"
+id = 433
+moe_forms = ["顫"]
+preferred_form = "tsùn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 75; normalized source characters 2627:2631; written form chùn"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 13240
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kah-ì"
+id = 397
+moe_forms = ["佮意"]
+preferred_form = "kah意"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 20:24; written form kah意"
+url = "https://tsbp.tgb.org.tw/2016/09/2026.html"
+
+[[sources]]
+row = 3565
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

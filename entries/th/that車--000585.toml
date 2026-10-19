@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "that-tshia"
+id = 585
+moe_forms = ["窒車"]
+preferred_form = "that車"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 58; normalized source characters 4024:4029; written form that車"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 14282
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

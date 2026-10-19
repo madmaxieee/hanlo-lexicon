@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshiânn-ióng"
+id = 602
+moe_forms = ["晟養"]
+preferred_form = "tshiânn養"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 282:290; written form tshiânn養"
+url = "https://tsbp.tgb.org.tw/2016/09/2026.html"
+
+[[sources]]
+row = 6139
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "giap-á"
+id = 434
+moe_forms = ["鋏仔"]
+preferred_form = "giap仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 377:382; written form giap仔"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 15343
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

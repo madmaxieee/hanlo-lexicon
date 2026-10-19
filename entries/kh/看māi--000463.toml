@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khuànn-māi"
+id = 463
+moe_forms = ["看覓"]
+preferred_form = "看māi"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 27; normalized source characters 1671:1675; written form 看māi"
+url = "https://tsbp.tgb.org.tw/2016/09/sa-mgau.html"
+
+[[sources]]
+row = 5344
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

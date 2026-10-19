@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "iáu-ū"
+id = 403
+moe_forms = ["猶有"]
+preferred_form = "iáu有"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 369:373; written form iáu有"
+url = "https://tsbp.tgb.org.tw/2016/09/2026_01167110936.html"
+
+[[sources]]
+row = 8597
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

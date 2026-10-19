@@ -1,0 +1,16 @@
+alternate_readings = ["khau-sué"]
+canonical_tl = "khau-sé"
+id = 680
+moe_forms = ["剾洗"]
+preferred_form = "khau洗"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 78:83; written form khau洗"
+url = "https://tsbp.tgb.org.tw/2016/09/2026.html"
+
+[[sources]]
+row = 9319
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

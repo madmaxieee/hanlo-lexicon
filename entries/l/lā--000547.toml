@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lā"
+id = 547
+moe_forms = ["抐"]
+preferred_form = "lā"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 153:155; written form lā"
+url = "https://tsbp.tgb.org.tw/2016/09/mai.html"
+
+[[sources]]
+row = 3203
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

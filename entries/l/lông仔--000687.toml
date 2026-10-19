@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lông-á"
+id = 687
+moe_forms = ["櫳仔"]
+preferred_form = "lông仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 909:914; written form lông仔"
+url = "https://tsbp.tgb.org.tw/2016/09/hite.html"
+
+[[sources]]
+row = 12970
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

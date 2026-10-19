@@ -1,0 +1,20 @@
+alternate_readings = []
+canonical_tl = "tsiânn-si̍t"
+id = 454
+moe_forms = ["誠實"]
+preferred_form = "tsiânn實"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 490:496; written form chiâⁿ實"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-lane.html"
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 296:303; written form tsiânn實"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e_0833371607.html"
+
+[[sources]]
+row = 10113
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

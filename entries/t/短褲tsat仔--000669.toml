@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "té-khòo-tsat-á"
+id = 669
+moe_forms = ["短褲節仔"]
+preferred_form = "短褲tsat仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 2; normalized source characters 15:22; written form 短褲tsat仔"
+url = "https://tsbp.tgb.org.tw/2016/09/blog-post_25.html"
+
+[[sources]]
+row = 13747
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

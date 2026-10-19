@@ -1,0 +1,31 @@
+alternate_readings = ["ah-sī", "a̍h-sī", "ia̍h-sī"]
+canonical_tl = "iah-sī"
+id = 381
+moe_forms = ["抑是"]
+preferred_form = "iah是"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 356:360; written form iah是"
+url = "https://tsbp.tgb.org.tw/2016/09/2026_01167110936.html"
+
+[[sources]]
+row = 261
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 262
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 263
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 3237
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

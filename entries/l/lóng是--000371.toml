@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lóng sī"
+id = 371
+moe_forms = ["攏是"]
+preferred_form = "lóng是"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 332:337; written form lóng是"
+url = "https://tsbp.tgb.org.tw/2016/09/sa-mgau.html"
+
+[[sources]]
+row = 12776
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

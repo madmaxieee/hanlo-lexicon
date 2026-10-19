@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "se-bí-looh"
+id = 566
+moe_forms = []
+preferred_form = "se-bí-looh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 97; normalized source characters 3198:3208; written form se-bí-lo͘h"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 24371
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

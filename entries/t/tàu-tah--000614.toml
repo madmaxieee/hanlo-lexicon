@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tàu-tah"
+id = 614
+moe_forms = ["鬥搭"]
+preferred_form = "tàu-tah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 520:527; written form tàu-tah"
+url = "https://tsbp.tgb.org.tw/2016/09/2026_01167110936.html"
+
+[[sources]]
+row = 14248
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "liâm-thi-thi"
+id = 522
+moe_forms = ["黏黐黐"]
+preferred_form = "黏thi-thi"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 28:36; written form 黏thi-thi"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01515107482.html"
+
+[[sources]]
+row = 12467
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

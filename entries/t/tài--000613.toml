@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tài"
+id = 613
+moe_forms = ["帶"]
+preferred_form = "tài"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 113; normalized source characters 4129:4132; written form tài"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 7175
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

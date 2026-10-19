@@ -41,14 +41,15 @@ Use the `maintain-lexicon` project skill or the commands in `tools/README.md`.
 The tool checks existing entries, the full LKK snapshot, and a checksum-pinned
 copy of the original MOE ODS. On first use the tool downloads that exact snapshot
 from TaigiKeyboard GitHub into ignored `.cache/dictionaries/moe/`; later lookups
-work offline. New IDs come from `id-sequence.toml` under a local writer lock.
+work offline. The next unused ID is tracked only in `id-sequence.toml`; the tool
+allocates new IDs under a local writer lock.
 
 ## Personal curated batch
 
 The personal lists dated 2026-10-18 contain 397 romanized input/output pairs and
 25 Hanji pairs. Their full batch is represented by 362 entries, including the
-original ten pilot entries with IDs 1 through 10. New entries use IDs 11 through
-362; the next unused ID is 363.
+original ten pilot entries with IDs 1 through 10. The remaining batch entries use
+IDs 11 through 362.
 
 Alternate readings stay with their word. Unrelated source homographs remain
 separate records with distinct identity notes. The maintainer selected `leh` and
@@ -59,3 +60,11 @@ input checksums, coverage, and source interpretation.
 Each entry cites original LKK evidence; the corrected `刺毛蟲` reading also cites
 the pinned MOE dictionary. Original spreadsheet content remains in the archived
 TSV. All 362 records are `imported` and await editorial review.
+
+## Double-hyphen additions
+
+All six LKK source records whose recommended forms begin with `--` are represented
+by eight entries with IDs 363 through 370. The forms `--a`, `--ā`, and `--à`
+are separate entries, each with its own canonical reading. These additions remain
+`imported` and await editorial review.
+See [the source coverage and checks](decisions/double-hyphen-import-2026-10-19.md).

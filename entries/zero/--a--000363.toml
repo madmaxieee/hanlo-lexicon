@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "--a"
+id = 363
+moe_forms = []
+preferred_form = "--a"
+review_status = "imported"
+schema_version = 1
+usage_notes = "隨前變調"
+
+[[sources]]
+row = 7
+snapshot = "lkk-2024-05-10"

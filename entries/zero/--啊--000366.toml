@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "--ah"
+id = 366
+moe_forms = []
+preferred_form = "--啊"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 10
+snapshot = "lkk-2024-05-10"
+
+[[sources]]
+row = 7018
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

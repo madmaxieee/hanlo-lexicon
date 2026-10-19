@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "--ê"
+id = 364
+moe_forms = []
+preferred_form = "--ê"
+review_status = "imported"
+schema_version = 1
+usage_notes = "隨前變調"
+
+[[sources]]
+row = 4370
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 8
+snapshot = "lkk-2024-05-10"

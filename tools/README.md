@@ -144,9 +144,42 @@ same pinned cache as validation.
 
 The manual **Build CSV** GitHub Actions workflow runs tests and this same command,
 then makes `lexicon.csv` available in the `hanlo-lexicon-csv` run artifact. It
-requires an explicitly published repository before it can be run on GitHub.
-Local builds need no GitHub account or remote. Release publishing and JSON exports
-remain unimplemented.
+can be run from the repository's Actions tab. Local builds need no GitHub account
+or remote. JSON exports remain unimplemented.
+
+## CSV releases
+
+The **Release CSV** workflow runs on pushes of tags matching `v*`. It tests the
+maintenance tools, checks formatting, validates the data, and builds the same CSV
+as the local command. It packages `lexicon.csv`, `RIGHTS.md`, and `SHA256SUMS`,
+then creates a draft release with those assets before publishing it. Tags with a
+hyphen, such as `v0.1.0-rc.1`, become prereleases. Existing releases are never
+overwritten; a failed publish can leave a draft for the maintainer to inspect.
+
+To release a published commit while using Jujutsu, create a tag through the GitHub
+API (replace the version and full commit SHA):
+
+```sh
+gh api --method POST repos/madmaxieee/hanlo-lexicon/git/refs \
+  -f ref=refs/tags/v0.1.0 -f sha=FULL_COMMIT_SHA
+```
+
+Creating the tag with your authenticated GitHub account triggers the workflow.
+Use a new version for each release. Publish the commit to `main` with `jj git push`
+before tagging it. The workflow checks out the tagged commit, never a moving
+branch head. Source reuse notices remain part of every release; exporting does
+not change review statuses or establish a new license.
+
+For a dry run, select **Release CSV → Run workflow** on `main` and leave `publish`
+unchecked. This runs the complete build and uploads a run artifact without a tag
+or release. To publish an existing tag manually, dispatch on that tag with
+`publish=true` (for example, `gh workflow run release-csv.yml --ref v0.1.0 -f
+publish=true`). This also supports tags created by another workflow whose default
+GitHub token does not trigger a new workflow run.
+
+Download the assets from the repository's Releases page and verify them in the
+same directory with `sha256sum --check SHA256SUMS` (macOS: `shasum -a 256 --check
+SHA256SUMS`). The CSV's contents and review-status policy are described above.
 
 ## Tests
 

@@ -1,0 +1,99 @@
+name: Release CSV
+
+"on":
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish a release (select an existing v* tag as the ref)
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-csv-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check release ref
+        if: github.event_name == 'push' || inputs.publish
+        env:
+          REF: ${{ github.ref }}
+        run: |
+          if [[ "$REF" != refs/tags/v* ]]; then
+            echo 'Publishing requires an existing v* tag.' >&2
+            exit 1
+          fi
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: "3.11"
+      - name: Test maintenance tools
+        run: python3 -m unittest discover -s tests -v
+      - name: Check formatting
+        run: python3 tools/lexicon.py format --check
+      - name: Validate entries and build CSV
+        run: python3 tools/lexicon.py build-csv
+      - name: Package source rights and checksums
+        working-directory: dist
+        run: |
+          cp ../RIGHTS.md RIGHTS.md
+          sha256sum lexicon.csv RIGHTS.md > SHA256SUMS
+      - name: Upload release files
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: hanlo-lexicon-release
+          path: |
+            dist/lexicon.csv
+            dist/RIGHTS.md
+            dist/SHA256SUMS
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    if: github.event_name == 'push' || inputs.publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: hanlo-lexicon-release
+          path: dist
+      - name: Verify files
+        working-directory: dist
+        run: sha256sum --check SHA256SUMS
+      - name: Create draft with assets, then publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          cat > release-notes.md <<EOF
+          Taiwanese Han-Lo writing recommendations, built from commit ${COMMIT_SHA}.
+
+          Download lexicon.csv (UTF-8; columns: preferred_form,tl). Verify the files with SHA256SUMS.
+          All review statuses are included; a release does not mark entries reviewed.
+
+          Imported source reuse terms remain unverified. See the attached RIGHTS.md and source metadata; this release does not grant a new license.
+          EOF
+          prerelease=()
+          if [[ "$RELEASE_TAG" == *-* ]]; then
+            prerelease=(--prerelease)
+          fi
+          gh release create "$RELEASE_TAG" dist/lexicon.csv dist/RIGHTS.md dist/SHA256SUMS \
+            --verify-tag --draft --title "$RELEASE_TAG" \
+            --notes-file release-notes.md "${prerelease[@]}"
+          gh release edit "$RELEASE_TAG" --draft=false

@@ -1,7 +1,7 @@
 # Han-Lo Lexicon
 
 A community-curated collection of Taiwanese Han-Lo writing recommendations,
-starting from the LKK word list. The project is a local pilot.
+starting from the LKK word list. The project is an editorial pilot.
 
 ## Layout
 
@@ -12,7 +12,7 @@ starting from the LKK word list. The project is a local pilot.
 - `schema/`: the entry schema and field conventions.
 - `tools/`: maintenance commands and CSV builds.
 - `.agents/skills/maintain-lexicon/`: project-local vocabulary maintenance skill.
-- `.github/workflows/`: manual CSV build and artifact workflow.
+- `.github/workflows/`: CSV build artifacts and tagged CSV releases.
 
 Entries are filed by the complete consonantal initial of the first syllable of
 `canonical_tl`. `zero/` holds zero-initial entries, including syllabic nasals.
@@ -31,11 +31,12 @@ TOML files are the editable source. Build a CSV locally with
 characters and change its romanized syllables to match the alternate reading.
 Hanji-only forms retain the same suggested Hanji for every reading. Identical
 CSV rows are deduplicated while distinct TOML word identities are preserved.
-See `tools/README.md` for examples and the manual GitHub Actions build workflow.
+See `tools/README.md` for examples and GitHub Actions build/release instructions.
 Optional `hanji_forms` records Hanji spellings independently of MOE inclusion;
 it is lookup metadata and does not add CSV output rows. The TSBP discovery and
 review tools are documented in `tools/tsbp/README.md`.
-JSON exports, release publishing, and contribution forms are not implemented.
+Tagged releases include `lexicon.csv`, `SHA256SUMS`, and `RIGHTS.md`.
+JSON exports and contribution forms are not implemented.
 
 See `schema/README.md` for record conventions and `RIGHTS.md` for source rights.
 

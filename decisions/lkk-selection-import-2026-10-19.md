@@ -1,10 +1,13 @@
-# Personal curated batch, 2026-10-19
+# LKK selection import, 2026-10-19
 
 ## Scope and inputs
 
-Import both personal lists from 2026-10-18. These files determine batch membership
-and requested mappings; entries cite the original dictionaries as evidence.
-The personal CSVs are not independent source citations or new source snapshots.
+Import the selections in the two CSVs dated 2026-10-18. These files determine
+batch membership and requested mappings. Entries cite the original
+[LKK word list](../sources/lkk-2024-05-10/word-list.tsv)
+and, where applicable, the pinned MOE dictionary as evidence. The selection CSVs
+are not independent source citations or new source snapshots. Original input
+filenames and checksums are retained below for traceability.
 
 | Input | Headerless pairs | SHA-256 |
 | --- | ---: | --- |
@@ -33,7 +36,7 @@ mapping. No other input reading or requested output was dropped.
 ## Source interpretation
 
 Use the requested romanized output as canonical TL when it is also an input
-reading. Otherwise use the first reading in the corresponding personal-list
+reading. Otherwise use the first reading in the corresponding selection-list
 group. This selects a filing reference, not a superior dialect. Preserve all
 remaining selected readings as aliases, subject to the resolutions above.
 

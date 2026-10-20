@@ -5,7 +5,7 @@ starting from the [LKK word list](sources/lkk-2024-05-10/word-list.tsv).
 
 ## Layout
 
-- `entries/<initial>/*.toml`: editable vocabulary records.
+- `entries/<initial>/<prefix>/*.toml`: editable vocabulary records.
 - `rules/`: conventions and context-dependent writing patterns.
 - `sources/`: unmodified source snapshots and their metadata.
 - `decisions/`: editorial decisions affecting multiple entries.
@@ -15,7 +15,10 @@ starting from the [LKK word list](sources/lkk-2024-05-10/word-list.tsv).
 - `.github/workflows/`: CSV build artifacts and tagged CSV releases.
 
 Entries are filed by the complete consonantal initial of the first syllable of
-`canonical_tl`. `zero/` holds zero-initial entries, including syllabic nasals.
+`canonical_tl`, then that initial plus the complete vowel sequence. For example,
+`beh` files under `b/be/`, `bu` under `b/bu/`, and `bueh` under `b/bue/`.
+Tone marks and final consonants do not affect the prefix. Only occupied
+directories are created. `zero/` holds zero-initial entries, including syllabic nasals.
 Use `kh`, `ph`, `th`, `ts`, and `tsh` as separate directories. Alternate readings
 stay with their entry even when their initials differ.
 

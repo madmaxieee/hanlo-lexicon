@@ -59,6 +59,18 @@ def bucket(reading):
     raise Error(f'Cannot file TL reading {reading!r}; supply a verified canonical TL reading.')
 
 
+def subbucket(reading):
+    """File by onset plus the full vowel sequence, excluding tones and codas."""
+    initial = bucket(reading)
+    first = re.split(r'[-\s]', reading.lstrip('-'), maxsplit=1)[0]
+    bare = ''.join(c for c in ud.normalize('NFD', first.casefold()) if c not in TONE_MARKS)
+    onset = '' if initial == 'zero' else initial
+    nucleus = re.match(r'[aeiou]+|ng|m', bare[len(onset):])
+    if nucleus is None:
+        raise Error(f'Cannot file TL reading {reading!r}; supply a verified canonical TL reading.')
+    return onset + nucleus.group()
+
+
 def filename(form, entry_id):
     # Escape portability hazards, including the escape character itself.
     form = ud.normalize('NFC', form)
@@ -68,7 +80,13 @@ def filename(form, entry_id):
 
 
 def entry_path(root, entry):
-    return root / 'entries' / bucket(entry['canonical_tl']) / filename(entry['preferred_form'], entry['id'])
+    reading = entry['canonical_tl']
+    return root / 'entries' / bucket(reading) / subbucket(reading) / filename(entry['preferred_form'], entry['id'])
+
+
+def entry_files(root):
+    """Discover every record, including old paths awaiting format migration."""
+    return sorted((root / 'entries').rglob('*.toml'))
 
 
 def canonical_entry(entry):
@@ -172,7 +190,7 @@ def verify_entry(root, entry, lookup_only=False):
     if lookup_only:
         schema['required'].remove('sources')
     validate_schema(entry, schema)
-    bucket(entry['canonical_tl'])
+    subbucket(entry['canonical_tl'])
     readings = [entry['canonical_tl'], *entry['alternate_readings']]
     if len({key(reading) for reading in readings}) != len(readings):
         raise Error('Duplicate primary/alternate readings after normalization.')
@@ -196,7 +214,7 @@ def verify_entry(root, entry, lookup_only=False):
 
 def entries(root):
     result, ids, paths, senses = [], set(), set(), set()
-    for path in sorted((root / 'entries').glob('*/*.toml')):
+    for path in entry_files(root):
         entry = load_toml(path)
         verify_entry(root, entry)
         if entry['id'] in ids:
@@ -555,6 +573,13 @@ def main():
                     atomic_write(target, render(entry))
                     if path != target:
                         path.unlink()
+                        directory = path.parent
+                        while directory != root / 'entries':
+                            try:
+                                directory.rmdir()
+                            except OSError:
+                                break
+                            directory = directory.parent
                 result = validate(root)
         elif args.command == 'check':
             result = check(root, request_data(args.request))

@@ -268,6 +268,14 @@ class MaintenanceTests(unittest.TestCase):
     def test_bucket_and_portable_names(self):
         for reading, expected in [('tshì-môo-thâng', 'tsh'), ('khí', 'kh'), ('tsiah', 'ts'), ('phah', 'ph'), ('thâu', 'th'), ('m̄', 'zero'), ('n̂g', 'zero'), ('ńg', 'zero'), ('ngá', 'ng'), ('--ah', 'zero'), ('āu--ji̍t', 'zero')]:
             self.assertEqual(lex.bucket(reading), expected)
+        for reading, expected in [('beh', 'be'), ('bu', 'bu'), ('bueh', 'bue'),
+                                  ('bóo', 'boo'), ('tshì-môo-thâng', 'tshi'),
+                                  ('khiānn', 'khia'), ('phuānn', 'phua'),
+                                  ('m̄', 'm'), ('n̂g', 'ng'), ('ńg', 'ng'),
+                                  ('tńg', 'tng'), ('tshńg', 'tshng'), ('nǹg', 'nng'),
+                                  ('--ah', 'a'), ('āu--ji̍t', 'au'), ('IÂN', 'ia')]:
+            with self.subTest(reading=reading):
+                self.assertEqual(lex.subbucket(reading), expected)
         self.assertEqual(lex.filename('漢/羅%字', 42), '漢%2F羅%25字--000042.toml')
 
     def test_format_renames_preserving_id_and_roundtrips_escaped_notes(self):
@@ -278,7 +286,7 @@ class MaintenanceTests(unittest.TestCase):
         old.write_text(lex.render(entry))
         self.run_cli('format', '--check', expected=2)
         self.run_cli('format')
-        new = self.root / 'entries/b/欲--000001.toml'
+        new = self.root / 'entries/b/be/欲--000001.toml'
         self.assertFalse(old.exists())
         self.assertEqual(tomllib.loads(new.read_text())['usage_notes'], entry['usage_notes'])
         self.assertEqual(self.run_cli('next-id')['next_id'], 2)
@@ -293,6 +301,36 @@ class MaintenanceTests(unittest.TestCase):
         self.assertEqual(self.run_cli('validate')['entries'], 1)
         self.assertEqual(self.run_cli('next-id')['next_id'], 2)
 
+    def test_nested_layout_migrates_legacy_paths_and_removes_empty_buckets(self):
+        first = self.run_cli('add', str(self.request()))
+        second = self.run_cli('add', str(self.request(form='bueh', reading='bueh')))
+        self.assertEqual(first['created'], 'entries/b/be/beh--000001.toml')
+        self.assertEqual(second['created'], 'entries/b/bue/bueh--000002.toml')
+        self.assertFalse((self.root / 'entries/b/bu').exists())
+        before = {entry['id']: path.read_bytes() for path, entry in lex.entries(self.root)}
+        counter = (self.root / 'id-sequence.toml').read_bytes()
+        nested = self.root / first['created']
+        legacy = nested.parent.parent / nested.name
+        nested.replace(legacy)
+        nested.parent.rmdir()
+        self.assertEqual(len(lex.entries(self.root)), 2)
+        self.assertEqual(self.run_cli('check', str(self.request()))['existing_entries'][0]['id'], first['id'])
+        self.run_cli('format', '--check', expected=2)
+        self.run_cli('format')
+        self.assertFalse(legacy.exists())
+        self.assertEqual({entry['id']: path.read_bytes() for path, entry in lex.entries(self.root)}, before)
+        self.assertEqual((self.root / 'id-sequence.toml').read_bytes(), counter)
+        self.assertEqual(self.run_cli('build-csv')['rows'], 2)
+        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl'], ['beh', 'beh'], ['bueh', 'bueh']])
+        old = self.root / second['created']
+        entry = lex.load_toml(old)
+        entry.update(canonical_tl='bu', preferred_form='bu')
+        old.write_text(lex.render(entry))
+        self.run_cli('format')
+        self.assertFalse(old.parent.exists())
+        self.assertTrue((self.root / 'entries/b/bu/bu--000002.toml').exists())
+        self.assertEqual(self.run_cli('validate')['entries'], 2)
+
     def test_checksum_and_counter_regressions_are_detected(self):
         self.run_cli('add', str(self.request()))
         (self.root / 'id-sequence.toml').write_text('next_id = 1\n')
@@ -306,7 +344,7 @@ class MaintenanceTests(unittest.TestCase):
         request = self.request()
         write = lex.atomic_write
         def fail_entry(path, content):
-            if path.suffix == '.toml' and path.parent.name == 'b':
+            if path.suffix == '.toml' and path.is_relative_to(self.root.resolve() / 'entries'):
                 raise OSError('simulated entry-write failure')
             write(path, content)
         args = ['lexicon.py', '--root', str(self.root), 'add', str(request)]

@@ -89,6 +89,15 @@ renames/moves entries to the canonical path after deliberate spelling edits.
 homograph distinctions, counter bounds, and canonical formatting/filing. It does
 not infer whether a cited source supports an editorial choice.
 
+Entry paths are `entries/<initial>/<prefix>/<preferred-form>--<id>.toml`. The
+prefix uses the complete vowel sequence, excluding tones and final consonants:
+`beh` files under `b/be/`, while `bu` and `bueh` use `b/bu/` and `b/bue/`.
+See `schema/README.md` for zero-initial and syllabic-nasal cases. Readers scan
+recursively, including entries awaiting migration from the older layout. Run
+`format` to move them without changing IDs or canonical contents. New buckets
+are created only when writing an entry, and empty old directories are removed
+after moves.
+
 The writer lock serializes local `add` and `format` operations. If a process crashes,
 confirm it has stopped before removing `.lexicon.lock/`. The tracked counter must
 never move backwards; failed writes may leave reserved gaps. Independently edited

@@ -96,7 +96,7 @@ class ExtractionTests(unittest.TestCase):
             root = Path(folder)
             (root / 'tools').mkdir()
             shutil.copy2(Path(__file__).resolve().parents[1] / 'lexicon.py', root / 'tools/lexicon.py')
-            entries = root / "entries" / "zero"
+            entries = root / "entries" / "zero" / "e"
             entries.mkdir(parents=True)
             (entries / "one.toml").write_text('id = 1\npreferred_form = "ē-tàng"\ncanonical_tl = "ē-tàng"\n')
             (entries / "two.toml").write_text('id = 2\npreferred_form = "ē"\ncanonical_tl = "ē"\n')

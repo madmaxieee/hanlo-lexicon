@@ -30,7 +30,7 @@ def preferred_index(root):
     lexicon = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(lexicon)
     records = []
-    for path in sorted((root / "entries").glob("*/*.toml")):
+    for path in lexicon.entry_files(root):
         raw = path.read_bytes()
         entry = tomllib.loads(raw.decode("utf-8"))
         pairs = lexicon.spelling_readings(entry)
@@ -302,7 +302,7 @@ def main():
     parser.add_argument("--known", type=Path)
     parser.add_argument("--exclude-contexts", type=Path, default=None,
                         help="Exact literal context phrases to ignore in every source document")
-    parser.add_argument("--lexicon", type=Path, help="Read tracked preferred forms from entries/*/*.toml")
+    parser.add_argument("--lexicon", type=Path, help="Read tracked preferred forms recursively from entries/")
     parser.add_argument("--normalization", type=Path, help="Output from normalize_anchors.mjs")
     parser.add_argument("--moe", action="store_true", help="Look up the pinned MOE dictionary and match mixed-form contexts")
     parser.add_argument("--radius", type=int, default=6)

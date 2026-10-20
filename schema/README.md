@@ -1,6 +1,6 @@
 # Entry format, version 1
 
-Each `entries/<initial>/<preferred-form>--<id>.toml` file represents an editorial
+Each `entries/<initial>/<prefix>/<preferred-form>--<id>.toml` file represents an editorial
 recommendation for a word. Use `tools/lexicon.py` to allocate IDs, check candidates,
 format files, and validate this schema.
 
@@ -94,9 +94,17 @@ The filename uses the preferred form and an ID padded to at least six digits:
 filesystem-reserved characters and `%`; the script owns this encoding. Never parse
 identity or reading from the filename: the TOML fields are authoritative.
 
-File under the first syllable's complete TL consonantal initial. Distinguish `kh`,
-`ph`, `th`, `ts`, and `tsh`. Zero-initial syllables, including syllabic `m` and `ng`,
-go under `zero/`; a leading neutral marker does not change filing. Filing does not
+File under the first syllable's complete TL consonantal initial, then a prefix
+combining that initial with the complete vowel sequence. Tone marks, final
+consonants and nasalization suffixes do not affect the prefix: `beh` uses `b/be/`,
+`bu` uses `b/bu/`, `bueh` uses `b/bue/`, and `khiānn` uses `kh/khia/`.
+Distinguish `kh`, `ph`, `th`, `ts`, and `tsh`. Zero-initial vowel syllables use
+`zero/<vowel-sequence>/`, such as `zero/au/` for `āu`. Syllabic `m` and `ng` use
+`zero/m/` and `zero/ng/`; with a consonantal initial, retain that initial in the
+prefix, such as `t/tng/` for `tńg`. A leading neutral marker does not change filing.
+Create only occupied directories. Maintenance readers discover entries
+recursively; `format` migrates old paths and removes directories left empty by a
+move. Filenames, IDs and source references do not change during migration. Filing does not
 validate a pronunciation. Inventory reference: TaigiKeyboard's
 `docs/phonetics/taigi-phonetics-reference.md` sections 2/9 and
 `taigi-converter/src/tables.js`.

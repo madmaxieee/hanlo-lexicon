@@ -1,6 +1,6 @@
 import unittest
 
-from review_support import add_review_choices, collapse_cards
+from review_support import add_review_choices, collapse_cards, reading_variants
 from import_review import build_request, build_custom_request
 
 
@@ -11,6 +11,22 @@ def record(headword, reading, identity='8913', sheet='詞目', row=8911):
 
 
 class ReviewTests(unittest.TestCase):
+    def test_primary_readings_keep_original_order_and_stable_choice_ids(self):
+        primary = record('物件', 'mn̍gh-kiānn/mi̍h-kiānn', '4343')
+        alternate = record('物件', 'mih-kiānn', '4343', sheet='又唸作', row=30)
+        self.assertEqual(reading_variants(primary), ['mn̍gh-kiānn', 'mi̍h-kiānn'])
+        match = {**primary, 'reading': 'mi̍h-kiānn'}
+        group = {'moe_matches': [match]}
+        add_review_choices([group], [alternate, primary])
+        choices = group['review_words'][0]['readings']
+        self.assertEqual([r['reading'] for r in choices], ['mn̍gh-kiānn', 'mi̍h-kiānn', 'mih-kiānn'])
+        self.assertEqual([(r['primary_index'],r['primary_count']) for r in choices[:2]], [(1,2),(2,2)])
+        self.assertEqual([r['detected'] for r in choices], [False,True,False])
+        self.assertNotIn('primary_index', choices[2])
+        ids = {r['reading']:r['id'] for r in choices}
+        add_review_choices([group], [primary,alternate])
+        self.assertEqual({r['reading']:r['id'] for r in group['review_words'][0]['readings']}, ids)
+
     def test_structured_custom_request_preserves_optional_hanji_without_moe_claim(self):
         _, group, _ = self.fixture()
         request = build_custom_request({'preferred_form': 'liô心', 'hanji': '𠞭心',

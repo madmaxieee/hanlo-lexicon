@@ -38,8 +38,9 @@ def collapse_cards(records):
 
 
 def reading_variants(record):
-    return sorted({re.sub(r'【[^】]*】', '', text).strip()
-                   for text in re.split(r'[,，、/]', record['reading']) if text.strip()})
+    # The original cell order distinguishes primary 1 from primary 2.
+    return list(dict.fromkeys(re.sub(r'【[^】]*】', '', text).strip()
+                              for text in re.split(r'[,，、/]', record['reading']) if text.strip()))
 
 
 def add_review_choices(groups, records):
@@ -56,12 +57,18 @@ def add_review_choices(groups, records):
                 continue
             candidates = index.get(identity, [match])
             cards = collapse_cards(candidates)
+            primary_order = list(dict.fromkeys(normalized(record['reading']) for record in candidates
+                                               if record['source']['sheet'] == '詞目'))
             matched = {(normalized(r['headword']), normalized(r['reading'])) for r in matches
                        if word_key(r) == identity}
             for card in cards:
                 identity_text = json.dumps([identity, normalized(card['headword']), normalized(card['reading'])], ensure_ascii=False)
                 card['id'] = hashlib.sha256(identity_text.encode()).hexdigest()[:24]
                 card['detected'] = (normalized(card['headword']), normalized(card['reading'])) in matched
+                if any(ref['source']['sheet'] == '詞目' for ref in card['references']):
+                    card['primary_index'] = primary_order.index(normalized(card['reading'])) + 1
+                    card['primary_count'] = len(primary_order)
+            cards.sort(key=lambda card: card.get('primary_index', float('inf')))
             words[identity] = {'id': identity, 'headword': match['headword'],
                                'record_id': match['record_id'], 'readings': cards}
         group['review_words'] = list(words.values())

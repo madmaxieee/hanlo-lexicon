@@ -45,9 +45,13 @@ that were handled; this prevents a changed request from being cleared.
 
 The entry/meaning selector lists regular numbered entries with original 詞目
 references first. When exactly one such entry matches an anchor, it is selected
-by default, even if matching 詞彙比較 rows are also present. The sole detected
-reading of the selected entry is also filled in; multiple matching readings
-remain a manual choice. Multiple regular entry matches do not get a default.
+by default, even if matching 詞彙比較 rows are also present. Readings in the
+original 詞目 cell retain source order. Multiple primary readings are labeled
+**MOE primary 1**, **MOE primary 2**, and so on; primary 1 is the default filing
+reading. If no primary reading exists, a sole detected reading is the fallback.
+Multiple regular entry matches do not get an entry default. An untouched default
+preferred spelling follows the selected filing reading when its Roman syllables
+can be aligned; ambiguous spellings remain for manual review.
 Comparison entries remain available and show their original sheet and row.
 Saved entry/reading choices are preserved. Defaults never approve an import.
 

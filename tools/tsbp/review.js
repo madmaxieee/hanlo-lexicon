@@ -62,8 +62,16 @@ function decision(group) {
   const word = words.find(word => word.id === item.word_id);
   if (item.import_mode==='moe' && !item.canonical_choice_id && word) {
     const detected=word.readings.filter(reading=>reading.detected);
-    if(detected.length===1)item.canonical_choice_id=detected[0].id;
-    else if(word.readings.length===1)item.canonical_choice_id=word.readings[0].id;
+    const primary=word.readings.filter(reading=>(reading.references||[]).some(ref=>ref.source?.sheet==='詞目'))
+      .sort((a,b)=>(a.primary_index??Infinity)-(b.primary_index??Infinity));
+    const selected=primary[0]||(detected.length===1?detected[0]:word.readings.length===1?word.readings[0]:null);
+    if(selected) {
+      const originalForm=group.normalized_forms?.[0]||group.display;
+      if(detected.length===1&&item.preferred_form===originalForm&&selected.id!==detected[0].id) {
+        try {item.preferred_form=writtenForm(item.preferred_form,detected[0].reading,selected.reading);}catch{}
+      }
+      item.canonical_choice_id=selected.id;
+    }
   }
   return item;
 }
@@ -133,7 +141,7 @@ function moeCard(card) {
 }
 function moeReadingRole(reading) {
   const sheets=[...new Set((reading.references||[]).map(ref=>ref.source?.sheet).filter(Boolean))];
-  if(sheets.includes('詞目'))return 'MOE primary (詞目)';
+  if(sheets.includes('詞目'))return 'MOE primary'+(reading.primary_count>1?' '+reading.primary_index:'')+' (詞目)';
   if(sheets.includes('又唸作'))return 'MOE alternate (又唸作)';
   if(sheets.includes('語音差異'))return 'MOE dialect (語音差異)';
   if(sheets.includes('合音唸作'))return 'MOE contraction (合音唸作)';

@@ -120,6 +120,32 @@ function snippet(row) {
 function source(row) {
   return '<div class="muted"><a target="_blank" rel="noreferrer" href="'+esc(row.url)+'">'+esc(row.title)+'</a> · article text line '+row.line+'</div>';
 }
+function anchorNote(group) {
+  const row=group.occurrences[0];
+  return (row.anchor||group.display)+': '+row.snippet+' ['+row.url+']('+row.url+')';
+}
+async function copyAnchorNote(group, button) {
+  const text=anchorNote(group), controls=button.parentElement;
+  const field=controls.querySelector('textarea'), status=controls.querySelector('[role="status"]');
+  button.disabled=true;
+  status.textContent='';
+  let copied=false;
+  try {
+    try {
+      await navigator.clipboard.writeText(text);
+      copied=true;
+    } catch {
+      // Local-file browsers may only support copying a selected text field.
+      field.value=text;
+      field.hidden=false;
+      field.focus();field.select();
+      try {copied=document.execCommand('copy');} catch {}
+    }
+    field.hidden=copied;
+    status.textContent=copied?'Copied!':'Select the note below and copy it.';
+    if(copied)button.focus();
+  } finally {button.disabled=false;}
+}
 function collapseRelated(records) {
   const cards=new Map();
   for(const record of records) {
@@ -223,8 +249,10 @@ function render() {
   $('rows').innerHTML=shown.map(group=>{
     const row=group.occurrences[0], item=decision(group), omit=excluded(group);
     return '<tr class="'+(omit?'known':'')+'" data-key="'+esc(group.key)+'"><td><input class="ignore-box" type="checkbox" data-key="'+esc(group.key)+'" aria-label="Ignore '+esc(group.key)+'" '+(omit?'checked ':'')+(tracked.has(group.key)||unparseable.has(group.key)?'disabled':'')+'>'+(tracked.has(group.key)?'<br><span class="tag">Tracked form</span>':'')+(unparseable.has(group.key)?'<br><span class="tag">Parser did not recognize</span>':'')+'</td><td><strong>'+esc(group.display)+'</strong>'+(group.kind==='moe_context'?'<br><span class="tag">MOE-backed mixed form</span>':'')+(group.normalized_tl&&group.normalized_tl!==group.key?'<br><span class="tag">TL lookup: '+esc(group.normalized_tl)+'</span>':'')+'<br>'+group.occurrences.length+' occurrences<br>'+group.article_count+' articles'+
+      '<div class="note-controls"><button class="copy-note" data-key="'+esc(group.key)+'" type="button">Copy note</button><span class="muted" role="status"></span><textarea hidden readonly aria-label="Anchor note"></textarea></div>'+
       '<label class="approve-label '+(item.approved?'approval-good':'')+'"><input class="approve-box" data-key="'+esc(group.key)+'" type="checkbox" aria-label="Approve import '+esc(group.key)+'" '+(item.approved&&approvable(group)?'checked ':'')+(approvable(group)?'':'disabled')+'> Approve import</label></td><td><div class="snippet">'+snippet(row)+'</div>'+source(row)+moePanel(group)+'<details><summary>Full clause and all '+group.occurrences.length+' occurrences</summary>'+group.occurrences.map(row=>'<div class="occurrence"><div class="snippet">'+snippet(row)+'</div>'+source(row)+'<div>'+esc(row.clause)+'</div></div>').join('')+'</details></td></tr>';
   }).join('');
+  document.querySelectorAll('.copy-note').forEach(button=>button.onclick=()=>copyAnchorNote(byKey.get(button.dataset.key),button));
   document.querySelectorAll('.anchor-matches').forEach(detail=>detail.ontoggle=()=>{decision(byKey.get(detail.dataset.key)).moe_matches_collapsed=!detail.open;save();});
   document.querySelectorAll('.moe-related').forEach(detail=>detail.ontoggle=()=>{if(detail.open&&!detail.dataset.loaded){const cards=collapseRelated(byKey.get(detail.dataset.key).moe_related);detail.querySelector('.moe-results').innerHTML=cards.map(moeCard).join('');detail.dataset.loaded='yes';}});
   document.querySelectorAll('.ignore-box').forEach(box=>box.onchange=()=>{

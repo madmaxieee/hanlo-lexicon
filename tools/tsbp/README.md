@@ -32,6 +32,11 @@ is suppressed only where a supported MOE or tracked compound covers it; standalo
 occurrences remain eligible. Tracked custom mixed forms can provide coverage
 without fabricating a MOE compound match.
 
+Each anchor has a **Copy note** button. It copies the original anchor spelling,
+the displayed source snippet and its article link as `anchor: snippet [URL](URL)`.
+If clipboard access is unavailable, the note appears in a selectable text box.
+Copying a note does not change review decisions.
+
 The optional `excluded-contexts.json` in the output folder is a JSON array of
 exact literal phrases; `--exclude-contexts` can select another file. This is
 separate from final-anchor Ignore choices. An optional

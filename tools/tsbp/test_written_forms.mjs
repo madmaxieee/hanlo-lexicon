@@ -20,6 +20,52 @@ const cases = [
 const context = vm.createContext({});
 vm.runInContext(fs.readFileSync(new URL('./written_forms.js', import.meta.url), 'utf8'), context);
 
+test('Copy note preserves source spelling and context, with local-file clipboard fallbacks', async t => {
+  for(const mode of ['clipboard','legacy','denied','manual'])await t.test(mode,async()=>{
+    const row={anchor:'iân-nā',snippet:'iân-nā沉入回憶ê世',clause:'iân-nā沉入回憶ê世界',
+      anchor_start:0,anchor_end:6,context_start:0,context_end:13,document_id:'test',
+      url:'https://tsbp.tgb.org.tw/2016/08/mih.html',title:'Fixture',line:1};
+    const group={key:'iân-nā',display:'iân-nā',normalized_forms:['iân-nā'],dedup_lookup_forms:['iân-nā'],
+      occurrences:[row],article_count:1,review_words:[]};
+    const expected='iân-nā: iân-nā沉入回憶ê世 [https://tsbp.tgb.org.tw/2016/08/mih.html](https://tsbp.tgb.org.tw/2016/08/mih.html)';
+    let copied,selected=false,legacyCalls=0;
+    const field={hidden:true,value:'',focus(){},select(){selected=true;}},status={textContent:''};
+    const button={dataset:{key:group.key},disabled:false,focus(){},
+      parentElement:{querySelector(selector){return selector==='textarea'?field:status;}}};
+    const nodes=new Map();
+    const document={
+      getElementById(id){if(!nodes.has(id))nodes.set(id,{value:'',checked:false,innerHTML:'',textContent:''});return nodes.get(id);},
+      querySelectorAll(selector){return selector==='.copy-note'?[button]:[];},
+      execCommand(command){assert.equal(command,'copy');legacyCalls++;if(mode==='manual')throw Error('blocked');copied=field.value;return true;}
+    };
+    const data={groups:[group],tracked_preferred_forms:[],unparseable_forms:[],known_forms:[],issue:389,
+      corpus_sha256:'copy-test',moe:{snapshot:'test'},baseline:{source_characters:30,article_count:1},
+      context_exclusions:{phrases:[],skipped_anchor_occurrences:0}};
+    const globals={data,document,localStorage:{getItem(){return null;},setItem(){}},setTimeout};
+    if(mode==='clipboard'||mode==='denied')globals.navigator={clipboard:{async writeText(text){
+      if(mode==='denied')throw Error('denied');copied=text;
+    }}};
+    const page=vm.createContext(globals);
+    vm.runInContext(fs.readFileSync(new URL('./written_forms.js',import.meta.url),'utf8')+'\n'+fs.readFileSync(new URL('./review.js',import.meta.url),'utf8'),page);
+    assert.match(nodes.get('rows').innerHTML,/class="copy-note" data-key="iân-nā" type="button">Copy note/);
+    const before=vm.runInContext('JSON.stringify(reviewExport())',page);
+    await button.onclick();
+    assert.equal(button.disabled,false);
+    assert.equal(legacyCalls,mode==='clipboard'?0:1);
+    if(mode==='manual') {
+      assert.equal(field.hidden,false);
+      assert.equal(field.value,expected);
+      assert.equal(selected,true);
+      assert.equal(status.textContent,'Select the note below and copy it.');
+    } else {
+      assert.equal(copied,expected);
+      assert.equal(field.hidden,true);
+      assert.equal(status.textContent,'Copied!');
+    }
+    assert.equal(vm.runInContext('JSON.stringify(reviewExport())',page),before);
+  });
+});
+
 test('review and repository generate identical alternate spellings', () => {
   const source = `import json,sys\nfrom tools.lexicon import written_form\nprint(json.dumps([written_form(*row[:3]) for row in json.load(sys.stdin)],ensure_ascii=False))`;
   const root = process.env.LEXICON_ROOT || fileURLToPath(new URL('../../', import.meta.url));

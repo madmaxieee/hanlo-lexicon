@@ -290,12 +290,12 @@ class MaintenanceTests(unittest.TestCase):
         self.assertEqual(self.run_cli('next-id')['next_id'], 2)
         self.assertEqual(self.run_cli('add', str(request))['id'], 2)
 
-    def csv_rows(self):
-        with (self.root / 'dist/lexicon.csv').open(encoding='utf-8', newline='') as stream:
+    def csv_rows(self, name='lexicon.csv'):
+        with (self.root / 'dist' / name).open(encoding='utf-8', newline='') as stream:
             return list(csv.reader(stream))
 
     def test_build_csv_romanized_aliases_map_to_themselves(self):
-        self.run_cli('add', str(self.request(alternate_readings=['bueh'])))
+        self.run_cli('add', str(self.request(alternate_readings=['bueh'], hanji_forms=['欲'])))
         result = self.run_cli('build-csv')
         self.assertEqual(result, {'csv': 'dist/lexicon.csv', 'entries': 1, 'rows': 2})
         self.assertEqual(self.csv_rows(), [['preferred_form', 'tl'], ['beh', 'beh'], ['bueh', 'bueh']])
@@ -305,6 +305,16 @@ class MaintenanceTests(unittest.TestCase):
         self.run_cli('add', str(self.request(form='beh食飯', reading='beh-tsiah-pn̄g', alternate_readings=['bueh-tsiah-pn̄g'])))
         self.run_cli('build-csv')
         self.assertEqual(self.csv_rows(), [
+            ['preferred_form', 'tl'],
+            ['beh食飯', 'beh-tsiah-pn̄g'],
+            ['bueh食飯', 'bueh-tsiah-pn̄g'],
+        ])
+        default = (self.root / 'dist/lexicon.csv').read_bytes()
+        result = self.run_cli('build-csv', '--include-pure-hanji')
+        self.assertEqual(result['csv'], 'dist/lexicon-all.csv')
+        self.assertEqual(result['rows'], 4)
+        self.assertEqual((self.root / 'dist/lexicon.csv').read_bytes(), default)
+        self.assertEqual(self.csv_rows('lexicon-all.csv'), [
             ['preferred_form', 'tl'],
             ['beh食飯', 'beh-tsiah-pn̄g'],
             ['bueh食飯', 'bueh-tsiah-pn̄g'],
@@ -354,25 +364,29 @@ class MaintenanceTests(unittest.TestCase):
         self.run_cli('add', str(self.request(form='後--日', reading='āu--ji̍t', alternate_readings=['āu--li̍t'])))
         self.run_cli('add', str(self.request(form='「欲,愛」', reading='bóng')))
         self.run_cli('build-csv')
-        target = self.root / 'dist/lexicon.csv'
+        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl']])
+        self.run_cli('build-csv', '--include-pure-hanji')
+        target = self.root / 'dist/lexicon-all.csv'
         before = target.read_bytes()
         self.assertNotIn(b'\r', before)
-        self.assertEqual(self.csv_rows(), [
+        self.assertEqual(self.csv_rows('lexicon-all.csv'), [
             ['preferred_form', 'tl'], ['「欲,愛」', 'bóng'],
             ['後--日', 'āu--ji̍t'], ['後--日', 'āu--li̍t'],
         ])
-        self.run_cli('build-csv')
+        self.run_cli('build-csv', '--include-pure-hanji')
         self.assertEqual(target.read_bytes(), before)
 
     def test_build_csv_rejects_invalid_data_before_replacing_output(self):
         self.run_cli('add', str(self.request()))
         self.run_cli('build-csv')
-        target = self.root / 'dist/lexicon.csv'
-        before = target.read_bytes()
+        self.run_cli('build-csv', '--include-pure-hanji')
+        before = {name: (self.root / 'dist' / name).read_bytes()
+                  for name in ('lexicon.csv', 'lexicon-all.csv')}
         source = self.root / 'sources/lkk-fixture/word-list.tsv'
         source.write_bytes(source.read_bytes() + b'changed')
         self.run_cli('build-csv', expected=2)
-        self.assertEqual(target.read_bytes(), before)
+        self.run_cli('build-csv', '--include-pure-hanji', expected=2)
+        self.assertEqual({name: (self.root / 'dist' / name).read_bytes() for name in before}, before)
         self.assertFalse((self.root / '.lexicon.lock').exists())
 
     def test_build_csv_empty_repository_and_writer_lock(self):

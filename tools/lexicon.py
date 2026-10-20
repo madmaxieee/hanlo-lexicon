@@ -500,19 +500,21 @@ def spelling_readings(entry):
             for reading in [canonical, *entry['alternate_readings']]]
 
 
-def build_csv(root):
+def build_csv(root, include_pure_hanji=False):
     """Build a flat spelling/reading CSV without changing editorial records."""
     with writer_lock(root):
         validate(root)
         current = entries(root)
         rows = set()
         for _, entry in current:
+            if not include_pure_hanji and is_hanji(entry['preferred_form']):
+                continue
             rows.update(spelling_readings(entry))
         stream = io.StringIO(newline='')
         writer = csv.writer(stream, lineterminator='\n')
         writer.writerow(('preferred_form', 'tl'))
         writer.writerows(sorted(rows))
-        target = root / 'dist/lexicon.csv'
+        target = root / 'dist' / ('lexicon-all.csv' if include_pure_hanji else 'lexicon.csv')
         atomic_write(target, stream.getvalue())
     return {'csv': str(target.relative_to(root)), 'entries': len(current), 'rows': len(rows)}
 
@@ -521,8 +523,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
     sub = parser.add_subparsers(dest='command', required=True)
-    for name in ('validate', 'next-id', 'fetch-moe', 'build-csv'):
+    for name in ('validate', 'next-id', 'fetch-moe'):
         sub.add_parser(name)
+    csv_export = sub.add_parser('build-csv')
+    csv_export.add_argument('--include-pure-hanji', action='store_true',
+                            help='Include pure-Hanji preferred forms and write dist/lexicon-all.csv (default: exclude them in dist/lexicon.csv).')
     formatting = sub.add_parser('format')
     formatting.add_argument('--check', action='store_true')
     for name in ('check', 'add'):
@@ -537,7 +542,7 @@ def main():
         elif args.command == 'next-id':
             result = {'next_id': next_id(root, entries(root)), 'reserved': False}
         elif args.command == 'build-csv':
-            result = build_csv(root)
+            result = build_csv(root, include_pure_hanji=args.include_pure_hanji)
         elif args.command == 'validate' or args.command == 'format' and args.check:
             result = validate(root)
         elif args.command == 'format':

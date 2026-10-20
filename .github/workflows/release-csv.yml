@@ -42,19 +42,22 @@ jobs:
         run: python3 -m unittest discover -s tests -v
       - name: Check formatting
         run: python3 tools/lexicon.py format --check
-      - name: Validate entries and build CSV
-        run: python3 tools/lexicon.py build-csv
+      - name: Validate entries and build both CSV exports
+        run: |
+          python3 tools/lexicon.py build-csv
+          python3 tools/lexicon.py build-csv --include-pure-hanji
       - name: Package source rights and checksums
         working-directory: dist
         run: |
           cp ../RIGHTS.md RIGHTS.md
-          sha256sum lexicon.csv RIGHTS.md > SHA256SUMS
+          sha256sum lexicon.csv lexicon-all.csv RIGHTS.md > SHA256SUMS
       - name: Upload release files
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: hanlo-lexicon-release
           path: |
             dist/lexicon.csv
+            dist/lexicon-all.csv
             dist/RIGHTS.md
             dist/SHA256SUMS
           if-no-files-found: error
@@ -84,7 +87,8 @@ jobs:
           cat > release-notes.md <<EOF
           Taiwanese Han-Lo writing recommendations, built from commit ${COMMIT_SHA}.
 
-          Download lexicon.csv (UTF-8; columns: preferred_form,tl). Verify the files with SHA256SUMS.
+          Download lexicon.csv for Romanized and mixed forms, or lexicon-all.csv to include pure-Hanji forms.
+          Both files use UTF-8 with columns preferred_form,tl. Verify the files with SHA256SUMS.
           All review statuses are included; a release does not mark entries reviewed.
 
           Imported source reuse terms remain unverified. See the attached RIGHTS.md and source metadata; this release does not grant a new license.
@@ -93,7 +97,7 @@ jobs:
           if [[ "$RELEASE_TAG" == *-* ]]; then
             prerelease=(--prerelease)
           fi
-          gh release create "$RELEASE_TAG" dist/lexicon.csv dist/RIGHTS.md dist/SHA256SUMS \
+          gh release create "$RELEASE_TAG" dist/lexicon.csv dist/lexicon-all.csv dist/RIGHTS.md dist/SHA256SUMS \
             --verify-tag --draft --title "$RELEASE_TAG" \
             --notes-file release-notes.md "${prerelease[@]}"
           gh release edit "$RELEASE_TAG" --draft=false

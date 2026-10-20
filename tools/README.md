@@ -94,16 +94,22 @@ accept `--root PATH` before the subcommand for another checkout or a test fixtur
 
 ```sh
 python3 tools/lexicon.py build-csv
+python3 tools/lexicon.py build-csv --include-pure-hanji
 ```
 
-The command validates the repository and atomically writes `dist/lexicon.csv`.
-The UTF-8 file has an exact `preferred_form,tl` header, LF line endings, and rows
+The default command validates the repository and atomically writes
+`dist/lexicon.csv`, excluding entries whose preferred forms are pure Hanji.
+`--include-pure-hanji` writes `dist/lexicon-all.csv` with all entries instead,
+leaving the default file untouched. Filtering uses `preferred_form`, independently
+of Hanji metadata in `moe_forms` or `hanji_forms`. Punctuation, spaces and combining
+marks do not make a pure-Hanji form mixed: `後--日` is excluded by default.
+Both UTF-8 files have an exact `preferred_form,tl` header, LF line endings, and rows
 sorted by written form and then reading using Unicode code-point order. Identical
 rows are emitted once, including rows shared by unrelated homographs. The TOML
 records, IDs, source snapshots, and allocation counter are unchanged.
 
-Each entry contributes its `preferred_form` with its `canonical_tl`. For each
-`alternate_readings` value:
+Each included entry contributes its `preferred_form` with its `canonical_tl`.
+For each `alternate_readings` value:
 
 - If the preferred form contains only Hanji, retain that form for every reading.
   Punctuation, spaces, and combining marks are ignored for this classification,
@@ -124,8 +130,9 @@ beh,beh
 bueh,bueh
 ```
 
-A Hanji entry `欲` with readings `beh` and `bueh` produces `欲,beh` and `欲,bueh`.
-A mixed entry `想beh` with readings `siūnn-beh` and `siūnn-bueh` produces
+A Hanji entry `欲` with readings `beh` and `bueh` produces `欲,beh` and `欲,bueh`
+only in the inclusive export. A mixed entry `想beh` with readings `siūnn-beh` and
+`siūnn-bueh` produces
 `想beh,siūnn-beh` and `想bueh,siūnn-bueh`. Likewise, `beh食飯` with alternate
 `bueh-tsiah-pn̄g` produces `bueh食飯,bueh-tsiah-pn̄g`. If only a Han-written
 syllable changes pronunciation, its written form stays the same: `hip相` supports
@@ -142,17 +149,19 @@ build shares the maintenance writer lock to avoid racing with `add` or `format`.
 MOE is fetched and verified only when required by source citations, using the
 same pinned cache as validation.
 
-The manual **Build CSV** GitHub Actions workflow runs tests and this same command,
-then makes `lexicon.csv` available in the `hanlo-lexicon-csv` run artifact. It
-can be run from the repository's Actions tab. Local builds need no GitHub account
+The manual **Build CSV** GitHub Actions workflow runs tests and both commands,
+then makes `lexicon.csv` and `lexicon-all.csv` available in the
+`hanlo-lexicon-csv` run artifact. It can be run from the repository's Actions tab.
+Local builds need no GitHub account
 or remote. JSON exports remain unimplemented.
 
 ## CSV releases
 
 The **Release CSV** workflow runs on pushes of tags matching `v*`. It tests the
-maintenance tools, checks formatting, validates the data, and builds the same CSV
-as the local command. It packages `lexicon.csv`, `RIGHTS.md`, and `SHA256SUMS`,
-then creates a draft release with those assets before publishing it. Tags with a
+maintenance tools, checks formatting, validates the data, and builds both CSVs
+with the local commands. It packages `lexicon.csv`, `lexicon-all.csv`, `RIGHTS.md`,
+and `SHA256SUMS` covering both CSVs and the rights file, then creates a draft
+release with those assets before publishing it. Tags with a
 hyphen, such as `v0.1.0-rc.1`, become prereleases. Existing releases are never
 overwritten; a failed publish can leave a draft for the maintainer to inspect.
 

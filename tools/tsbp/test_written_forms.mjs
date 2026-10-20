@@ -24,10 +24,10 @@ test('Copy note preserves source spelling and context, with local-file clipboard
   for(const mode of ['clipboard','legacy','denied','manual'])await t.test(mode,async()=>{
     const row={anchor:'iân-nā',snippet:'iân-nā沉入回憶ê世',clause:'iân-nā沉入回憶ê世界',
       anchor_start:0,anchor_end:6,context_start:0,context_end:13,document_id:'test',
-      url:'https://tsbp.tgb.org.tw/2016/08/mih.html',title:'Fixture',line:1};
+      url:'https://tsbp.tgb.org.tw/2016/08/mih.html',title:'回憶 [一]',line:1};
     const group={key:'iân-nā',display:'iân-nā',normalized_forms:['iân-nā'],dedup_lookup_forms:['iân-nā'],
       occurrences:[row],article_count:1,review_words:[]};
-    const expected='iân-nā: iân-nā沉入回憶ê世 [https://tsbp.tgb.org.tw/2016/08/mih.html](https://tsbp.tgb.org.tw/2016/08/mih.html)';
+    const expected='iân-nā: iân-nā沉入回憶ê世 [回憶 \\[一\\]](https://tsbp.tgb.org.tw/2016/08/mih.html)';
     let copied,selected=false,legacyCalls=0;
     const field={hidden:true,value:'',focus(){},select(){selected=true;}},status={textContent:''};
     const button={dataset:{key:group.key},disabled:false,focus(){},
@@ -47,7 +47,7 @@ test('Copy note preserves source spelling and context, with local-file clipboard
     }}};
     const page=vm.createContext(globals);
     vm.runInContext(fs.readFileSync(new URL('./written_forms.js',import.meta.url),'utf8')+'\n'+fs.readFileSync(new URL('./review.js',import.meta.url),'utf8'),page);
-    assert.match(nodes.get('rows').innerHTML,/class="copy-note" data-key="iân-nā" type="button">Copy note/);
+    assert.match(nodes.get('rows').innerHTML,/class="copy-note" data-key="iân-nā" type="button" title="Copy note" aria-label="Copy note for iân-nā"><svg/);
     const before=vm.runInContext('JSON.stringify(reviewExport())',page);
     await button.onclick();
     assert.equal(button.disabled,false);

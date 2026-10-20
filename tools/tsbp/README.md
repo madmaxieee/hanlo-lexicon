@@ -32,8 +32,9 @@ is suppressed only where a supported MOE or tracked compound covers it; standalo
 occurrences remain eligible. Tracked custom mixed forms can provide coverage
 without fabricating a MOE compound match.
 
-Each anchor has a **Copy note** button. It copies the original anchor spelling,
-the displayed source snippet and its article link as `anchor: snippet [URL](URL)`.
+Each anchor has a **Copy note** icon button with a tooltip and accessible label.
+It copies the original anchor spelling, the displayed source snippet and its
+article link as `anchor: snippet [Article title](URL)`.
 If clipboard access is unavailable, the note appears in a selectable text box.
 Copying a note does not change review decisions.
 

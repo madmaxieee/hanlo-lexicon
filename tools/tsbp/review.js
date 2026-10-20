@@ -122,7 +122,8 @@ function source(row) {
 }
 function anchorNote(group) {
   const row=group.occurrences[0];
-  return (row.anchor||group.display)+': '+row.snippet+' ['+row.url+']('+row.url+')';
+  const title=row.title.replace(/[\\[\]]/g, '\\$&');
+  return (row.anchor||group.display)+': '+row.snippet+' ['+title+']('+row.url+')';
 }
 async function copyAnchorNote(group, button) {
   const text=anchorNote(group), controls=button.parentElement;
@@ -249,7 +250,7 @@ function render() {
   $('rows').innerHTML=shown.map(group=>{
     const row=group.occurrences[0], item=decision(group), omit=excluded(group);
     return '<tr class="'+(omit?'known':'')+'" data-key="'+esc(group.key)+'"><td><input class="ignore-box" type="checkbox" data-key="'+esc(group.key)+'" aria-label="Ignore '+esc(group.key)+'" '+(omit?'checked ':'')+(tracked.has(group.key)||unparseable.has(group.key)?'disabled':'')+'>'+(tracked.has(group.key)?'<br><span class="tag">Tracked form</span>':'')+(unparseable.has(group.key)?'<br><span class="tag">Parser did not recognize</span>':'')+'</td><td><strong>'+esc(group.display)+'</strong>'+(group.kind==='moe_context'?'<br><span class="tag">MOE-backed mixed form</span>':'')+(group.normalized_tl&&group.normalized_tl!==group.key?'<br><span class="tag">TL lookup: '+esc(group.normalized_tl)+'</span>':'')+'<br>'+group.occurrences.length+' occurrences<br>'+group.article_count+' articles'+
-      '<div class="note-controls"><button class="copy-note" data-key="'+esc(group.key)+'" type="button">Copy note</button><span class="muted" role="status"></span><textarea hidden readonly aria-label="Anchor note"></textarea></div>'+
+      '<div class="note-controls"><button class="copy-note" data-key="'+esc(group.key)+'" type="button" title="Copy note" aria-label="Copy note for '+esc(group.display)+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg></button><span class="muted" role="status"></span><textarea hidden readonly aria-label="Anchor note"></textarea></div>'+
       '<label class="approve-label '+(item.approved?'approval-good':'')+'"><input class="approve-box" data-key="'+esc(group.key)+'" type="checkbox" aria-label="Approve import '+esc(group.key)+'" '+(item.approved&&approvable(group)?'checked ':'')+(approvable(group)?'':'disabled')+'> Approve import</label></td><td><div class="snippet">'+snippet(row)+'</div>'+source(row)+moePanel(group)+'<details><summary>Full clause and all '+group.occurrences.length+' occurrences</summary>'+group.occurrences.map(row=>'<div class="occurrence"><div class="snippet">'+snippet(row)+'</div>'+source(row)+'<div>'+esc(row.clause)+'</div></div>').join('')+'</details></td></tr>';
   }).join('');
   document.querySelectorAll('.copy-note').forEach(button=>button.onclick=()=>copyAnchorNote(byKey.get(button.dataset.key),button));

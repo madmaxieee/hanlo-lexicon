@@ -38,6 +38,12 @@ article link as `anchor: snippet [Article title](URL)`.
 If clipboard access is unavailable, the note appears in a selectable text box.
 Copying a note does not change review decisions.
 
+Tracked-entry suppression is independent of the editable Ignore list. A form
+that is both tracked and ignored remains tracked when the ignore is removed or
+older browser decisions are restored. Exclusion counts can overlap; total text
+coverage counts each occurrence once. Show excluded rows exposes these rows
+for inspection with a Tracked form label.
+
 The optional `excluded-contexts.json` in the output folder is a JSON array of
 exact literal phrases; `--exclude-contexts` can select another file. This is
 separate from final-anchor Ignore choices. An optional

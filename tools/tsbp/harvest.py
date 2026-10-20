@@ -65,6 +65,9 @@ def apply_final_exclusions(groups, known, preferred):
                     match['matched_written_forms'].append(candidate)
         group['dedup_lookup_forms'] = sorted(candidates)
         group['preferred_matches'] = [matches[i] for i in sorted(matches)]
+        # Exclusion sets overlap: editable ignores must not erase tracked status.
+        if matches:
+            categories['tracked'].add(group['key'])
         if group.get('parser_compatible') is False:
             reason, category = 'unparseable', 'unparseable'
         elif candidates & known:

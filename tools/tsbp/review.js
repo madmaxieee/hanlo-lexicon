@@ -2,7 +2,8 @@ const $ = id => document.getElementById(id);
 const norm = text => text.normalize('NFC').toLowerCase();
 const esc = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const byKey = new Map(data.groups.map(group => [group.key, group]));
-const tracked = new Set(data.tracked_preferred_forms);
+const tracked = new Set([...data.tracked_preferred_forms,
+  ...data.groups.filter(group=>group.preferred_matches?.length).map(group=>group.key)]);
 const unparseable = new Set(data.unparseable_forms);
 const storageKey = 'hanlo-review:v1:' + data.issue + ':' + data.corpus_sha256 + ':' + data.moe?.snapshot;
 let state = {ignored: data.known_forms, decisions: {}};

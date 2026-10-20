@@ -66,6 +66,30 @@ test('Copy note preserves source spelling and context, with local-file clipboard
   });
 });
 
+test('tracked curated forms stay excluded when saved browser ignores omit them', () => {
+  const forms=['ê','mā','beh','m̄'];
+  const groups=forms.map((form,index)=>({key:form,display:form,normalized_forms:[form],normalized_tl:form,
+    dedup_lookup_forms:[form],parser_compatible:true,article_count:1,review_words:[],
+    preferred_matches:[{id:index+1,preferred_form:form,path:'fixture.toml'}],exclusion_reason:'curated_form',
+    occurrences:[{anchor:form,snippet:form,anchor_start:0,anchor_end:form.length,context_start:0,
+      context_end:form.length,document_id:'fixture',url:'https://example.com',title:'Fixture',line:1,clause:form}]}));
+  const nodes=new Map();
+  const document={getElementById(id){if(!nodes.has(id))nodes.set(id,{value:'',checked:false,innerHTML:'',textContent:''});return nodes.get(id);},querySelectorAll(){return [];}};
+  const data={groups,tracked_preferred_forms:[],unparseable_forms:[],known_forms:forms,issue:389,
+    corpus_sha256:'tracked-test',moe:{snapshot:'test'},baseline:{source_characters:20,article_count:1},
+    context_exclusions:{phrases:[],skipped_anchor_occurrences:0}};
+  const page=vm.createContext({data,document,setTimeout,
+    localStorage:{getItem(){return JSON.stringify({ignored:[],decisions:{}});},setItem(){}}});
+  vm.runInContext(fs.readFileSync(new URL('./written_forms.js',import.meta.url),'utf8')+'\n'+fs.readFileSync(new URL('./review.js',import.meta.url),'utf8'),page);
+  assert.equal(vm.runInContext('data.groups.every(excluded)',page),true);
+  assert.equal(nodes.get('rows').innerHTML,'');
+  assert.equal(vm.runInContext('data.groups.some(approvable)',page),false);
+  nodes.get('showKnown').checked=true;
+  vm.runInContext('render()',page);
+  assert.equal((nodes.get('rows').innerHTML.match(/Tracked form/g)||[]).length,4);
+  assert.equal(vm.runInContext('reviewExport().approvals.length',page),0);
+});
+
 test('review and repository generate identical alternate spellings', () => {
   const source = `import json,sys\nfrom tools.lexicon import written_form\nprint(json.dumps([written_form(*row[:3]) for row in json.load(sys.stdin)],ensure_ascii=False))`;
   const root = process.env.LEXICON_ROOT || fileURLToPath(new URL('../../', import.meta.url));

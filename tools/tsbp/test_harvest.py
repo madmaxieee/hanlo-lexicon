@@ -3,7 +3,7 @@ from pathlib import Path
 import tempfile
 import shutil
 
-from harvest import coverage, key, merged, occurrences, preferred_index, spans, verified_custom_resolutions
+from harvest import apply_final_exclusions, coverage, key, merged, occurrences, preferred_index, spans, verified_custom_resolutions
 import json
 
 
@@ -13,6 +13,22 @@ def doc(text):
 
 
 class ExtractionTests(unittest.TestCase):
+    def test_curated_ignore_also_retains_independent_tracked_status(self):
+        forms = ['ê', 'mā', 'beh', 'm̄']
+        groups = [{'key': form, 'normalized_tl': form} for form in forms]
+        groups.append({'key': 'ê鞋', 'normalized_forms': ['ê鞋']})
+        preferred = {form: [{'id': i, 'preferred_form': form}]
+                     for i, form in enumerate(forms, 1)}
+        curated, tracked, unparseable = apply_final_exclusions(groups, set(forms), preferred)
+        self.assertEqual(curated, set(forms))
+        self.assertEqual(tracked, set(forms))
+        self.assertEqual(unparseable, set())
+        self.assertTrue(all(g['exclusion_reason'] == 'curated_form' for g in groups[:4]))
+        self.assertIsNone(groups[-1]['exclusion_reason'])
+        curated, tracked, _ = apply_final_exclusions(groups, set(), preferred)
+        self.assertEqual(curated, set())
+        self.assertEqual(tracked, set(forms))
+
     def test_handled_custom_requests_require_the_recorded_entry_and_pair(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)

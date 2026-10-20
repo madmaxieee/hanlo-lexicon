@@ -41,6 +41,10 @@ function pureRomanized(text) {
 function sourceAnchorEligible(group) {
   return group.parser_compatible===true && pureRomanized(group.display||group.key) && pureRomanized(group.normalized_tl);
 }
+function regularMoeWord(word) {
+  return word.id.startsWith('moe:') && word.readings.some(reading=>
+    (reading.references||[]).some(ref=>ref.source?.sheet==='詞目'));
+}
 function decision(group) {
   if(!Object.hasOwn(state.decisions,group.key))state.decisions[group.key] = {preferred_form: group.normalized_forms?.[0] || group.display,
     word_id: '', canonical_choice_id: '', alternate_choice_ids: [], identity_note: '', custom_handling: '', approved: false};
@@ -50,9 +54,17 @@ function decision(group) {
   item.moe_matches_collapsed ??= false;
   item.import_mode ??= (!(group.review_words||[]).length && sourceAnchorEligible(group))?'source_anchor':'moe';
   const words = group.review_words || [];
-  if (item.import_mode==='moe' && !item.word_id && words.length === 1) item.word_id = words[0].id;
+  if (item.import_mode==='moe' && !item.word_id) {
+    const regular=words.filter(regularMoeWord);
+    if(regular.length===1)item.word_id=regular[0].id;
+    else if(words.length===1)item.word_id=words[0].id;
+  }
   const word = words.find(word => word.id === item.word_id);
-  if (item.import_mode==='moe' && !item.canonical_choice_id && word?.readings.length === 1) item.canonical_choice_id = word.readings[0].id;
+  if (item.import_mode==='moe' && !item.canonical_choice_id && word) {
+    const detected=word.readings.filter(reading=>reading.detected);
+    if(detected.length===1)item.canonical_choice_id=detected[0].id;
+    else if(word.readings.length===1)item.canonical_choice_id=word.readings[0].id;
+  }
   return item;
 }
 function choices(group) {
@@ -139,7 +151,12 @@ function importEditor(group) {
     '<label>Distinct word note (optional) <input type="text" class="identity-input" value="'+esc(item.identity_note)+'"></label>'+
     '<p class="muted">Approve this romanized form and reading using the article as evidence. No MOE match is required. New entries remain imported; offline LKK/MOE and existing-entry checks still run.</p></details>';
   if(!words.length) return '<p class="muted">A mixed or unrecognized anchor needs a supported reading or custom handling before import.</p>';
-  const options='<option value="">Choose the MOE entry / meaning</option>'+words.map(option=>'<option value="'+esc(option.id)+'" '+(option.id===item.word_id?'selected':'')+'>'+esc(option.headword)+' · MOE '+esc(option.record_id||option.id)+'</option>').join('');
+  const orderedWords=[...words].sort((a,b)=>Number(regularMoeWord(b))-Number(regularMoeWord(a)));
+  const options='<option value="">Choose the MOE entry / meaning</option>'+orderedWords.map(option=>{
+    const refs=option.readings.flatMap(reading=>reading.references||[]);
+    const label=option.record_id?'MOE '+option.record_id:[...new Set(refs.map(ref=>ref.source.sheet+' row '+ref.source.row))].join(', ');
+    return '<option value="'+esc(option.id)+'" '+(option.id===item.word_id?'selected':'')+'>'+esc(option.headword)+' · '+esc(label||option.id)+'</option>';
+  }).join('');
   const readings=word?.readings||[];
   let preview='';
   try { preview=outputForms(group).map(row=>'<div><strong>'+esc(row.form)+'</strong> · '+esc(row.reading)+'</div>').join(''); }

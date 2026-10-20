@@ -41,6 +41,16 @@ entry still has that preferred form and reading. For structured requests, includ
 `request_fields` with the exact `preferred_form`, optional `hanji` and `reading`
 that were handled; this prevents a changed request from being cleared.
 
+## MOE selection defaults
+
+The entry/meaning selector lists regular numbered entries with original 詞目
+references first. When exactly one such entry matches an anchor, it is selected
+by default, even if matching 詞彙比較 rows are also present. The sole detected
+reading of the selected entry is also filled in; multiple matching readings
+remain a manual choice. Multiple regular entry matches do not get a default.
+Comparison entries remain available and show their original sheet and row.
+Saved entry/reading choices are preserved. Defaults never approve an import.
+
 ## Custom handling
 
 The Custom handling section accepts:

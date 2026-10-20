@@ -188,3 +188,41 @@ test('structured custom handling exports preferred, optional Hanji and reading a
   assert.equal(Object.hasOwn(bundle.custom_requests[0],'hanji'),false);
   assert.equal(bundle.custom_requests[0].reading,'liô-sim');
 });
+
+test('unique regular MOE entry and sole detected reading default ahead of comparison rows', () => {
+  const regular={id:'moe:4343',record_id:'4343',headword:'物件',readings:[
+    {id:'main',headword:'物件',reading:'mi̍h-kiānn',detected:true,references:[{source:{sheet:'詞目',row:4343}}]},
+    {id:'alternate',headword:'物件',reading:'mn̍gh-kiānn',detected:false,references:[{source:{sheet:'詞目',row:4343}}]}]};
+  const comparison={id:'row:comparison:2137',record_id:'',headword:'物件',readings:[
+    {id:'comparison-reading',headword:'物件',reading:'mi̍h-kiānn',detected:true,references:[{source:{sheet:'詞彙比較',row:2137}}]}]};
+  const group={key:'mi̍h件',display:'mi̍h件',normalized_forms:['mi̍h件'],dedup_lookup_forms:['mi̍h件'],
+    occurrences:[{anchor:'mi̍h件',snippet:'mi̍h件',anchor_start:0,anchor_end:5,context_start:0,context_end:5,
+      document_id:'test',url:'https://example.com',title:'Fixture',line:1,clause:'mi̍h件'}],
+    article_count:1,review_words:[comparison,regular]};
+  function setup(words,saved=null) {
+    const nodes=new Map();
+    const document={getElementById(id){if(!nodes.has(id))nodes.set(id,{value:'',checked:false,innerHTML:'',textContent:''});return nodes.get(id);},querySelectorAll(){return [];}};
+    const data={groups:[{...group,review_words:words}],tracked_preferred_forms:[],unparseable_forms:[],known_forms:[],issue:389,
+      corpus_sha256:'defaults-test',moe:{snapshot:'test'},baseline:{source_characters:20,article_count:1},
+      context_exclusions:{phrases:[],skipped_anchor_occurrences:0}};
+    const page=vm.createContext({data,document,setTimeout,localStorage:{getItem(){return saved&&JSON.stringify(saved);},setItem(){}}});
+    vm.runInContext(fs.readFileSync(new URL('./written_forms.js',import.meta.url),'utf8')+'\n'+fs.readFileSync(new URL('./review.js',import.meta.url),'utf8'),page);
+    return {page,nodes};
+  }
+  let {page,nodes}=setup([comparison,regular]);
+  assert.equal(vm.runInContext('decision(data.groups[0]).word_id',page),'moe:4343');
+  assert.equal(vm.runInContext('decision(data.groups[0]).canonical_choice_id',page),'main');
+  assert.equal(vm.runInContext('reviewExport().approvals.length',page),0);
+  assert.ok(nodes.get('rows').innerHTML.indexOf('value="moe:4343"')<nodes.get('rows').innerHTML.indexOf('value="row:comparison:2137"'));
+  assert.match(nodes.get('rows').innerHTML,/物件 · 詞彙比較 row 2137/);
+  const saved={ignored:[],decisions:{'mi̍h件':{preferred_form:'mi̍h件',word_id:comparison.id,canonical_choice_id:'comparison-reading',alternate_choice_ids:[],identity_note:'',approved:true}}};
+  ({page}=setup([comparison,regular],saved));
+  assert.equal(vm.runInContext('decision(data.groups[0]).word_id',page),comparison.id);
+  assert.equal(vm.runInContext('decision(data.groups[0]).canonical_choice_id',page),'comparison-reading');
+  const other={...regular,id:'moe:999',record_id:'999'};
+  ({page}=setup([comparison,regular,other]));
+  assert.equal(vm.runInContext('decision(data.groups[0]).word_id',page),'');
+  ({page}=setup([{...regular,readings:regular.readings.map(r=>({...r,detected:true}))},comparison]));
+  assert.equal(vm.runInContext('decision(data.groups[0]).word_id',page),'moe:4343');
+  assert.equal(vm.runInContext('decision(data.groups[0]).canonical_choice_id',page),'');
+});

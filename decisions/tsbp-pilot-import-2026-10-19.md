@@ -224,3 +224,27 @@ source characters (95.25% reduction). All-context coverage is 1,660 characters
 (94.39% reduction). The complete original export, checks, old-code ablation,
 results and before/after files remain in the local pilot folder
 `imports/review-ac4c3e2312be/`. No commit or publication was requested.
+
+
+## Sixth review batch — 2026-10-20
+
+The exported `review (4).json` has SHA-256
+`ab0337eaf58444c49f7b4e450b25c11a03abd69ef0a7d9b89c6c2471637aca89`.
+Its corpus, issue, candidate fingerprint and pinned MOE edition match the current
+pilot. All five approvals passed offline existing-entry/LKK/MOE checks before
+import; none matched an existing entry. There were no custom requests.
+The normal maintenance command allocated IDs 696–700, retaining original MOE and
+article citations and `imported` status.
+
+| ID | Preferred form | Filing TL |
+| --- | --- | --- |
+| 696 | khah早 | khah-tsá |
+| 697 | khuì力 | khuì-la̍t |
+| 698 | làu-phâu | làu-phâu |
+| 699 | nauh | nauh |
+| 700 | ǹg | ǹg |
+
+All 695 previous entry files and the source corpus remain byte-for-byte
+unchanged. Validation and canonical formatting pass. The export and complete
+preview/apply results remain in the local pilot folder
+`imports/review-ab0337eaf584/`.

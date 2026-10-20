@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "nauh"
+id = 699
+moe_forms = ["喃"]
+preferred_form = "nauh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 21; normalized source characters 1469:1473; written form nauh"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 8163
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

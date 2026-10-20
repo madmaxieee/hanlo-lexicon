@@ -70,10 +70,10 @@ def apply_final_exclusions(groups, known, preferred):
             categories['tracked'].add(group['key'])
         if group.get('parser_compatible') is False:
             reason, category = 'unparseable', 'unparseable'
-        elif candidates & known:
-            reason, category = 'curated_form', 'curated'
         elif matches:
             reason, category = 'tracked_preferred_form', 'tracked'
+        elif candidates & known:
+            reason, category = 'curated_form', 'curated'
         else:
             reason, category = None, None
         group['exclusion_reason'] = reason

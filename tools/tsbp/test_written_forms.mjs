@@ -79,9 +79,14 @@ test('tracked curated forms stay excluded when saved browser ignores omit them',
     corpus_sha256:'tracked-test',moe:{snapshot:'test'},baseline:{source_characters:20,article_count:1},
     context_exclusions:{phrases:[],skipped_anchor_occurrences:0}};
   const page=vm.createContext({data,document,setTimeout,
-    localStorage:{getItem(){return JSON.stringify({ignored:[],decisions:{}});},setItem(){}}});
+    localStorage:{getItem(){return JSON.stringify({ignored:forms,decisions:{}});},setItem(){}}});
   vm.runInContext(fs.readFileSync(new URL('./written_forms.js',import.meta.url),'utf8')+'\n'+fs.readFileSync(new URL('./review.js',import.meta.url),'utf8'),page);
   assert.equal(vm.runInContext('data.groups.every(excluded)',page),true);
+  assert.equal(vm.runInContext('reviewExport().ignored_forms.length',page),0);
+  assert.equal(nodes.get('known').value,'');
+  nodes.get('known').value=forms.join(', ');
+  nodes.get('apply').onclick();
+  assert.equal(nodes.get('known').value,'');
   assert.equal(nodes.get('rows').innerHTML,'');
   assert.equal(vm.runInContext('data.groups.some(approvable)',page),false);
   nodes.get('showKnown').checked=true;

@@ -12,7 +12,8 @@ try {
   const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
   if (saved && Array.isArray(saved.ignored) && saved.decisions) state = saved;
 } catch { storageAvailable = false; }
-let ignored = new Set(state.ignored);
+function editableIgnores(forms) {return new Set(forms.filter(form=>!tracked.has(form)));}
+let ignored = editableIgnores(state.ignored);
 
 function reconcileHandledRequests() {
   for(const resolution of data.handled_custom_requests||[]) {
@@ -309,7 +310,7 @@ $('policy').textContent='Nested and overlapping multi-syllable anchors are liste
 $('normalization').textContent='TL lookup spellings preserve original source text. Identical MOE headword/reading cards are merged while all IDs, definitions and source references remain available.';
 $('moe-policy').textContent='Nested and overlapping multi-syllable anchors are listed separately; contained single-syllable matches are suppressed. Pure romanized anchors can use the article and displayed normalized TL reading without an MOE match. For dictionary-backed imports, choose one MOE entry / meaning, its filing reading and any alternates. Additional readings are sourced from that same MOE entry, even when they were not the detected anchor reading.';
 $('context-policy').textContent='Exact context exclusions: '+data.context_exclusions.phrases.join(', ')+' · '+data.context_exclusions.skipped_anchor_occurrences+' anchor occurrences omitted.';
-$('apply').onclick=()=>{ignored=new Set($('known').value.split(/[,，\n]+/).map(text=>norm(text.trim())).filter(Boolean));for(const group of data.groups)if(isIgnored(group))decision(group).approved=false;save();render();};
+$('apply').onclick=()=>{ignored=editableIgnores($('known').value.split(/[,，\n]+/).map(text=>norm(text.trim())).filter(Boolean));$('known').value=[...ignored].sort().join(', ');for(const group of data.groups)if(isIgnored(group))decision(group).approved=false;save();render();};
 $('search').oninput=render;$('showKnown').onchange=render;
 $('download').onclick=()=>download('ignored-forms.json',[...ignored].sort());
 $('export-review').onclick=()=>download('review.json',reviewExport());
@@ -327,7 +328,7 @@ $('review-file').onchange=async event=>{
       item.custom_preferred_form=request.preferred_form||'';
       item.custom_hanji=request.hanji||'';item.custom_reading=request.reading||'';
     }
-    ignored=new Set(state.ignored);reconcileHandledRequests();save();render();
+    ignored=editableIgnores(state.ignored);$('known').value=[...ignored].sort().join(', ');reconcileHandledRequests();save();render();
   } catch(error) {$('review-status').textContent='Could not load review: '+error.message;}
 };
 reconcileHandledRequests();

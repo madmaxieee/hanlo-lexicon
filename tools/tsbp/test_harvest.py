@@ -20,10 +20,10 @@ class ExtractionTests(unittest.TestCase):
         preferred = {form: [{'id': i, 'preferred_form': form}]
                      for i, form in enumerate(forms, 1)}
         curated, tracked, unparseable = apply_final_exclusions(groups, set(forms), preferred)
-        self.assertEqual(curated, set(forms))
+        self.assertEqual(curated, set())
         self.assertEqual(tracked, set(forms))
         self.assertEqual(unparseable, set())
-        self.assertTrue(all(g['exclusion_reason'] == 'curated_form' for g in groups[:4]))
+        self.assertTrue(all(g['exclusion_reason'] == 'tracked_preferred_form' for g in groups[:4]))
         self.assertIsNone(groups[-1]['exclusion_reason'])
         curated, tracked, _ = apply_final_exclusions(groups, set(), preferred)
         self.assertEqual(curated, set())

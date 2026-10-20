@@ -173,9 +173,9 @@ function customEditor(group) {
   const item=decision(group);
   const structured=!!(item.custom_preferred_form||item.custom_hanji||item.custom_reading);
   return '<details class="custom-handling-editor" data-key="'+esc(group.key)+'"'+(hasCustomRequest(item)?' open':'')+'><summary>Custom handling'+(hasCustomRequest(item)?' · requested':'')+'</summary>'+
-    '<label>Preferred form <input class="custom-preferred-form-input" type="text" value="'+esc(item.custom_preferred_form)+'" placeholder="liô心"></label>'+
-    '<label>Hanji (optional) <input class="custom-hanji-input" type="text" value="'+esc(item.custom_hanji)+'" placeholder="𠞭心"></label>'+
-    '<label>Reading (TL) <input class="custom-reading-input" type="text" value="'+esc(item.custom_reading)+'" placeholder="liô-sim"></label>'+
+    '<label>Preferred form <input class="custom-preferred-form-input" type="text" value="'+esc(item.custom_preferred_form)+'" placeholder="食飯"></label>'+
+    '<label>Hanji (optional) <input class="custom-hanji-input" type="text" value="'+esc(item.custom_hanji)+'" placeholder="食飯"></label>'+
+    '<label>Reading (TL) <input class="custom-reading-input" type="text" value="'+esc(item.custom_reading)+'" placeholder="tsia̍h-pn̄g"></label>'+
     (structured&&(!item.custom_preferred_form.trim()||!item.custom_reading.trim())?'<p class="muted">Enter both a preferred form and reading. Hanji is optional.</p>':'')+
     '<label>Additional instructions (optional)<textarea class="custom-handling-input" placeholder="For example: split these meanings or check a missing reading.">'+esc(item.custom_handling)+'</textarea></label>'+
     (item.handled_custom_request?'<div class="muted">Previous request handled by entry '+esc(item.handled_custom_request.entry_id)+': '+esc(item.handled_custom_request.prompt)+'</div>':'')+

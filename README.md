@@ -32,6 +32,9 @@ characters and change its romanized syllables to match the alternate reading.
 Hanji-only forms retain the same suggested Hanji for every reading. Identical
 CSV rows are deduplicated while distinct TOML word identities are preserved.
 See `tools/README.md` for examples and the manual GitHub Actions build workflow.
+Optional `hanji_forms` records Hanji spellings independently of MOE inclusion;
+it is lookup metadata and does not add CSV output rows. The TSBP discovery and
+review tools are documented in `tools/tsbp/README.md`.
 JSON exports, release publishing, and contribution forms are not implemented.
 
 See `schema/README.md` for record conventions and `RIGHTS.md` for source rights.

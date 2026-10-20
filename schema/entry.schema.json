@@ -18,6 +18,16 @@
       "minLength": 1,
       "type": "string"
     },
+    "hanji_forms": {
+      "description": "Source-backed or explicitly curated Hanji forms; does not assert MOE inclusion and does not generate CSV output rows.",
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
     "id": {
       "minimum": 1,
       "type": "integer"

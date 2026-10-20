@@ -73,8 +73,9 @@ def entry_path(root, entry):
 
 def canonical_entry(entry):
     result = dict(entry)
-    for field in ('alternate_readings', 'moe_forms'):
-        result[field] = sorted(result[field], key=lambda text: (key(text), text))
+    for field in ('alternate_readings', 'moe_forms', 'hanji_forms'):
+        if field in result:
+            result[field] = sorted(result[field], key=lambda text: (key(text), text))
     result['sources'] = sorted(result['sources'], key=lambda source: json.dumps(source, ensure_ascii=False, sort_keys=True))
     return result
 
@@ -177,6 +178,11 @@ def verify_entry(root, entry, lookup_only=False):
         raise Error('Duplicate primary/alternate readings after normalization.')
     if len({key(form) for form in entry['moe_forms']}) != len(entry['moe_forms']):
         raise Error('Duplicate MOE forms after normalization.')
+    hanji = entry.get('hanji_forms', [])
+    if len({key(form) for form in hanji}) != len(hanji):
+        raise Error('Duplicate Hanji forms after normalization.')
+    if any(not is_hanji(form) or '\n' in form or '\r' in form for form in hanji):
+        raise Error('Hanji forms must contain only Hanji and separators on one line.')
     if any('\n' in entry[field] or '\r' in entry[field] for field in ('preferred_form', 'canonical_tl')):
         raise Error('Written forms and canonical readings must fit on one line.')
     if len(filename(entry['preferred_form'], entry['id']).encode('utf-8')) > 240:
@@ -361,13 +367,16 @@ def check(root, candidate, current=None, evidence=None):
     current = entries(root) if current is None else current
     lkk, moe = evidence if evidence else (lkk_data(root), moe_data(root))
     preferred = key(candidate['preferred_form'])
-    forms = {preferred, *(key(form) for form in candidate['moe_forms'])}
+    forms = {preferred, *(key(form) for form in candidate['moe_forms']),
+             *(key(form) for form in candidate.get('hanji_forms', []))}
     readings = {key(candidate['canonical_tl']), *(key(reading) for reading in candidate['alternate_readings'])}
     existing = []
     for path, entry in current:
         same_form = key(entry['preferred_form']) == preferred
         shared_reading = bool(readings & {key(entry['canonical_tl']), *(key(reading) for reading in entry['alternate_readings'])})
-        if same_form or shared_reading or forms & {key(form) for form in entry['moe_forms']}:
+        related_forms = {key(entry['preferred_form']), *(key(form) for form in entry['moe_forms']),
+                         *(key(form) for form in entry.get('hanji_forms', []))}
+        if same_form or shared_reading or forms & related_forms:
             exact = same_form and key(entry['canonical_tl']) == key(candidate['canonical_tl'])
             existing.append({'id': entry['id'], 'path': str(path.relative_to(root)), 'preferred_form': entry['preferred_form'], 'canonical_tl': entry['canonical_tl'], 'identity_note': entry.get('identity_note'), 'match': 'exact_pair' if exact else 'alias_pair' if same_form and shared_reading else 'same_form' if same_form else 'related_reading_or_form'})
     lkk_matches = []

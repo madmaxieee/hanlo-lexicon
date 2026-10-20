@@ -108,6 +108,31 @@ class MaintenanceTests(unittest.TestCase):
         self.assertEqual(self.run_cli('next-id')['next_id'], 2)
         self.assertEqual(self.run_cli('add', str(request))['id'], 2)
 
+    def test_optional_hanji_forms_round_trip_and_participate_in_checks(self):
+        result = self.run_cli('add', str(self.request(form='liô心', reading='liô-sim',
+                                                    hanji_forms=['𠞭心'])))
+        entry = tomllib.loads((self.root / result['created']).read_text())
+        self.assertEqual(entry['hanji_forms'], ['𠞭心'])
+        self.assertEqual(entry['moe_forms'], [])
+        found = self.run_cli('check', str(self.request(form='𠞭心', reading='other')))
+        self.assertEqual(found['existing_entries'][0]['id'], result['id'])
+        found = self.run_cli('check', str(self.request(form='other', reading='other', hanji_forms=['𠞭心'])))
+        self.assertEqual(found['existing_entries'][0]['id'], result['id'])
+        dictionary = self.run_cli('check', str(self.request(form='other', reading='other', hanji_forms=['欲'])))
+        self.assertEqual(dictionary['lkk_matches'][0]['moe_form'], '欲')
+        self.assertTrue(any(row['record_id'] == '7' for row in dictionary['moe_matches']))
+        self.run_cli('format', '--check')
+        self.run_cli('build-csv')
+        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl'], ['liô心', 'liô-sim']])
+
+    def test_hanji_forms_are_optional_and_validate_script_and_nonempty_sets(self):
+        for values in [[], ['liô心'], ['心\n心'], ['心', '心']]:
+            with self.subTest(values=values):
+                self.run_cli('add', str(self.request(hanji_forms=values)), expected=2)
+        result = self.run_cli('add', str(self.request()))
+        entry = tomllib.loads((self.root / result['created']).read_text())
+        self.assertNotIn('hanji_forms', entry)
+
     def test_duplicate_and_alias_checks_do_not_consume_an_id(self):
         request = self.request(alternate_readings=['bueh'])
         self.run_cli('add', str(request))

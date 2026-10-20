@@ -16,6 +16,11 @@ format files, and validate this schema.
   change the corresponding romanized syllables; alternate readings remain part
   of the same editorial identity. See `tools/README.md` for alignment rules.
 - `moe_forms`: verified MOE spellings, distinct from the preferred recommendation.
+- `hanji_forms`: optional nonempty array of source-backed or explicitly curated
+  Hanji spellings, including words absent from MOE. For example, `liô心` can record
+  `hanji_forms = ["𠞭心"]` without asserting a MOE compound entry. Cite supporting
+  evidence in `sources`; omit the field when unknown. These forms participate in
+  offline lookups and duplicate checks, but do not generate recommended CSV rows.
 - `review_status`: `imported`, `reviewed`, or `disputed`.
 - `identity_note`: optional concise explanation distinguishing an unrelated word
   with the same written form/reading. Related senses need not become separate entries.
@@ -23,7 +28,7 @@ format files, and validate this schema.
 - `sources`: original evidence, using one of the reference shapes below.
 
 Empty arrays mean that no values are recorded, not that alternatives do not exist.
-Meanings, examples, other spellings, and copied original cells are not entry fields.
+Meanings, examples, arbitrary variant fields, and copied original cells are not entry fields.
 Dictionary definitions displayed by lookup are external evidence for editorial review.
 
 ## Original references

@@ -47,6 +47,10 @@ The JSON result reports potential matches in current entries, the entire LKK lis
 and the pinned MOE dictionary. Inspect sense/etymology and reading before deciding.
 It does not prove identity or absence of a word. Related dictionary spellings can
 be supplied in `moe_forms`; alternate input readings in `alternate_readings`.
+Use optional `hanji_forms` for source-backed or explicitly curated Hanji forms
+without asserting MOE inclusion. These forms are included in existing-entry,
+LKK and MOE checks; same-form matches still require editorial identity review.
+Hanji metadata does not generate CSV output rows. Omit it when unknown.
 
 Before adding, include `sources` with original evidence, as documented in
 `schema/README.md`. Do not supply an ID. Optional prose fields are accepted;
@@ -153,3 +157,10 @@ python3 -m unittest discover -s tests -v
 Tests use small temporary ODS/TSV fixtures and cover duplicate/alias behavior,
 homographs, source verification, ID allocation, concurrency, formatting, Unicode,
 and the CSV output rules above.
+
+## TSBP discovery and custom review
+
+The reusable issue harvester, standalone review UI and approval importer live in
+`tools/tsbp/`. See [the TSBP workflow](tsbp/README.md) for output-folder commands,
+structured custom requests and tests. Generated corpus data, review exports and
+local browser decisions remain outside the repository.

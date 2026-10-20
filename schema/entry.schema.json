@@ -56,6 +56,10 @@
         "disputed"
       ]
     },
+    "rule_generated": {
+      "description": "True when the preferred spelling is inferred solely from writing rules, without corpus evidence or human curation supporting that recommendation. Omit or set false for a supported recommendation; this does not imply reviewed status.",
+      "type": "boolean"
+    },
     "schema_version": {
       "const": 1
     },

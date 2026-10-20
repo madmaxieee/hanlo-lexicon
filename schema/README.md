@@ -22,6 +22,14 @@ format files, and validate this schema.
   evidence in `sources`; omit the field when unknown. These forms participate in
   offline lookups and duplicate checks, but do not generate recommended CSV rows.
 - `review_status`: `imported`, `reviewed`, or `disputed`.
+- `rule_generated`: optional boolean. Set `true` when the preferred spelling was
+  inferred solely from writing rules and that recommendation has no supporting
+  corpus evidence or human curation. Dictionary citations can still establish
+  the word, Hanji and reading; they need not endorse the inferred mixed spelling.
+  Once the recommendation is explicitly adopted or corroborated, remove the flag
+  or set it to `false`. Omission means not marked as rule-generated, not proof of
+  human review. This flag is independent of `review_status`; generation does not
+  mark an entry reviewed. Existing entries need no migration.
 - `identity_note`: optional concise explanation distinguishing an unrelated word
   with the same written form/reading. Related senses need not become separate entries.
 - `usage_notes`, `editorial_rationale`: optional prose. Omit when unknown.
@@ -30,6 +38,14 @@ format files, and validate this schema.
 Empty arrays mean that no values are recorded, not that alternatives do not exist.
 Meanings, examples, arbitrary variant fields, and copied original cells are not entry fields.
 Dictionary definitions displayed by lookup are external evidence for editorial review.
+Rule-generated entries still require original `sources`, offline duplicate and
+MOE checks, and ordinary ID allocation. The flag neither relaxes source validation
+nor changes CSV export inclusion; it is TOML metadata, not a CSV column.
+An automated import that preserves an LKK recommendation or a human-approved
+spelling is not rule-generated merely because a script wrote it. Entries marked
+`rule_generated = true` must not contribute recommendation evidence to the combo
+inventory that generates writing rules; otherwise the rules would reinforce their
+own output.
 
 ## Original references
 

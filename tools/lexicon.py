@@ -143,7 +143,7 @@ def validate_schema(value, rule, location='entry'):
         require(value in rule['enum'], 'unexpected value')
     kind = rule.get('type')
     if kind:
-        require(type(value) is {'object': dict, 'array': list, 'string': str, 'integer': int}[kind], f'expected {kind}')
+        require(type(value) is {'object': dict, 'array': list, 'string': str, 'integer': int, 'boolean': bool}[kind], f'expected {kind}')
     if kind == 'object':
         require(set(rule.get('required', [])) <= value.keys(), 'missing required fields')
         properties = rule.get('properties', {})

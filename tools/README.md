@@ -56,6 +56,14 @@ Before adding, include `sources` with original evidence, as documented in
 `schema/README.md`. Do not supply an ID. Optional prose fields are accepted;
 otherwise array fields default to empty and status defaults to `imported`.
 
+For a preferred spelling inferred solely from writing rules, include
+`"rule_generated": true` in the JSON request. This optional boolean is preserved
+as `rule_generated = true` in TOML. Ordinary source-backed or curated entries
+can omit it. Original sources remain required: a dictionary can support the
+word and reading without supporting the generated spelling. Remove the flag or
+set it to `false` when the recommendation is explicitly adopted or corroborated.
+The flag does not change review status, duplicate checks or CSV export inclusion.
+
 ```sh
 python3 tools/lexicon.py add /path/to/request.json
 python3 tools/lexicon.py validate

@@ -98,6 +98,7 @@ class MaintenanceTests(unittest.TestCase):
         self.assertEqual(path.name, 'beh--000001.toml')
         data = tomllib.loads(path.read_text())
         self.assertIs(type(data['id']), int)
+        self.assertNotIn('rule_generated', data)
         self.assertEqual(path.read_text(), lex.render(data))
         keys = [line.split(' = ')[0] for line in path.read_text().split('\n\n')[0].splitlines()]
         self.assertEqual(keys, sorted(keys))
@@ -107,6 +108,33 @@ class MaintenanceTests(unittest.TestCase):
         path.unlink()
         self.assertEqual(self.run_cli('next-id')['next_id'], 2)
         self.assertEqual(self.run_cli('add', str(request))['id'], 2)
+
+    def test_rule_generated_boolean_round_trips_without_changing_status_or_export(self):
+        added = self.run_cli('add', str(self.request(rule_generated=True)))
+        path = self.root / added['created']
+        entry = tomllib.loads(path.read_text())
+        self.assertIs(entry['rule_generated'], True)
+        self.assertEqual(entry['review_status'], 'imported')
+        self.assertIn('rule_generated = true\n', path.read_text())
+        before = path.read_bytes()
+        self.run_cli('format')
+        self.assertEqual(path.read_bytes(), before)
+        self.assertEqual(self.run_cli('build-csv')['rows'], 1)
+        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl'], ['beh', 'beh']])
+        entry['rule_generated'] = False
+        path.write_text(lex.render(entry))
+        self.run_cli('format')
+        self.assertIs(tomllib.loads(path.read_text())['rule_generated'], False)
+        self.assertEqual(self.run_cli('validate')['entries'], 1)
+
+    def test_rule_generated_rejects_non_booleans_and_still_requires_sources(self):
+        for invalid in [1, 0, 'true', 'false', [], None]:
+            with self.subTest(value=invalid):
+                error = self.run_cli('add', str(self.request(rule_generated=invalid)), expected=2)
+                self.assertIn('expected boolean', error)
+        self.run_cli('add', str(self.request(rule_generated=True, sources=[])), expected=2)
+        self.assertEqual(self.run_cli('next-id')['next_id'], 1)
+        self.assertEqual(lex.entries(self.root), [])
 
     def test_optional_hanji_forms_round_trip_and_participate_in_checks(self):
         result = self.run_cli('add', str(self.request(form='liô心', reading='liô-sim',

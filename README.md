@@ -22,6 +22,9 @@ stay with their entry even when their initials differ.
 Each record has a permanent integer ID. Filenames combine the preferred written
 form with a zero-padded ID, such as `bái--000007.toml`.
 Correcting a canonical reading may move a file without changing its ID.
+Optional `rule_generated = true` distinguishes preferred spellings inferred only
+from writing rules from source-backed or curated recommendations. It does not
+replace review status or source citations.
 Preserve unrelated homographs even when spelling and reading both match, using a
 distinct identity note. Canonical readings select a filing reference, not a superior dialect.
 

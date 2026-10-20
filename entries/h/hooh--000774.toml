@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hooh"
+id = 774
+moe_forms = ["謼"]
+preferred_form = "hooh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 110:114; written form Hooh"
+url = "https://tsbp.tgb.org.tw/2016/08/gong.html"
+
+[[sources]]
+row = 12608
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hua"
+id = 773
+moe_forms = ["化"]
+preferred_form = "hua"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 72; normalized source characters 2571:2574; written form hoa"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah_0854771723.html"
+
+[[sources]]
+row = 772
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

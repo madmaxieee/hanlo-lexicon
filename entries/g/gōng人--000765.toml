@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "gōng-lâng"
+id = 765
+moe_forms = ["戇人"]
+preferred_form = "gōng人"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 1094:1099; written form gōng人"
+url = "https://tsbp.tgb.org.tw/2016/08/gong.html"
+
+[[sources]]
+row = 13408
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

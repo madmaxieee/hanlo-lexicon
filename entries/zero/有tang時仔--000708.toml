@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ū-tang-sî-á"
+id = 708
+moe_forms = ["有當時仔"]
+preferred_form = "有tang時仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 362:369; written form 有tang時仔"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_106.html"
+
+[[sources]]
+row = 2541
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phuê-ê"
+id = 752
+moe_forms = ["皮鞋"]
+preferred_form = "皮ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 1039:1041; written form 皮ê"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_932.html"
+
+[[sources]]
+row = 2010
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

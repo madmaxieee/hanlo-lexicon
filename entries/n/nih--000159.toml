@@ -1,10 +1,19 @@
-alternate_readings = []
+alternate_readings = ["--nih"]
 canonical_tl = "nih"
 id = 159
 moe_forms = ["呢"]
 preferred_form = "nih"
 review_status = "imported"
 schema_version = 1
+
+[[sources]]
+locator = "Article text line 32; normalized source characters 952:957; written form --nih"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah_0854771723.html"
+
+[[sources]]
+row = 3686
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
 
 [[sources]]
 row = 445

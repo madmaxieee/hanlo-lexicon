@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "siōng-kài"
+id = 704
+moe_forms = ["上蓋"]
+preferred_form = "上kài"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 10; normalized source characters 1008:1012; written form 上kài"
+url = "https://tsbp.tgb.org.tw/2016/08/30-e.html"
+
+[[sources]]
+row = 502
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

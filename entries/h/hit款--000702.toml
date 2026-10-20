@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hit khuán"
+id = 702
+moe_forms = ["彼款"]
+preferred_form = "hit款"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 852:856; written form hit款"
+url = "https://tsbp.tgb.org.tw/2016/08/mih_01956743503.html"
+
+[[sources]]
+row = 3919
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

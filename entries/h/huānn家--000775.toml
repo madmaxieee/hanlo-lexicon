@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "huānn-ke"
+id = 775
+moe_forms = ["扞家"]
+preferred_form = "huānn家"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 1025:1031; written form huānn家"
+url = "https://tsbp.tgb.org.tw/2016/08/e_043196735.html"
+
+[[sources]]
+row = 2506
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

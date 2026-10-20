@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshiau-tshuē"
+id = 778
+moe_forms = ["搜揣"]
+preferred_form = "tshiau揣"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 686:693; written form tshiau揣"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-tapangtfuya.html"
+
+[[sources]]
+row = 14774
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hiah-nī-á"
+id = 710
+moe_forms = ["遐爾仔"]
+preferred_form = "hiah-nī仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 1064:1072; written form hiah-nī仔"
+url = "https://tsbp.tgb.org.tw/2016/08/e_059306386.html"
+
+[[sources]]
+row = 10226
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

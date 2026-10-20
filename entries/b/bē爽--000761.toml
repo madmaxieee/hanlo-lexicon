@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bē-sóng"
+id = 761
+moe_forms = ["袂爽"]
+preferred_form = "bē爽"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 36; normalized source characters 1062:1065; written form bē爽"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah_0854771723.html"
+
+[[sources]]
+row = 14619
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

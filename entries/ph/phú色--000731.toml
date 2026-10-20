@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phú-sik"
+id = 731
+moe_forms = ["殕色"]
+preferred_form = "phú色"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 74; normalized source characters 2650:2654; written form phú色"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah_0854771723.html"
+
+[[sources]]
+row = 8528
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

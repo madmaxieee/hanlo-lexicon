@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bih-sio-tshuē"
+id = 757
+moe_forms = ["覕相揣"]
+preferred_form = "bih-sio揣"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 591:599; written form bih-sio揣"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-e.html"
+
+[[sources]]
+row = 9005
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

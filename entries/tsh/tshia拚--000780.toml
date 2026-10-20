@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshia-piànn"
+id = 780
+moe_forms = ["捙拚"]
+preferred_form = "tshia拚"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 8; normalized source characters 60:66; written form tshia拚"
+url = "https://tsbp.tgb.org.tw/2026/08/blog-post.html"
+
+[[sources]]
+row = 6020
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

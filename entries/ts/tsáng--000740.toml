@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsáng"
+id = 740
+moe_forms = ["摠"]
+preferred_form = "tsáng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 448:453; written form tsáng"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-e.html"
+
+[[sources]]
+row = 10500
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

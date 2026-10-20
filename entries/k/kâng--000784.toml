@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "kâng"
+hanji_forms = ["共人"]
+id = 784
+moe_forms = []
+preferred_form = "kâng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 575:579; written form kâng"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_175.html"

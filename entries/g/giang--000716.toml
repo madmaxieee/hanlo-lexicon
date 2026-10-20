@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "giang"
+id = 716
+moe_forms = ["鈃"]
+preferred_form = "giang"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 52; normalized source characters 1839:1844; written form giang"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah_0854771723.html"
+
+[[sources]]
+row = 9137
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

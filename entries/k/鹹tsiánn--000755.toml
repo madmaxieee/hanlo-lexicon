@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kiâm-tsiánn"
+id = 755
+moe_forms = ["鹹汫"]
+preferred_form = "鹹tsiánn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 1123:1130; written form 鹹tsiánn"
+url = "https://tsbp.tgb.org.tw/2016/08/mih_01956743503.html"
+
+[[sources]]
+row = 13052
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

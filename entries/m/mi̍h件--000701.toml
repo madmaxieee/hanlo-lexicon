@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "mi̍h-kiānn"
+id = 701
+moe_forms = ["物件"]
+preferred_form = "mi̍h件"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 1190:1195; written form mi̍h件"
+url = "https://tsbp.tgb.org.tw/2016/08/e_059306386.html"
+
+[[sources]]
+row = 4343
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

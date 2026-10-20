@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshit-thô-mih-á"
+id = 781
+moe_forms = ["𨑨迌物仔"]
+preferred_form = "tshit-thô-mih仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 438:452; written form tshit-thô-mih仔"
+url = "https://tsbp.tgb.org.tw/2016/08/e_059306386.html"
+
+[[sources]]
+row = 13520
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

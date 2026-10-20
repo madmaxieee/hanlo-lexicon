@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hònn-hiân"
+id = 776
+moe_forms = ["好玄"]
+preferred_form = "hònn玄"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 1360:1365; written form hònn玄"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue.html"
+
+[[sources]]
+row = 13996
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

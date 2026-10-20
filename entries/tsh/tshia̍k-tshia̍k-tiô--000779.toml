@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshia̍k-tshia̍k-tiô"
+id = 779
+moe_forms = ["嚓嚓趒"]
+preferred_form = "tshia̍k-tshia̍k-tiô"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 301:320; written form tshia̍k-tshia̍k-tiô"
+url = "https://tsbp.tgb.org.tw/2016/08/sa-sngtuisiann.html"
+
+[[sources]]
+row = 12127
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

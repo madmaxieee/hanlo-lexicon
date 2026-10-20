@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ín-tshuā"
+id = 707
+moe_forms = ["引𤆬"]
+preferred_form = "引tshuā"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 10; normalized source characters 1092:1098; written form 引tshuā"
+url = "https://tsbp.tgb.org.tw/2016/08/30-e.html"
+
+[[sources]]
+row = 13909
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

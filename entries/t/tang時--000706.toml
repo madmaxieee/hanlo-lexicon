@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tang-sî"
+id = 706
+moe_forms = ["當時"]
+preferred_form = "tang時"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 363:368; written form tang時"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_106.html"
+
+[[sources]]
+row = 9753
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

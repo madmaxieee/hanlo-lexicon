@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sio-kāng"
+id = 732
+moe_forms = ["相仝"]
+preferred_form = "sio仝"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 1299:1303; written form sio仝"
+url = "https://tsbp.tgb.org.tw/2016/08/sa-sngtuisiann.html"
+
+[[sources]]
+row = 5234
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

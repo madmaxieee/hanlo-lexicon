@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hip-siòng-ki"
+id = 769
+moe_forms = ["翕相機"]
+preferred_form = "hip相機"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 866:871; written form hip相機"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue.html"
+
+[[sources]]
+row = 8912
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khì-phut-phut"
+id = 750
+moe_forms = ["氣怫怫"]
+preferred_form = "氣phut-phut"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 84; normalized source characters 3026:3036; written form 氣phut-phut"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah_0854771723.html"
+
+[[sources]]
+row = 6176
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

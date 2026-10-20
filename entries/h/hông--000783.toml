@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "hông"
+hanji_forms = ["予人"]
+id = 783
+moe_forms = []
+preferred_form = "hông"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 471:475; written form hông"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-tapangtfuya.html"

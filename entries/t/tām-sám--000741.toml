@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tām-sám"
+id = 741
+moe_forms = ["啖糝"]
+preferred_form = "tām-sám"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 1108:1115; written form tām-sám"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-e.html"
+
+[[sources]]
+row = 7064
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

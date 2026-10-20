@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "há-muh"
+id = 711
+moe_forms = []
+preferred_form = "há-muh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 31; normalized source characters 1313:1319; written form há-muh"
+url = "https://tsbp.tgb.org.tw/2016/08/mih_01956743503.html"
+
+[[sources]]
+row = 24274
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

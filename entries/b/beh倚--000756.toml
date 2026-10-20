@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "beh-uá"
+id = 756
+moe_forms = ["欲倚"]
+preferred_form = "beh倚"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 16; normalized source characters 1418:1422; written form beh倚"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-e.html"
+
+[[sources]]
+row = 27426
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khuann-khuann-á"
+id = 713
+moe_forms = ["寬寬仔"]
+preferred_form = "khuann-khuann仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 232:246; written form khuann-khuann仔"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_234.html"
+
+[[sources]]
+row = 11042
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

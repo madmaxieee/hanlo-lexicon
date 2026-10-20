@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hiam-tsio-á"
+id = 717
+moe_forms = ["薟椒仔"]
+preferred_form = "hiam椒仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 22; normalized source characters 899:905; written form hiam椒仔"
+url = "https://tsbp.tgb.org.tw/2016/08/mih.html"
+
+[[sources]]
+row = 12352
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

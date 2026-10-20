@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshiáng-kha-ke"
+id = 782
+moe_forms = ["蹌跤雞"]
+preferred_form = "tshiáng跤雞"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 679:688; written form tshiáng跤雞"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-e.html"
+
+[[sources]]
+row = 12394
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

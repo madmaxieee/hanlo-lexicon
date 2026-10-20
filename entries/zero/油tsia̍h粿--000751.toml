@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "iû-tsia̍h-kué"
+id = 751
+moe_forms = ["油炸粿"]
+preferred_form = "油tsia̍h粿"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 1411:1419; written form 油tsia̍h粿"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue.html"
+
+[[sources]]
+row = 4283
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

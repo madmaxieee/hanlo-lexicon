@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsa̍t-tsa̍t"
+id = 737
+moe_forms = ["實實"]
+preferred_form = "tsa̍t-tsa̍t"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 290:301; written form tsa̍t-tsa̍t"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_932.html"
+
+[[sources]]
+row = 15174
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

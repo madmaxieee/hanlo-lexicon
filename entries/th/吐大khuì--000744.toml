@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thóo-tuā-khuì"
+id = 744
+moe_forms = ["吐大氣"]
+preferred_form = "吐大khuì"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 87; normalized source characters 3091:3097; written form 吐大khùi"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah_0854771723.html"
+
+[[sources]]
+row = 2134
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

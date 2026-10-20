@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kat"
+id = 719
+moe_forms = ["結"]
+preferred_form = "kat"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 28; normalized source characters 811:814; written form kat"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah_0854771723.html"
+
+[[sources]]
+row = 8825
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ia̍t"
+id = 705
+moe_forms = ["擛"]
+preferred_form = "ia̍t"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 271:275; written form ia̍t"
+url = "https://tsbp.tgb.org.tw/2016/08/e_043196735.html"
+
+[[sources]]
+row = 11649
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

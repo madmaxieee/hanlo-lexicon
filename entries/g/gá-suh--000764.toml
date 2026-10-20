@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "gá-suh"
+id = 764
+moe_forms = []
+preferred_form = "gá-suh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 685:691; written form gá-suh"
+url = "https://tsbp.tgb.org.tw/2016/08/mih_01956743503.html"
+
+[[sources]]
+row = 24268
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

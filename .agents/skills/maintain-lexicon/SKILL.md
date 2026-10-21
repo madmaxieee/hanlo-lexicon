@@ -42,6 +42,23 @@ Use `python3 tools/lexicon.py`; do not invent an ID or hand-format generated TOM
    dictionary matches, and unresolved editorial issues. Keep the repository local
    and leave commit/publish actions to the user's instruction.
 
+## Import conflicts require maintainer review
+
+When an import approval overlaps an existing entry, show the maintainer the
+approved form/reading, existing ID and form/readings, relevant source identities,
+and the proposed resolution. Prompt for an explicit decision before changing the
+existing preferred form, adding or merging readings, treating the approval as
+already handled, or creating a separate word. A general request to import, or an
+ordinary approval in a review export, does not resolve a conflict with an existing
+entry. Continue nonconflicting imports while the conflicting cases await review.
+
+Apply a resolution already explicitly given by the maintainer in the current
+conversation without asking again. Preserve existing IDs and forms when the
+maintainer chooses to keep them. Shared Hanji alone does not establish lexical
+identity: compare the original MOE entry IDs and evidence, and retain separate
+romanized recommendations when the maintainer explicitly chooses distinct words.
+Record an evidence-backed `identity_note` for a deliberate separate entry.
+
 ## Corrections and IDs
 
 Preserve IDs on spelling or reading corrections. After a deliberate edit, run

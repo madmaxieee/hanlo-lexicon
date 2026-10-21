@@ -114,6 +114,14 @@ text or automatically add custom proposals. Resolve their sources and any
 existing-entry identity first, then use `tools/lexicon.py` for the deliberate
 addition or update. New entries remain `imported`.
 
+An approval that conflicts with an existing entry remains pending for explicit
+maintainer review under the [import-conflict rule](../../.agents/skills/maintain-lexicon/SKILL.md#import-conflicts-require-maintainer-review).
+Show the approved and existing forms/readings, stable ID and original MOE entry
+identities. Do not replace a preferred form, merge readings, dismiss the approval
+or create a separate record merely because the export approved it. Continue
+nonconflicting imports and apply conflict resolutions only after the maintainer
+has selected them; an explicit decision in the current conversation is sufficient.
+
 ## Tests
 
 ```sh

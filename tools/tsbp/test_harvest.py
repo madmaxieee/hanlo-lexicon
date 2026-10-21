@@ -2,6 +2,8 @@ import unittest
 from pathlib import Path
 import tempfile
 import shutil
+import subprocess
+import sys
 
 from harvest import apply_final_exclusions, coverage, key, merged, occurrences, preferred_index, spans, verified_custom_resolutions
 import json
@@ -10,6 +12,44 @@ import json
 def doc(text):
     return {"id": "test:1", "text": text,
             "metadata": {"title": "Test", "original_url": "https://example.com"}}
+
+
+class ArticleExclusionTests(unittest.TestCase):
+    def test_issue_exclusion_preserves_other_article_occurrences_and_original_corpus(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            corpus = root / 'corpus.jsonl'
+            docs = []
+            for identity, issue, text in [('omit', 388, '甲bái乙'), ('keep', 388, '丙bái丁'),
+                                          ('other-issue', 389, '戊bái己')]:
+                row = doc(text)
+                row['id'] = identity
+                row['metadata']['tags'] = [f'issue:{issue}']
+                docs.append(row)
+            corpus.write_text(''.join(json.dumps(row, ensure_ascii=False) + '\n' for row in docs))
+            original = corpus.read_bytes()
+            command = [sys.executable, str(Path(__file__).with_name('harvest.py')),
+                       '--corpus', str(corpus), '--issue', '388', '--out', str(root)]
+            subprocess.run(command, check=True, capture_output=True, text=True)
+            before = json.loads((root / 'summary.json').read_text())
+            self.assertEqual(before['baseline']['article_count'], 2)
+            (root / 'excluded-articles.json').write_text('["omit"]')
+            subprocess.run(command, check=True, capture_output=True, text=True)
+            after = json.loads((root / 'summary.json').read_text())
+            groups = json.loads((root / 'groups.json').read_text())
+            self.assertEqual(after['baseline']['article_count'], 1)
+            self.assertEqual(after['baseline']['source_characters'], len(docs[1]['text']))
+            self.assertEqual(after['corpus_sha256'], before['corpus_sha256'])
+            self.assertEqual(after['article_exclusions']['document_ids'], ['omit'])
+            self.assertEqual([a['id'] for a in after['article_inventory']], ['keep'])
+            self.assertEqual([row['document_id'] for group in groups for row in group['occurrences']], ['keep'])
+            self.assertEqual(groups[0]['occurrences'][0]['snippet'], docs[1]['text'])
+            self.assertEqual(corpus.read_bytes(), original)
+            (root / 'excluded-articles.json').write_text('["other-issue"]')
+            result = subprocess.run(command, capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn('not found in issue 388', result.stderr)
+            self.assertEqual(json.loads((root / 'summary.json').read_text()), after)
 
 
 class ExtractionTests(unittest.TestCase):

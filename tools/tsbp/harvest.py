@@ -12,6 +12,7 @@ import tomllib
 import unicodedata
 
 from moe_context import enrich
+from screen import apply_screening, read as read_screening, sha as screening_sha
 
 
 BOUNDARY = re.compile(r"[，,。！？!?；;：:、\n]+")
@@ -270,6 +271,7 @@ table{width:100%;border-collapse:collapse;background:white}th,td{text-align:left
 <p><strong>Ignore</strong> skips a candidate. <strong>Approve import</strong> approves your chosen spelling and readings. Use <strong>Export review.json</strong> to pass approvals to the import script.</p>
 <button id="export-review">Export review.json</button> <button id="load-review">Load review.json</button><input id="review-file" type="file" accept="application/json" hidden>
 <p id="review-status" class="muted" role="status"></p>
+<p id="screening-policy" class="muted"></p>
 <details><summary>Extraction method and filters</summary>
 <p class="muted">Compact review counts one displayed snippet per retained group. Coverage counts the union of all retained snippet positions across articles, so overlaps count once. Percentages use Unicode code points including whitespace in the 24 normalized article bodies. Titles, controls and source labels are excluded from the reading-size measure. Opening more occurrences adds reading; these figures do not measure vocabulary recall or noise rate.</p>
 <p class="muted" id="policy"></p>
@@ -302,6 +304,8 @@ def main():
     parser.add_argument("--known", type=Path)
     parser.add_argument("--exclude-contexts", type=Path, default=None,
                         help="Exact literal context phrases to ignore in every source document")
+    parser.add_argument("--exclude-articles", type=Path, default=None,
+                        help="JSON array of exact document IDs to omit from this issue")
     parser.add_argument("--lexicon", type=Path, help="Read tracked preferred forms recursively from entries/")
     parser.add_argument("--normalization", type=Path, help="Output from normalize_anchors.mjs")
     parser.add_argument("--moe", action="store_true", help="Look up the pinned MOE dictionary and match mixed-form contexts")
@@ -311,10 +315,15 @@ def main():
         raise ValueError("MOE lookup requires --lexicon and --normalization")
     if args.exclude_contexts is None:
         args.exclude_contexts = args.out / 'excluded-contexts.json'
+    if args.exclude_articles is None:
+        args.exclude_articles = args.out / 'excluded-articles.json'
     known = {key(s) for s in json.loads(args.known.read_text())} if args.known else set()
     excluded_contexts = json.loads(args.exclude_contexts.read_text()) if args.exclude_contexts.exists() else []
     if not isinstance(excluded_contexts, list) or any(not isinstance(s, str) or not s for s in excluded_contexts):
         raise ValueError('Context exclusions must be a JSON array of nonempty exact phrases')
+    excluded_articles = json.loads(args.exclude_articles.read_text()) if args.exclude_articles.exists() else []
+    if not isinstance(excluded_articles, list) or any(not isinstance(s, str) or not s for s in excluded_articles):
+        raise ValueError('Article exclusions must be a JSON array of nonempty exact document IDs')
     records, preferred = preferred_index(args.lexicon) if args.lexicon else ([], {})
     custom_resolutions = verified_custom_resolutions(
         args.out / 'handled-custom-requests.json', records, args.lexicon)
@@ -326,6 +335,11 @@ def main():
     tagged = [d for d in tagged if f"issue:{args.issue}" in d["metadata"]["tags"]]
     catalog = [d for d in tagged if re.fullmatch(r"台文通訊BONG報\s*\d+\s*期", d["metadata"]["title"])]
     docs = [d for d in tagged if d not in catalog]
+    unknown = set(excluded_articles) - {d['id'] for d in docs}
+    if unknown:
+        raise ValueError(f'Excluded article IDs not found in issue {args.issue}: {sorted(unknown)}')
+    omitted = [d for d in docs if d['id'] in excluded_articles]
+    docs = [d for d in docs if d['id'] not in excluded_articles]
     if not docs:
         raise SystemExit("No articles found for this issue")
     texts = {d["id"]: d["text"] for d in docs}
@@ -375,6 +389,12 @@ def main():
                "corpus_path": str(args.corpus.resolve()),
                "corpus_sha256": hashlib.sha256(content).hexdigest(),
                "excluded_catalog_ids": [d["id"] for d in catalog],
+               "article_exclusions": {
+                   "configuration": str(args.exclude_articles.resolve()),
+                   "document_ids": sorted(set(excluded_articles)),
+                   "articles": [{"id": d['id'], "title": d['metadata']['title'],
+                                 "url": d['metadata']['original_url'], "characters": len(d['text'])}
+                                for d in omitted]},
                "known_forms": sorted(known), "baseline": baseline,
                "handled_custom_requests": custom_resolutions,
                "context_exclusions": {'phrases': excluded_contexts, 'source_matches': len(blocked_records),
@@ -408,6 +428,21 @@ def main():
     group_text = json.dumps(grouped, ensure_ascii=False, indent=2) + "\n"
     (args.out / "groups.json").write_text(group_text)
     summary["review_groups_sha256"] = hashlib.sha256(group_text.encode()).hexdigest()
+    screening_path = args.out / 'machine-screen.json'
+    if args.moe and screening_path.exists():
+        report = read_screening(screening_path)
+        grouped = apply_screening(grouped, report, args.issue, summary['corpus_sha256'],
+                                  summary['review_groups_sha256'])
+        rejected = {g['key'] for g in grouped if g['exclusion_reason'] == 'machine_rejected'}
+        summary['machine_screening'] = {
+            'sha256': screening_sha(screening_path), 'scope': report['scope'],
+            'models': sorted({r['model'] for r in report['decisions']}),
+            'occurrences': len(report['decisions']),
+            'decision_counts': {d: sum(r['decision'] == d for r in report['decisions'])
+                                for d in ('keep', 'hold', 'reject')},
+            'fully_rejected_groups': len(rejected)}
+        summary['exclusions']['machine_rejected'] = excluded_counts(rejected)
+        summary['filtered'] = metrics(grouped, texts, effective | rejected)
     (args.out / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n")
     (args.out / "roman-groups.json").write_text(json.dumps(roman_grouped, ensure_ascii=False, indent=2) + "\n")
     if moe_lookups is not None:

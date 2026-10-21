@@ -13,6 +13,8 @@ import sys
 import tempfile
 import unicodedata
 
+from screen import load_screening
+
 
 def nfc(value):
     return unicodedata.normalize('NFC', value)
@@ -25,6 +27,8 @@ def pure_romanized(text):
 
 
 def article_source(group):
+    if group.get('exclusion_reason') == 'machine_rejected':
+        raise ValueError('This anchor has only machine-rejected occurrences; resolve its source evidence first')
     occurrence = group['occurrences'][0]
     return {'url': occurrence['url'], 'locator':
         f"Article text line {occurrence['line']}; normalized source characters "
@@ -139,6 +143,8 @@ def load_bundle(path, groups_path, summary):
         raise ValueError('The candidate file changed; load the saved review in the current page and export it again')
     if bundle.get('moe_snapshot') != summary['moe']['snapshot']:
         raise ValueError('The review uses a different MOE snapshot')
+    if bundle.get('screening_sha256') != summary.get('machine_screening', {}).get('sha256'):
+        raise ValueError('Machine screening changed; reload the review page and export it again')
     return bundle
 
 
@@ -208,7 +214,8 @@ def main():
     pending_custom = {item['anchor_key'] for item in custom_requests
                       if any(item.get(field) for field in ('prompt', 'preferred_form', 'hanji', 'reading'))}
     current = lexicon.entries(root)
-    groups = {group['key']: group for group in json.loads(groups_path.read_text())}
+    groups = {group['key']: group for group in load_screening(
+        args.pilot, summary, json.loads(groups_path.read_text()))}
     custom_previews = []
     for custom in custom_requests:
         if not any(field in custom for field in ('preferred_form', 'hanji', 'reading')):

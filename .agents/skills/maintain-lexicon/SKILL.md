@@ -62,6 +62,9 @@ supports both proposals. Do not create a human-review hold solely for homophones
 Questions about a matched span occurring only inside a compound are separate
 from duplicate identity and must state that actual evidence concern.
 
+Present import conflicts directly in the conversation as a readable table or
+short list, not through a structured question tool.
+
 When an import approval overlaps an existing entry, show the maintainer the
 approved form/reading, existing ID and form/readings, relevant source identities,
 and the proposed resolution. Prompt for an explicit decision before changing the

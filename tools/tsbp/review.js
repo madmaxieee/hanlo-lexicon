@@ -5,6 +5,7 @@ const byKey = new Map(data.groups.map(group => [group.key, group]));
 const tracked = new Set([...data.tracked_preferred_forms,
   ...data.groups.filter(group=>group.preferred_matches?.length).map(group=>group.key)]);
 const unparseable = new Set(data.unparseable_forms);
+const machineRejected = new Set(data.groups.filter(group=>group.exclusion_reason==='machine_rejected').map(group=>group.key));
 const storageKey = 'hanlo-review:v1:' + data.issue + ':' + data.corpus_sha256 + ':' + data.moe?.snapshot;
 let state = {ignored: data.known_forms, decisions: {}};
 let storageAvailable = true;
@@ -35,7 +36,7 @@ function save() {
   catch { storageAvailable = false; }
 }
 function isIgnored(group) { return group.dedup_lookup_forms.some(form => ignored.has(form)); }
-function excluded(group) { return isIgnored(group) || tracked.has(group.key) || unparseable.has(group.key); }
+function excluded(group) { return isIgnored(group) || tracked.has(group.key) || unparseable.has(group.key) || machineRejected.has(group.key); }
 function pureRomanized(text) {
   return typeof text==='string' && /\p{Script=Latin}/u.test(text)
     && /^[\p{Script=Latin}\p{M}\p{Nd}\-’' ]+$/u.test(text);
@@ -96,7 +97,7 @@ function outputForms(group) {
 }
 function approvable(group) {
   const {item, word, canonical} = choices(group);
-  if (!item.preferred_form.trim() || hasCustomRequest(item) || isIgnored(group) || unparseable.has(group.key)
+  if (!item.preferred_form.trim() || hasCustomRequest(item) || isIgnored(group) || unparseable.has(group.key) || machineRejected.has(group.key)
     || (tracked.has(group.key) && !item.identity_note.trim())) return false;
   try { outputForms(group); } catch { return false; }
   if (item.import_mode==='source_anchor') return sourceAnchorEligible(group) && !item.word_id && !item.canonical_choice_id && !item.alternate_choice_ids.length;
@@ -121,6 +122,10 @@ function snippet(row) {
 }
 function source(row) {
   return '<div class="muted"><a target="_blank" rel="noreferrer" href="'+esc(row.url)+'">'+esc(row.title)+'</a> · article text line '+row.line+'</div>';
+}
+function screeningNote(row) {
+  const review=row.machine_screening;
+  return review?'<div class="muted"><strong>Model '+esc(review.decision)+'</strong> · '+esc(review.model)+' · '+esc(review.reason)+'</div>':'';
 }
 function anchorNote(group) {
   const row=group.occurrences[0];
@@ -251,9 +256,9 @@ function render() {
   $('review-status').textContent=(storageAvailable?'Decisions save locally in this browser. ':'Local saving is unavailable; export decisions before closing. ')+approved+' ready approvals and '+customRequests().length+' custom requests. Export review.json to hand them to the import script; nothing is imported by this page.';
   $('rows').innerHTML=shown.map(group=>{
     const row=group.occurrences[0], item=decision(group), omit=excluded(group);
-    return '<tr class="'+(omit?'known':'')+'" data-key="'+esc(group.key)+'"><td><input class="ignore-box" type="checkbox" data-key="'+esc(group.key)+'" aria-label="Ignore '+esc(group.key)+'" '+(omit?'checked ':'')+(tracked.has(group.key)||unparseable.has(group.key)?'disabled':'')+'>'+(tracked.has(group.key)?'<br><span class="tag">Tracked form</span>':'')+(unparseable.has(group.key)?'<br><span class="tag">Parser did not recognize</span>':'')+'</td><td><strong>'+esc(group.display)+'</strong>'+(group.kind==='moe_context'?'<br><span class="tag">MOE-backed mixed form</span>':'')+(group.normalized_tl&&group.normalized_tl!==group.key?'<br><span class="tag">TL lookup: '+esc(group.normalized_tl)+'</span>':'')+'<br>'+group.occurrences.length+' occurrences<br>'+group.article_count+' articles'+
+    return '<tr class="'+(omit?'known':'')+'" data-key="'+esc(group.key)+'"><td><input class="ignore-box" type="checkbox" data-key="'+esc(group.key)+'" aria-label="Ignore '+esc(group.key)+'" '+(omit?'checked ':'')+(tracked.has(group.key)||unparseable.has(group.key)||machineRejected.has(group.key)?'disabled':'')+'>'+(tracked.has(group.key)?'<br><span class="tag">Tracked form</span>':'')+(unparseable.has(group.key)?'<br><span class="tag">Parser did not recognize</span>':'')+(machineRejected.has(group.key)?'<br><span class="tag">Model rejected</span>':'')+'</td><td><strong>'+esc(group.display)+'</strong>'+(group.kind==='moe_context'?'<br><span class="tag">MOE-backed mixed form</span>':'')+(group.normalized_tl&&group.normalized_tl!==group.key?'<br><span class="tag">TL lookup: '+esc(group.normalized_tl)+'</span>':'')+'<br>'+group.occurrences.length+' occurrences<br>'+group.article_count+' articles'+
       '<div class="note-controls"><button class="copy-note" data-key="'+esc(group.key)+'" type="button" title="Copy note" aria-label="Copy note for '+esc(group.display)+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg></button><span class="muted" role="status"></span><textarea hidden readonly aria-label="Anchor note"></textarea></div>'+
-      '<label class="approve-label '+(item.approved?'approval-good':'')+'"><input class="approve-box" data-key="'+esc(group.key)+'" type="checkbox" aria-label="Approve import '+esc(group.key)+'" '+(item.approved&&approvable(group)?'checked ':'')+(approvable(group)?'':'disabled')+'> Approve import</label></td><td><div class="snippet">'+snippet(row)+'</div>'+source(row)+moePanel(group)+'<details><summary>Full clause and all '+group.occurrences.length+' occurrences</summary>'+group.occurrences.map(row=>'<div class="occurrence"><div class="snippet">'+snippet(row)+'</div>'+source(row)+'<div>'+esc(row.clause)+'</div></div>').join('')+'</details></td></tr>';
+      '<label class="approve-label '+(item.approved?'approval-good':'')+'"><input class="approve-box" data-key="'+esc(group.key)+'" type="checkbox" aria-label="Approve import '+esc(group.key)+'" '+(item.approved&&approvable(group)?'checked ':'')+(approvable(group)?'':'disabled')+'> Approve import</label></td><td><div class="snippet">'+snippet(row)+'</div>'+source(row)+screeningNote(row)+moePanel(group)+'<details><summary>Full clause and all '+group.occurrences.length+' occurrences</summary>'+group.occurrences.map(row=>'<div class="occurrence"><div class="snippet">'+snippet(row)+'</div>'+source(row)+screeningNote(row)+'<div>'+esc(row.clause)+'</div></div>').join('')+'</details>'+(group.machine_rejected_occurrences?.length?'<details><summary>Model-rejected occurrences ('+group.machine_rejected_occurrences.length+')</summary>'+group.machine_rejected_occurrences.map(row=>'<div class="occurrence"><div class="snippet">'+snippet(row)+'</div>'+source(row)+screeningNote(row)+'</div>').join('')+'</details>':'')+'</td></tr>';
   }).join('');
   document.querySelectorAll('.copy-note').forEach(button=>button.onclick=()=>copyAnchorNote(byKey.get(button.dataset.key),button));
   document.querySelectorAll('.anchor-matches').forEach(detail=>detail.ontoggle=()=>{decision(byKey.get(detail.dataset.key)).moe_matches_collapsed=!detail.open;save();});
@@ -302,9 +307,13 @@ function reviewExport() {
   reconcileHandledRequests();
   const approvals=data.groups.filter(group=>decision(group).approved&&approvable(group)).map(group=>({anchor_key:group.key,approved:true,...decision(group),...(decision(group).import_mode==='source_anchor'?{source_reading:group.normalized_tl}:{})}));
   return {schema_version:1,issue:data.issue,corpus_sha256:data.corpus_sha256,groups_sha256:data.review_groups_sha256,
-    moe_snapshot:data.moe?.snapshot,ignored_forms:[...ignored].sort(),approvals,custom_requests:customRequests(),decisions:state.decisions};
+    moe_snapshot:data.moe?.snapshot,screening_sha256:data.machine_screening?.sha256||null,ignored_forms:[...ignored].sort(),approvals,custom_requests:customRequests(),decisions:state.decisions};
 }
 $('title').textContent='TSBP issue '+data.issue+' · vocabulary review pilot';
+$('screening-policy').textContent=data.machine_screening?
+  data.machine_screening.models.join(', ')+' screened '+data.machine_screening.occurrences+' occurrences: '+
+  data.machine_screening.decision_counts.reject+' rejected; '+data.machine_screening.decision_counts.hold+
+  ' held for your review. Model rejections are visible under Show excluded rows. This screen does not approve imports.':'';
 $('known').value=[...ignored].sort().join(', ');
 $('policy').textContent='Nested and overlapping multi-syllable anchors are listed. A single-syllable match is shown only where no longer MOE or tracked-word match contains it. Identical article/span matches appear once; text coverage counts overlaps once. Exclusions apply to each final written form. Matches remain candidates for human review.';
 $('normalization').textContent='TL lookup spellings preserve original source text. Identical MOE headword/reading cards are merged while all IDs, definitions and source references remain available.';

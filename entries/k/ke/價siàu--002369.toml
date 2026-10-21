@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kè-siàu"
+id = 2369
+moe_forms = ["價數"]
+preferred_form = "價siàu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 204:209; written form 價siàu"
+url = "https://tsbp.tgb.org.tw/2016/08/e-e.html"
+
+[[sources]]
+row = 10967
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

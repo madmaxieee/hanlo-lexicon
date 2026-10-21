@@ -1,0 +1,21 @@
+alternate_readings = ["bueh-àm-á"]
+canonical_tl = "beh-àm-á"
+id = 2381
+moe_forms = ["欲暗仔"]
+preferred_form = "beh暗仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 6:11; written form beh暗仔"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_93.html"
+
+[[sources]]
+row = 609
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 7498
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

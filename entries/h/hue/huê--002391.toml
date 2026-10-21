@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "huê"
+id = 2391
+moe_forms = ["𫝻"]
+preferred_form = "huê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 270:273; written form huê"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_93.html"
+
+[[sources]]
+row = 13579
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

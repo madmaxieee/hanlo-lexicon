@@ -1,0 +1,16 @@
+alternate_readings = ["lû-tsháng-tsháng"]
+canonical_tl = "jû-tsháng-tsháng"
+id = 2396
+moe_forms = ["挐氅氅"]
+preferred_form = "jû-tsháng-tsháng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 310:326; written form jû-tsháng-tsháng"
+url = "https://tsbp.tgb.org.tw/2016/08/lanmai-koh-khah.html"
+
+[[sources]]
+row = 5976
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

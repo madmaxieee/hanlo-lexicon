@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pua̍h-kám-tsîng"
+id = 2372
+moe_forms = ["跋感情"]
+preferred_form = "pua̍h感情"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 60; normalized source characters 6033:6040; written form pua̍h感情"
+url = "https://tsbp.tgb.org.tw/2016/08/lanmai-euie-guarani-e.html"
+
+[[sources]]
+row = 14351
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hiu-hiu-kiò"
+id = 2389
+moe_forms = ["咻咻叫"]
+preferred_form = "hiu-hiu叫"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 505:513; written form hiu-hiu叫"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_93.html"
+
+[[sources]]
+row = 4795
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

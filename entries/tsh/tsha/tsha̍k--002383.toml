@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsha̍k"
+id = 2383
+moe_forms = ["鑿"]
+preferred_form = "tsha̍k"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 83; normalized source characters 3338:3344; written form chha̍k"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 13407
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

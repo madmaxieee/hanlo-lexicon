@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hip tāu-tshài"
+id = 2373
+moe_forms = ["翕豆菜"]
+preferred_form = "hip豆菜"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 32; normalized source characters 2027:2032; written form hip豆菜"
+url = "https://tsbp.tgb.org.tw/2016/08/sa-ehuah.html"
+
+[[sources]]
+row = 8910
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

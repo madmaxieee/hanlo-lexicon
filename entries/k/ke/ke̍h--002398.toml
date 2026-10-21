@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ke̍h"
+id = 2398
+moe_forms = ["扴"]
+preferred_form = "ke̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 1250:1254; written form ke̍h"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_185.html"
+
+[[sources]]
+row = 3149
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

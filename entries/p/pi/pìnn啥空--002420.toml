@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pìnn-siánn-khang"
+id = 2420
+moe_forms = ["變啥空"]
+preferred_form = "pìnn啥空"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 1177:1183; written form pìnn啥空"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_93.html"
+
+[[sources]]
+row = 28485
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

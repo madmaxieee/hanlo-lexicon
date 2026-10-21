@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khau tsháu"
+id = 2402
+moe_forms = ["薅草"]
+preferred_form = "khau草"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 660:665; written form khau草"
+url = "https://tsbp.tgb.org.tw/2016/08/e-e.html"
+
+[[sources]]
+row = 12311
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

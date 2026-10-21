@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshenn-mê-gû"
+id = 2377
+moe_forms = ["青盲牛"]
+preferred_form = "tshenn-mê牛"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 276:286; written form tshenn-mê牛"
+url = "https://tsbp.tgb.org.tw/2016/08/sa-ehuah.html"
+
+[[sources]]
+row = 4561
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "mé-lia̍h"
+id = 2414
+moe_forms = ["猛掠"]
+preferred_form = "mé-lia̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 44; normalized source characters 1810:1818; written form mé-lia̍h"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 13723
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

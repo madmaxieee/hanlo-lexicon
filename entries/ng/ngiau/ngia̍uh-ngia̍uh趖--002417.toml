@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ngia̍uh-ngia̍uh-sô"
+id = 2417
+moe_forms = ["蟯蟯趖"]
+preferred_form = "ngia̍uh-ngia̍uh趖"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 8; normalized source characters 867:883; written form ngia̍uh-ngia̍uh趖"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_63.html"
+
+[[sources]]
+row = 12606
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

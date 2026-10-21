@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshio-tiô"
+id = 2384
+moe_forms = ["𪁎趒"]
+preferred_form = "tshio-tiô"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 50; normalized source characters 2022:2031; written form chhio-tiô"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 13490
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

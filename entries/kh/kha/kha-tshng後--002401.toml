@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kha-tshng-āu"
+id = 2401
+moe_forms = ["尻川後"]
+preferred_form = "kha-tshng後"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 1037:1047; written form kha-tshng後"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_93.html"
+
+[[sources]]
+row = 1672
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

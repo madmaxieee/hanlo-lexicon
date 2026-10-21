@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khe̍nnh-thâm"
+id = 2404
+moe_forms = ["喀痰"]
+preferred_form = "khe̍nnh痰"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 6; normalized source characters 67:75; written form khe̍nnh痰"
+url = "https://tsbp.tgb.org.tw/2016/08/37e.html"
+
+[[sources]]
+row = 8228
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

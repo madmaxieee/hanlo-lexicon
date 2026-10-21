@@ -1,0 +1,21 @@
+alternate_readings = ["go̍k-hî", "go̍k-hû", "kho̍k-hû"]
+canonical_tl = "kho̍k-hî"
+id = 2406
+moe_forms = ["嘓魚"]
+preferred_form = "kho̍k魚"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 152:158; written form kho̍k魚"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_03.html"
+
+[[sources]]
+row = 10395
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 805
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"

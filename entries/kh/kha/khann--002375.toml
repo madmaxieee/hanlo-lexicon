@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khann"
+id = 2375
+moe_forms = ["坩"]
+preferred_form = "khann"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 839:844; written form khann"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_431.html"
+
+[[sources]]
+row = 3701
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

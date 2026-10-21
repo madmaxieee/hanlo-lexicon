@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phō"
+id = 2418
+moe_forms = ["部"]
+preferred_form = "phō"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 550:553; written form phō"
+url = "https://tsbp.tgb.org.tw/2016/08/e-e.html"
+
+[[sources]]
+row = 7999
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = ["kè-khì"]
+canonical_tl = "kuè-khì"
+id = 2410
+moe_forms = ["過去"]
+preferred_form = "kuè去"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 12; normalized source characters 1337:1340; written form kè去"
+url = "https://tsbp.tgb.org.tw/2016/08/lanmai-koh-khah.html"
+
+[[sources]]
+row = 10165
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

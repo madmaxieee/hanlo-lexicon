@@ -1,0 +1,21 @@
+alternate_readings = ["puh-ínn"]
+canonical_tl = "huat-ínn"
+id = 2419
+moe_forms = ["發穎"]
+preferred_form = "huat-ínn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 35; normalized source characters 2053:2060; written form Puh-ínn"
+url = "https://tsbp.tgb.org.tw/2016/08/sa-ehuah.html"
+
+[[sources]]
+row = 721
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 8750
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,21 @@
+alternate_readings = ["ka-tsiah-phiann"]
+canonical_tl = "kha-tsiah-phiann"
+id = 2399
+moe_forms = ["尻脊骿"]
+preferred_form = "kha-tsiah-phiann"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 14; normalized source characters 128:143; written form kha-chiah-phiaⁿ"
+url = "https://tsbp.tgb.org.tw/2016/08/m-thang-hau.html"
+
+[[sources]]
+row = 148
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 1753
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

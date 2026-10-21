@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hit pái"
+id = 2387
+moe_forms = ["彼擺"]
+preferred_form = "hit擺"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 625:629; written form Hit擺"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_826.html"
+
+[[sources]]
+row = 3930
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

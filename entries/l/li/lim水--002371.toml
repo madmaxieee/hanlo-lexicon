@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lim tsuí"
+id = 2371
+moe_forms = ["啉水"]
+preferred_form = "lim水"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 8; normalized source characters 861:865; written form lim水"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_63.html"
+
+[[sources]]
+row = 7029
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

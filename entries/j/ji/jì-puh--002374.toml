@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "jì-puh"
+id = 2374
+moe_forms = ["吉普"]
+preferred_form = "jì-puh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 575:581; written form jì-puh"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_63.html"
+
+[[sources]]
+row = 2225
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

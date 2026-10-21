@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "la̍k-la̍k-tshuah"
+id = 2411
+moe_forms = ["慄慄掣"]
+preferred_form = "la̍k-la̍k-tshuah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 81; normalized source characters 3175:3191; written form la̍k-la̍k-chhoah"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 9462
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = ["liâu-hûn"]
+canonical_tl = "jiâu-hûn"
+id = 2395
+moe_forms = ["皺痕"]
+preferred_form = "jiâu痕"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 69; normalized source characters 2629:2634; written form jiâu痕"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 11224
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

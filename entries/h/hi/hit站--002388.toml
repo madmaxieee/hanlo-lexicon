@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hit-tsām"
+id = 2388
+moe_forms = ["彼站"]
+preferred_form = "hit站"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 12; normalized source characters 1281:1285; written form hit站"
+url = "https://tsbp.tgb.org.tw/2016/08/lanmai-koh-khah.html"
+
+[[sources]]
+row = 3916
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

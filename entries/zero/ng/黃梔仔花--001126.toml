@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "n̂g-ki-á-hue"
+id = 1126
+moe_forms = []
+preferred_form = "黃梔仔花"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 437
+snapshot = "lkk-2024-05-10"

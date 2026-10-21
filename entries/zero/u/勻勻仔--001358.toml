@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ûn-ûn-á"
+id = 1358
+moe_forms = []
+preferred_form = "勻勻仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 892
+snapshot = "lkk-2024-05-10"

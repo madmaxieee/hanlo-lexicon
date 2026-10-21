@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kui-khì"
+id = 1095
+moe_forms = []
+preferred_form = "規氣"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 355
+snapshot = "lkk-2024-05-10"

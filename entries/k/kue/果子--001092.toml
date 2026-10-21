@@ -1,0 +1,11 @@
+alternate_readings = ["ké-tsí"]
+canonical_tl = "kué-tsí"
+id = 1092
+moe_forms = []
+preferred_form = "果子"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 351
+snapshot = "lkk-2024-05-10"

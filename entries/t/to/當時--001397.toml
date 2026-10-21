@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "tong-sî"
+id = 1397
+identity_note = "LKK row 629: 當時 / tong-sî; maintainer retains this source word separately from entry 706 tang時 / tang-sî (MOE word 9755)."
+moe_forms = []
+preferred_form = "當時"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 629
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sàn-tshiah"
+id = 1177
+moe_forms = []
+preferred_form = "散赤"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 539
+snapshot = "lkk-2024-05-10"

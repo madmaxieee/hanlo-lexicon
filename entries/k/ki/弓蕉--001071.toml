@@ -1,0 +1,11 @@
+alternate_readings = ["king-tsio"]
+canonical_tl = "kin-tsio"
+id = 1071
+moe_forms = []
+preferred_form = "弓蕉"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 318
+snapshot = "lkk-2024-05-10"

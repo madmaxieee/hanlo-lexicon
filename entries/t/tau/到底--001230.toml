@@ -1,0 +1,11 @@
+alternate_readings = ["tàu-tué"]
+canonical_tl = "tàu-té"
+id = 1230
+moe_forms = []
+preferred_form = "到底"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 640
+snapshot = "lkk-2024-05-10"

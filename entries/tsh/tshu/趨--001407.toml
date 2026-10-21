@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "tshu"
+id = 1407
+identity_note = "LKK row 797: 趨 / tshu; maintainer retains this source word separately from entry 858 tshu / tshu (MOE word 8903)."
+moe_forms = []
+preferred_form = "趨"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 797
+snapshot = "lkk-2024-05-10"

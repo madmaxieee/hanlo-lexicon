@@ -1,0 +1,11 @@
+alternate_readings = ["miâ-á-tsài"]
+canonical_tl = "bîn-á-tsài"
+id = 945
+moe_forms = []
+preferred_form = "明仔載"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 62
+snapshot = "lkk-2024-05-10"

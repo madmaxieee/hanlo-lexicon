@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kam"
+id = 1029
+moe_forms = []
+preferred_form = "甘"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 231
+snapshot = "lkk-2024-05-10"

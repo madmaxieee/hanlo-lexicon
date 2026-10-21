@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "só-sî"
+id = 1200
+moe_forms = []
+preferred_form = "鎖匙"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 589
+snapshot = "lkk-2024-05-10"

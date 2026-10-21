@@ -1,0 +1,11 @@
+alternate_readings = ["suè"]
+canonical_tl = "sè"
+id = 1182
+moe_forms = []
+preferred_form = "細"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 546
+snapshot = "lkk-2024-05-10"

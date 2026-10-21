@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kiann"
+id = 1066
+moe_forms = []
+preferred_form = "驚"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 312
+snapshot = "lkk-2024-05-10"

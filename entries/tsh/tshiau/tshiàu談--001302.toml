@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tshiàu-tâm"
+id = 1302
+moe_forms = ["笑談"]
+preferred_form = "tshiàu談"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 774
+snapshot = "lkk-2024-05-10"

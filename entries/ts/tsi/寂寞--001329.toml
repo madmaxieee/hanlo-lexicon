@@ -1,0 +1,11 @@
+alternate_readings = ["siok-bo̍k"]
+canonical_tl = "tsi̍k-bo̍k"
+id = 1329
+moe_forms = []
+preferred_form = "寂寞"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 836
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kan-khóo-tsē-kuà"
+id = 1031
+moe_forms = []
+preferred_form = "艱苦tsē-kuà"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 235
+snapshot = "lkk-2024-05-10"

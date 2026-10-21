@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "khui"
+id = 1377
+identity_note = "LKK row 260: 開 / khui; maintainer retains this source word separately from entry 80 khai / khai (LKK row 259)."
+moe_forms = []
+preferred_form = "開"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 260
+snapshot = "lkk-2024-05-10"

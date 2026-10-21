@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ah-pà"
+id = 925
+moe_forms = []
+preferred_form = "壓霸"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 14
+snapshot = "lkk-2024-05-10"

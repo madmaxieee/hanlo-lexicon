@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "thâu-lê-lê"
+id = 1237
+moe_forms = []
+preferred_form = "頭lê-lê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 657
+snapshot = "lkk-2024-05-10"

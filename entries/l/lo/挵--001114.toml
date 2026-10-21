@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lòng"
+id = 1114
+moe_forms = []
+preferred_form = "挵"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 407
+snapshot = "lkk-2024-05-10"

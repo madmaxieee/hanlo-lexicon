@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tà"
+id = 1215
+moe_forms = []
+preferred_form = "罩"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 615
+snapshot = "lkk-2024-05-10"

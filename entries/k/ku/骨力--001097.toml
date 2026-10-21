@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kut-la̍t"
+id = 1097
+moe_forms = []
+preferred_form = "骨力"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 357
+snapshot = "lkk-2024-05-10"

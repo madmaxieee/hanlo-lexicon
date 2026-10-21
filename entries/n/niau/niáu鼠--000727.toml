@@ -1,4 +1,4 @@
-alternate_readings = []
+alternate_readings = ["niáu-tshú"]
 canonical_tl = "niáu-tshí"
 id = 727
 moe_forms = ["鳥鼠"]
@@ -9,6 +9,10 @@ schema_version = 1
 [[sources]]
 locator = "Article text line 15; normalized source characters 1122:1127; written form niáu鼠"
 url = "https://tsbp.tgb.org.tw/2016/08/sa-sngtuisiann.html"
+
+[[sources]]
+row = 444
+snapshot = "lkk-2024-05-10"
 
 [[sources]]
 row = 8127

@@ -1,0 +1,12 @@
+alternate_readings = ["tio̍h", "tiō", "to̍h"]
+canonical_tl = "tō"
+id = 1402
+identity_note = "LKK row 720: 就 / tō; maintainer retains this source word separately from entry 237 tio̍h / tio̍h (LKK row 705); entry 246 to̍h / to̍h (LKK row 721)."
+moe_forms = []
+preferred_form = "就"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 720
+snapshot = "lkk-2024-05-10"

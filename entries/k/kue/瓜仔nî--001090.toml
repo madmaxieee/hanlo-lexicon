@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kue-á-nî"
+id = 1090
+moe_forms = ["瓜仔哖"]
+preferred_form = "瓜仔nî"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 349
+snapshot = "lkk-2024-05-10"

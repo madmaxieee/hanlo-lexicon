@@ -1,0 +1,11 @@
+alternate_readings = ["lo̍h-bé"]
+canonical_tl = "lo̍h-bué"
+id = 1119
+moe_forms = []
+preferred_form = "落尾"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 413
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "sian"
+id = 1392
+identity_note = "LKK row 554: 鉎 / sian; maintainer retains this source word separately from entry 832 sian / sian (MOE word 3392)."
+moe_forms = []
+preferred_form = "鉎"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 554
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = ["pa̍t-á"]
+canonical_tl = "pua̍t-á"
+id = 1171
+moe_forms = []
+preferred_form = "菝仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 524
+snapshot = "lkk-2024-05-10"

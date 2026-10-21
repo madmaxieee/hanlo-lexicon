@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tuā-tōo-kuai-á"
+id = 1352
+moe_forms = []
+preferred_form = "大肚胿仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 874
+snapshot = "lkk-2024-05-10"

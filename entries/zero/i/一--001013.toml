@@ -1,0 +1,15 @@
+alternate_readings = ["tsi̍t"]
+canonical_tl = "it"
+id = 1013
+moe_forms = []
+preferred_form = "一"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 195
+snapshot = "lkk-2024-05-10"
+
+[[sources]]
+row = 850
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = ["puē-bōo"]
+canonical_tl = "puē-bōng"
+id = 1174
+moe_forms = []
+preferred_form = "培墓"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 527
+snapshot = "lkk-2024-05-10"

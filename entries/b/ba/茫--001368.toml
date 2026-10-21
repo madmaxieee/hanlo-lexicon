@@ -1,0 +1,12 @@
+alternate_readings = ["bông"]
+canonical_tl = "bâng"
+id = 1368
+identity_note = "LKK row 49: 茫 / bâng; maintainer retains this source word separately from entry 10 bông / bông (LKK row 69)."
+moe_forms = []
+preferred_form = "茫"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 49
+snapshot = "lkk-2024-05-10"

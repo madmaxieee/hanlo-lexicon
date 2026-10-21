@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsiàu-khí-kang"
+id = 1328
+moe_forms = []
+preferred_form = "照起工"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 834
+snapshot = "lkk-2024-05-10"

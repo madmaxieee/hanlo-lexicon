@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kì-tî"
+id = 1061
+moe_forms = []
+preferred_form = "記持"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 305
+snapshot = "lkk-2024-05-10"

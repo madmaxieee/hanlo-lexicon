@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "hiánn-thâu"
+id = 982
+moe_forms = ["顯頭"]
+preferred_form = "hiánn頭"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 136
+snapshot = "lkk-2024-05-10"

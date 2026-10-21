@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kiu"
+id = 1077
+moe_forms = []
+preferred_form = "勼"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 326
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ba̍t"
+id = 942
+moe_forms = []
+preferred_form = "密"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 51
+snapshot = "lkk-2024-05-10"

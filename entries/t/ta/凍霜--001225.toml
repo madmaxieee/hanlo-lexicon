@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tàng-sng"
+id = 1225
+moe_forms = []
+preferred_form = "凍霜"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 630
+snapshot = "lkk-2024-05-10"

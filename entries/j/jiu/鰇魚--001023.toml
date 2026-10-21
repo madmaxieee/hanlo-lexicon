@@ -1,0 +1,11 @@
+alternate_readings = ["liû-hû"]
+canonical_tl = "jiû-hî"
+id = 1023
+moe_forms = []
+preferred_form = "鰇魚"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 213
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "nâ-âu"
+id = 1124
+moe_forms = []
+preferred_form = "嚨喉"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 430
+snapshot = "lkk-2024-05-10"

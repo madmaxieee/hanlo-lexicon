@@ -1,0 +1,11 @@
+alternate_readings = ["sinn"]
+canonical_tl = "senn"
+id = 1183
+moe_forms = []
+preferred_form = "生"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 548
+snapshot = "lkk-2024-05-10"

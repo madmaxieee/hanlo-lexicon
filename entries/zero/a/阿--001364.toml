@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "a"
+id = 1364
+identity_note = "LKK row 2: 阿 / a; maintainer retains this source word separately from entry 164 oo / oo (LKK row 457)."
+moe_forms = []
+preferred_form = "阿"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 2
+snapshot = "lkk-2024-05-10"

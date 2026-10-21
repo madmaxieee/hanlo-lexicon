@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "tsat"
+id = 1403
+identity_note = "LKK row 744: 節 / tsat; maintainer retains this source word separately from entry 431 tsat / tsat."
+moe_forms = []
+preferred_form = "節"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 744
+snapshot = "lkk-2024-05-10"

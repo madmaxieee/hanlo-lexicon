@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "siám-sih"
+id = 1187
+moe_forms = []
+preferred_form = "閃爍"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 553
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "siàu-siūnn"
+id = 1191
+moe_forms = ["數想"]
+preferred_form = "siàu想"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 566
+snapshot = "lkk-2024-05-10"

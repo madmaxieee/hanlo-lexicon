@@ -1,0 +1,11 @@
+alternate_readings = ["phái"]
+canonical_tl = "pháinn"
+id = 1142
+moe_forms = []
+preferred_form = "歹"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 471
+snapshot = "lkk-2024-05-10"

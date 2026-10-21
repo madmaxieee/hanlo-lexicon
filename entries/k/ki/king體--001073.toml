@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "king-thé"
+id = 1073
+moe_forms = []
+preferred_form = "king體"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 320
+snapshot = "lkk-2024-05-10"

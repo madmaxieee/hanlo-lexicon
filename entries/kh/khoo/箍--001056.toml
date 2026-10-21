@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "khoo"
+id = 1056
+moe_forms = ["箍"]
+preferred_form = "箍"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 296
+snapshot = "lkk-2024-05-10"

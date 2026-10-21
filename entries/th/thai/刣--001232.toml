@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "thâi"
+id = 1232
+moe_forms = []
+preferred_form = "刣"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 647
+snapshot = "lkk-2024-05-10"

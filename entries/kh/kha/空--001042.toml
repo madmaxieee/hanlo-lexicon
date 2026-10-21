@@ -1,0 +1,15 @@
+alternate_readings = []
+canonical_tl = "khang"
+id = 1042
+moe_forms = []
+preferred_form = "空"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 264
+snapshot = "lkk-2024-05-10"
+
+[[sources]]
+row = 265
+snapshot = "lkk-2024-05-10"

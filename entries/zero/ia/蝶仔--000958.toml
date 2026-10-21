@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ia̍h-á"
+id = 958
+moe_forms = []
+preferred_form = "蝶仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 75
+snapshot = "lkk-2024-05-10"

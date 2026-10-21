@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "giâ"
+id = 967
+moe_forms = []
+preferred_form = "夯"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 94
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sio-tsioh-mn̄g"
+id = 1195
+moe_forms = ["相借問"]
+preferred_form = "sio借問"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 574
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = ["suí-ke", "suí-kue", "tsuí-kue"]
+canonical_tl = "tsuí-ke"
+id = 1347
+moe_forms = []
+preferred_form = "水雞"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 867
+snapshot = "lkk-2024-05-10"

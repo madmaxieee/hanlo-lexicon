@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ē-tit-thang"
+id = 964
+moe_forms = ["會得通"]
+preferred_form = "ē得thang"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 88
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "bán"
+id = 938
+moe_forms = []
+preferred_form = "挽"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 45
+snapshot = "lkk-2024-05-10"

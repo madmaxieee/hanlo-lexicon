@@ -1,4 +1,4 @@
-alternate_readings = []
+alternate_readings = ["ná"]
 canonical_tl = "nà"
 id = 345
 moe_forms = []

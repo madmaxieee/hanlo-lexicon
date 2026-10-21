@@ -1,0 +1,11 @@
+alternate_readings = ["bân-phê"]
+canonical_tl = "bân-phuê"
+id = 939
+moe_forms = []
+preferred_form = "蠻皮"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 46
+snapshot = "lkk-2024-05-10"

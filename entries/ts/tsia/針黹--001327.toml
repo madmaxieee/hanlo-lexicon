@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsiam-tsí"
+id = 1327
+moe_forms = []
+preferred_form = "針黹"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 826
+snapshot = "lkk-2024-05-10"

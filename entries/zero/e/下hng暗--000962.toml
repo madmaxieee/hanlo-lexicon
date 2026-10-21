@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ē-hng-àm"
+id = 962
+moe_forms = ["下昏暗"]
+preferred_form = "下hng暗"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 84
+snapshot = "lkk-2024-05-10"

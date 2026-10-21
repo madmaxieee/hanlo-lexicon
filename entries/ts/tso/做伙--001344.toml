@@ -1,0 +1,11 @@
+alternate_readings = ["tsuè-hé"]
+canonical_tl = "tsò-hué"
+id = 1344
+moe_forms = []
+preferred_form = "做伙"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 860
+snapshot = "lkk-2024-05-10"

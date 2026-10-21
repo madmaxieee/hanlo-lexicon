@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sau-siann"
+id = 1180
+moe_forms = ["梢聲"]
+preferred_form = "sau聲"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 544
+snapshot = "lkk-2024-05-10"

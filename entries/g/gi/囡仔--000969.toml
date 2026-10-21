@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "gín-á"
+id = 969
+moe_forms = ["囡仔"]
+preferred_form = "囡仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 100
+snapshot = "lkk-2024-05-10"

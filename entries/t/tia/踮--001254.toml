@@ -1,0 +1,11 @@
+alternate_readings = ["tàm"]
+canonical_tl = "tiàm"
+id = 1254
+moe_forms = []
+preferred_form = "踮"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 686
+snapshot = "lkk-2024-05-10"

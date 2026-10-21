@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "âng-kì-kì"
+id = 931
+moe_forms = ["紅記記"]
+preferred_form = "紅kì-kì"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 28
+snapshot = "lkk-2024-05-10"

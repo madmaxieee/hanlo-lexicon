@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "pinn--a"
+id = 1156
+moe_forms = ["邊仔"]
+preferred_form = "邊--a"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 497
+snapshot = "lkk-2024-05-10"

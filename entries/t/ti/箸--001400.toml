@@ -1,0 +1,12 @@
+alternate_readings = ["tū"]
+canonical_tl = "tī"
+id = 1400
+identity_note = "LKK row 683: 箸 / tī; maintainer retains this source word separately from entry 314 tī / tī (LKK row 684); entry 320 tū / tū (LKK row 872)."
+moe_forms = []
+preferred_form = "箸"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 683
+snapshot = "lkk-2024-05-10"

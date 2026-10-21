@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "suî"
+id = 1211
+moe_forms = []
+preferred_form = "隨"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 608
+snapshot = "lkk-2024-05-10"

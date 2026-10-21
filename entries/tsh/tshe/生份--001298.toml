@@ -1,0 +1,11 @@
+alternate_readings = ["senn-hūn", "sinn-hūn", "tshinn-hūn"]
+canonical_tl = "tshenn-hūn"
+id = 1298
+moe_forms = []
+preferred_form = "生份"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 764
+snapshot = "lkk-2024-05-10"

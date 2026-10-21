@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "piànn"
+id = 1391
+identity_note = "LKK row 501: 拚 / piànn; maintainer retains this source word separately from entry 181 piànn / piànn (LKK row 500)."
+moe_forms = []
+preferred_form = "拚"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 501
+snapshot = "lkk-2024-05-10"

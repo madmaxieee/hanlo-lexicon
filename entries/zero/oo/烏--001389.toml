@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "oo"
+id = 1389
+identity_note = "LKK row 456: 烏 / oo; maintainer retains this source word separately from entry 164 oo / oo (LKK row 457)."
+moe_forms = []
+preferred_form = "烏"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 456
+snapshot = "lkk-2024-05-10"

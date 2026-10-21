@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsháu-meh-á"
+id = 1295
+moe_forms = []
+preferred_form = "草蜢仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 761
+snapshot = "lkk-2024-05-10"

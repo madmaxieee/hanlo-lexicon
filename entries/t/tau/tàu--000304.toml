@@ -7,5 +7,9 @@ review_status = "imported"
 schema_version = 1
 
 [[sources]]
+row = 634
+snapshot = "lkk-2024-05-10"
+
+[[sources]]
 row = 636
 snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lo̍k-tshuì"
+id = 1113
+moe_forms = []
+preferred_form = "漉喙"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 405
+snapshot = "lkk-2024-05-10"

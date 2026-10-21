@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "liōng-tsá"
+id = 1110
+moe_forms = []
+preferred_form = "冗早"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 396
+snapshot = "lkk-2024-05-10"

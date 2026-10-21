@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "khiáu"
+id = 1048
+moe_forms = []
+preferred_form = "巧"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 279
+snapshot = "lkk-2024-05-10"

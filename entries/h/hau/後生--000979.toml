@@ -1,0 +1,11 @@
+alternate_readings = ["hāu-sinn"]
+canonical_tl = "hāu-senn"
+id = 979
+moe_forms = []
+preferred_form = "後生"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 122
+snapshot = "lkk-2024-05-10"

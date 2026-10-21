@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sóo-huì"
+id = 1203
+moe_forms = []
+preferred_form = "所費"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 593
+snapshot = "lkk-2024-05-10"

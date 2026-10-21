@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kín"
+id = 1072
+moe_forms = []
+preferred_form = "緊"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 319
+snapshot = "lkk-2024-05-10"

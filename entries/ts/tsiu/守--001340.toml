@@ -1,0 +1,11 @@
+alternate_readings = ["tsiúnn"]
+canonical_tl = "tsiú"
+id = 1340
+moe_forms = []
+preferred_form = "守"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 855
+snapshot = "lkk-2024-05-10"

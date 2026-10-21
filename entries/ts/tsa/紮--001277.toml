@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsah"
+id = 1277
+moe_forms = []
+preferred_form = "紮"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 733
+snapshot = "lkk-2024-05-10"

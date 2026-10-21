@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsáu-tsing"
+id = 1288
+moe_forms = ["走精"]
+preferred_form = "走tsing"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 749
+snapshot = "lkk-2024-05-10"

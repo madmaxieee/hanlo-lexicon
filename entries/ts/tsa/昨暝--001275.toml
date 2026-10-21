@@ -1,0 +1,11 @@
+alternate_readings = ["tsa-mî"]
+canonical_tl = "tsa-mê"
+id = 1275
+moe_forms = []
+preferred_form = "昨暝"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 731
+snapshot = "lkk-2024-05-10"

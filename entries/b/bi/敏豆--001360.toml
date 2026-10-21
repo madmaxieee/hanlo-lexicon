@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "bín-tāu"
+id = 1360
+moe_forms = []
+preferred_form = "敏豆"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 61
+snapshot = "lkk-2024-05-10"

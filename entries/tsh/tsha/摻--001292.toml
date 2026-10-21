@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsham"
+id = 1292
+moe_forms = []
+preferred_form = "摻"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 757
+snapshot = "lkk-2024-05-10"

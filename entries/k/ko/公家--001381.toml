@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "kong-ka"
+id = 1381
+identity_note = "LKK row 331: 公家 / kong-ka; maintainer retains this source word separately from entry 106 kong-ke / kong-ke (LKK row 330)."
+moe_forms = []
+preferred_form = "公家"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 331
+snapshot = "lkk-2024-05-10"

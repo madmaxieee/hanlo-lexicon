@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tshing-khì"
+id = 1306
+moe_forms = []
+preferred_form = "清氣"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 781
+snapshot = "lkk-2024-05-10"

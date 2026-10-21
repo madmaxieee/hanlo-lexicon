@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "au"
+id = 1367
+identity_note = "LKK row 32: 甌 / au; maintainer retains this source word separately from entry 2 au / au (LKK row 31)."
+moe_forms = []
+preferred_form = "甌"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 32
+snapshot = "lkk-2024-05-10"

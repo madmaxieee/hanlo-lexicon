@@ -1,4 +1,4 @@
-alternate_readings = []
+alternate_readings = ["í-tiâu"]
 canonical_tl = "í-liâu"
 id = 748
 moe_forms = ["椅條"]
@@ -9,6 +9,10 @@ schema_version = 1
 [[sources]]
 locator = "Article text line 3; normalized source characters 276:281; written form 椅liâu"
 url = "https://tsbp.tgb.org.tw/2016/08/bong-ue.html"
+
+[[sources]]
+row = 170
+snapshot = "lkk-2024-05-10"
 
 [[sources]]
 row = 8501

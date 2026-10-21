@@ -1,0 +1,11 @@
+alternate_readings = ["liû"]
+canonical_tl = "jiû"
+id = 1022
+moe_forms = []
+preferred_form = "揉"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 212
+snapshot = "lkk-2024-05-10"

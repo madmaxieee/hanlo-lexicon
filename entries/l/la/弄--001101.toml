@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lāng"
+id = 1101
+moe_forms = []
+preferred_form = "弄"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 370
+snapshot = "lkk-2024-05-10"

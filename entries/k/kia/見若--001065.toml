@@ -1,0 +1,11 @@
+alternate_readings = ["kìnn-nā"]
+canonical_tl = "kiàn-nā"
+id = 1065
+moe_forms = []
+preferred_form = "見若"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 311
+snapshot = "lkk-2024-05-10"

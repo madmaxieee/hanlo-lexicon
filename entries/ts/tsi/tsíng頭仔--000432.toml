@@ -1,4 +1,4 @@
-alternate_readings = []
+alternate_readings = ["tsńg-thâu-á"]
 canonical_tl = "tsíng-thâu-á"
 id = 432
 moe_forms = ["指頭仔"]
@@ -14,3 +14,7 @@ url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
 row = 5054
 sheet = "詞目"
 snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 840
+snapshot = "lkk-2024-05-10"

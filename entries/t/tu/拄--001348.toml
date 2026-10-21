@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tú"
+id = 1348
+moe_forms = []
+preferred_form = "拄"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 3948
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 869
+snapshot = "lkk-2024-05-10"

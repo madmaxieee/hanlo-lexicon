@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsí"
+id = 1326
+moe_forms = []
+preferred_form = "子"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 825
+snapshot = "lkk-2024-05-10"

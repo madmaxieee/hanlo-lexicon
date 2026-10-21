@@ -1,0 +1,11 @@
+alternate_readings = ["tshan-tshiūnn"]
+canonical_tl = "tshin-tshiūnn"
+id = 1304
+moe_forms = []
+preferred_form = "親像"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 778
+snapshot = "lkk-2024-05-10"

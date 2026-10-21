@@ -1,0 +1,11 @@
+alternate_readings = ["sūn-sū"]
+canonical_tl = "sūn-sī"
+id = 1214
+moe_forms = []
+preferred_form = "順序"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 611
+snapshot = "lkk-2024-05-10"

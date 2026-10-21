@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "si̍t"
+id = 1197
+moe_forms = []
+preferred_form = "翼"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 582
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tshiàng-siann"
+id = 1301
+moe_forms = ["唱聲"]
+preferred_form = "tshiàng聲"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 771
+snapshot = "lkk-2024-05-10"

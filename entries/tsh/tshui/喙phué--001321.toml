@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tshuì-phué"
+id = 1321
+moe_forms = ["喙䫌"]
+preferred_form = "喙phué"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 811
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = ["lāu-hè-á"]
+canonical_tl = "lāu-huè-á"
+id = 1102
+moe_forms = []
+preferred_form = "老歲仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 375
+snapshot = "lkk-2024-05-10"

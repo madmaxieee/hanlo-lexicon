@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "tuì"
+id = 1410
+identity_note = "LKK row 879: 對 / tuì; maintainer retains this source word separately from entry 301 tuì / tuì (LKK row 878); entry 327 uì / uì (LKK row 890)."
+moe_forms = []
+preferred_form = "對"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 879
+snapshot = "lkk-2024-05-10"

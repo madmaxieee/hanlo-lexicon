@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "uan-ke"
+id = 1354
+moe_forms = []
+preferred_form = "冤家"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 882
+snapshot = "lkk-2024-05-10"

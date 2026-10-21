@@ -1,0 +1,11 @@
+alternate_readings = ["tòng-tsuè"]
+canonical_tl = "tòng-tsò"
+id = 1272
+moe_forms = []
+preferred_form = "當做"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 726
+snapshot = "lkk-2024-05-10"

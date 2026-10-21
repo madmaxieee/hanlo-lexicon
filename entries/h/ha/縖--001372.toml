@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "hâ"
+id = 1372
+identity_note = "LKK row 109: 縖 / hâ; maintainer retains this source word separately from entry 409 hānn / hānn (MOE word 4489)."
+moe_forms = []
+preferred_form = "縖"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 109
+snapshot = "lkk-2024-05-10"

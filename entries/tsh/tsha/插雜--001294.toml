@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tshap-tsa̍p"
+id = 1294
+moe_forms = []
+preferred_form = "插雜"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 760
+snapshot = "lkk-2024-05-10"

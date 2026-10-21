@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ta̍k-ke"
+id = 1220
+moe_forms = []
+preferred_form = "逐家"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 621
+snapshot = "lkk-2024-05-10"

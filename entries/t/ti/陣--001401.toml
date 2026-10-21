@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "tīn"
+id = 1401
+identity_note = "LKK row 698: 陣 / tīn; maintainer retains this source word separately from entry 298 tsūn / tsūn (LKK row 868)."
+moe_forms = []
+preferred_form = "陣"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 698
+snapshot = "lkk-2024-05-10"

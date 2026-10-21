@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "hām-bîn"
+id = 978
+moe_forms = []
+preferred_form = "陷眠"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 119
+snapshot = "lkk-2024-05-10"

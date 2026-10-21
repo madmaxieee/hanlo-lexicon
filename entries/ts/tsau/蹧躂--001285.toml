@@ -1,0 +1,11 @@
+alternate_readings = ["tsiau-that"]
+canonical_tl = "tsau-that"
+id = 1285
+moe_forms = []
+preferred_form = "蹧躂"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 746
+snapshot = "lkk-2024-05-10"

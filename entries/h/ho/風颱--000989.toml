@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "hong-thai"
+id = 989
+moe_forms = []
+preferred_form = "風颱"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 151
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tiánn"
+id = 1257
+moe_forms = []
+preferred_form = "鼎"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 689
+snapshot = "lkk-2024-05-10"

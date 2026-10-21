@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "thiám"
+id = 1242
+moe_forms = []
+preferred_form = "忝"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 663
+snapshot = "lkk-2024-05-10"

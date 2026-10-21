@@ -1,0 +1,12 @@
+alternate_readings = ["lin", "ni"]
+canonical_tl = "ling"
+id = 1385
+identity_note = "LKK row 392: 奶 / ling; maintainer retains this source word separately from entry 158 ni / ni (LKK row 443)."
+moe_forms = []
+preferred_form = "奶"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 392
+snapshot = "lkk-2024-05-10"

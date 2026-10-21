@@ -1,0 +1,11 @@
+alternate_readings = ["kíng-tī"]
+canonical_tl = "kíng-tì"
+id = 1075
+moe_forms = []
+preferred_form = "景緻"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 322
+snapshot = "lkk-2024-05-10"

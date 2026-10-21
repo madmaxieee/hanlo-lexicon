@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sán"
+id = 1176
+moe_forms = []
+preferred_form = "瘦"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 538
+snapshot = "lkk-2024-05-10"

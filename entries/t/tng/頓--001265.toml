@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tǹg"
+id = 1265
+moe_forms = []
+preferred_form = "頓"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 712
+snapshot = "lkk-2024-05-10"

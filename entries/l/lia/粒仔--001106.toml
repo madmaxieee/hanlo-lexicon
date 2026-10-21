@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lia̍p-á"
+id = 1106
+moe_forms = []
+preferred_form = "粒仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 385
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kóo-tsui"
+id = 1084
+moe_forms = []
+preferred_form = "古錐"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 339
+snapshot = "lkk-2024-05-10"

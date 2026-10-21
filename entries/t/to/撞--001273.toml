@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tōng"
+id = 1273
+moe_forms = []
+preferred_form = "撞"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 727
+snapshot = "lkk-2024-05-10"

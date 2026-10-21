@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsi̍t-kuá-á"
+id = 1338
+moe_forms = []
+preferred_form = "一寡仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 853
+snapshot = "lkk-2024-05-10"

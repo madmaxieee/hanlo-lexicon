@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ke-si"
+id = 1037
+moe_forms = []
+preferred_form = "家私"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 246
+snapshot = "lkk-2024-05-10"

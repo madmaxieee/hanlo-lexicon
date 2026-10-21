@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsáu-bī"
+id = 1287
+moe_forms = []
+preferred_form = "走味"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 748
+snapshot = "lkk-2024-05-10"

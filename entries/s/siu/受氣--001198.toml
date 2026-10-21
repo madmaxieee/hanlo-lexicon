@@ -1,0 +1,11 @@
+alternate_readings = ["siūnn-khì"]
+canonical_tl = "siū-khì"
+id = 1198
+moe_forms = []
+preferred_form = "受氣"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 584
+snapshot = "lkk-2024-05-10"

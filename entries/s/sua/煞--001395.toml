@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "suah"
+id = 1395
+identity_note = "LKK row 600: 煞 / suah; maintainer retains this source word separately from entry 208 suah / suah (LKK row 599)."
+moe_forms = []
+preferred_form = "煞"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 600
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "tshah"
+id = 1404
+identity_note = "LKK row 755: 插 / tshah; maintainer retains this source word separately from entry 250 tshap / tshap (LKK row 759)."
+moe_forms = []
+preferred_form = "插"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 755
+snapshot = "lkk-2024-05-10"

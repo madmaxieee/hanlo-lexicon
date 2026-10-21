@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "huat-tōo"
+id = 993
+moe_forms = []
+preferred_form = "法度"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 161
+snapshot = "lkk-2024-05-10"

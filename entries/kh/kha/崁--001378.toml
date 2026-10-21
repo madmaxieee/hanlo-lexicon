@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "khàm"
+id = 1378
+identity_note = "LKK row 263: 崁 / khàm; maintainer retains this source word separately from entry 97 khàm / khàm (LKK row 262)."
+moe_forms = []
+preferred_form = "崁"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 263
+snapshot = "lkk-2024-05-10"

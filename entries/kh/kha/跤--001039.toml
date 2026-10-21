@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kha"
+id = 1039
+moe_forms = []
+preferred_form = "跤"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 250
+snapshot = "lkk-2024-05-10"

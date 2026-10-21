@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tàu-tīn"
+id = 1227
+moe_forms = []
+preferred_form = "鬥陣"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 635
+snapshot = "lkk-2024-05-10"

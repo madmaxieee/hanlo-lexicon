@@ -1,0 +1,11 @@
+alternate_readings = ["li̍p"]
+canonical_tl = "ji̍p"
+id = 1019
+moe_forms = []
+preferred_form = "入"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 209
+snapshot = "lkk-2024-05-10"

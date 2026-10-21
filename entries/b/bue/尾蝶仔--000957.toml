@@ -1,0 +1,11 @@
+alternate_readings = ["bé-ia̍h-á"]
+canonical_tl = "bué-ia̍h-á"
+id = 957
+moe_forms = []
+preferred_form = "尾蝶仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 75
+snapshot = "lkk-2024-05-10"

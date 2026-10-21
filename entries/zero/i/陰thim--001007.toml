@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "im-thim"
+id = 1007
+moe_forms = ["陰鴆"]
+preferred_form = "陰thim"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 186
+snapshot = "lkk-2024-05-10"

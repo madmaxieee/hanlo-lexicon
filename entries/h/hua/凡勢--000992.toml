@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "huān-sè"
+id = 992
+moe_forms = []
+preferred_form = "凡勢"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 160
+snapshot = "lkk-2024-05-10"

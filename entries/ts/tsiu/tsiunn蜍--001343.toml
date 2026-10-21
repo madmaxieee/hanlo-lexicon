@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsiunn-tsî"
+id = 1343
+moe_forms = ["螿蜍"]
+preferred_form = "tsiunn蜍"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 858
+snapshot = "lkk-2024-05-10"

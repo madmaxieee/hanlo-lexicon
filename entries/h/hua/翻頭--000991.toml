@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "huan-thâu"
+id = 991
+moe_forms = []
+preferred_form = "翻頭"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 159
+snapshot = "lkk-2024-05-10"

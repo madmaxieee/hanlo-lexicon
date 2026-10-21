@@ -9,3 +9,7 @@ schema_version = 1
 [[sources]]
 row = 705
 snapshot = "lkk-2024-05-10"
+
+[[sources]]
+row = 707
+snapshot = "lkk-2024-05-10"

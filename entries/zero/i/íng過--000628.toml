@@ -11,6 +11,10 @@ locator = "Article text line 5; normalized source characters 430:434; written fo
 url = "https://tsbp.tgb.org.tw/2016/09/2026-e.html"
 
 [[sources]]
+row = 189
+snapshot = "lkk-2024-05-10"
+
+[[sources]]
 row = 3925
 sheet = "詞目"
 snapshot = "moe-kautian-3e0b2023e0bd"

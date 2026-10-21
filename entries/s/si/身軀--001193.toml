@@ -1,0 +1,11 @@
+alternate_readings = ["sing-khu"]
+canonical_tl = "sin-khu"
+id = 1193
+moe_forms = []
+preferred_form = "身軀"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 571
+snapshot = "lkk-2024-05-10"

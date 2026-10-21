@@ -1,0 +1,11 @@
+alternate_readings = ["ge̍h-niû"]
+canonical_tl = "gue̍h-niû"
+id = 974
+moe_forms = []
+preferred_form = "月娘"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 108
+snapshot = "lkk-2024-05-10"

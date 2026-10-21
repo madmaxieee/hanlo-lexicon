@@ -1,0 +1,12 @@
+alternate_readings = ["kâng"]
+canonical_tl = "kāng"
+id = 1376
+identity_note = "LKK row 239: 仝 / kāng; maintainer retains this source word separately from entry 784 kâng / kâng; entry 115 kā / kā (LKK row 224)."
+moe_forms = []
+preferred_form = "仝"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 239
+snapshot = "lkk-2024-05-10"

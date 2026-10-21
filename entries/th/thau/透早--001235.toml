@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "thàu-tsá"
+id = 1235
+moe_forms = []
+preferred_form = "透早"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 655
+snapshot = "lkk-2024-05-10"

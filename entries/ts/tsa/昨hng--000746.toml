@@ -1,10 +1,11 @@
-alternate_readings = []
+alternate_readings = ["tsa̍h-hng"]
 canonical_tl = "tsa-hng"
 id = 746
 moe_forms = ["昨昏"]
 preferred_form = "昨hng"
 review_status = "imported"
 schema_version = 1
+usage_notes = "LKK row 730: 合音：tsa̋ng"
 
 [[sources]]
 locator = "Article text line 7; normalized source characters 503:507; written form 昨hng"
@@ -14,3 +15,7 @@ url = "https://tsbp.tgb.org.tw/2016/08/mih.html"
 row = 5016
 sheet = "詞目"
 snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 730
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tín-tāng"
+id = 1231
+moe_forms = ["振動"]
+preferred_form = "tín動"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 6037
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 645
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = ["pân-tuānn", "pûn-tuānn", "pān-tuānn"]
+canonical_tl = "pîn-tuānn"
+id = 1158
+moe_forms = []
+preferred_form = "貧惰"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 503
+snapshot = "lkk-2024-05-10"

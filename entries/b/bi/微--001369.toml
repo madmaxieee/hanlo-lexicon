@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "bî"
+id = 1369
+identity_note = "LKK row 57: 微 / bî; maintainer retains this source word separately from entry 8 bî / bî (LKK row 56)."
+moe_forms = []
+preferred_form = "微"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 57
+snapshot = "lkk-2024-05-10"

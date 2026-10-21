@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "káu-kuài"
+id = 1034
+moe_forms = []
+preferred_form = "狡怪"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 241
+snapshot = "lkk-2024-05-10"

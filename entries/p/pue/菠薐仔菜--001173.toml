@@ -1,0 +1,11 @@
+alternate_readings = ["pe-lîng-á-tshài"]
+canonical_tl = "pue-lîng-á-tshài"
+id = 1173
+moe_forms = []
+preferred_form = "菠薐仔菜"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 525
+snapshot = "lkk-2024-05-10"

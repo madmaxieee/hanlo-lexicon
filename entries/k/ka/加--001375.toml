@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "ka"
+id = 1375
+identity_note = "LKK row 219: 加 / ka; maintainer retains this source word separately from entry 64 ka / ka (LKK row 218); entry 72 ke / ke (LKK row 243)."
+moe_forms = []
+preferred_form = "加"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 219
+snapshot = "lkk-2024-05-10"

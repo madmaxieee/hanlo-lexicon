@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ē-tit"
+id = 963
+moe_forms = ["會得"]
+preferred_form = "ē得"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 87
+snapshot = "lkk-2024-05-10"

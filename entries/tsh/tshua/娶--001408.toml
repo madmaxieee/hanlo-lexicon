@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "tshuā"
+id = 1408
+identity_note = "LKK row 801: 娶 / tshuā; maintainer retains this source word separately from entry 267 tshuā / tshuā (LKK row 800)."
+moe_forms = []
+preferred_form = "娶"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 801
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "teh"
+id = 1398
+identity_note = "LKK row 642: 硩 / teh; maintainer retains this source word separately from entry 120 leh / leh (LKK row 376)."
+moe_forms = []
+preferred_form = "硩"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 642
+snapshot = "lkk-2024-05-10"

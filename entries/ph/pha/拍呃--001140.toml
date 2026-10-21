@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "phah-eh"
+id = 1140
+moe_forms = []
+preferred_form = "拍呃"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 469
+snapshot = "lkk-2024-05-10"

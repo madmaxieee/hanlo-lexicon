@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsim-tsiok"
+id = 1331
+moe_forms = []
+preferred_form = "斟酌"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 838
+snapshot = "lkk-2024-05-10"

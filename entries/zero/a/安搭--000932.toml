@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "an-tah"
+id = 932
+moe_forms = []
+preferred_form = "安搭"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 29
+snapshot = "lkk-2024-05-10"

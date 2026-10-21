@@ -1,0 +1,12 @@
+alternate_readings = ["lua̍h"]
+canonical_tl = "jua̍h"
+id = 1374
+identity_note = "LKK row 216: 熱 / jua̍h; maintainer retains this source word separately from entry 132 lua̍h / lua̍h (LKK row 416)."
+moe_forms = []
+preferred_form = "熱"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 216
+snapshot = "lkk-2024-05-10"

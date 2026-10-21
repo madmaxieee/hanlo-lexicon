@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lâng-kheh"
+id = 1100
+moe_forms = []
+preferred_form = "人客"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 368
+snapshot = "lkk-2024-05-10"

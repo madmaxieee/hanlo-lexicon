@@ -1,0 +1,11 @@
+alternate_readings = ["huînn-ti̍t"]
+canonical_tl = "huâinn-ti̍t"
+id = 990
+moe_forms = []
+preferred_form = "橫直"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 158
+snapshot = "lkk-2024-05-10"

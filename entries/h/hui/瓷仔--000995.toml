@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "huî-á"
+id = 995
+moe_forms = []
+preferred_form = "瓷仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 165
+snapshot = "lkk-2024-05-10"

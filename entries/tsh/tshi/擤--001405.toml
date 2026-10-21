@@ -1,0 +1,12 @@
+alternate_readings = ["tshǹg"]
+canonical_tl = "tshìng"
+id = 1405
+identity_note = "LKK row 783: 擤 / tshìng; maintainer retains this source word separately from entry 452 tshìng / tshìng (MOE word 11347)."
+moe_forms = []
+preferred_form = "擤"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 783
+snapshot = "lkk-2024-05-10"

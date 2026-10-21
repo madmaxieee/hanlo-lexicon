@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "liáu"
+id = 1384
+identity_note = "LKK row 388: 了 / liáu; maintainer retains this source word separately from entry 356 爪 / liáu (LKK row 203)."
+moe_forms = []
+preferred_form = "了"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 388
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "piān-sóo"
+id = 1157
+moe_forms = []
+preferred_form = "便所"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 499
+snapshot = "lkk-2024-05-10"

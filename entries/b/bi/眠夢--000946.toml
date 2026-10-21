@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "bîn-bāng"
+id = 946
+moe_forms = []
+preferred_form = "眠夢"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 63
+snapshot = "lkk-2024-05-10"

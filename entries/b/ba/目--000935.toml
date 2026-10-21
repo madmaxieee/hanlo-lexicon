@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ba̍k"
+id = 935
+moe_forms = []
+preferred_form = "目"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 41
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = ["ngāi-gio̍h"]
+canonical_tl = "gāi-gio̍h"
+id = 966
+moe_forms = []
+preferred_form = "礙虐"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 91
+snapshot = "lkk-2024-05-10"

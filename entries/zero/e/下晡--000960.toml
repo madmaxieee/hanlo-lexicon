@@ -1,0 +1,11 @@
+alternate_readings = ["ē-poo"]
+canonical_tl = "e-poo"
+id = 960
+moe_forms = []
+preferred_form = "下晡"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 79
+snapshot = "lkk-2024-05-10"

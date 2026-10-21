@@ -1,0 +1,11 @@
+alternate_readings = ["gún"]
+canonical_tl = "guán"
+id = 973
+moe_forms = []
+preferred_form = "阮"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 106
+snapshot = "lkk-2024-05-10"

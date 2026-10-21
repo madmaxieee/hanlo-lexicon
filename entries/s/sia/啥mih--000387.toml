@@ -5,10 +5,19 @@ moe_forms = ["啥物"]
 preferred_form = "啥mih"
 review_status = "imported"
 schema_version = 1
+usage_notes = "LKK row 559: 接名詞\nLKK row 560: 句尾"
 
 [[sources]]
 locator = "Article text line 31; normalized source characters 1052:1056; written form 啥mih"
 url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 559
+snapshot = "lkk-2024-05-10"
+
+[[sources]]
+row = 560
+snapshot = "lkk-2024-05-10"
 
 [[sources]]
 row = 564

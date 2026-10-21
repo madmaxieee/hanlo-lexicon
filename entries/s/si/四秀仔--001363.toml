@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sì-siù-á"
+id = 1363
+moe_forms = []
+preferred_form = "四秀仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 580
+snapshot = "lkk-2024-05-10"

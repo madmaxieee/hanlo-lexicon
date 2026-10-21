@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "suá"
+id = 1206
+moe_forms = []
+preferred_form = "徙"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 597
+snapshot = "lkk-2024-05-10"

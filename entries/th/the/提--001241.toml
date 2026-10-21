@@ -1,0 +1,11 @@
+alternate_readings = ["e̍h"]
+canonical_tl = "the̍h"
+id = 1241
+moe_forms = []
+preferred_form = "提"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 661
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "ê"
+id = 1370
+identity_note = "LKK row 78: 个 / ê; maintainer retains this source word separately from entry 335 ê / ê (LKK row 77)."
+moe_forms = []
+preferred_form = "个"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 78
+snapshot = "lkk-2024-05-10"

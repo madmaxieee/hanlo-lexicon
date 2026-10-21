@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tak-tînn"
+id = 1221
+moe_forms = ["觸纏"]
+preferred_form = "tak纏"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 622
+snapshot = "lkk-2024-05-10"

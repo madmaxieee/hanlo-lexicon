@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsa-bóo"
+id = 1274
+moe_forms = []
+preferred_form = "查某"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 729
+snapshot = "lkk-2024-05-10"

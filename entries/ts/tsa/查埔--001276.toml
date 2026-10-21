@@ -1,0 +1,11 @@
+alternate_readings = ["ta-poo"]
+canonical_tl = "tsa-poo"
+id = 1276
+moe_forms = []
+preferred_form = "查埔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 732
+snapshot = "lkk-2024-05-10"

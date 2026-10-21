@@ -1,0 +1,11 @@
+alternate_readings = ["lú"]
+canonical_tl = "jú"
+id = 1024
+moe_forms = []
+preferred_form = "愈"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 214
+snapshot = "lkk-2024-05-10"

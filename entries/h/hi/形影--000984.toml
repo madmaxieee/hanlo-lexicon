@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "hîng-iánn"
+id = 984
+moe_forms = []
+preferred_form = "形影"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 142
+snapshot = "lkk-2024-05-10"

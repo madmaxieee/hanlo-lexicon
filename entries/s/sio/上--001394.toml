@@ -1,0 +1,12 @@
+alternate_readings = ["siāng"]
+canonical_tl = "siōng"
+id = 1394
+identity_note = "LKK row 579: 上 / siōng; maintainer retains this source word separately from entry 288 tsiūnn / tsiūnn (LKK row 859)."
+moe_forms = []
+preferred_form = "上"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 579
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "thuah"
+id = 1399
+identity_note = "LKK row 678: 屜 / thuah; maintainer retains this source word separately from entry 226 thuah / thuah (LKK row 677)."
+moe_forms = []
+preferred_form = "屜"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 678
+snapshot = "lkk-2024-05-10"

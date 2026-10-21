@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tshiú-tiān"
+id = 1311
+moe_forms = []
+preferred_form = "手電"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 792
+snapshot = "lkk-2024-05-10"

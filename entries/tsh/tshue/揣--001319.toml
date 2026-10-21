@@ -1,0 +1,11 @@
+alternate_readings = ["tshē"]
+canonical_tl = "tshuē"
+id = 1319
+moe_forms = []
+preferred_form = "揣"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 809
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = ["piàn-tsiânn"]
+canonical_tl = "pìnn-tsiânn"
+id = 1160
+moe_forms = []
+preferred_form = "變tsiânn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 506
+snapshot = "lkk-2024-05-10"

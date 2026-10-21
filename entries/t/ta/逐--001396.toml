@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "ta̍k"
+id = 1396
+identity_note = "LKK row 619: 逐 / ta̍k; maintainer retains this source word separately from entry 59 jiok / jiok (LKK row 207)."
+moe_forms = []
+preferred_form = "逐"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 619
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = ["bé--à"]
+canonical_tl = "bué--à"
+id = 955
+moe_forms = []
+preferred_form = "尾--à"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 74
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,19 @@
+alternate_readings = ["guē"]
+canonical_tl = "guā"
+id = 972
+moe_forms = []
+preferred_form = "外"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 104
+snapshot = "lkk-2024-05-10"
+
+[[sources]]
+row = 105
+snapshot = "lkk-2024-05-10"
+
+[[sources]]
+row = 107
+snapshot = "lkk-2024-05-10"

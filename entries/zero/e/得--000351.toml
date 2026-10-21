@@ -1,4 +1,4 @@
-alternate_readings = ["lih", "lit", "tsit"]
+alternate_readings = ["lih", "lit", "tit", "tsit"]
 canonical_tl = "eh"
 id = 351
 moe_forms = []

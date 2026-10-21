@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ba̍k-sái"
+id = 936
+moe_forms = []
+preferred_form = "目屎"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 43
+snapshot = "lkk-2024-05-10"

@@ -14,3 +14,7 @@ url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-e.html"
 row = 11930
 sheet = "詞目"
 snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 779
+snapshot = "lkk-2024-05-10"

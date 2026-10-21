@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsha̍k-ba̍k"
+id = 1291
+moe_forms = ["鑿目"]
+preferred_form = "tsha̍k目"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 756
+snapshot = "lkk-2024-05-10"

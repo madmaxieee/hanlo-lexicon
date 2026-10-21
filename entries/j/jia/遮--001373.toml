@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "jia"
+id = 1373
+identity_note = "LKK row 200: 遮 / jia; maintainer retains this source word separately from entry 271 tsia / tsia (LKK row 815); entry 276 tsiah / tsiah (LKK row 821)."
+moe_forms = []
+preferred_form = "遮"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 200
+snapshot = "lkk-2024-05-10"

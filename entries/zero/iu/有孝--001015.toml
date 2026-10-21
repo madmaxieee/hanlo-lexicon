@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "iú-hàu"
+id = 1015
+moe_forms = []
+preferred_form = "有孝"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 197
+snapshot = "lkk-2024-05-10"

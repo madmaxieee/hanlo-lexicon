@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kik"
+id = 1069
+moe_forms = []
+preferred_form = "激"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 316
+snapshot = "lkk-2024-05-10"

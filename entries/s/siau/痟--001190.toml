@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "siáu"
+id = 1190
+moe_forms = []
+preferred_form = "痟"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 562
+snapshot = "lkk-2024-05-10"

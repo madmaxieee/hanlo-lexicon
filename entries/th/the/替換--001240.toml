@@ -1,0 +1,11 @@
+alternate_readings = ["thuè-uānn"]
+canonical_tl = "thè-uānn"
+id = 1240
+moe_forms = []
+preferred_form = "替換"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 660
+snapshot = "lkk-2024-05-10"

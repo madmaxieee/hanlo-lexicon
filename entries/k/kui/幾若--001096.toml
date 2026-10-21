@@ -1,0 +1,11 @@
+alternate_readings = ["kuí-lō", "kuí-ā"]
+canonical_tl = "kuí-nā"
+id = 1096
+moe_forms = []
+preferred_form = "幾若"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 356
+snapshot = "lkk-2024-05-10"

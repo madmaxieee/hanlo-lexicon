@@ -1,0 +1,11 @@
+alternate_readings = ["siān-lâng-á", "siān-tâng-á", "siān-âng-á", "sîn-âng-á"]
+canonical_tl = "siān-thâng-á"
+id = 1188
+moe_forms = []
+preferred_form = "蟮蟲仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 557
+snapshot = "lkk-2024-05-10"

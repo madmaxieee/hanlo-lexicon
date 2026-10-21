@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lōo-lê"
+id = 1117
+moe_forms = []
+preferred_form = "露螺"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 411
+snapshot = "lkk-2024-05-10"

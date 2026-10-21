@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "liáu-kái"
+id = 1107
+moe_forms = []
+preferred_form = "了解"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 386
+snapshot = "lkk-2024-05-10"

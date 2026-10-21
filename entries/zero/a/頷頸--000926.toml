@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ām-kún"
+id = 926
+moe_forms = []
+preferred_form = "頷頸"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 20
+snapshot = "lkk-2024-05-10"

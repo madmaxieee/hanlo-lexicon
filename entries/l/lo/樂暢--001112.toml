@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lo̍k-thiòng"
+id = 1112
+moe_forms = []
+preferred_form = "樂暢"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 404
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = ["heh", "hennh"]
+canonical_tl = "hioh"
+id = 985
+moe_forms = []
+preferred_form = "歇"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 143
+snapshot = "lkk-2024-05-10"

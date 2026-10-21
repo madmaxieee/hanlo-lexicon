@@ -14,3 +14,7 @@ url = "https://tsbp.tgb.org.tw/2016/08/e_02142982824.html"
 row = 5613
 sheet = "詞目"
 snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 824
+snapshot = "lkk-2024-05-10"

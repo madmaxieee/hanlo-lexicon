@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "tshīng"
+id = 1406
+identity_note = "LKK row 784: 穿 / tshīng; maintainer retains this source word separately from entry 259 tshng / tshng (LKK row 785)."
+moe_forms = []
+preferred_form = "穿"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 784
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "hūn"
+id = 998
+moe_forms = []
+preferred_form = "份"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 168
+snapshot = "lkk-2024-05-10"

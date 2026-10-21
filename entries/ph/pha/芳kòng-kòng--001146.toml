@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "phang-kòng-kòng"
+id = 1146
+moe_forms = ["芳貢貢"]
+preferred_form = "芳kòng-kòng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 475
+snapshot = "lkk-2024-05-10"

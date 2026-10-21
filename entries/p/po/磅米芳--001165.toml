@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "pōng-bí-phang"
+id = 1165
+moe_forms = []
+preferred_form = "磅米芳"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 512
+snapshot = "lkk-2024-05-10"

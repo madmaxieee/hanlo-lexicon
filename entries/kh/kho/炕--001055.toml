@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "khòng"
+id = 1055
+moe_forms = []
+preferred_form = "炕"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 295
+snapshot = "lkk-2024-05-10"

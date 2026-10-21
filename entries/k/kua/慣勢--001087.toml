@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kuàn-sì"
+id = 1087
+moe_forms = []
+preferred_form = "慣勢"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 344
+snapshot = "lkk-2024-05-10"

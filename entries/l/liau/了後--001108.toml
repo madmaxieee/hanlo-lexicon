@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "liáu-āu"
+id = 1108
+moe_forms = []
+preferred_form = "了後"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 387
+snapshot = "lkk-2024-05-10"

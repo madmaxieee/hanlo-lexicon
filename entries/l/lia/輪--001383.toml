@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "lián"
+id = 1383
+identity_note = "LKK row 382: 輪 / lián; maintainer retains this source word separately from entry 123 lián / lián (LKK row 383)."
+moe_forms = []
+preferred_form = "輪"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 382
+snapshot = "lkk-2024-05-10"

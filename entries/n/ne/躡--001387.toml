@@ -1,0 +1,12 @@
+alternate_readings = ["nih"]
+canonical_tl = "neh"
+id = 1387
+identity_note = "LKK row 434: 躡 / neh; maintainer retains this source word separately from entry 153 neh / neh (MOE word 3687, LKK row 435); entry 159 nih / nih (MOE word 3686, LKK row 445); entry 360 裡 / nih (LKK row 379)."
+moe_forms = []
+preferred_form = "躡"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 434
+snapshot = "lkk-2024-05-10"

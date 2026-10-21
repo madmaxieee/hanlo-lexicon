@@ -1,0 +1,11 @@
+alternate_readings = ["liah"]
+canonical_tl = "jiah"
+id = 1017
+moe_forms = []
+preferred_form = "跡"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 201
+snapshot = "lkk-2024-05-10"

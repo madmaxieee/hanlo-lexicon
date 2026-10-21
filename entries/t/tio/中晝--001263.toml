@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tiong-tàu"
+id = 1263
+moe_forms = []
+preferred_form = "中晝"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 708
+snapshot = "lkk-2024-05-10"

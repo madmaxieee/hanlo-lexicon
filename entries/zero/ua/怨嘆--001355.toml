@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "uàn-thàn"
+id = 1355
+moe_forms = []
+preferred_form = "怨嘆"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 883
+snapshot = "lkk-2024-05-10"

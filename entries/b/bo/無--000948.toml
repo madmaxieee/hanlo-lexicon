@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "bô"
+id = 948
+moe_forms = []
+preferred_form = "無"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 65
+snapshot = "lkk-2024-05-10"

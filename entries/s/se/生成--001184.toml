@@ -1,0 +1,11 @@
+alternate_readings = ["senn-tsiânn", "sinn-sîng", "sinn-tsiânn"]
+canonical_tl = "senn-sîng"
+id = 1184
+moe_forms = []
+preferred_form = "生成"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 549
+snapshot = "lkk-2024-05-10"

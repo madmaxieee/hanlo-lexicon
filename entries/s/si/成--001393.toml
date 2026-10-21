@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "sîng"
+id = 1393
+identity_note = "LKK row 570: 成 / sîng; maintainer retains this source word separately from entry 286 tsiânn / tsiânn (LKK row 830)."
+moe_forms = []
+preferred_form = "成"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 570
+snapshot = "lkk-2024-05-10"

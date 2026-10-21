@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "suann-phiânn"
+id = 1209
+moe_forms = ["山坡地"]
+preferred_form = "山坪"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 604
+snapshot = "lkk-2024-05-10"

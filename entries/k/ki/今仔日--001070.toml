@@ -1,0 +1,11 @@
+alternate_readings = ["kin-á-li̍t"]
+canonical_tl = "kin-á-ji̍t"
+id = 1070
+moe_forms = []
+preferred_form = "今仔日"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 317
+snapshot = "lkk-2024-05-10"

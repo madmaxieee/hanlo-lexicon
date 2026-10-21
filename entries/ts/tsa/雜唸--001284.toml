@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsa̍p-liām"
+id = 1284
+moe_forms = []
+preferred_form = "雜唸"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 743
+snapshot = "lkk-2024-05-10"

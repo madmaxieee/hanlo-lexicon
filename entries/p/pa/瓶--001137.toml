@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "pân"
+id = 1137
+moe_forms = []
+preferred_form = "瓶"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 462
+snapshot = "lkk-2024-05-10"

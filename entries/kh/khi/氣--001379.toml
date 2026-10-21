@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "khì"
+id = 1379
+identity_note = "LKK row 273: 氣 / khì; maintainer retains this source word separately from entry 95 khuì / khuì (LKK row 300)."
+moe_forms = []
+preferred_form = "氣"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 273
+snapshot = "lkk-2024-05-10"

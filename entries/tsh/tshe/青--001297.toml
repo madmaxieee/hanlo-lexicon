@@ -1,0 +1,11 @@
+alternate_readings = ["tshinn"]
+canonical_tl = "tshenn"
+id = 1297
+moe_forms = []
+preferred_form = "青"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 763
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "ngeh"
+id = 1388
+identity_note = "LKK row 439: 莢 / ngeh; maintainer retains this source word separately from entry 154 ngeh / ngeh (LKK row 438)."
+moe_forms = []
+preferred_form = "莢"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 439
+snapshot = "lkk-2024-05-10"

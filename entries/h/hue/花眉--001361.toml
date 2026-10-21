@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "hue-bî"
+id = 1361
+moe_forms = []
+preferred_form = "花眉"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 163
+snapshot = "lkk-2024-05-10"

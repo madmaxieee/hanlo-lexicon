@@ -16,6 +16,10 @@ sheet = "詞目"
 snapshot = "moe-kautian-3e0b2023e0bd"
 
 [[sources]]
+row = 202
+snapshot = "lkk-2024-05-10"
+
+[[sources]]
 row = 989
 sheet = "又唸作"
 snapshot = "moe-kautian-3e0b2023e0bd"

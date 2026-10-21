@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kôo"
+id = 1085
+moe_forms = []
+preferred_form = "糊"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 340
+snapshot = "lkk-2024-05-10"

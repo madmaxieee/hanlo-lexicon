@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ta̍k-ê"
+id = 1219
+moe_forms = []
+preferred_form = "逐个"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 620
+snapshot = "lkk-2024-05-10"

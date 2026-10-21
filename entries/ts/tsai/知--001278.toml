@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsai"
+id = 1278
+moe_forms = []
+preferred_form = "知"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 735
+snapshot = "lkk-2024-05-10"

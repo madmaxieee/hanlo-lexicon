@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "bú"
+id = 952
+moe_forms = []
+preferred_form = "舞"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 71
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "hái-íng"
+id = 976
+moe_forms = []
+preferred_form = "海湧"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 115
+snapshot = "lkk-2024-05-10"

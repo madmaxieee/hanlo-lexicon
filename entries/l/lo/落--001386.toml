@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "lo̍h"
+id = 1386
+identity_note = "LKK row 402: 落 / lo̍h; maintainer retains this source word separately from entry 118 lak / lak (LKK row 364); entry 133 làu / làu (LKK row 373)."
+moe_forms = []
+preferred_form = "落"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 402
+snapshot = "lkk-2024-05-10"

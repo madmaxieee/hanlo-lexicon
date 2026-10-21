@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "khí-thok-á"
+id = 1045
+moe_forms = ["齒戳仔"]
+preferred_form = "齒thok仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 272
+snapshot = "lkk-2024-05-10"

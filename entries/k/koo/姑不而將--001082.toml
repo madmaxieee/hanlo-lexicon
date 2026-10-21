@@ -1,0 +1,11 @@
+alternate_readings = ["koo-put-lî-tsiong"]
+canonical_tl = "koo-put-jî-tsiong"
+id = 1082
+moe_forms = []
+preferred_form = "姑不而將"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 335
+snapshot = "lkk-2024-05-10"

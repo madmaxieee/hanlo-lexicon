@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "bān-tshiánn"
+id = 940
+moe_forms = []
+preferred_form = "慢且"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 47
+snapshot = "lkk-2024-05-10"

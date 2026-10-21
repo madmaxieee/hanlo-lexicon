@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsi̍t-sut-á"
+id = 1339
+moe_forms = []
+preferred_form = "一屑仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 854
+snapshot = "lkk-2024-05-10"

@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "ah"
+id = 1366
+identity_note = "LKK row 11: 啊 / ah; maintainer retains this source word separately from entry 54 iah / iah (LKK row 176); entry 57 iáu / iáu (LKK row 184)."
+moe_forms = []
+preferred_form = "啊"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 11
+snapshot = "lkk-2024-05-10"

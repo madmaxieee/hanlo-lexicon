@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ô"
+id = 1133
+moe_forms = []
+preferred_form = "蚵"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 454
+snapshot = "lkk-2024-05-10"

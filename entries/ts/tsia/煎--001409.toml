@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "tsian"
+id = 1409
+identity_note = "LKK row 827: 煎 / tsian; maintainer retains this source word separately from entry 289 tsuann / tsuann (LKK row 865)."
+moe_forms = []
+preferred_form = "煎"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 827
+snapshot = "lkk-2024-05-10"

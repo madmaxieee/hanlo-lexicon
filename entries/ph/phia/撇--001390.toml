@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "phiat"
+id = 1390
+identity_note = "LKK row 479: 撇 / phiat; maintainer retains this source word separately from entry 822 phiat / phiat (MOE word 13500)."
+moe_forms = []
+preferred_form = "撇"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 479
+snapshot = "lkk-2024-05-10"

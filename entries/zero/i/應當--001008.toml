@@ -1,0 +1,11 @@
+alternate_readings = ["ìng-tong"]
+canonical_tl = "ing-tong"
+id = 1008
+moe_forms = []
+preferred_form = "應當"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 190
+snapshot = "lkk-2024-05-10"

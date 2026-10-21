@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "kuà"
+id = 1382
+identity_note = "LKK row 343: 蓋 / kuà; maintainer retains this source word separately from entry 66 kah / kah (LKK row 225); entry 919 kài / kài (MOE word 10786)."
+moe_forms = []
+preferred_form = "蓋"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 343
+snapshot = "lkk-2024-05-10"

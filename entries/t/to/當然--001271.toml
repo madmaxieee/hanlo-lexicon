@@ -1,0 +1,11 @@
+alternate_readings = ["tong-liân"]
+canonical_tl = "tong-jiân"
+id = 1271
+moe_forms = []
+preferred_form = "當然"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 725
+snapshot = "lkk-2024-05-10"

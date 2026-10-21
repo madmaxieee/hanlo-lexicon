@@ -1,0 +1,11 @@
+alternate_readings = ["tiau-kang"]
+canonical_tl = "thiau-kang"
+id = 1244
+moe_forms = []
+preferred_form = "刁工"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 665
+snapshot = "lkk-2024-05-10"

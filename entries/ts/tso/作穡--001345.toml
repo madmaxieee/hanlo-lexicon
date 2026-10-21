@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsoh-sit"
+id = 1345
+moe_forms = []
+preferred_form = "作穡"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 861
+snapshot = "lkk-2024-05-10"

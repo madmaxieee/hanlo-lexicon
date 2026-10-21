@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "sàn-tsia̍h"
+id = 1178
+moe_forms = []
+preferred_form = "散食"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 540
+snapshot = "lkk-2024-05-10"

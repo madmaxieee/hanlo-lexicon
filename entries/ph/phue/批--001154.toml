@@ -1,0 +1,11 @@
+alternate_readings = ["phe"]
+canonical_tl = "phue"
+id = 1154
+moe_forms = []
+preferred_form = "批"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 493
+snapshot = "lkk-2024-05-10"

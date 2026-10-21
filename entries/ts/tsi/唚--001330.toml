@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tsim"
+id = 1330
+moe_forms = []
+preferred_form = "唚"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 837
+snapshot = "lkk-2024-05-10"

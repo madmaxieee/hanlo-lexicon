@@ -1,0 +1,11 @@
+alternate_readings = ["khing-hun"]
+canonical_tl = "khîng-hun"
+id = 1050
+moe_forms = ["窮分"]
+preferred_form = "khîng分"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 282
+snapshot = "lkk-2024-05-10"

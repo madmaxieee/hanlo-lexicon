@@ -1,6 +1,12 @@
 # Working instructions
 
-- Use Jujutsu (`jj`) for version control; this is a colocated Git-backed repository.
+- Use Jujutsu (`jj`) for version control when it is available; otherwise use the
+  repository's existing version-control tooling. Do not initialize or migrate VCS
+  as part of this preference.
+- Preserve unrelated working changes. Consult installed command help when syntax
+  or behavior is uncertain, rather than translating Git flags into jj commands.
+- For jj workspace creation, reuse, handoff, or cleanup, use
+  `.agents/skills/jj-workspaces/SKILL.md`.
 - Keep this repository local until the maintainer explicitly requests publishing.
 - Use the project-local `.agents/skills/maintain-lexicon/SKILL.md` for vocabulary
   maintenance. Read `schema/README.md` before editing entries.

@@ -44,6 +44,8 @@ See `tools/README.md` for examples and GitHub Actions build/release instructions
 Optional `hanji_forms` records Hanji spellings independently of MOE inclusion;
 it is lookup metadata and does not add CSV output rows. The TSBP discovery and
 review tools are documented in `tools/tsbp/README.md`.
+For read-only pure-Hanji corpus matching, overlap analysis, and combo coverage,
+see [pure-Hanji discovery](tools/README.md#pure-hanji-corpus-discovery).
 Both GitHub workflows generate both CSV versions. Tagged releases include
 `lexicon.csv`, `lexicon-all.csv`, `SHA256SUMS`, and `RIGHTS.md`.
 JSON exports and contribution forms are not implemented.

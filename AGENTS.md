@@ -13,9 +13,14 @@
 - Keep source snapshots byte-for-byte unchanged; add a new snapshot for a new edition.
 - Preserve source wording and provenance. Do not invent meanings, examples, usage
   restrictions, pronunciation rules, or editorial rationale.
-- Keep imported records marked `imported` until a human reviews them.
+- Keep unreviewed imports marked `imported`. Use `machine-reviewed` after contextual
+  model screening, with model and evidence provenance; reserve `reviewed` for
+  explicit human review. Batch import authorization alone is not individual review.
 - Treat written form plus canonical TL as a duplicate-check candidate, not a unique
   editorial identity. Preserve unrelated homographs with distinct `identity_note`s.
+- When a substantive MOE entry and a surname appendix record have the same form
+  and canonical reading, use the substantive entry with actual definitions;
+  do not create a separate entry from the surname appendix duplicate.
 - Use `tools/lexicon.py` for duplicate checks, ID allocation, formatting, and validation.
   Never manually allocate an ID or skip offline MOE checks when adding an entry.
 - Run `python3 tools/lexicon.py validate` and `format --check` after data edits;

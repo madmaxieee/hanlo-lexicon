@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tsip-tsìng"
+editorial_rationale = "Corpus-backed Hanji proposal automatically screened by gpt-6-luna (medium reasoning), MOE identity 24096; issue 390 model-review SHA-256 ce58f8aa5fe363687343f7cd468a1bd9aed6c8c8538a485efc2fdefec61caf34. Batch import authorized by the maintainer without individual human review."
+id = 1442
+moe_forms = []
+preferred_form = "執政"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 390; article text line 107; corpus Unicode code points 3885:3887; literal form 執政"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 20761
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

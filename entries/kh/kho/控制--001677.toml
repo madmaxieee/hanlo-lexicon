@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "khòng-tsè"
+editorial_rationale = "Corpus-backed Hanji proposal automatically screened by gpt-6-luna (medium reasoning), MOE identity 22182; issue 390 model-review SHA-256 ce58f8aa5fe363687343f7cd468a1bd9aed6c8c8538a485efc2fdefec61caf34. Batch import authorized by the maintainer without individual human review."
+id = 1677
+moe_forms = []
+preferred_form = "控制"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 390; article text line 117; corpus Unicode code points 4494:4496; literal form 控制"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 18847
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

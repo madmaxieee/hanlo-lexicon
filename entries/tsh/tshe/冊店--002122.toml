@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tsheh-tiàm"
+editorial_rationale = "Corpus-backed Hanji proposal automatically screened by gpt-6-luna (medium reasoning), MOE identity 1332; issue 390 model-review SHA-256 ce58f8aa5fe363687343f7cd468a1bd9aed6c8c8538a485efc2fdefec61caf34. Batch import authorized by the maintainer without individual human review."
+id = 2122
+moe_forms = []
+preferred_form = "冊店"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 390; article text line 11; corpus Unicode code points 848:850; literal form 冊店"
+url = "https://tsbp.tgb.org.tw/2016/09/2026-e_01697817624.html"
+
+[[sources]]
+row = 1333
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

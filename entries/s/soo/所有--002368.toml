@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "sóo-ū"
+editorial_rationale = "Corpus-backed Hanji proposal automatically screened by gpt-6-luna (medium reasoning), MOE identity 4010; issue 390 model-review SHA-256 ce58f8aa5fe363687343f7cd468a1bd9aed6c8c8538a485efc2fdefec61caf34. Maintainer selected MOE identity 4010 for 所有 / sóo-ū, meaning all, in 所有ê人; the cited occurrence does not support the possess sense of identity 4009."
+id = 2368
+moe_forms = []
+preferred_form = "所有"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 390; article text line 79; corpus Unicode code points 2699:2701; literal form 所有"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 4010
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

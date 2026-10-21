@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "thuân-înn"
+editorial_rationale = "Corpus-backed Hanji proposal automatically screened by gpt-6-luna (medium reasoning), MOE identity 10433; issue 390 model-review SHA-256 ce58f8aa5fe363687343f7cd468a1bd9aed6c8c8538a485efc2fdefec61caf34. Batch import authorized by the maintainer without individual human review."
+id = 1665
+moe_forms = []
+preferred_form = "團圓"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 390; article text line 26; corpus Unicode code points 232:234; literal form 團圓"
+url = "https://tsbp.tgb.org.tw/2016/09/e_01456297451.html"
+
+[[sources]]
+row = 10430
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "bûn-tàn"
+editorial_rationale = "Corpus-backed Hanji proposal automatically screened by gpt-6-luna (medium reasoning), MOE identity 873; issue 390 model-review SHA-256 ce58f8aa5fe363687343f7cd468a1bd9aed6c8c8538a485efc2fdefec61caf34. Batch import authorized by the maintainer without individual human review."
+id = 1705
+moe_forms = []
+preferred_form = "文旦"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 390; article text line 9; corpus Unicode code points 709:711; literal form 文旦"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 874
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

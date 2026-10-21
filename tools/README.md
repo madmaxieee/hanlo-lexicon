@@ -56,6 +56,13 @@ Before adding, include `sources` with original evidence, as documented in
 `schema/README.md`. Do not supply an ID. Optional prose fields are accepted;
 otherwise array fields default to empty and status defaults to `imported`.
 
+For entries screened by a model against source context, explicitly include
+`"review_status": "machine-reviewed"`. Record the model, review scope and evidence
+in `editorial_rationale` and `sources`. Mechanical import or validation alone
+leaves the status `imported`; reserve `reviewed` for explicit human review.
+Authorizing a batch import does not imply individual human review. Review status
+is preserved as provenance and does not change CSV inclusion or `rule_generated`.
+
 For a preferred spelling inferred solely from writing rules, include
 `"rule_generated": true` in the JSON request. This optional boolean is preserved
 as `rule_generated = true` in TOML. Ordinary source-backed or curated entries
@@ -260,7 +267,7 @@ output (for example, only generated evidence or an unalignable preferred form).
 It does **not** enumerate every unobserved Hanji/reading pair in MOE. Roman-only
 entries without Hanji metadata are listed as lacking aligned Hanji positions.
 Consistency is distinct from support: one agreeing entry remains one observation,
-and `imported` status is retained without implying human review.
+and `imported` or `machine-reviewed` status is retained without implying human review.
 
 The Markdown report includes all conflicts, unknown and consistent combos, a
 skip audit, and provenance. Each combo has its own section with outputs followed
@@ -346,8 +353,9 @@ The current recommendation inventory uses only canonical TL, aligns each recorde
 once per combo/output. A contiguous pure-Hanji preferred form can supply its own
 Hanji alignment. Contractions and uncertain alignments are skipped with reasons.
 Entries marked `rule_generated = true` or `disputed` do not supply recommendations;
-`imported` is not reinterpreted as human review. Conflicting recommendations retain
-all supporting entry IDs. Corpus observations never resolve these conflicts.
+`imported` and `machine-reviewed` are not reinterpreted as human review. Conflicting
+recommendations retain all supporting entry IDs. Corpus observations never resolve
+these conflicts.
 
 ### Outputs and review queues
 
@@ -392,3 +400,15 @@ Run the behavioral fixture tests with the ordinary maintenance suite:
 ```sh
 python3 -m unittest discover -s tests -v
 ```
+
+For a contextual quick pass on the complete `batch_proposal` and `agreement_only`
+queues, use the project-local [review-hanji skill](../.agents/skills/review-hanji/SKILL.md).
+`tools/review_hanji.py prepare --harvest PATH --out PATH` creates sealed review
+packets with wider literal contexts and source-line language labels. Lightweight
+subagents return recommendations, combo-only evidence, holds, or rejections.
+`tools/review_hanji.py collect --run PATH` verifies input freshness, exact candidate
+coverage and cited evidence, then writes `review.json` and `review.md`. The quick
+pass may relax Han-run boundaries and ignore irrelevant component readings when
+context supports a compound. It never imports entries or marks them human-reviewed.
+When an import is subsequently authorized, use `machine-reviewed` for its
+contextually screened recommendations and retain model and source provenance.

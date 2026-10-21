@@ -21,7 +21,14 @@ format files, and validate this schema.
   `hanji_forms = ["𠞭心"]` without asserting a MOE compound entry. Cite supporting
   evidence in `sources`; omit the field when unknown. These forms participate in
   offline lookups and duplicate checks, but do not generate recommended CSV rows.
-- `review_status`: `imported`, `reviewed`, or `disputed`.
+- `review_status`: `imported` for records without recorded contextual review;
+  `machine-reviewed` for records screened by a model against source context,
+  without individual human review; `reviewed` for explicitly human-reviewed
+  records; or `disputed` for unresolved editorial concerns. Mechanical import,
+  rule generation, and validation alone do not qualify as machine review. Record
+  the model, review scope, and evidence in `editorial_rationale` and `sources`.
+  Batch import authorization alone does not constitute individual human review.
+  Review status is TOML provenance metadata and does not change CSV inclusion.
 - `rule_generated`: optional boolean. Set `true` when the preferred spelling was
   inferred solely from writing rules and that recommendation has no supporting
   corpus evidence or human curation. Dictionary citations can still establish

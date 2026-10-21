@@ -50,8 +50,10 @@
       "type": "string"
     },
     "review_status": {
+      "description": "imported: no contextual review recorded; machine-reviewed: contextual model review without individual human review; reviewed: explicitly human-reviewed; disputed: unresolved editorial concerns.",
       "enum": [
         "imported",
+        "machine-reviewed",
         "reviewed",
         "disputed"
       ]

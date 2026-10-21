@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "pu̍t-tsóo"
+editorial_rationale = "Corpus-backed Hanji proposal automatically screened by gpt-6-luna (medium reasoning), MOE identity 2917; issue 390 model-review SHA-256 ce58f8aa5fe363687343f7cd468a1bd9aed6c8c8538a485efc2fdefec61caf34. Batch import authorized by the maintainer without individual human review."
+id = 1789
+moe_forms = []
+preferred_form = "佛祖"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 390; article text line 45; corpus Unicode code points 3204:3206; literal form 佛祖"
+url = "https://tsbp.tgb.org.tw/2016/09/e_0979336935.html"
+
+[[sources]]
+row = 2918
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

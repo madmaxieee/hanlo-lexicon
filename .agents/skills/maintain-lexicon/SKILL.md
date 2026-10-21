@@ -35,14 +35,32 @@ Use `python3 tools/lexicon.py`; do not invent an ID or hand-format generated TOM
    entries. Do not reintroduce removed meanings, example, or variant-spelling
    fields. Definitions shown during lookup remain external review evidence.
 6. Run `add REQUEST.json`. It repeats the checks under a writer lock, allocates
-   the next integer, and creates the canonical file. New records stay `imported`
-   unless the user has explicitly reviewed them. A request to add a word already
-   authorizes this local addition; there is no separate blanket approval step.
+   the next integer, and creates the canonical file. Default to `imported` for
+   unreviewed records. After contextual model screening, explicitly request
+   `review_status: "machine-reviewed"` and record the model, review scope, and
+   evidence in `editorial_rationale` and `sources`. Mechanical checks alone do
+   not qualify. Reserve `reviewed` for explicit human review; batch import
+   authorization alone does not qualify as individual review. A request to add a
+   word already authorizes this local addition; there is no separate blanket approval step.
 7. Run `validate` and `format --check`. Report the resulting file/ID, relevant
    dictionary matches, and unresolved editorial issues. Keep the repository local
    and leave commit/publish actions to the user's instruction.
 
 ## Import conflicts require maintainer review
+
+For the same written form and canonical reading, always prefer a substantive MOE
+entry with actual definitions over an `附錄－百家姓` surname appendix duplicate.
+Use the substantive entry's original source row and retain the appendix identity
+only in the import audit as excluded. This is the maintainer's standing resolution;
+do not ask again for this duplicate pattern or invent a definition when none exists.
+The preference selects dictionary identity; it does not establish that a corpus
+span uses any particular sense or is an independent word.
+
+Sharing a canonical reading alone is not an import conflict. When written forms
+and dictionary identities differ, inspect the source context and continue if it
+supports both proposals. Do not create a human-review hold solely for homophones.
+Questions about a matched span occurring only inside a compound are separate
+from duplicate identity and must state that actual evidence concern.
 
 When an import approval overlaps an existing entry, show the maintainer the
 approved form/reading, existing ID and form/readings, relevant source identities,

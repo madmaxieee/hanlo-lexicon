@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tsit-lí"
+editorial_rationale = "Corpus-backed Hanji proposal automatically screened by gpt-6-luna (medium reasoning), MOE identity 12555; issue 390 model-review SHA-256 ce58f8aa5fe363687343f7cd468a1bd9aed6c8c8538a485efc2fdefec61caf34. Batch import authorized by the maintainer without individual human review."
+id = 1925
+moe_forms = []
+preferred_form = "織女"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 390; article text line 5; corpus Unicode code points 23:25; literal form 織女"
+url = "https://tsbp.tgb.org.tw/2016/09/blog-post_505.html"
+
+[[sources]]
+row = 12549
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

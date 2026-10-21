@@ -127,6 +127,22 @@ class MaintenanceTests(unittest.TestCase):
         self.assertIs(tomllib.loads(path.read_text())['rule_generated'], False)
         self.assertEqual(self.run_cli('validate')['entries'], 1)
 
+    def test_machine_review_status_round_trips_without_human_promotion_or_export_change(self):
+        added = self.run_cli('add', str(self.request(review_status='machine-reviewed')))
+        path = self.root / added['created']
+        data = tomllib.loads(path.read_text())
+        self.assertEqual(data['review_status'], 'machine-reviewed')
+        self.assertNotIn('rule_generated', data)
+        before = path.read_bytes()
+        self.run_cli('format')
+        self.assertEqual(path.read_bytes(), before)
+        self.assertEqual(self.run_cli('validate')['entries'], 1)
+        self.assertEqual(self.run_cli('build-csv')['rows'], 1)
+        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl'], ['beh', 'beh']])
+        self.run_cli('add', str(self.request(form='other', reading='other',
+                                           review_status='machine_reviewed')), expected=2)
+        self.assertEqual(self.run_cli('next-id')['next_id'], 2)
+
     def test_rule_generated_rejects_non_booleans_and_still_requires_sources(self):
         for invalid in [1, 0, 'true', 'false', [], None]:
             with self.subTest(value=invalid):

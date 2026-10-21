@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "uē-sái"
+editorial_rationale = "Corpus-backed Hanji proposal automatically screened by gpt-6-luna (medium reasoning), MOE identity 10088; issue 390 model-review SHA-256 ce58f8aa5fe363687343f7cd468a1bd9aed6c8c8538a485efc2fdefec61caf34. Batch import authorized by the maintainer without individual human review."
+id = 1886
+moe_forms = []
+preferred_form = "話屎"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 390; article text line 19; corpus Unicode code points 161:163; literal form 話屎"
+url = "https://tsbp.tgb.org.tw/2016/09/mai.html"
+
+[[sources]]
+row = 10085
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

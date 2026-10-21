@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "sī"
+editorial_rationale = "Corpus-backed Hanji proposal automatically screened by gpt-6-luna (medium reasoning), MOE identity 2282; issue 390 model-review SHA-256 ce58f8aa5fe363687343f7cd468a1bd9aed6c8c8538a485efc2fdefec61caf34. Batch import authorized by the maintainer without individual human review. Maintainer explicitly resolved the shared-reading hold by retaining both written forms in this group; contextual screening remains model review."
+id = 2360
+moe_forms = []
+preferred_form = "寺"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 390; article text line 66; corpus Unicode code points 378:379; literal form 寺"
+url = "https://tsbp.tgb.org.tw/2016/09/blog-post_505.html"
+
+[[sources]]
+row = 2283
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "kuan-huâi"
+editorial_rationale = "Corpus-backed Hanji proposal automatically screened by gpt-6-luna (medium reasoning), MOE identity 23108; issue 390 model-review SHA-256 ce58f8aa5fe363687343f7cd468a1bd9aed6c8c8538a485efc2fdefec61caf34. Batch import authorized by the maintainer without individual human review."
+id = 2000
+moe_forms = []
+preferred_form = "關懷"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 390; article text line 1; corpus Unicode code points 92:94; literal form 關懷"
+url = "https://tsbp.tgb.org.tw/2016/09/2026.html"
+
+[[sources]]
+row = 19773
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

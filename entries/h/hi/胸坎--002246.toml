@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "hing-khám"
+editorial_rationale = "Corpus-backed Hanji proposal automatically screened by gpt-6-luna (medium reasoning), MOE identity 6497; issue 390 model-review SHA-256 ce58f8aa5fe363687343f7cd468a1bd9aed6c8c8538a485efc2fdefec61caf34. Batch import authorized by the maintainer without individual human review."
+id = 2246
+moe_forms = []
+preferred_form = "胸坎"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 390; article text line 23; corpus Unicode code points 694:696; literal form 胸坎"
+url = "https://tsbp.tgb.org.tw/2016/09/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 6496
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

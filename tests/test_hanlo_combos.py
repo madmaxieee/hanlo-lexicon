@@ -46,6 +46,16 @@ class EvidenceTests(unittest.TestCase):
         self.assertEqual(report['entries'][0]['path'], 'entries/nested/1.toml')
         self.assertEqual(report['entries'][0]['review_status'], 'imported')
 
+    def test_machine_review_is_preserved_and_generated_exclusion_is_independent(self):
+        report = inventory(entry(1, '心', 'sim', review_status='machine-reviewed'),
+                           entry(2, 'sim', 'sim', ['心'], review_status='machine-reviewed',
+                                 rule_generated=True))
+        self.assertEqual([e['review_status'] for e in report['entries']],
+                         ['machine-reviewed', 'machine-reviewed'])
+        self.assertEqual(lookup(report, '心', 'sim')['status'], 'consistent_hanji')
+        self.assertEqual(lookup(report, '心', 'sim')['outputs'][0]['entry_ids'], [1])
+        self.assertEqual(report['excluded_generated_entry_ids'], [2])
+
     def test_contractions_are_skipped_without_inferred_mappings(self):
         report = inventory(entry(1, 'hông', 'hông', hanji_forms=['予人']),
                            entry(2, 'kâng', 'kâng', hanji_forms=['共人']))

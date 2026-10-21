@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "iap-thiap"
+id = 792
+moe_forms = ["揜貼"]
+preferred_form = "iap-thiap"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 905:914; written form iap-thiap"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_932.html"
+
+[[sources]]
+row = 13596
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

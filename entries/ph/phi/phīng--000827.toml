@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phīng"
+id = 827
+moe_forms = ["並"]
+preferred_form = "phīng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 696:701; written form phīng"
+url = "https://tsbp.tgb.org.tw/2016/08/30-ham.html"
+
+[[sources]]
+row = 3520
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

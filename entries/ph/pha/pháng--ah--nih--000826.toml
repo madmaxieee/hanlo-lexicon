@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "pháng--ah--nih"
+id = 826
+moe_forms = []
+preferred_form = "pháng--ah--nih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 32; normalized source characters 943:957; written form pháng--ah--nih"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah_0854771723.html"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tám-tám"
+id = 869
+moe_forms = ["膽膽"]
+preferred_form = "tám-tám"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 46; normalized source characters 1677:1684; written form tám-tám"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah_0854771723.html"
+
+[[sources]]
+row = 12335
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

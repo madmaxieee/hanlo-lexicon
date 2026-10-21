@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tánn-tia̍p"
+id = 870
+moe_forms = ["打揲"]
+preferred_form = "tánn-tia̍p"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 350:360; written form tánn-tia̍p"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_932.html"
+
+[[sources]]
+row = 1775
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

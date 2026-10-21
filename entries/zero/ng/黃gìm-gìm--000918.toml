@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "n̂g-gìm-gìm"
+id = 918
+moe_forms = ["黃錦錦"]
+preferred_form = "黃gìm-gìm"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 10; normalized source characters 1051:1059; written form 黃gìm-gìm"
+url = "https://tsbp.tgb.org.tw/2016/08/30-e.html"
+
+[[sources]]
+row = 9278
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

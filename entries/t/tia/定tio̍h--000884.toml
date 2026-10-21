@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tiānn-tio̍h"
+id = 884
+moe_forms = ["定著"]
+preferred_form = "定tio̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 776:782; written form 定tio̍h"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_175.html"
+
+[[sources]]
+row = 3853
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

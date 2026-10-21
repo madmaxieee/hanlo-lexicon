@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kut-thâu-hu"
+id = 916
+moe_forms = ["骨頭烌"]
+preferred_form = "骨頭hu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 710:714; written form 骨頭hu"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_932.html"
+
+[[sources]]
+row = 6886
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

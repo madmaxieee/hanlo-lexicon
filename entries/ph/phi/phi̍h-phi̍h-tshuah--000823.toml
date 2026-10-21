@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phi̍h-phi̍h-tshuah"
+id = 823
+moe_forms = ["咇咇掣"]
+preferred_form = "phi̍h-phi̍h-tshuah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 86:104; written form phi̍h-phi̍h-tshuah"
+url = "https://tsbp.tgb.org.tw/2016/08/e_043196735.html"
+
+[[sources]]
+row = 3713
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

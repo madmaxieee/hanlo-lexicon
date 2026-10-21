@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "se̍h-se̍h-liām"
+id = 831
+moe_forms = ["踅踅唸"]
+preferred_form = "se̍h-se̍h唸"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 443:453; written form se̍h-se̍h唸"
+url = "https://tsbp.tgb.org.tw/2016/08/e_043196735.html"
+
+[[sources]]
+row = 10891
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

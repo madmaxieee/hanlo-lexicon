@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "mih-tāi"
+id = 813
+moe_forms = ["物代"]
+preferred_form = "mih代"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 583:587; written form mih代"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-tapangtfuya.html"
+
+[[sources]]
+row = 10100
+sheet = "詞彙比較"
+snapshot = "moe-kautian-3e0b2023e0bd"

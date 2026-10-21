@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sa-sí-mih"
+id = 830
+moe_forms = []
+preferred_form = "sa-sí-mih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 1518:1527; written form sa-sí-mih"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue.html"
+
+[[sources]]
+row = 24365
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

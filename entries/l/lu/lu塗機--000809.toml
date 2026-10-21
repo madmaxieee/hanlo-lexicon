@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lu-thôo-ki"
+id = 809
+moe_forms = ["攄塗機"]
+preferred_form = "lu塗機"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 343:347; written form lu塗機"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_932.html"
+
+[[sources]]
+row = 12493
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

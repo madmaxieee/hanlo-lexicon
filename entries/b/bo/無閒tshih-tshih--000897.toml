@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bô-îng-tshih-tshih"
+id = 897
+moe_forms = ["無閒𩑾𩑾"]
+preferred_form = "無閒tshih-tshih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 211:224; written form 無閒tshih-tshih"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-e.html"
+
+[[sources]]
+row = 14753
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

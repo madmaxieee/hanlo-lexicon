@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pàng-līng"
+id = 887
+moe_forms = ["放冗"]
+preferred_form = "放līng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 22; normalized source characters 279:284; written form 放līng"
+url = "https://tsbp.tgb.org.tw/2016/08/e_02038983639.html"
+
+[[sources]]
+row = 3977
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

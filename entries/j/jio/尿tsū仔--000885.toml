@@ -1,0 +1,16 @@
+alternate_readings = ["liō-tsū-á"]
+canonical_tl = "jiō-tsū-á"
+id = 885
+moe_forms = ["尿苴仔"]
+preferred_form = "尿tsū仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 183:188; written form 尿tsū仔"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_28.html"
+
+[[sources]]
+row = 3096
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

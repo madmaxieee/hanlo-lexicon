@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khuah-bóng-bóng"
+id = 912
+moe_forms = ["闊莽莽"]
+preferred_form = "闊bóng-bóng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 2; normalized source characters 17:27; written form 闊bóng-bóng"
+url = "https://tsbp.tgb.org.tw/2016/08/e_02038983639.html"
+
+[[sources]]
+row = 12432
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

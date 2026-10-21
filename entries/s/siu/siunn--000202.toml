@@ -1,4 +1,4 @@
-alternate_readings = []
+alternate_readings = ["sionn"]
 canonical_tl = "siunn"
 id = 202
 moe_forms = ["傷"]
@@ -7,5 +7,19 @@ review_status = "imported"
 schema_version = 1
 
 [[sources]]
+locator = "Article text line 7; normalized source characters 601:606; written form sionn"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_143.html"
+
+[[sources]]
+row = 197
+sheet = "語音差異"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
 row = 585
 snapshot = "lkk-2024-05-10"
+
+[[sources]]
+row = 9288
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

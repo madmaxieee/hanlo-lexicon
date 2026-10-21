@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tènn"
+id = 871
+moe_forms = ["佯"]
+preferred_form = "tènn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 42; normalized source characters 1325:1328; written form tèⁿ"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah_0854771723.html"
+
+[[sources]]
+row = 3526
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phiat"
+id = 822
+moe_forms = ["𥐵"]
+preferred_form = "phiat"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 26; normalized source characters 1230:1235; written form phiat"
+url = "https://tsbp.tgb.org.tw/2016/08/mih.html"
+
+[[sources]]
+row = 13494
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

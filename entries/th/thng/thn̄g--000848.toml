@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thn̄g"
+id = 848
+moe_forms = ["熥"]
+preferred_form = "thn̄g"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 793:798; written form thn̄g"
+url = "https://tsbp.tgb.org.tw/2016/08/mih_01956743503.html"
+
+[[sources]]
+row = 11185
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshiânn-kiánn"
+id = 857
+moe_forms = ["晟囝"]
+preferred_form = "tshiânn囝"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 168:176; written form tshiânn囝"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_28.html"
+
+[[sources]]
+row = 27269
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

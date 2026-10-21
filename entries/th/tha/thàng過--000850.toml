@@ -1,0 +1,16 @@
+alternate_readings = ["thàng--kè"]
+canonical_tl = "thàng--kuè"
+id = 850
+moe_forms = ["迵過"]
+preferred_form = "thàng過"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 1003:1009; written form thàng過"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue.html"
+
+[[sources]]
+row = 6761
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hak"
+id = 787
+moe_forms = ["蓄"]
+preferred_form = "hak"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 424:427; written form hak"
+url = "https://tsbp.tgb.org.tw/2016/08/gong.html"
+
+[[sources]]
+row = 10780
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

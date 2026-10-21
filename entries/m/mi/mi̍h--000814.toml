@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "mi̍h"
+id = 814
+moe_forms = ["物"]
+preferred_form = "mi̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 459:463; written form mi̍h"
+url = "https://tsbp.tgb.org.tw/2016/08/30-ham.html"
+
+[[sources]]
+row = 4327
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

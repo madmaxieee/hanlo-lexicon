@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hôo"
+id = 789
+moe_forms = ["撈"]
+preferred_form = "hôo"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 1027:1030; written form hôo"
+url = "https://tsbp.tgb.org.tw/2016/08/mih_01956743503.html"
+
+[[sources]]
+row = 11051
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

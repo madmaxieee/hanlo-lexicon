@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshiò-hai-hai"
+id = 899
+moe_forms = ["笑咍咍"]
+preferred_form = "笑hai-hai"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 148:156; written form 笑hai-hai"
+url = "https://tsbp.tgb.org.tw/2016/08/sa-sngtuisiann.html"
+
+[[sources]]
+row = 6440
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

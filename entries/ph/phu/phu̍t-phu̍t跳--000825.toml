@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phu̍t-phu̍t-thiàu"
+id = 825
+moe_forms = ["𧿳𧿳跳"]
+preferred_form = "phu̍t-phu̍t跳"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 385:397; written form phu̍t-phu̍t跳"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_106.html"
+
+[[sources]]
+row = 13552
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

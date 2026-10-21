@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tio̍h-siong"
+id = 853
+moe_forms = ["著傷"]
+preferred_form = "tio̍h傷"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 57:63; written form tio̍h傷"
+url = "https://tsbp.tgb.org.tw/2016/08/e_043196735.html"
+
+[[sources]]
+row = 9015
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

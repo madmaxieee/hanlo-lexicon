@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ji̍t-thâu beh lo̍h-suann"
+id = 889
+moe_forms = ["日頭欲落山"]
+preferred_form = "日頭beh落山"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 676:683; written form 日頭beh落山"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_106.html"
+
+[[sources]]
+row = 2659
+sheet = "詞彙比較"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lo̍h-khì"
+id = 808
+moe_forms = ["落去"]
+preferred_form = "lo̍h-khì"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 26; normalized source characters 1330:1334; written form lueh"
+url = "https://tsbp.tgb.org.tw/2016/08/mih.html"
+
+[[sources]]
+row = 9891
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

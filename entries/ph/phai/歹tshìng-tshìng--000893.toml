@@ -1,0 +1,21 @@
+alternate_readings = ["phái-tshìng-tshìng"]
+canonical_tl = "pháinn-tshìng-tshìng"
+id = 893
+moe_forms = ["歹衝衝"]
+preferred_form = "歹tshìng-tshìng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 105; normalized source characters 3801:3815; written form 歹chhèng-chhèng"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah_0854771723.html"
+
+[[sources]]
+row = 1211
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 15367
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = ["liāu-sióng-buē-kàu"]
+canonical_tl = "liāu-sióng-bē-kàu"
+id = 888
+moe_forms = ["料想袂到"]
+preferred_form = "料想bē到"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 979:984; written form 料想bē到"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_175.html"
+
+[[sources]]
+row = 6053
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

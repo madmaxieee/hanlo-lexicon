@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "siàu-liân"
+id = 837
+moe_forms = ["少年"]
+preferred_form = "siàu-liân"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 205:214; written form siàu-liân"
+url = "https://tsbp.tgb.org.tw/2016/08/e_059306386.html"
+
+[[sources]]
+row = 897
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

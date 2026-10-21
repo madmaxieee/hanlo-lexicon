@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khuì-kháu"
+id = 802
+moe_forms = ["氣口"]
+preferred_form = "khuì口"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 761:766; written form khuì口"
+url = "https://tsbp.tgb.org.tw/2016/08/30-ham.html"
+
+[[sources]]
+row = 6157
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

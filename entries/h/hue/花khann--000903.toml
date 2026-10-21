@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hue-khann"
+id = 903
+moe_forms = ["花坩"]
+preferred_form = "花khann"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 21; normalized source characters 1758:1764; written form 花khann"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue.html"
+
+[[sources]]
+row = 4439
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

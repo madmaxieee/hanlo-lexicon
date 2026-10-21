@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pōo-lián"
+id = 892
+moe_forms = ["步輦"]
+preferred_form = "步lián"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 286:291; written form 步lián"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-tapangtfuya.html"
+
+[[sources]]
+row = 3324
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

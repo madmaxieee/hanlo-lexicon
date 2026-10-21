@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kûn"
+id = 806
+moe_forms = ["𤉙"]
+preferred_form = "kûn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 44; normalized source characters 1794:1797; written form kûn"
+url = "https://tsbp.tgb.org.tw/2016/08/mih_01956743503.html"
+
+[[sources]]
+row = 13526
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sio-tha̍h"
+id = 834
+moe_forms = ["相疊"]
+preferred_form = "sio-tha̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 28; normalized source characters 1956:1966; written form sio-thia̍p"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue.html"
+
+[[sources]]
+row = 14907
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

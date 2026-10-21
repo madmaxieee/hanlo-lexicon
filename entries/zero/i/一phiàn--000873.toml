@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "it-phiàn"
+id = 873
+moe_forms = ["一片"]
+preferred_form = "一phiàn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 2; normalized source characters 11:17; written form 一phiàn"
+url = "https://tsbp.tgb.org.tw/2016/08/e_02038983639.html"
+
+[[sources]]
+row = 19517
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

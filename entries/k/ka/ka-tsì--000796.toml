@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ka-tsì"
+id = 796
+moe_forms = []
+preferred_form = "ka-tsì"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 1384:1390; written form ka-tsì"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue.html"

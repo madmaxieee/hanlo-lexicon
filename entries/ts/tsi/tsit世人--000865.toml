@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsit-sì-lâng"
+id = 865
+moe_forms = ["這世人"]
+preferred_form = "tsit世人"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 175:181; written form tsit世人"
+url = "https://tsbp.tgb.org.tw/2016/08/30-ham.html"
+
+[[sources]]
+row = 7918
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

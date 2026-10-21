@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lám-sin"
+id = 811
+moe_forms = ["荏身"]
+preferred_form = "lám身"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 917:921; written form lám身"
+url = "https://tsbp.tgb.org.tw/2016/08/e_059306386.html"
+
+[[sources]]
+row = 6640
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

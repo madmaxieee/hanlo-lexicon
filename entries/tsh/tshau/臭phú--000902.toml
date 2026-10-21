@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshàu-phú"
+id = 902
+moe_forms = ["臭殕"]
+preferred_form = "臭phú"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 944:948; written form 臭phú"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_932.html"
+
+[[sources]]
+row = 6586
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

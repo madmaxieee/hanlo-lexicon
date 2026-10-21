@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tò-tńg--lâi"
+id = 876
+moe_forms = ["倒轉來"]
+preferred_form = "倒tńg來"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 1393:1398; written form 倒tńg來"
+url = "https://tsbp.tgb.org.tw/2016/08/sa-sngtuisiann.html"
+
+[[sources]]
+row = 28016
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

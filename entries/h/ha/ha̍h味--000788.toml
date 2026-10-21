@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ha̍h-bī"
+id = 788
+moe_forms = ["合味"]
+preferred_form = "ha̍h味"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 31; normalized source characters 1369:1374; written form ha̍h味"
+url = "https://tsbp.tgb.org.tw/2016/08/mih_01956743503.html"
+
+[[sources]]
+row = 14900
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

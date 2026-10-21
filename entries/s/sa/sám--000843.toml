@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sám"
+id = 843
+moe_forms = ["糝"]
+preferred_form = "sám"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 24; normalized source characters 1089:1092; written form sám"
+url = "https://tsbp.tgb.org.tw/2016/08/mih.html"
+
+[[sources]]
+row = 12240
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

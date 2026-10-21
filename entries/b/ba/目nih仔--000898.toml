@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ba̍k-nih-á"
+id = 898
+moe_forms = ["目𥍉仔"]
+preferred_form = "目nih仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 10; normalized source characters 926:931; written form 目nih仔"
+url = "https://tsbp.tgb.org.tw/2016/08/30-e.html"
+
+[[sources]]
+row = 1862
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

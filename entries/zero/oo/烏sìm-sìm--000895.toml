@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "oo-sìm-sìm"
+id = 895
+moe_forms = ["烏㽎㽎"]
+preferred_form = "烏sìm-sìm"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 143:151; written form 烏sìm-sìm"
+url = "https://tsbp.tgb.org.tw/2016/08/e_059306386.html"
+
+[[sources]]
+row = 6231
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

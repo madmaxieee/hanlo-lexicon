@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsíng-kah"
+id = 867
+moe_forms = ["指甲"]
+preferred_form = "tsíng甲"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 196:202; written form tsíng甲"
+url = "https://tsbp.tgb.org.tw/2016/08/mih.html"
+
+[[sources]]
+row = 5007
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

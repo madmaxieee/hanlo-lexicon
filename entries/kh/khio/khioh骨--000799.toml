@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khioh-kut"
+id = 799
+moe_forms = ["抾骨"]
+preferred_form = "khioh骨"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 646:652; written form khioh骨"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_932.html"
+
+[[sources]]
+row = 4084
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

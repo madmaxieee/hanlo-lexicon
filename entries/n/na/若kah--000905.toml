@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "nā-kah"
+id = 905
+moe_forms = ["若甲"]
+preferred_form = "若kah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 1078:1082; written form 若kah"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_932.html"
+
+[[sources]]
+row = 15429
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

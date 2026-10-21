@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "làu-kau"
+id = 810
+moe_forms = ["落勾"]
+preferred_form = "làu-kau"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 16; normalized source characters 1140:1147; written form làu-kau"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_106.html"
+
+[[sources]]
+row = 9876
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

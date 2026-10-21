@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kiann tsi̍t tiô"
+id = 915
+moe_forms = ["驚一趒"]
+preferred_form = "驚一tiô"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 87:92; written form 驚一tiô"
+url = "https://tsbp.tgb.org.tw/2016/08/mih.html"
+
+[[sources]]
+row = 28079
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

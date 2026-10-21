@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "kài"
+id = 919
+identity_note = "Maintainer retains MOE word 10786 (蓋, kài) separately from MOE word 10785 (蓋, kah; entry 66)."
+moe_forms = ["蓋"]
+preferred_form = "kài"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 562:565; written form kài"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue.html"
+
+[[sources]]
+row = 10783
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kng-iānn-iānn"
+id = 877
+moe_forms = ["光焱焱"]
+preferred_form = "光iānn-iānn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 95; normalized source characters 3375:3383; written form 光iāⁿ-iāⁿ"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah_0854771723.html"
+
+[[sources]]
+row = 14808
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

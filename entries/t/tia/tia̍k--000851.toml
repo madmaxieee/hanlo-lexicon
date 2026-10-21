@@ -1,0 +1,21 @@
+alternate_readings = ["tiak"]
+canonical_tl = "tia̍k"
+id = 851
+moe_forms = ["擉"]
+preferred_form = "tia̍k"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 667:672; written form tia̍k"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-e.html"
+
+[[sources]]
+row = 11640
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 884
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"

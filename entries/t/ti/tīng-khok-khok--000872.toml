@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tīng-khok-khok"
+id = 872
+moe_forms = ["𠕇硞硞"]
+preferred_form = "tīng-khok-khok"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 871:885; written form tīng-khok-khok"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_932.html"
+
+[[sources]]
+row = 13563
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

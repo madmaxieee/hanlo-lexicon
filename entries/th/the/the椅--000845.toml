@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "the-í"
+id = 845
+moe_forms = ["䖙椅"]
+preferred_form = "the椅"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 1083:1087; written form the椅"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-e.html"
+
+[[sources]]
+row = 13504
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

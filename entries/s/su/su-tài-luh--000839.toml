@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "su-tài-luh"
+id = 839
+moe_forms = []
+preferred_form = "su-tài-luh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 28; normalized source characters 1529:1539; written form su-tài-luh"
+url = "https://tsbp.tgb.org.tw/2016/08/mih.html"

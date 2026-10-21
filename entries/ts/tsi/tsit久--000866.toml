@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsit-kú"
+id = 866
+moe_forms = ["這久"]
+preferred_form = "tsit久"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 34; normalized source characters 1960:1965; written form Tsit久"
+url = "https://tsbp.tgb.org.tw/2016/08/mih.html"
+
+[[sources]]
+row = 15506
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

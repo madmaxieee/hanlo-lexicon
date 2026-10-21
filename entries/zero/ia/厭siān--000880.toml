@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ià-siān"
+id = 880
+moe_forms = ["厭𤺪"]
+preferred_form = "厭siān"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 997:1002; written form 厭siān"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_106.html"
+
+[[sources]]
+row = 10383
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

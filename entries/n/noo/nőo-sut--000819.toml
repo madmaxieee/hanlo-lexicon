@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "nőo-sut"
+id = 819
+moe_forms = []
+preferred_form = "nőo-sut"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 500:507; written form nőo-sut"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_175.html"

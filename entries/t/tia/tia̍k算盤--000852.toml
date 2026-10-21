@@ -1,0 +1,21 @@
+alternate_readings = ["tiak-sǹg-puânn"]
+canonical_tl = "tia̍k sǹg-puânn"
+id = 852
+moe_forms = ["擉算盤"]
+preferred_form = "tia̍k算盤"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 38; normalized source characters 1179:1186; written form tia̍k算盤"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah_0854771723.html"
+
+[[sources]]
+row = 11685
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 887
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"

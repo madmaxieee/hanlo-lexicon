@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phi̍h-pho̍k-thiàu"
+id = 824
+moe_forms = ["咇噗跳"]
+preferred_form = "phi̍h-pho̍k跳"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 116:128; written form phi̍h-pho̍k跳"
+url = "https://tsbp.tgb.org.tw/2016/08/e_043196735.html"
+
+[[sources]]
+row = 14072
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

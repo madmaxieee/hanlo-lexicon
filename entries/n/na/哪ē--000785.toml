@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ná ē"
+id = 785
+moe_forms = ["哪會"]
+preferred_form = "哪ē"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 244:246; written form 哪ē"
+url = "https://tsbp.tgb.org.tw/2016/08/e_059306386.html"
+
+[[sources]]
+row = 5842
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

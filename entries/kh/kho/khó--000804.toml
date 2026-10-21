@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khó"
+id = 804
+moe_forms = ["洘"]
+preferred_form = "khó"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 638:641; written form khó"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue.html"
+
+[[sources]]
+row = 5128
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

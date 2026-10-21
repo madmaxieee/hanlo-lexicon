@@ -1,8 +1,9 @@
 alternate_readings = []
 canonical_tl = "pa̍t-ê"
+editorial_rationale = "Maintainer decision (2026-10-21): always use Hanji 个 for the 个 · ê component. Adopt 別个 in place of 別ê."
 id = 743
 moe_forms = ["別个"]
-preferred_form = "別ê"
+preferred_form = "別个"
 review_status = "imported"
 schema_version = 1
 

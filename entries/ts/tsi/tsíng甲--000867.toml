@@ -1,5 +1,6 @@
 alternate_readings = []
 canonical_tl = "tsíng-kah"
+editorial_rationale = "Maintainer decision (2026-10-21): retain tsíng甲. Its Hanji 甲 output and the romanized kah outputs in entries 68 and 905 form an intentional conflict that depends on meaning."
 id = 867
 moe_forms = ["指甲"]
 preferred_form = "tsíng甲"

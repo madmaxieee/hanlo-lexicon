@@ -1,5 +1,6 @@
 alternate_readings = []
 canonical_tl = "nā-kah"
+editorial_rationale = "Maintainer decision (2026-10-21): retain 若kah. Its 甲 component has the meaning associated with kah (entry 68), MOE 甲【替】 (word 1848), so use romanization. The 甲 · kah conflict with tsíng甲 (entry 867) is intentional."
 id = 905
 moe_forms = ["若甲"]
 preferred_form = "若kah"

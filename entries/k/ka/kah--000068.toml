@@ -1,11 +1,17 @@
 alternate_readings = []
 canonical_tl = "kah"
+editorial_rationale = "Maintainer decision (2026-10-21): retain kah for MOE 甲【替】 (word 1848). In general, prefer romanization for MOE entries marked 【替】. The 甲 · kah conflict with tsíng甲 (entry 867) is intentional and depends on meaning."
 id = 68
 identity_note = "LKK row 227: 甲."
 moe_forms = ["甲"]
 preferred_form = "kah"
 review_status = "imported"
 schema_version = 1
+
+[[sources]]
+row = 1849
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
 
 [[sources]]
 row = 227

@@ -12,6 +12,7 @@ import json
 import os
 from pathlib import Path
 import re
+import sqlite3
 import tempfile
 import tomllib
 import unicodedata as ud
@@ -232,6 +233,152 @@ def entries(root):
     return result
 
 
+def entry_keys(entry):
+    return ({key(entry['preferred_form']), *(key(form) for form in entry['moe_forms']),
+             *(key(form) for form in entry.get('hanji_forms', []))},
+            {key(entry['canonical_tl']), *(key(reading) for reading in entry['alternate_readings'])})
+
+
+class KeyIndex:
+    """Ordered exact matches, retaining all homographs and original source rows."""
+
+    def __init__(self):
+        self.rows, self.forms, self.readings = [], {}, {}
+
+    def add(self, row, forms, readings):
+        number = len(self.rows)
+        self.rows.append(row)
+        for mapping, values in ((self.forms, forms), (self.readings, readings)):
+            for value in values:
+                mapping.setdefault(value, set()).add(number)
+
+    def matching(self, forms, readings):
+        numbers = set()
+        for mapping, values in ((self.forms, forms), (self.readings, readings)):
+            for value in values:
+                numbers.update(mapping.get(value, ()))
+        return [self.rows[number] for number in sorted(numbers)]
+
+
+class LookupIndex:
+    """Build once per batch; extend the entry index after each planned addition."""
+
+    def __init__(self, current, evidence):
+        self.current, self.lkk, self.moe = KeyIndex(), KeyIndex(), KeyIndex()
+        for row in current:
+            self.add_entry(*row)
+        for snapshot, (_, rows) in evidence[0].items():
+            for number, row in enumerate(rows[1:], 2):
+                readings = reading_keys(row[2]) | reading_keys(row[4])
+                if row[1]:
+                    readings.add(key(row[1]))
+                self.lkk.add((snapshot, number, row), {key(row[1]), key(row[5])}, readings)
+        for record in evidence[1][2]:
+            self.moe.add(record,
+                         {annotation_key(record['headword']),
+                          *(annotation_key(form) for form in record['variant_forms'])},
+                         reading_keys(record['reading']))
+
+    def add_entry(self, path, entry):
+        self.current.add((path, entry), *entry_keys(entry))
+
+
+def query_entries(root, forms=(), readings=(), entry_id=None, use_cache=True):
+    """Disposable per-workspace SQLite index. TOML and full validation stay authoritative.
+
+    Every query discovers files and stats them, including ctime and inode, so
+    edits, replacements, renames and deletions invalidate their cached records.
+    Cached records never participate in allocation or repository validation.
+    """
+    def matches(current):
+        if entry_id is not None:
+            return [(path, entry) for path, entry in current if entry['id'] == entry_id]
+        return [(path, entry) for path, entry in current
+                if set(forms) & entry_keys(entry)[0] or set(readings) & entry_keys(entry)[1]]
+
+    if not use_cache:
+        return matches(entries(root))
+    database = root / '.cache/entries.sqlite3'
+    connection = None
+    try:
+        database.parent.mkdir(parents=True, exist_ok=True)
+        connection = sqlite3.connect(database, timeout=0.2)
+        connection.execute('PRAGMA foreign_keys = ON')
+        connection.executescript('''
+            CREATE TABLE IF NOT EXISTS metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS entries (
+                path TEXT PRIMARY KEY, stamp TEXT NOT NULL, payload TEXT NOT NULL,
+                id INTEGER NOT NULL, identity TEXT NOT NULL, target TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS keys (
+                path TEXT NOT NULL REFERENCES entries(path) ON DELETE CASCADE,
+                kind TEXT NOT NULL, value TEXT NOT NULL, PRIMARY KEY(path, kind, value));
+            CREATE INDEX IF NOT EXISTS lookup_keys ON keys(kind, value);
+            CREATE INDEX IF NOT EXISTS entry_ids ON entries(id);
+            CREATE INDEX IF NOT EXISTS entry_identities ON entries(identity);
+            CREATE INDEX IF NOT EXISTS entry_targets ON entries(target);
+        ''')
+        fingerprint = hashlib.sha256(
+            b'entry-index-v1\0' + str(root.resolve()).encode() +
+            (root / 'schema/entry.schema.json').read_bytes() + Path(__file__).read_bytes()).hexdigest()
+        with connection:
+            connection.execute('BEGIN IMMEDIATE')
+            stored = connection.execute("SELECT value FROM metadata WHERE key = 'fingerprint'").fetchone()
+            if stored != (fingerprint,):
+                connection.execute('DELETE FROM entries')
+                connection.execute("INSERT OR REPLACE INTO metadata VALUES ('fingerprint', ?)", (fingerprint,))
+            previous = dict(connection.execute('SELECT path, stamp FROM entries'))
+            present = set()
+            for path in entry_files(root):
+                relative = str(path.relative_to(root))
+                present.add(relative)
+                stat = path.stat()
+                stamp = json.dumps([stat.st_dev, stat.st_ino, stat.st_size,
+                                    stat.st_mtime_ns, stat.st_ctime_ns])
+                if previous.get(relative) == stamp:
+                    continue
+                entry = load_toml(path)
+                verify_entry(root, entry)
+                identity = json.dumps([key(entry['preferred_form']), key(entry['canonical_tl']),
+                                       key(entry.get('identity_note', ''))])
+                connection.execute('DELETE FROM entries WHERE path = ?', (relative,))
+                connection.execute('INSERT INTO entries VALUES (?, ?, ?, ?, ?, ?)',
+                                   (relative, stamp, json.dumps(entry, ensure_ascii=False), entry['id'],
+                                    identity, key(str(entry_path(root, entry)))))
+                for kind, values in zip(('form', 'reading'), entry_keys(entry)):
+                    connection.executemany('INSERT INTO keys VALUES (?, ?, ?)',
+                                           [(relative, kind, value) for value in values])
+            connection.executemany('DELETE FROM entries WHERE path = ?',
+                                   [(path,) for path in previous.keys() - present])
+            for column, message in (('id', 'Duplicate ID'), ('identity', 'Duplicate lexical identity'),
+                                    ('target', 'Filename collision')):
+                duplicate = connection.execute(
+                    f'SELECT {column} FROM entries GROUP BY {column} HAVING count(*) > 1 LIMIT 1').fetchone()
+                if duplicate:
+                    raise Error(f'{message}: {duplicate[0]}.')
+            if entry_id is not None:
+                rows = connection.execute('SELECT path, payload FROM entries WHERE id = ? ORDER BY path',
+                                          (entry_id,)).fetchall()
+            else:
+                values = [('form', value) for value in forms] + [('reading', value) for value in readings]
+                if not values:
+                    return []
+                conditions = ' OR '.join('(kind = ? AND value = ?)' for _ in values)
+                rows = connection.execute(
+                    'SELECT path, payload FROM entries WHERE path IN '
+                    f'(SELECT path FROM keys WHERE {conditions}) ORDER BY path',
+                    [value for pair in values for value in pair]).fetchall()
+            return sorted([(root / path, json.loads(payload)) for path, payload in rows],
+                          key=lambda item: item[0])
+    except Error:
+        raise
+    except (sqlite3.Error, OSError, ValueError):
+        # An unavailable/corrupt cache must never hide TOML errors or block lookup.
+        return matches(entries(root))
+    finally:
+        if connection is not None:
+            connection.close()
+
+
 def next_id(root, current):
     state = load_toml(root / 'id-sequence.toml')
     value = state.get('next_id')
@@ -380,14 +527,17 @@ def verify_sources(entry, lkk, moe):
             raise Error(f'Unknown or unavailable source snapshot: {source["snapshot"]}.')
 
 
-def check(root, candidate, current=None, evidence=None):
+def check(root, candidate, current=None, evidence=None, lookup=None):
     verify_entry(root, dict(candidate, id=candidate.get('id', 1)), lookup_only=True)
-    current = entries(root) if current is None else current
     lkk, moe = evidence if evidence else (lkk_data(root), moe_data(root))
     preferred = key(candidate['preferred_form'])
     forms = {preferred, *(key(form) for form in candidate['moe_forms']),
              *(key(form) for form in candidate.get('hanji_forms', []))}
     readings = {key(candidate['canonical_tl']), *(key(reading) for reading in candidate['alternate_readings'])}
+    if lookup is not None:
+        current = sorted(lookup.current.matching(forms, readings), key=lambda item: item[0])
+    elif current is None:
+        current = query_entries(root, forms, readings)
     existing = []
     for path, entry in current:
         same_form = key(entry['preferred_form']) == preferred
@@ -398,15 +548,17 @@ def check(root, candidate, current=None, evidence=None):
             exact = same_form and key(entry['canonical_tl']) == key(candidate['canonical_tl'])
             existing.append({'id': entry['id'], 'path': str(path.relative_to(root)), 'preferred_form': entry['preferred_form'], 'canonical_tl': entry['canonical_tl'], 'identity_note': entry.get('identity_note'), 'match': 'exact_pair' if exact else 'alias_pair' if same_form and shared_reading else 'same_form' if same_form else 'related_reading_or_form'})
     lkk_matches = []
-    for snapshot_id, (_, rows) in lkk.items():
-        for row_number, row in enumerate(rows[1:], 2):
-            source_readings = reading_keys(row[2]) | reading_keys(row[4])
-            if row[1]:
-                source_readings.add(key(row[1]))
-            if key(row[1]) in forms or key(row[5]) in forms or readings & source_readings:
-                lkk_matches.append({'preferred_form': row[1], 'reading': row[2], 'alternate_readings': row[4], 'moe_form': row[5], 'context': row[6], 'source': {'snapshot': snapshot_id, 'row': row_number}})
+    lkk_rows = lookup.lkk.matching(forms, readings) if lookup is not None else (
+        (snapshot, number, row) for snapshot, (_, rows) in lkk.items()
+        for number, row in enumerate(rows[1:], 2))
+    for snapshot_id, row_number, row in lkk_rows:
+        source_readings = reading_keys(row[2]) | reading_keys(row[4])
+        if row[1]:
+            source_readings.add(key(row[1]))
+        if key(row[1]) in forms or key(row[5]) in forms or readings & source_readings:
+            lkk_matches.append({'preferred_form': row[1], 'reading': row[2], 'alternate_readings': row[4], 'moe_form': row[5], 'context': row[6], 'source': {'snapshot': snapshot_id, 'row': row_number}})
     moe_matches = []
-    for record in moe[2]:
+    for record in lookup.moe.matching(forms, readings) if lookup is not None else moe[2]:
         form_match = bool(forms & {annotation_key(record['headword']), *(annotation_key(form) for form in record['variant_forms'])})
         reading_match = bool(readings & reading_keys(record['reading']))
         if form_match or reading_match:
@@ -414,8 +566,7 @@ def check(root, candidate, current=None, evidence=None):
     return {'existing_entries': existing, 'lkk_matches': lkk_matches, 'moe_matches': moe_matches, 'moe_checked': {'snapshot': moe[0]['id'], 'sha256': moe[0]['sha256']}}
 
 
-def request_data(path):
-    data = json.loads(path.read_text(encoding='utf-8'))
+def normalize_request(data):
     if not isinstance(data, dict) or 'id' in data:
         raise Error('Requests must be an object without an ID; add allocates it.')
     def nfc(value):
@@ -430,13 +581,24 @@ def request_data(path):
     return {'schema_version': 1, 'alternate_readings': [], 'moe_forms': [], 'review_status': 'imported', **data}
 
 
-def validate(root, formatting=True):
-    current = entries(root)
+def request_data(path):
+    return normalize_request(json.loads(path.read_text(encoding='utf-8')))
+
+
+def batch_requests(path):
+    data = json.loads(path.read_text(encoding='utf-8'))
+    if not isinstance(data, list) or not data:
+        raise Error('A batch must be a nonempty JSON array of requests without IDs.')
+    return [normalize_request(item) for item in data]
+
+
+def validate(root, formatting=True, current=None, evidence=None):
+    current = entries(root) if current is None else current
     next_id(root, current)
-    lkk = lkk_data(root)
+    lkk = evidence[0] if evidence is not None else lkk_data(root)
     # Pure repository validation needs no MOE file unless an entry cites it.
     ids = {source['snapshot'] for _, entry in current for source in entry['sources'] if 'snapshot' in source}
-    moe = moe_data(root) if ids - lkk.keys() else None
+    moe = (evidence[1] if evidence is not None else moe_data(root)) if ids - lkk.keys() else None
     for path, entry in current:
         verify_sources(entry, lkk, moe)
         if formatting and (path != entry_path(root, entry) or path.read_text() != render(entry)):
@@ -449,6 +611,52 @@ def validate(root, formatting=True):
             raise Error('Additional homographs need a distinct identity_note.')
         groups[pair] = True
     return {'entries': len(current), 'next_id': next_id(root, current), 'sources': len(lkk)}
+
+
+def add_batch(root, candidates, dry_run=False):
+    """Preflight the complete batch under one writer lock before reserving IDs.
+
+    Existing data and checksum-verified dictionaries are loaded once. Every
+    candidate is checked against existing entries and earlier batch candidates.
+    I/O failures may leave a partial import, but all reserved IDs remain spent.
+    """
+    if not candidates:
+        raise Error('A batch must contain at least one request.')
+    with writer_lock(root):
+        current = entries(root)
+        evidence = lkk_data(root), moe_data(root)
+        validate(root, current=current, evidence=evidence)
+        lookup = LookupIndex(current, evidence)
+        first_id = next_id(root, current)
+        planned = []
+        for number, candidate in enumerate(candidates, 1):
+            try:
+                entry = dict(candidate, id=first_id + len(planned))
+                verify_entry(root, entry)
+                report = check(root, candidate, current, evidence, lookup)
+                for match in report['existing_entries']:
+                    if match['match'] in ('exact_pair', 'alias_pair'):
+                        note = key(candidate.get('identity_note', ''))
+                        if not note or note == key(match.get('identity_note') or ''):
+                            raise Error(f'Existing entry {match["id"]} already covers this form/reading. '
+                                        'Edit it, or explain a distinct word in identity_note.')
+                verify_sources(candidate, *evidence)
+                target = entry_path(root, entry)
+                if target.exists():
+                    raise Error(f'Refusing to overwrite {target}.')
+                planned.append((target, entry, report))
+                current.append((target, entry))
+                lookup.add_entry(target, entry)
+            except (Error, KeyError, TypeError) as exc:
+                raise Error(f'Batch request {number}: {exc}') from exc
+        if not dry_run:
+            atomic_write(root / 'id-sequence.toml', f'next_id = {first_id + len(planned)}\n')
+            for target, entry, _ in planned:
+                atomic_write(target, render(entry))
+        results = [{'created': str(target.relative_to(root)), 'id': entry['id'], 'checks': report}
+                   for target, entry, report in planned]
+        return {'dry_run': dry_run, 'reserved': not dry_run, 'count': len(results),
+                'first_id': first_id, 'last_id': first_id + len(results) - 1, 'results': results}
 
 
 def is_hanji(form):
@@ -551,6 +759,13 @@ def main():
     for name in ('check', 'add'):
         command = sub.add_parser(name)
         command.add_argument('request', type=Path)
+    batch = sub.add_parser('add-batch', help='Preflight and import a JSON array with shared checks.')
+    batch.add_argument('requests', type=Path)
+    batch.add_argument('--dry-run', action='store_true', help='Show the checked plan without reserving IDs or writing entries.')
+    query = sub.add_parser('query', help='Find existing entries by exact form, reading, or ID; no dictionary checks.')
+    query.add_argument('text', nargs='?')
+    query.add_argument('--id', type=int, dest='entry_id')
+    query.add_argument('--no-cache', action='store_true', help='Read and validate all entry TOML directly.')
     args = parser.parse_args()
     root = args.root.resolve()
     try:
@@ -583,29 +798,18 @@ def main():
                 result = validate(root)
         elif args.command == 'check':
             result = check(root, request_data(args.request))
+        elif args.command == 'query':
+            if (args.text is None) == (args.entry_id is None):
+                raise Error('Supply exactly one query text or --id.')
+            forms = readings = {key(args.text)} if args.text is not None else set()
+            matches = query_entries(root, forms, readings, args.entry_id, use_cache=not args.no_cache)
+            result = {'count': len(matches), 'entries': [
+                {'path': str(path.relative_to(root)), 'entry': entry} for path, entry in matches]}
+        elif args.command == 'add-batch':
+            result = add_batch(root, batch_requests(args.requests), dry_run=args.dry_run)
         elif args.command == 'add':
             candidate = request_data(args.request)
-            verify_entry(root, dict(candidate, id=1))
-            with writer_lock(root):
-                validate(root)
-                current = entries(root)
-                evidence = lkk_data(root), moe_data(root)
-                report = check(root, candidate, current, evidence)
-                for match in report['existing_entries']:
-                    if match['match'] in ('exact_pair', 'alias_pair'):
-                        note = key(candidate.get('identity_note', ''))
-                        if not note or note == key(match.get('identity_note') or ''):
-                            raise Error(f'Existing entry {match["id"]} already covers this form/reading. Edit it, or explain a distinct word in identity_note.')
-                verify_sources(candidate, *evidence)
-                entry = dict(candidate, id=next_id(root, current))
-                verify_entry(root, entry)
-                target = entry_path(root, entry)
-                if target.exists():
-                    raise Error(f'Refusing to overwrite {target}.')
-                # Reserve first. A later I/O failure may leave a gap, never a reused ID.
-                atomic_write(root / 'id-sequence.toml', f'next_id = {entry["id"] + 1}\n')
-                atomic_write(target, render(entry))
-                result = {'created': str(target.relative_to(root)), 'id': entry['id'], 'checks': report}
+            result = add_batch(root, [candidate])['results'][0]
         print(json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2))
     except (Error, OSError, ValueError, KeyError, zipfile.BadZipFile, ET.ParseError) as exc:
         parser.exit(2, f'error: {exc}\n')

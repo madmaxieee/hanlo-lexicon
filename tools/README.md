@@ -27,6 +27,36 @@ Results retain original headwords/readings and cite the snapshot, sheet, and row
 Numeric MOE headword IDs are preserved from ODS cell values. MOE hits are review
 evidence, not a prohibition on a community spelling recommendation.
 
+## Existing-entry queries and SQLite index
+
+```sh
+python3 tools/lexicon.py query 'mí-sooh'
+python3 tools/lexicon.py query --id 689
+python3 tools/lexicon.py query 'mí-sooh' --no-cache
+```
+
+`query` returns complete existing entry records and their TOML paths. Text matches
+preferred, MOE or Hanji forms, canonical TL and alternate readings exactly after
+NFC/case/whitespace normalization. Tones and single/double hyphens stay distinct;
+homographs remain separate records. Query by text or by ID, not both. This is an
+entry-only query: it needs no dictionary download and does not replace the full
+offline `check` required before import.
+
+The disposable SQLite index lives at `.cache/entries.sqlite3`, separately in each
+workspace. TOML remains authoritative. Every cached query discovers the current
+entry files and checks size, nanosecond mtime/ctime, device and inode. New or changed
+files are parsed and schema-validated; deleted and renamed paths are removed.
+The index retains normalized lookup keys, IDs, full entry fields and provenance.
+Changes to the schema, maintenance implementation or workspace root invalidate
+the index. A first query builds it; later queries parse only changed files.
+
+`check` uses this index for its existing-entry portion and still performs the
+original LKK and checksum-pinned MOE checks. Full `validate`, `format`, and import
+preflight read entry TOML directly, independently of the SQLite index. A corrupt,
+locked or unavailable database falls back to the authoritative TOML reader; delete
+the database to rebuild it. `query --no-cache` bypasses it explicitly. The cache
+never allocates IDs, modifies entries, or becomes a source citation.
+
 ## Check and add
 
 Create a temporary JSON request outside the tracked tree. For a lookup, the minimum
@@ -113,6 +143,57 @@ clones require merge-time ID conflict resolution.
 Repository validation needs only local source snapshots unless entries themselves
 cite MOE. Candidate `check` and `add` always require the pinned MOE copy. All commands
 accept `--root PATH` before the subcommand for another checkout or a test fixture.
+
+## Batch imports
+
+Put ordinary add requests in a nonempty JSON array, without IDs:
+
+```json
+[
+  {
+    "preferred_form": "a-lú-mih",
+    "canonical_tl": "a-lú-mih",
+    "sources": [{"snapshot": "moe-kautian-3e0b2023e0bd", "sheet": "詞目", "row": 24238}]
+  }
+]
+```
+
+```sh
+python3 tools/lexicon.py add-batch /path/to/requests.json --dry-run
+python3 tools/lexicon.py add-batch /path/to/requests.json
+python3 tools/lexicon.py validate
+python3 tools/lexicon.py format --check
+```
+
+The batch acquires one writer lock, reads and validates the existing TOML once,
+and loads/checksums the original LKK and MOE inputs once. In-memory form/reading
+indexes avoid scanning every dictionary record for every candidate. Every request
+keeps the ordinary schema, source, duplicate and homograph checks, including
+matches against earlier requests in the same batch. The result includes the usual
+per-entry `checks` reports in request order. `add` uses this same path for one word
+and retains its existing output shape.
+
+The complete batch is checked before any IDs are reserved or entries are written.
+Invalid requests and unresolved existing/intra-batch duplicates abort the batch;
+there is no implicit skip, merge, spelling change or keep-existing decision. Resolve
+identity conflicts explicitly before submitting the final batch. Status defaults
+to `imported`, exactly as for ordinary adds.
+
+`--dry-run` shows prospective paths, IDs and reports without reserving IDs or
+writing entries. Those IDs are previews and may change before a later import.
+It can populate the ignored original dictionary cache on first use. A real import
+reserves the entire ID range once, then writes each canonical TOML atomically. A
+disk failure can leave a partial import; the entire range stays reserved and gaps
+must not be recycled. Inspect the entry files before retrying remaining requests.
+This is full-batch preflight, not a filesystem transaction or rollback promise.
+
+Local measurements on 2026-10-22 used scratch copies with 3,072 existing entries
+and the already-downloaded pinned MOE source. Ten ordinary adds with the previous
+tool took 91.1 seconds; the same ten requests took 6.2 seconds in one batch. The
+complete 152-request loanword batch took 5.5 seconds. On the resulting 3,224-entry
+checkout, median entry-query time across five fresh CLI processes was 0.65 seconds
+for direct TOML reads and 0.16 seconds with a warm SQLite index. Setup/copy time
+and network download were excluded; timings depend on the machine and cache state.
 
 ## Build CSV
 

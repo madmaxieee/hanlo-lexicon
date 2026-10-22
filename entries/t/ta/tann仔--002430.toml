@@ -1,0 +1,26 @@
+alternate_readings = ["ta̋nn"]
+canonical_tl = "tann-á"
+editorial_rationale = "Maintainer decision (2026-10-23): adopt tann仔 in place of tann-á; the cited corpus passages attest the requested mixed spelling."
+id = 2430
+moe_forms = ["今仔"]
+preferred_form = "tann仔"
+review_status = "reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 27; normalized source characters 1091:1096; written form tann仔"
+url = "https://tsbp.tgb.org.tw/2020/03/blog-post_31.html"
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 582:587; written form tann仔"
+url = "https://tsbp.tgb.org.tw/2015/12/e_36.html"
+
+[[sources]]
+row = 4
+sheet = "合音唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 629
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

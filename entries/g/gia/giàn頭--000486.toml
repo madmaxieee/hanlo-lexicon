@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "giàn-thâu"
+editorial_rationale = "Maintainer decision (2026-10-23): adopt giàn頭 in place of giàn-thâu; the cited corpus passages attest the requested mixed spelling."
+id = 486
+moe_forms = ["癮頭"]
+preferred_form = "giàn頭"
+review_status = "reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 21; normalized source characters 889:894; written form giàn頭"
+url = "https://tsbp.tgb.org.tw/2022/04/ame.html"
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 677:682; written form giàn頭"
+url = "https://tsbp.tgb.org.tw/2015/02/blog-post_53.html"
+
+[[sources]]
+row = 13236
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

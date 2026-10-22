@@ -1,0 +1,20 @@
+alternate_readings = ["tò-siak-hiànn"]
+canonical_tl = "tò-siàng-hiànn"
+editorial_rationale = "Maintainer decision (2026-10-23): adopt 倒siàng-hiànn in place of tò-siàng-hiànn; the cited corpus passages attest the requested mixed spelling."
+id = 311
+moe_forms = ["倒摔向"]
+preferred_form = "倒siàng-hiànn"
+review_status = "reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 123; normalized source characters 4326:4338; written form 倒siàng-hiànn"
+url = "https://tsbp.tgb.org.tw/2015/03/blog-post_78.html"
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 1149:1161; written form 倒siàng-hiànn"
+url = "https://tsbp.tgb.org.tw/2015/12/blog-post_46.html"
+
+[[sources]]
+row = 719
+snapshot = "lkk-2024-05-10"

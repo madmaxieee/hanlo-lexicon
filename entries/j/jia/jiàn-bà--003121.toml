@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "jiàn-bà"
+id = 3121
+moe_forms = []
+preferred_form = "jiàn-bà"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24291
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "su-tó-lip-puh"
+id = 3202
+moe_forms = []
+preferred_form = "su-tó-lip-puh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24384
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "bak-kuh"
+id = 3087
+moe_forms = []
+preferred_form = "bak-kuh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24253
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

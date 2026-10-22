@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "ùn-tsiàng"
+id = 3224
+moe_forms = []
+preferred_form = "ùn-tsiàng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24409
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

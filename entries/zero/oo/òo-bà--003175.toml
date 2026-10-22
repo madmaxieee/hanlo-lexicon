@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "òo-bà"
+id = 3175
+moe_forms = []
+preferred_form = "òo-bà"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24352
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

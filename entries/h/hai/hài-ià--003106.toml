@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "hài-ià"
+id = 3106
+moe_forms = []
+preferred_form = "hài-ià"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24276
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

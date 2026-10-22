@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "ha-móo-ní-khah"
+id = 3104
+moe_forms = []
+preferred_form = "ha-móo-ní-khah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24273
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

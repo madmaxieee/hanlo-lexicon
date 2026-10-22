@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "phiàn-tsih"
+id = 3180
+moe_forms = []
+preferred_form = "phiàn-tsih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24358
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

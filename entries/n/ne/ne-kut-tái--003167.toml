@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "ne-kut-tái"
+id = 3167
+moe_forms = []
+preferred_form = "ne-kut-tái"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24342
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

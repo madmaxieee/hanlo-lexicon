@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "khu-lá-tsih"
+id = 3140
+moe_forms = []
+preferred_form = "khu-lá-tsih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24314
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

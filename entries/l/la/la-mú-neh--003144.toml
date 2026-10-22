@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "la-mú-neh"
+id = 3144
+moe_forms = []
+preferred_form = "la-mú-neh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24318
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

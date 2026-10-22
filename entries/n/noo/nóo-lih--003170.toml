@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "nóo-lih"
+id = 3170
+moe_forms = []
+preferred_form = "nóo-lih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24345
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

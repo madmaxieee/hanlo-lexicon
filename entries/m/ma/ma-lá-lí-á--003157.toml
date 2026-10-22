@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "ma-lá-lí-á"
+id = 3157
+moe_forms = []
+preferred_form = "ma-lá-lí-á"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24331
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

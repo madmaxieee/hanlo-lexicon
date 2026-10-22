@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "sè-hù"
+id = 3192
+moe_forms = []
+preferred_form = "sè-hù"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24372
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

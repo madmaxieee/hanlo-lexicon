@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "bo̍k-sìn-gù"
+id = 3093
+moe_forms = []
+preferred_form = "bo̍k-sìn-gù"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24261
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

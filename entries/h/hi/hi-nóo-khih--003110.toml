@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "hi-nóo-khih"
+id = 3110
+moe_forms = []
+preferred_form = "hi-nóo-khih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24280
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

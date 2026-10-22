@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "ua-khá-móo-tooh"
+id = 3221
+moe_forms = []
+preferred_form = "ua-khá-móo-tooh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24405
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

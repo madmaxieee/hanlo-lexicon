@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "sir-tián-lè-sù"
+id = 3198
+moe_forms = []
+preferred_form = "sir-tián-lè-sù"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+row = 24380
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

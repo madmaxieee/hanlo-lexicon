@@ -8,9 +8,12 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import io
+from contextlib import redirect_stdout, redirect_stderr
 from unittest import mock
 
 from test_lexicon import lex, make_ods
+import test_lexicon as maintenance
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,6 +41,43 @@ def entry(identity, form, reading, hanji_forms=(), **extra):
 
 
 class HanjiHarvestTests(unittest.TestCase):
+    def test_warm_cli_uses_cached_snapshot_and_rejects_entries_changed_during_harvest(self):
+        fixture = maintenance.MaintenanceTests()
+        fixture.setUp()
+        self.addCleanup(fixture.tearDown)
+        candidate = lex.request_data(fixture.request(form='欲'))
+        lex.add_batch(fixture.root, [candidate])
+        corpus = fixture.root / 'corpus.jsonl'
+        corpus.write_text(json.dumps(doc('欲。重。'), ensure_ascii=False) + '\n')
+        out = fixture.root / '.cache/report'
+        args = ['--corpus', str(corpus), '--out', str(out), '--lexicon', str(fixture.root)]
+        with redirect_stdout(io.StringIO()):
+            self.assertEqual(harvest.main(args), 0)
+        before = {p.name: p.read_bytes() for p in out.iterdir()}
+        entry_path = lex.entry_files(fixture.root)[0]
+        summary = json.loads(before['summary.json'])
+        self.assertEqual(summary['lexicon_entries'], [{
+            'path': str(entry_path.relative_to(fixture.root)),
+            'sha256': hashlib.sha256(entry_path.read_bytes()).hexdigest()}])
+        load = lex.load_toml
+        def reject_entry_parse(path, *args, **kwargs):
+            if path.is_relative_to(fixture.root / 'entries'):
+                raise AssertionError('Warm harvest must not parse entry TOML')
+            return load(path, *args, **kwargs)
+        with mock.patch.object(lex, 'load_toml', side_effect=reject_entry_parse), redirect_stdout(io.StringIO()):
+            self.assertEqual(harvest.main(args), 0)
+        self.assertEqual(before, {p.name: p.read_bytes() for p in out.iterdir()})
+        build = harvest.build_report
+        def change_after_scan(*args, **kwargs):
+            result = build(*args, **kwargs)
+            entry_path.write_text(entry_path.read_text() + '\n# Changed during harvest\n')
+            return result
+        error = io.StringIO()
+        with mock.patch.object(harvest, 'build_report', side_effect=change_after_scan), redirect_stderr(error):
+            self.assertEqual(harvest.main(args), 1)
+        self.assertIn('Entry files changed during harvesting', error.getvalue())
+        self.assertEqual(before, {p.name: p.read_bytes() for p in out.iterdir()})
+
     def run_report(self, records, docs, current=(), **kwargs):
         occurrences, groups = [], []
         candidates = harvest.dictionary_index(records)

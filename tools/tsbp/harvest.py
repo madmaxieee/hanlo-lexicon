@@ -31,9 +31,7 @@ def preferred_index(root):
     lexicon = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(lexicon)
     records = []
-    for path in lexicon.entry_files(root):
-        raw = path.read_bytes()
-        entry = tomllib.loads(raw.decode("utf-8"))
+    for path, entry, digest in lexicon.entry_snapshot(root):
         pairs = lexicon.spelling_readings(entry)
         records.append({"id": entry["id"], "preferred_form": entry["preferred_form"],
                         **({'hanji_forms': entry['hanji_forms']} if entry.get('hanji_forms') else {}),
@@ -41,7 +39,7 @@ def preferred_index(root):
                         "multi_syllable_written_forms": sorted({form for form, reading in pairs
                                                                if len(re.findall(r'[^\s-]+', reading)) >= 2}),
                         "path": str(path.relative_to(root)),
-                        "sha256": hashlib.sha256(raw).hexdigest()})
+                        "sha256": digest})
     if not records:
         raise ValueError(f"No lexicon entries found under {root / 'entries'}")
     index = defaultdict(list)

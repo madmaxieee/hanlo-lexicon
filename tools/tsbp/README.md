@@ -45,6 +45,12 @@ exclusion is the magazine name `台文通訊BONG報`, configured as an exact con
 phrase. Common forms such as ê, mā, beh and m̄ are handled through existing
 lexicon entries. Show excluded rows exposes them with a Tracked form label.
 
+Tracked entries are loaded through the maintenance tool's per-workspace SQLite
+snapshot cache. Unchanged TOML is reused, while changed/deleted/renamed files are
+refreshed. Preferred spellings, generated alternate outputs and exact original-file
+hashes retain the same review/report representation. The cache is derived local
+data, never a source citation; original MOE checksum checks remain unchanged.
+
 The optional `excluded-contexts.json` in the output folder is a JSON array of
 exact literal phrases; `--exclude-contexts` can select another file. This is
 separate from final-anchor Ignore choices. An optional
@@ -182,6 +188,17 @@ maintenance writer, duplicate checks and ID allocation. It does not execute free
 text or automatically add custom proposals. Resolve their sources and any
 existing-entry identity first, then use `tools/lexicon.py` for the deliberate
 addition or update. New entries remain `imported`.
+
+Preview loads the cached entry snapshot and builds one shared dictionary lookup
+index for all approvals and custom proposals. Apply submits only the ready ordinary
+approvals to `lexicon.add_batch` once, then runs validation and formatting checks.
+Blocked/custom proposals stay pending, and coalesced approvals share the created
+ID/path and retain all source citations. Under the writer lock, the complete ready
+batch is checked again against authoritative TOML and verified dictionary inputs.
+If this final preflight fails, none of that batch is imported or allocated; its
+items are reported blocked and should be previewed again. There is no individual
+retry against stale checks. Disk-write failures retain the ordinary batch rule:
+reserved IDs stay spent and any partial files must be inspected before retrying.
 
 An approval that conflicts with an existing entry remains pending for explicit
 maintainer review under the [import-conflict rule](../../.agents/skills/maintain-lexicon/SKILL.md#import-conflicts-require-maintainer-review).

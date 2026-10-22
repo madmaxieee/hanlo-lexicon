@@ -1,6 +1,7 @@
 """Batch preflight/allocation and disposable entry-index behavior."""
 
 import json
+import hashlib
 import os
 import sqlite3
 import unittest
@@ -156,6 +157,34 @@ class BatchAndCacheTests(unittest.TestCase):
             self.assertEqual(lex.query_entries(self.root, {'欲'}, {'bueh'}), expected)
         self.assertEqual(expected[0][1]['sources'], [{'snapshot': 'lkk-fixture', 'row': 2}])
         self.assertEqual(self.run_cli('query', '--id', '1')['entries'][0]['entry'], expected[0][1])
+
+    def test_complete_snapshot_reuses_cached_entries_and_original_byte_hashes(self):
+        lex.add_batch(self.root, [self.candidate(), self.candidate('重', 'tîng')])
+        expected = lex.entry_snapshot(self.root, use_cache=False)
+        self.assertEqual(lex.entry_snapshot(self.root), expected)
+        with mock.patch.object(lex, 'load_toml', side_effect=AssertionError('Warm snapshot must not parse TOML')):
+            self.assertEqual(lex.entry_snapshot(self.root), expected)
+        path, entry, digest = expected[0]
+        self.assertEqual(digest, hashlib.sha256(path.read_bytes()).hexdigest())
+        path.write_text(path.read_text() + '\n# Byte provenance changed\n')
+        updated = lex.entry_snapshot(self.root)
+        self.assertEqual(updated[0][1], entry)
+        self.assertNotEqual(updated[0][2], digest)
+        self.assertEqual(updated[0][2], hashlib.sha256(path.read_bytes()).hexdigest())
+        path.unlink()
+        self.assertEqual(len(lex.entry_snapshot(self.root)), 1)
+
+    def test_existing_v1_database_is_upgraded_to_supply_snapshot_hashes(self):
+        lex.add_batch(self.root, [self.candidate()])
+        database = self.root / '.cache/entries.sqlite3'
+        with sqlite3.connect(database) as connection:
+            connection.execute('CREATE TABLE entries (path TEXT PRIMARY KEY, stamp TEXT NOT NULL, '
+                               'payload TEXT NOT NULL, id INTEGER NOT NULL, identity TEXT NOT NULL, target TEXT NOT NULL)')
+        snapshot = lex.entry_snapshot(self.root)
+        self.assertEqual(len(snapshot), 1)
+        self.assertEqual(snapshot[0][2], hashlib.sha256(snapshot[0][0].read_bytes()).hexdigest())
+        with mock.patch.object(lex, 'load_toml', side_effect=AssertionError('Upgraded cache must be reusable')):
+            self.assertEqual(lex.entry_snapshot(self.root), snapshot)
 
     def test_cache_tracks_same_size_edits_restored_mtime_renames_and_deletions(self):
         lex.add_batch(self.root, [self.candidate()])

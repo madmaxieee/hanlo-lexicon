@@ -34,9 +34,9 @@ O = '{urn:oasis:names:tc:opendocument:xmlns:office:1.0}'
 HEADWORD_SHEETS = {'詞目', '又唸作', '合音唸作', '俗唸作', '語音差異', '詞彙比較', '名', '姓'}
 
 
-def load_toml(path):
+def load_toml(path, raw=None):
     try:
-        return tomllib.loads(path.read_text(encoding='utf-8'))
+        return tomllib.loads((path.read_bytes() if raw is None else raw).decode('utf-8'))
     except (OSError, tomllib.TOMLDecodeError) as exc:
         raise Error(f'{path}: {exc}') from exc
 
@@ -283,7 +283,7 @@ class LookupIndex:
         self.current.add((path, entry), *entry_keys(entry))
 
 
-def query_entries(root, forms=(), readings=(), entry_id=None, use_cache=True):
+def cached_entry_rows(root, forms=(), readings=(), entry_id=None, use_cache=True, all_entries=False):
     """Disposable per-workspace SQLite index. TOML and full validation stay authoritative.
 
     Every query discovers files and stats them, including ctime and inode, so
@@ -291,13 +291,24 @@ def query_entries(root, forms=(), readings=(), entry_id=None, use_cache=True):
     Cached records never participate in allocation or repository validation.
     """
     def matches(current):
+        if all_entries:
+            return current
         if entry_id is not None:
-            return [(path, entry) for path, entry in current if entry['id'] == entry_id]
-        return [(path, entry) for path, entry in current
-                if set(forms) & entry_keys(entry)[0] or set(readings) & entry_keys(entry)[1]]
+            return [row for row in current if row[1]['id'] == entry_id]
+        return [row for row in current
+                if set(forms) & entry_keys(row[1])[0] or set(readings) & entry_keys(row[1])[1]]
+
+    def uncached():
+        result = []
+        for path, entry, _ in matches([(path, entry, None) for path, entry in entries(root)]):
+            raw = path.read_bytes()
+            if load_toml(path, raw) != entry:
+                raise Error(f'{path}: entry changed while loading; rerun for a consistent snapshot.')
+            result.append((path, entry, hashlib.sha256(raw).hexdigest()))
+        return result
 
     if not use_cache:
-        return matches(entries(root))
+        return uncached()
     database = root / '.cache/entries.sqlite3'
     connection = None
     try:
@@ -308,7 +319,8 @@ def query_entries(root, forms=(), readings=(), entry_id=None, use_cache=True):
             CREATE TABLE IF NOT EXISTS metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS entries (
                 path TEXT PRIMARY KEY, stamp TEXT NOT NULL, payload TEXT NOT NULL,
-                id INTEGER NOT NULL, identity TEXT NOT NULL, target TEXT NOT NULL);
+                id INTEGER NOT NULL, identity TEXT NOT NULL, target TEXT NOT NULL,
+                sha256 TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS keys (
                 path TEXT NOT NULL REFERENCES entries(path) ON DELETE CASCADE,
                 kind TEXT NOT NULL, value TEXT NOT NULL, PRIMARY KEY(path, kind, value));
@@ -318,10 +330,14 @@ def query_entries(root, forms=(), readings=(), entry_id=None, use_cache=True):
             CREATE INDEX IF NOT EXISTS entry_targets ON entries(target);
         ''')
         fingerprint = hashlib.sha256(
-            b'entry-index-v1\0' + str(root.resolve()).encode() +
+            b'entry-index-v2\0' + str(root.resolve()).encode() +
             (root / 'schema/entry.schema.json').read_bytes() + Path(__file__).read_bytes()).hexdigest()
         with connection:
             connection.execute('BEGIN IMMEDIATE')
+            # Upgrade the disposable v1 index, rebuilding hashes from source bytes.
+            if 'sha256' not in {row[1] for row in connection.execute('PRAGMA table_info(entries)')}:
+                connection.execute('ALTER TABLE entries ADD COLUMN sha256 TEXT')
+                connection.execute('DELETE FROM entries')
             stored = connection.execute("SELECT value FROM metadata WHERE key = 'fingerprint'").fetchone()
             if stored != (fingerprint,):
                 connection.execute('DELETE FROM entries')
@@ -336,14 +352,15 @@ def query_entries(root, forms=(), readings=(), entry_id=None, use_cache=True):
                                     stat.st_mtime_ns, stat.st_ctime_ns])
                 if previous.get(relative) == stamp:
                     continue
-                entry = load_toml(path)
+                raw = path.read_bytes()
+                entry = load_toml(path, raw)
                 verify_entry(root, entry)
                 identity = json.dumps([key(entry['preferred_form']), key(entry['canonical_tl']),
                                        key(entry.get('identity_note', ''))])
                 connection.execute('DELETE FROM entries WHERE path = ?', (relative,))
-                connection.execute('INSERT INTO entries VALUES (?, ?, ?, ?, ?, ?)',
+                connection.execute('INSERT INTO entries VALUES (?, ?, ?, ?, ?, ?, ?)',
                                    (relative, stamp, json.dumps(entry, ensure_ascii=False), entry['id'],
-                                    identity, key(str(entry_path(root, entry)))))
+                                    identity, key(str(entry_path(root, entry))), hashlib.sha256(raw).hexdigest()))
                 for kind, values in zip(('form', 'reading'), entry_keys(entry)):
                     connection.executemany('INSERT INTO keys VALUES (?, ?, ?)',
                                            [(relative, kind, value) for value in values])
@@ -355,8 +372,10 @@ def query_entries(root, forms=(), readings=(), entry_id=None, use_cache=True):
                     f'SELECT {column} FROM entries GROUP BY {column} HAVING count(*) > 1 LIMIT 1').fetchone()
                 if duplicate:
                     raise Error(f'{message}: {duplicate[0]}.')
-            if entry_id is not None:
-                rows = connection.execute('SELECT path, payload FROM entries WHERE id = ? ORDER BY path',
+            if all_entries:
+                rows = connection.execute('SELECT path, payload, sha256 FROM entries ORDER BY path').fetchall()
+            elif entry_id is not None:
+                rows = connection.execute('SELECT path, payload, sha256 FROM entries WHERE id = ? ORDER BY path',
                                           (entry_id,)).fetchall()
             else:
                 values = [('form', value) for value in forms] + [('reading', value) for value in readings]
@@ -364,19 +383,29 @@ def query_entries(root, forms=(), readings=(), entry_id=None, use_cache=True):
                     return []
                 conditions = ' OR '.join('(kind = ? AND value = ?)' for _ in values)
                 rows = connection.execute(
-                    'SELECT path, payload FROM entries WHERE path IN '
+                    'SELECT path, payload, sha256 FROM entries WHERE path IN '
                     f'(SELECT path FROM keys WHERE {conditions}) ORDER BY path',
                     [value for pair in values for value in pair]).fetchall()
-            return sorted([(root / path, json.loads(payload)) for path, payload in rows],
+            return sorted([(root / path, json.loads(payload), digest) for path, payload, digest in rows],
                           key=lambda item: item[0])
     except Error:
         raise
     except (sqlite3.Error, OSError, ValueError):
         # An unavailable/corrupt cache must never hide TOML errors or block lookup.
-        return matches(entries(root))
+        return uncached()
     finally:
         if connection is not None:
             connection.close()
+
+
+def entry_snapshot(root, use_cache=True):
+    """Return ordered (path, entry, original-byte SHA-256) records for harvests."""
+    return cached_entry_rows(root, use_cache=use_cache, all_entries=True)
+
+
+def query_entries(root, forms=(), readings=(), entry_id=None, use_cache=True):
+    return [(path, entry) for path, entry, _ in cached_entry_rows(
+        root, forms, readings, entry_id, use_cache=use_cache)]
 
 
 def next_id(root, current):

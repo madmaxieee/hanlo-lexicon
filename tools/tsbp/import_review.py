@@ -10,7 +10,6 @@ import json
 from pathlib import Path
 import re
 import sys
-import tempfile
 import unicodedata
 
 from screen import load_screening
@@ -183,6 +182,33 @@ def run_maintenance(module, root, command):
     return code, output.getvalue(), errors.getvalue()
 
 
+def apply_ready(lexicon, root, plan):
+    """Submit resolved approvals together; leave blocked/custom proposals alone."""
+    ready = [item for item in plan if item['status'] == 'ready']
+    created = []
+    if ready:
+        try:
+            result = lexicon.add_batch(root, [item['request'] for item in ready])
+        except lexicon.Error as error:
+            # Writer preflight failed: no IDs or entries were written. Re-preview
+            # changed data rather than retrying individual additions on stale checks.
+            for item in ready:
+                item.update(status='blocked', reason=str(error))
+        else:
+            for item, added in zip(ready, result['results'], strict=True):
+                item.update(status='created', id=added['id'], path=added['created'])
+                created.append({'id': added['id'], 'path': added['created']})
+    by_anchor = {item['anchor_key']: item for item in plan}
+    for item in plan:
+        if item['status'] == 'merged':
+            target = by_anchor[item['merged_into_anchor']]
+            if target['status'] == 'created':
+                item.update(id=target['id'], path=target['path'])
+            else:
+                item.update(status='blocked', reason='The matching approval could not be imported')
+    return created
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('review', type=Path)
@@ -213,7 +239,8 @@ def main():
         raise ValueError('Custom requests must contain an anchor key and text prompt')
     pending_custom = {item['anchor_key'] for item in custom_requests
                       if any(item.get(field) for field in ('prompt', 'preferred_form', 'hanji', 'reading'))}
-    current = lexicon.entries(root)
+    current = [(path, entry) for path, entry, _ in lexicon.entry_snapshot(root)]
+    lookup = lexicon.LookupIndex(current, evidence)
     groups = {group['key']: group for group in load_screening(
         args.pilot, summary, json.loads(groups_path.read_text()))}
     custom_previews = []
@@ -223,7 +250,7 @@ def main():
         item = {'anchor_key': custom['anchor_key'], 'status': 'needs_review'}
         try:
             request = build_custom_request(custom, groups[custom['anchor_key']])
-            item.update(request=request, checks=lexicon.check(root, request, current, evidence))
+            item.update(request=request, checks=lexicon.check(root, request, current, evidence, lookup))
             lexicon.verify_sources(request, *evidence)
         except (ValueError, KeyError, TypeError, lexicon.Error) as error:
             item.update(status='needs_resolution', reason=str(error))
@@ -238,7 +265,7 @@ def main():
                 raise ValueError('Resolve this anchor’s custom handling request before automatic import')
             group = groups[approval['anchor_key']]
             request = build_request(approval, group, bundle.get('ignored_forms', []), evidence[1][2])
-            report = lexicon.check(root, request, current, evidence)
+            report = lexicon.check(root, request, current, evidence, lookup)
             lexicon.verify_sources(request, *evidence)
             item['written_forms'] = [{'preferred_form': form, 'tl': reading}
                                      for form, reading in lexicon.spelling_readings(request)]
@@ -261,27 +288,7 @@ def main():
     coalesce_identical_approvals(plan)
     created = []
     if args.apply:
-        with tempfile.TemporaryDirectory(prefix='hanlo-approved-import-') as folder:
-            for index, item in enumerate(plan):
-                if item['status'] != 'ready':
-                    continue
-                request_path = Path(folder) / f'{index}.json'
-                request_path.write_text(json.dumps(item['request'], ensure_ascii=False))
-                code, output, errors = run_maintenance(lexicon, root, ['add', str(request_path)])
-                if code:
-                    item.update(status='blocked', reason=errors.strip())
-                else:
-                    added = json.loads(output)
-                    item.update(status='created', id=added['id'], path=added['created'])
-                    created.append({'id': added['id'], 'path': added['created']})
-        by_anchor = {item['anchor_key']: item for item in plan}
-        for item in plan:
-            if item['status'] == 'merged':
-                target = by_anchor[item['merged_into_anchor']]
-                if target['status'] == 'created':
-                    item.update(id=target['id'], path=target['path'])
-                else:
-                    item.update(status='blocked', reason='The matching approval could not be imported')
+        created = apply_ready(lexicon, root, plan)
         for command in (['validate'], ['format', '--check']):
             code, output, errors = run_maintenance(lexicon, root, command)
             if code:

@@ -57,6 +57,14 @@ locked or unavailable database falls back to the authoritative TOML reader; dele
 the database to rebuild it. `query --no-cache` bypasses it explicitly. The cache
 never allocates IDs, modifies entries, or becomes a source citation.
 
+Both the TSBP and pure-Hanji harvesters use `entry_snapshot` to load all entry
+fields and original-byte SHA-256 hashes through this same cache. Warm snapshots
+parse only changed TOML files; report fingerprints and source references retain
+the exact original hashes. Existing v1 databases are upgraded automatically.
+The pure-Hanji harvester compares a second snapshot before publishing, rejecting
+changed, added, removed or renamed entry files. Import previews reuse the snapshot
+and one in-memory dictionary index; the final writer still validates TOML directly.
+
 ## Check and add
 
 Create a temporary JSON request outside the tracked tree. For a lookup, the minimum

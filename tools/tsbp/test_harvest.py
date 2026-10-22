@@ -4,6 +4,8 @@ import tempfile
 import shutil
 import subprocess
 import sys
+import hashlib
+from unittest import mock
 
 from harvest import apply_final_exclusions, coverage, key, merged, occurrences, preferred_index, spans, verified_custom_resolutions
 import json
@@ -136,6 +138,9 @@ class ExtractionTests(unittest.TestCase):
             root = Path(folder)
             (root / 'tools').mkdir()
             shutil.copy2(Path(__file__).resolve().parents[1] / 'lexicon.py', root / 'tools/lexicon.py')
+            (root / 'schema').mkdir()
+            shutil.copyfile(Path(__file__).resolve().parents[2] / 'schema/entry.schema.json',
+                            root / 'schema/entry.schema.json')
             entries = root / "entries" / "zero" / "e"
             entries.mkdir(parents=True)
             (entries / "one.toml").write_text('id = 1\npreferred_form = "ē-tàng"\ncanonical_tl = "ē-tàng"\n')
@@ -145,6 +150,10 @@ class ExtractionTests(unittest.TestCase):
                 if 'alternate_readings' not in entry_path.read_text():
                     entry_path.write_text(entry_path.read_text() + 'alternate_readings = []\n')
             (entries / 'four.toml').write_text('id = 4\npreferred_form = "想beh"\ncanonical_tl = "siūnn-beh"\nalternate_readings = ["siūnn-bueh"]\n')
+            for path in entries.glob('*.toml'):
+                with path.open('a') as stream:
+                    stream.write('moe_forms = []\nreview_status = "imported"\nschema_version = 1\n'
+                                 '\n[[sources]]\nurl = "https://example.com/fixture"\nlocator = "test word"\n')
             records, index = preferred_index(root)
             self.assertEqual(len(records), 4)
             self.assertEqual(set(index), {"ē-tàng", "ē", "會曉", "想beh", "想bueh"})
@@ -155,6 +164,19 @@ class ExtractionTests(unittest.TestCase):
             self.assertEqual(index["想bueh"][0]["id"], 4)
             self.assertEqual(index['想bueh'][0]['multi_syllable_written_forms'], ['想beh','想bueh'])
             self.assertEqual(index['ē'][0]['multi_syllable_written_forms'], [])
+            for record in records:
+                self.assertEqual(record['sha256'], hashlib.sha256((root / record['path']).read_bytes()).hexdigest())
+            with mock.patch('tomllib.loads', side_effect=AssertionError('Warm harvest must use the entry cache')):
+                self.assertEqual(preferred_index(root), (records, index))
+            # Byte provenance changes even when only a TOML comment changes.
+            path = entries / 'one.toml'
+            path.write_text(path.read_text() + '\n# Fixture comment\n')
+            updated, _ = preferred_index(root)
+            self.assertNotEqual(next(row['sha256'] for row in updated if row['id'] == 1),
+                                next(row['sha256'] for row in records if row['id'] == 1))
+            (entries / 'four.toml').unlink()
+            _, after_delete = preferred_index(root)
+            self.assertNotIn('想bueh', after_delete)
 
     def test_magazine_context_does_not_exclude_other_bong_occurrences(self):
         text = '《台文通訊BONG報》kap拍暗bong。台文通訊BONG報'

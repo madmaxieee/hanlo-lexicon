@@ -9,7 +9,8 @@ import hashlib
 import io
 import shutil
 from contextlib import redirect_stdout
-from import_review import run_maintenance, coalesce_identical_approvals, main as review_main
+from unittest import mock
+from import_review import run_maintenance, coalesce_identical_approvals, apply_ready, main as review_main
 
 ROOT = Path(__file__).resolve().parents[2]
 SPEC = importlib.util.spec_from_file_location('maintenance_fixtures', ROOT / 'tests/test_lexicon.py')
@@ -18,6 +19,101 @@ SPEC.loader.exec_module(fixtures)
 
 
 class RunnerTests(unittest.TestCase):
+    def fixture(self):
+        fixture = fixtures.MaintenanceTests()
+        fixture.setUp()
+        self.addCleanup(fixture.tearDown)
+        return fixture
+
+    def make_pilot(self, fixture, words):
+        (fixture.root / 'tools').mkdir()
+        shutil.copyfile(ROOT / 'tools/lexicon.py', fixture.root / 'tools/lexicon.py')
+        pilot = fixture.root / 'pilot'
+        pilot.mkdir()
+        groups = [{'key': word, 'display': word, 'normalized_tl': word,
+                   'parser_compatible': True, 'dedup_lookup_forms': [word],
+                   'occurrences': [{'url': 'https://example.com/article', 'line': n,
+                                    'anchor_start': 0, 'anchor_end': len(word), 'anchor': word}]}
+                  for n, word in enumerate(words, 1)]
+        raw = json.dumps(groups, ensure_ascii=False)
+        digest = hashlib.sha256(raw.encode()).hexdigest()
+        (pilot / 'groups.json').write_text(raw)
+        pin = fixtures.lex.moe_data(fixture.root)[0]
+        (pilot / 'summary.json').write_text(json.dumps({
+            'issue': 390, 'corpus_sha256': 'fixture', 'review_groups_sha256': digest,
+            'lexicon_root': str(fixture.root), 'moe': {'snapshot': pin['id'], 'sha256': pin['sha256']}}))
+        bundle = {'schema_version': 1, 'issue': 390, 'corpus_sha256': 'fixture',
+                  'groups_sha256': digest, 'moe_snapshot': pin['id'],
+                  'approvals': [{'anchor_key': word, 'approved': True, 'preferred_form': word,
+                                 'import_mode': 'source_anchor', 'source_reading': word} for word in words]}
+        review = pilot / 'review.json'
+        review.write_text(json.dumps(bundle, ensure_ascii=False))
+        return pilot, review
+
+    def test_review_preview_uses_warm_entry_cache_and_apply_imports_only_ready_words(self):
+        fixture = self.fixture()
+        fixtures.lex.add_batch(fixture.root, [fixtures.lex.request_data(fixture.request())])
+        pilot, review = self.make_pilot(fixture, ['beh', 'tîng', 'bueh'])
+        fixtures.lex.entry_snapshot(fixture.root)
+        args = ['import_review.py', str(review), '--pilot', str(pilot)]
+        read = Path.read_bytes
+        def reject_entry_read(path):
+            if path.is_relative_to(fixture.root / 'entries'):
+                raise AssertionError('Preview must reuse cached entry fields')
+            return read(path)
+        output = io.StringIO()
+        with mock.patch.object(sys, 'argv', args), mock.patch.object(Path, 'read_bytes', reject_entry_read), redirect_stdout(output):
+            review_main()
+        preview = json.loads(output.getvalue())
+        self.assertEqual([item['status'] for item in preview['items']], ['blocked', 'ready', 'ready'])
+        self.assertEqual(preview['created'], [])
+        output = io.StringIO()
+        with mock.patch.object(sys, 'argv', args + ['--apply']), redirect_stdout(output):
+            review_main()
+        result = json.loads(output.getvalue())
+        self.assertEqual([item['status'] for item in result['items']], ['blocked', 'created', 'created'])
+        self.assertEqual([item['id'] for item in result['created']], [2, 3])
+        for path, entry in fixtures.lex.entries(fixture.root):
+            self.assertEqual(entry['review_status'], 'imported')
+            if entry['id'] > 1:
+                self.assertEqual(entry['sources'][0]['url'], 'https://example.com/article')
+        self.assertEqual(fixtures.lex.validate(fixture.root)['entries'], 3)
+
+    def test_ready_approvals_use_one_batch_and_merged_sources_share_the_result(self):
+        fixture = self.fixture()
+        request = fixtures.lex.request_data(fixture.request())
+        other = fixtures.lex.request_data(fixture.request('重', 'tîng'))
+        plan = [{'anchor_key': 'beh', 'word_id': '7', 'status': 'ready', 'request': request},
+                {'anchor_key': 'other-anchor', 'word_id': '7', 'status': 'blocked',
+                 'reason': 'Two approvals overlap', 'request': {**request, 'sources': [
+                     {'url': 'https://example.com/second', 'locator': 'Second occurrence'}]}},
+                {'anchor_key': 'blocked', 'status': 'blocked', 'reason': 'Needs review'},
+                {'anchor_key': '重', 'status': 'ready', 'request': other}]
+        coalesce_identical_approvals(plan)
+        with mock.patch.object(fixtures.lex, 'add_batch', wraps=fixtures.lex.add_batch) as batch:
+            created = apply_ready(fixtures.lex, fixture.root, plan)
+        self.assertEqual(batch.call_count, 1)
+        self.assertEqual(len(created), 2)
+        self.assertEqual(plan[0]['id'], plan[1]['id'])
+        self.assertEqual(plan[0]['path'], plan[1]['path'])
+        self.assertEqual(plan[2]['status'], 'blocked')
+        first = fixtures.lex.load_toml(fixture.root / plan[0]['path'])
+        self.assertEqual(len(first['sources']), 2)
+
+    def test_writer_recheck_blocks_stale_plan_without_allocating_or_individual_retries(self):
+        fixture = self.fixture()
+        request = fixtures.lex.request_data(fixture.request())
+        plan = [{'anchor_key': 'new', 'status': 'ready',
+                 'request': fixtures.lex.request_data(fixture.request('重', 'tîng'))},
+                {'anchor_key': 'beh', 'status': 'ready', 'request': request}]
+        fixtures.lex.add_batch(fixture.root, [request])
+        with mock.patch.object(fixtures.lex, 'add_batch', wraps=fixtures.lex.add_batch) as batch:
+            self.assertEqual(apply_ready(fixtures.lex, fixture.root, plan), [])
+        self.assertEqual(batch.call_count, 1)
+        self.assertTrue(all(item['status'] == 'blocked' for item in plan))
+        self.assertEqual(fixtures.lex.next_id(fixture.root, fixtures.lex.entries(fixture.root)), 2)
+        self.assertEqual(len(fixtures.lex.entries(fixture.root)), 1)
+
     def test_structured_custom_fields_get_offline_preview_without_automatic_import(self):
         fixture = fixtures.MaintenanceTests()
         fixture.setUp()

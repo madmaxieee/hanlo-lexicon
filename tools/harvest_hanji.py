@@ -12,7 +12,6 @@ from pathlib import Path
 import re
 import sys
 import tempfile
-import tomllib
 import unicodedata as ud
 
 import lexicon as lex
@@ -569,7 +568,8 @@ def main(argv=None):
         if not isinstance(exclusions, list) or any(not isinstance(p, str) or not p for p in exclusions):
             raise lex.Error('Context exclusions must be an array of nonempty strings')
         pin, _, records = lex.moe_data(root)
-        current = lex.entries(root)
+        snapshot = lex.entry_snapshot(root)
+        current = [(path, entry) for path, entry, _ in snapshot]
         candidates = dictionary_index(records)
         tags = list(dict.fromkeys([*args.tag, *([f'issue:{args.issue}'] if args.issue is not None else [])]))
         documents = corpus_documents(corpus, args.input_format, tags, args.issue)
@@ -589,14 +589,11 @@ def main(argv=None):
                                       occurrence_sink=sink(occurrences), group_sink=sink(groups))
             if not report['summary']['counts'].get('documents'):
                 raise lex.Error('No documents selected; check the input and tag/issue filters')
-            if lex.entry_files(root) != [path for path, _ in current]:
+            if [(path, digest) for path, _, digest in lex.entry_snapshot(root)] != [
+                    (path, digest) for path, _, digest in snapshot]:
                 raise lex.Error('Entry files changed during harvesting; rerun for a consistent report')
-            manifest = []
-            for path, entry in current:
-                raw = path.read_bytes()
-                if tomllib.loads(raw.decode('utf-8')) != entry:
-                    raise lex.Error(f'{path}: entry changed during harvesting; rerun')
-                manifest.append({'path': str(path.relative_to(root)), 'sha256': hashlib.sha256(raw).hexdigest()})
+            manifest = [{'path': str(path.relative_to(root)), 'sha256': digest}
+                        for path, _, digest in snapshot]
             summary = report['summary']
             summary.update(schema_version=VERSION, corpus_path=str(corpus), corpus_sha256=corpus_digest[0],
                            dictionary={'snapshot': pin['id'], 'sha256': pin['sha256']},

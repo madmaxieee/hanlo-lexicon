@@ -84,11 +84,109 @@ class RelatedReviewTests(unittest.TestCase):
         self.word('it', 'it', '乙', rule_generated=True)
         self.word('丁', 'ting', review_status='disputed')
         proposals = self.report()['items'][0]['writing_suggestions']
-        self.assertEqual([p['status'] for p in proposals], ['incomplete', 'incomplete', 'unalignable'])
+        self.assertEqual([p['status'] for p in proposals], ['incomplete'])
         self.assertEqual(proposals[0]['positions'][1]['choices'], [])
         self.assertEqual(proposals[0]['positions'][2]['choices'], [])
-        self.assertEqual(proposals[1]['positions'][0]['choices'], [])
+        self.assertEqual([p['canonical_tl'] for p in proposals], ['kah-it-ting'])
         self.assertTrue(all(p['suggested_form'] is None for p in proposals))
+
+    def test_conflict_counts_deduplicate_entries_and_limit_each_side_to_three_examples(self):
+        def evidence(identity, form):
+            return {'entry_id': identity, 'preferred_form': form}
+        hanji = [evidence(number, f'甲例{number}') for number in range(1, 5)]
+        roman = [evidence(number, f'kah例{number}') for number in range(5, 10)]
+        position = {'hanji': '甲', 'canonical_tl': 'kah', 'status': 'conflicting', 'choices': [
+            {'kind': 'hanji', 'token': '甲', 'evidence': hanji},
+            {'kind': 'hanji', 'token': '另字', 'evidence': [hanji[0]]},
+            {'kind': 'romanized', 'token': 'kah', 'evidence': roman}]}
+        sides = related.support_sides(position)
+        self.assertEqual([side['entry_count'] for side in sides], [4, 5])
+        self.assertEqual([len(side['examples']) for side in sides], [3, 3])
+        item = {'writing_suggestions': [{'positions': [position]}, {'positions': [position]}]}
+        summary = related.conflict_summary(item)
+        self.assertEqual(summary.count('甲/kah:'), 1)
+        self.assertIn('Hanji 4 (甲例1, 甲例2, 甲例3)', summary)
+        self.assertIn('Romanized 5 (kah例5, kah例6, kah例7)', summary)
+        self.assertNotIn('甲例4', summary)
+        self.assertNotIn('kah例8', summary)
+
+    def test_new_only_index_shows_existing_seed_spellings_and_omits_related_overlaps(self):
+        self.setup_dictionary()
+        seed_id = self.word('甲it', 'kah-it', '甲乙')
+        self.word('ping甲乙', 'ping-kah-it', '丙甲乙')
+        report = self.report()
+        seed = next(entry for _, entry in lex.entries(self.root) if entry['id'] == seed_id)
+        document = related.index_markdown(report, {'甲乙': [seed]}, self.root / 'pages')
+        self.assertIn(f'甲it (#{seed_id})', document)
+        self.assertIn('[甲乙丁 — MOE 11]', document)
+        self.assertNotIn('[丙甲乙 — MOE 12]', document)
+        self.assertIn('**1 new candidates** shown; **1** rows', document)
+        self.assertIn('Proposed form of new word', document)
+
+    def test_central_ng_seed_does_not_match_central_iong_in_larger_word(self):
+        self.dictionary([('中央', 'tiong-ng'), ('中央公園', 'Tiong-iong Kong-hn̂g'),
+                         ('中央路', 'tiong-ng-lōo')])
+        seed_id = self.word('中ng', 'tiong-ng', '中央')
+        report = related.find(self.root, ['中央'], [seed_id])
+        self.assertEqual([item['headword'] for item in report['items']], ['中央路'])
+        proof = report['items'][0]['relations'][0]['combo_matches'][0]
+        self.assertEqual(proof['seed_entry_id'], seed_id)
+        self.assertEqual(proof['shared_combos'], [{'hanji': '中', 'canonical_tl': 'tiong'},
+                                                 {'hanji': '央', 'canonical_tl': 'ng'}])
+
+    def test_combo_match_checks_every_position_tones_and_complete_reading_alternatives(self):
+        self.dictionary([('甲乙', 'kah-it, khah-ít'), ('甲乙丁', 'kah-ít-ting'),
+                         ('甲乙丙', 'khah-ít-ping'), ('丁甲乙', 'ting-kah-it')])
+        seed_id = self.word('甲it', 'kah-it', '甲乙', alternate_readings=['khah-ít'])
+        report = related.find(self.root, ['甲乙'], [seed_id])
+        self.assertEqual([item['headword'] for item in report['items']], ['甲乙丙', '丁甲乙'])
+        self.assertEqual(report['items'][0]['reading_options'][0]['canonical_tl'], 'khah-ít-ping')
+        self.assertEqual(report['items'][0]['relations'][0]['combo_matches'][0]['seed_reading'], 'khah-ít')
+
+    def test_neutral_markers_and_shorter_bc_use_the_shared_positions_exactly(self):
+        self.dictionary([('甲乙丙', 'kah--it-ping'), ('甲乙', 'kah-it'),
+                         ('乙丙', '--it-ping'), ('甲乙丙丁', 'kah-it-ping-ting')])
+        seed_id = self.word('甲--it丙', 'kah--it-ping', '甲乙丙')
+        report = related.find(self.root, ['甲乙丙'], [seed_id])
+        self.assertEqual([item['headword'] for item in report['items']], ['乙丙'])
+        self.assertEqual(report['items'][0]['relations'][0]['pattern'], 'BC')
+        self.assertEqual(report['items'][0]['relations'][0]['combo_matches'][0]['shared_combos'],
+                         [{'hanji': '乙', 'canonical_tl': '--it'}, {'hanji': '丙', 'canonical_tl': 'ping'}])
+
+    def test_reading_options_and_seed_attribution_include_only_matching_combos(self):
+        self.setup_dictionary('kah-it-ting, khah-it-ting, hó')
+        first = self.word('甲it', 'kah-it', '甲乙')
+        second = self.word('khah乙', 'khah-it', '甲乙')
+        report = related.find(self.root, ['甲乙'], [first])
+        item = report['items'][0]
+        self.assertEqual([option['canonical_tl'] for option in item['reading_options']], ['kah-it-ting'])
+        self.assertEqual({proof['seed_entry_id'] for relation in item['relations'] for proof in relation['combo_matches']}, {first})
+        seed_entries = {'甲乙': [entry for _, entry in lex.entries(self.root)]}
+        document = related.index_markdown(report, seed_entries, self.root / 'pages')
+        self.assertIn(f'甲it (#{first})', document)
+        self.assertNotIn(f'khah乙 (#{second})', document)
+        self.assertNotIn('khah-it-ting', document)
+        self.assertIn(f'甲it (#{first})', related.index_markdown(report, {}, self.root / 'pages'))
+        # No explicit scope: each real source entry can establish its own match.
+        both = related.find(self.root, ['甲乙'])['items'][0]
+        self.assertEqual({proof['seed_entry_id'] for relation in both['relations'] for proof in relation['combo_matches']}, {first, second})
+
+    def test_unalignable_seed_cannot_fall_back_to_a_different_dictionary_reading(self):
+        self.setup_dictionary()
+        seed_id = self.word('甲乙', 'hó')
+        self.assertEqual(related.find(self.root, ['甲乙'], [seed_id])['items'], [])
+        self.assertEqual(related.find(self.root, ['甲乙'])['items'], [])
+
+    def test_entry_scoped_cli_records_the_seed_scope_and_revalidates_it_for_import(self):
+        self.setup_dictionary()
+        seed_id = self.word('甲it', 'kah-it', '甲乙')
+        report = self.run_cli('related', '甲乙', '--entry-id', str(seed_id))
+        self.assertEqual(report['seed_entry_ids'], [seed_id])
+        path = self.root / 'scoped-review.json'
+        path.write_text(json.dumps(report, ensure_ascii=False))
+        preview = self.run_cli('import-related', str(path))
+        self.assertEqual(preview['pending'], 2)
+        self.run_cli('related', '甲乙', '--entry-id', '999', expected=2)
 
     def test_neutral_tone_and_adjacent_roman_syllables_render_without_changing_boundaries(self):
         self.setup_dictionary('kah-it--ê')
@@ -183,7 +281,8 @@ class RelatedReviewTests(unittest.TestCase):
             self.assertEqual(lex.entries(self.root), [])
 
     def test_sourced_alternate_readings_stay_in_one_human_reviewed_entry(self):
-        self.setup_dictionary(extra_sheets={'又唸作': [['詞目id', '漢字', '羅馬字'], [11, '甲乙丁', 'khah-it-ting']]})
+        self.dictionary([('甲乙', 'kah-it, khah-it'), ('甲乙丁', 'kah-it-ting'), ('丙甲乙', 'ping-kah-it')],
+                        {'又唸作': [['詞目id', '漢字', '羅馬字'], [11, '甲乙丁', 'khah-it-ting']]})
         report = self.approve(self.report(), preferred='甲乙丁', alternate_readings=['khah-it-ting'])
         result = related.import_reviewed(self.root, report, apply=True)
         entry = lex.load_toml(self.root / result['results'][0]['created'])

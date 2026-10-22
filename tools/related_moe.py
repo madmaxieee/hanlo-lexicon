@@ -1,4 +1,4 @@
-"""Hanji-related MOE discovery, combo writing evidence, and individual human review."""
+"""Combo-matched MOE discovery, writing evidence, and individual human review."""
 
 from collections import defaultdict
 import hashlib
@@ -49,8 +49,80 @@ def render_choices(positions):
     return result
 
 
+def aligned_combos(form, reading):
+    """One literal Hanji/TL pair per position; contractions cannot prove a match."""
+    if not lex.hanji_glyphs(form):
+        return None
+    try:
+        syllables = combos.reading_units(reading)
+        units = combos.written_units(form, syllables)
+    except combos.AlignmentError:
+        return None
+    return tuple((unit['text'], combos.tl_key(syllable)) for unit, syllable in zip(units, syllables))
+
+
+class SeedComboIndex:
+    """Keep complete sourced seed readings and identities, never a syllable pool."""
+
+    def __init__(self, records=(), resolver=None):
+        self.by_form = defaultdict(list)
+        if resolver is not None:
+            self.dictionary_forms, self.dictionary_sources = resolver.dictionary_forms, resolver.dictionary_sources
+            return
+        self.dictionary_forms, self.dictionary_sources = defaultdict(list), defaultdict(list)
+        for record in records:
+            for form in {record['headword'], *record['variant_forms']}:
+                self.dictionary_forms[lex.annotation_key(form)].append(record)
+            self.dictionary_sources[tuple(sorted(record['source'].items()))].append(record)
+
+    def forms_for(self, entry):
+        forms = {entry['preferred_form'], *entry.get('moe_forms', []), *entry.get('hanji_forms', [])}
+        readings = {lex.key(entry['canonical_tl']), *(lex.key(value) for value in entry.get('alternate_readings', []))}
+        records = [record for form in forms for record in self.dictionary_forms.get(lex.annotation_key(form), [])]
+        records += [record for source in entry.get('sources', [])
+                    for record in self.dictionary_sources.get(tuple(sorted(source.items())), [])]
+        for record in records:
+            if readings & lex.reading_keys(record['reading']):
+                forms.update([record['headword'], *record['variant_forms']])
+        return {''.join(glyphs) for form in forms if len(glyphs := lex.hanji_glyphs(form)) in (2, 3)}
+
+    def add_entry(self, entry, forms=None):
+        for form in self.forms_for(entry) if forms is None else forms:
+            for reading in [entry['canonical_tl'], *entry.get('alternate_readings', [])]:
+                sequence = aligned_combos(form, reading)
+                if sequence is not None:
+                    item = {'entry_id': entry.get('id'), 'preferred_form': entry['preferred_form'],
+                            'reading': reading, 'combos': sequence, 'sources': entry.get('sources', [])}
+                    if item not in self.by_form[form]:
+                        self.by_form[form].append(item)
+
+    def match(self, relation, option):
+        target = aligned_combos(relation['matched_form'], option['canonical_tl'])
+        if target is None:
+            return []
+        seed_start, target_start = 0, 0
+        pattern = relation['pattern']
+        if pattern == 'BC':
+            seed_start = 1
+        elif pattern.startswith('X'):
+            target_start = len(target) - len(lex.hanji_glyphs(relation['base_form']))
+        length = min(len(target), len(lex.hanji_glyphs(relation['base_form'])))
+        proofs = []
+        for source in self.by_form.get(relation['base_form'], []):
+            shared = source['combos'][seed_start:seed_start + length]
+            if len(shared) == length and shared == target[target_start:target_start + length]:
+                proof = {'seed_entry_id': source['entry_id'], 'seed_preferred_form': source['preferred_form'],
+                         'seed_reading': source['reading'], 'related_reading': option['canonical_tl'],
+                         'seed_sources': source['sources'],
+                         'shared_combos': [{'hanji': hanji, 'canonical_tl': tl} for hanji, tl in shared]}
+                if proof not in proofs:
+                    proofs.append(proof)
+        return proofs
+
+
 class WritingIndex:
     def __init__(self, root, current, records):
+        self.seed_resolver = SeedComboIndex(records)
         inventory = combos.derive([(path, entry) for path, entry in current
                                    if entry['review_status'] != 'disputed'])
         self.combos = {(item['hanji'], item['canonical_tl']): item for item in inventory['combos']}
@@ -83,15 +155,25 @@ class WritingIndex:
             result['suggested_form'] = render_choices(result['positions'])
         return result
 
-    def annotate(self, related):
+    def annotate(self, related, seeds):
         result = []
         for row in related:
             options = reading_options(self.records[row['record_id']])
-            longer_forms = sorted({relation['matched_form'] for relation in row['relations']
+            relations, matched = [], set()
+            for relation in row['relations']:
+                proofs = [proof for option in options for proof in seeds.match(relation, option)]
+                if proofs:
+                    relations.append({**relation, 'combo_matches': proofs})
+                    matched.update(lex.key(proof['related_reading']) for proof in proofs)
+            if not relations:
+                continue
+            options = [option for option in options if lex.key(option['canonical_tl']) in matched]
+            longer_forms = sorted({relation['matched_form'] for relation in relations
                                    if len(lex.hanji_glyphs(relation['matched_form'])) >
                                    len(lex.hanji_glyphs(relation['base_form']))})
-            result.append({**row, 'requires_human_review': True, 'reading_options': options,
-                'writing_suggestions': [self.proposal(form, option) for form in longer_forms for option in options]})
+            result.append({**row, 'relations': relations, 'requires_human_review': True, 'reading_options': options,
+                'writing_suggestions': [self.proposal(form, option) for form in longer_forms for option in options
+                    if any(relation['matched_form'] == form and seeds.match(relation, option) for relation in relations)]})
         return result
 
 
@@ -100,18 +182,40 @@ def evidence_body(report):
             'items': [{name: value for name, value in item.items() if name != 'review'} for item in report['items']]}
 
 
-def find(root, seeds):
-    """Standalone read-only discovery; no import request or pronunciation needed."""
+def find(root, seeds, seed_entry_ids=None):
+    """Standalone combo discovery from existing entries or exact MOE seed forms."""
     seeds = sorted({unicodedata.normalize('NFC', seed) for seed in seeds})
     if not seeds or any(len(lex.hanji_glyphs(seed)) not in (2, 3) for seed in seeds):
         raise lex.Error('Supply literal two- or three-Hanji forms, without romanization or separators.')
     current = [(path, entry) for path, entry, _ in lex.entry_snapshot(root)]
     evidence = lex.lkk_data(root), lex.moe_data(root)
     lookup = lex.LookupIndex(current, evidence)
+    if seed_entry_ids is not None:
+        if (not isinstance(seed_entry_ids, list) or any(type(identity) is not int for identity in seed_entry_ids)
+                or set(seed_entry_ids) - {entry['id'] for _, entry in current}):
+            raise lex.Error('Seed entry IDs must identify existing entries.')
+        seed_entry_ids = sorted(set(seed_entry_ids))
+    seed_combos, claimed, seed_forms = SeedComboIndex(evidence[1][2]), set(), set(seeds)
+    selected_ids = set(seed_entry_ids) if seed_entry_ids is not None else None
+    for _, entry in current:
+        if selected_ids is not None and entry['id'] not in selected_ids:
+            continue
+        forms = seed_combos.forms_for(entry)
+        if forms & seed_forms:
+            claimed.update(forms)
+            seed_combos.add_entry(entry, forms)
+    if seed_entry_ids is None:
+        for seed in set(seeds) - claimed:
+            for option in reading_options(seed_combos.dictionary_forms.get(seed, [])):
+                sources = []
+                for reference in option['references']:
+                    if reference['source'] not in sources:
+                        sources.append(reference['source'])
+                seed_combos.add_entry({'preferred_form': seed, 'canonical_tl': option['canonical_tl'], 'sources': sources}, {seed})
     candidate = {'preferred_form': seeds[0], 'moe_forms': seeds[1:]}
     matches = lookup.moe.matching({lex.key(seed) for seed in seeds}, set())
     related = lookup.related_moe.suggest(candidate, matches)
-    related = WritingIndex(root, current, evidence[1][2]).annotate(related)
+    related = WritingIndex(root, current, evidence[1][2]).annotate(related, seed_combos)
     items = []
     for row in related:
         forms = {lex.annotation_key(form) for form in [row['headword'], *row['variant_forms']]}
@@ -123,7 +227,7 @@ def find(root, seeds):
         items.append({**row, 'existing_entry_candidates': existing,
                       'review': {'decision': 'pending', 'preferred_form': '', 'canonical_tl': '',
                                  'alternate_readings': [], 'identity_note': '', 'editorial_rationale': ''}})
-    report = {'schema_version': 1, 'kind': 'related-moe-human-review', 'seeds': seeds,
+    report = {'schema_version': 1, 'kind': 'related-moe-human-review', 'seeds': seeds, 'seed_entry_ids': seed_entry_ids,
               'state': {'entries_sha256': lex.entry_state(root, current), 'moe_sha256': evidence[1][0]['sha256']},
               'moe_snapshot': evidence[1][0]['id'],
               'implementation_sha256': digest([Path(path).read_text() for path in
@@ -180,7 +284,7 @@ def import_reviewed(root, report, apply=False):
         raise lex.Error('Related-entry review needs a list of Hanji seeds and entry objects.')
     if report.get('evidence_sha256') != digest(evidence_body(report)):
         raise lex.Error('Related-entry evidence changed; edit only each item’s review fields.')
-    fresh = find(root, report['seeds'])
+    fresh = find(root, report['seeds'], report.get('seed_entry_ids'))
     if fresh['evidence_sha256'] != report['evidence_sha256']:
         raise lex.Error('Related-entry evidence is stale; regenerate and human-review the updated report.')
     requests, counts = [], defaultdict(int)
@@ -202,6 +306,93 @@ def import_reviewed(root, report, apply=False):
     return result
 
 
+def support_sides(position):
+    """Count distinct supporting entries per writing kind; show at most three."""
+    result = []
+    for kind in ('hanji', 'romanized'):
+        entries, tokens = {}, []
+        for choice in position['choices']:
+            if choice['kind'] != kind:
+                continue
+            if choice['token'] not in tokens:
+                tokens.append(choice['token'])
+            for entry in choice['evidence']:
+                entries[entry['entry_id']] = entry
+        examples, spellings = [], set()
+        for identity in sorted(entries):
+            entry = entries[identity]
+            if entry['preferred_form'] not in spellings:
+                examples.append(entry)
+                spellings.add(entry['preferred_form'])
+            if len(examples) == 3:
+                break
+        result.append({'kind': kind, 'tokens': tokens, 'entry_count': len(entries), 'examples': examples})
+    return result
+
+
+def conflict_summary(item):
+    """Show each tone-preserving conflict once, even across multiple readings."""
+    conflicts = {}
+    for proposal in item['writing_suggestions']:
+        for position in proposal['positions']:
+            if position['status'] == 'conflicting':
+                conflicts.setdefault((position['hanji'], position['canonical_tl']), position)
+    lines = []
+    for (hanji, reading), position in conflicts.items():
+        sides = []
+        for side in support_sides(position):
+            label = 'Hanji' if side['kind'] == 'hanji' else 'Romanized'
+            examples = ', '.join(entry['preferred_form'] for entry in side['examples'])
+            sides.append(f"{label} {side['entry_count']}" + (f" ({examples})" if examples else ''))
+        lines.append(f"{hanji}/{reading}: " + '; '.join(sides))
+    return ' / '.join(lines) or 'None'
+
+
+def review_category(item):
+    statuses = {proposal['status'] for proposal in item['writing_suggestions']}
+    if 'conflicting' in statuses:
+        return 'Combo conflict'
+    if statuses & {'incomplete', 'unalignable'}:
+        return 'Incomplete or unalignable'
+    return 'Consistent proposals' if statuses else 'Shorter word; manual spelling review'
+
+
+def index_markdown(report, seed_entries, pages):
+    """New-only table; seed spellings explain why each related word was found."""
+    def cell(value):
+        return str(value).replace('|', '\\|').replace('\n', ' ')
+
+    items = [item for item in report['items'] if not item['existing_entry_candidates']]
+    hidden = len(report['items']) - len(items)
+    lines = ['# New related MOE entries — human review', '',
+             f"**{len(items)} new candidates** shown; **{hidden}** rows with existing-entry candidates hidden.", '',
+             'The existing seed column shows only entries whose shared Hanji/TL combos actually matched the related reading. '
+             'An existing-entry candidate for the related word means a shared Hanji form or MOE source identity; '
+             'it is a possible identity match, not proof of a duplicate. Those rows are omitted from this table.', '',
+             'Conflict counts are distinct supporting entries for the exact Hanji/TL combo. '
+             'Each side shows at most three example preferred spellings. Counts do not decide the writing; '
+             'every row remains pending individual human review. Full original evidence remains in the JSON report.', '',
+             '| Related MOE entry / evidence | Existing seed entries — preferred forms | Sourced readings | Proposed form of new word | Combo conflicts — support counts and examples | Review issue |',
+             '| --- | --- | --- | --- | --- | --- |']
+    for item in sorted(items, key=lambda row: (review_category(row), row['headword'], row['record_id'])):
+        seeds = sorted({relation['base_form'] for relation in item['relations']})
+        matched_ids = {proof['seed_entry_id'] for relation in item['relations'] for proof in relation.get('combo_matches', [])}
+        existing = {entry['id']: entry for seed in seeds for entry in seed_entries.get(seed, [])
+                    if entry['id'] in matched_ids}
+        existing.update({proof['seed_entry_id']: {'preferred_form': proof['seed_preferred_form']}
+                         for relation in item['relations'] for proof in relation.get('combo_matches', [])
+                         if proof['seed_entry_id'] is not None})
+        seed_forms = ' / '.join(f"{entry['preferred_form']} (#{identity})" for identity, entry in sorted(existing.items())) or ' / '.join(seeds)
+        proposed = list(dict.fromkeys(proposal['suggested_form'] for proposal in item['writing_suggestions'] if proposal['suggested_form']))
+        readings = list(dict.fromkeys(option['canonical_tl'] for option in item['reading_options']))
+        path = Path(pages) / f"moe-{item['record_id']}-row-{item['source']['row']}.md"
+        values = [f"[{cell(item['headword'])} — MOE {item['record_id']}]({path})", cell(seed_forms),
+                  cell(' / '.join(readings)), cell(' / '.join(proposed) or 'Human choice needed'),
+                  cell(conflict_summary(item)), review_category(item)]
+        lines.append('| ' + ' | '.join(values) + ' |')
+    return '\n'.join(lines) + '\n'
+
+
 def markdown(report):
     def inline(value):
         return str(value).replace('`', '\\`').replace('\n', ' ')
@@ -215,6 +406,15 @@ def markdown(report):
                   'MOE definition: ' + inline(' / '.join(item['definitions'])), '',
                   'MOE readings: ' + ', '.join(inline(option['canonical_tl']) for option in item['reading_options']), '',
                   'MOE source: ' + inline(json.dumps(item['source'], ensure_ascii=False)), '']
+        proofs = [proof for relation in item['relations'] for proof in relation.get('combo_matches', [])]
+        if proofs:
+            lines += ['Matching seed combos:', '']
+            for proof in proofs:
+                identity = f" (#{proof['seed_entry_id']})" if proof['seed_entry_id'] is not None else ''
+                pairs = ', '.join(f"{pair['hanji']}/{pair['canonical_tl']}" for pair in proof['shared_combos'])
+                lines += [f"- {inline(proof['seed_preferred_form'])}{identity} ({inline(proof['seed_reading'])}) "
+                          f"→ {inline(proof['related_reading'])}: {inline(pairs)}"]
+            lines += ['']
         if item['existing_entry_candidates']:
             lines += ['Existing entries require identity review: ' + ', '.join(
                 f"#{entry['id']} {inline(entry['preferred_form'])}" for entry in item['existing_entry_candidates']), '']
@@ -224,9 +424,12 @@ def markdown(report):
                                             f"manual review ({proposal['status']})"), '']
             for position in proposal['positions']:
                 lines += [f"- {inline(position['hanji'])} / {inline(position['canonical_tl'])}: {position['status']}"]
-                for choice in position['choices']:
-                    lines += [f"  - {choice['kind']}: **{inline(choice['token'])}**"]
-                    for entry in choice['evidence']:
+                for side in support_sides(position):
+                    if not side['entry_count'] and position['status'] != 'conflicting':
+                        continue
+                    lines += [f"  - {side['kind']}: **{inline(' / '.join(side['tokens']) or 'none')}** — "
+                              f"**{side['entry_count']} supporting entries**; up to 3 example preferred forms:"]
+                    for entry in side['examples']:
                         lines += [f"    - [#{entry['entry_id']} {inline(entry['preferred_form'])}]({entry['path']}) "
                                   f"({inline(entry['canonical_tl'])}); {entry['review_status']}; original sources: " +
                                   inline(json.dumps(entry['sources'], ensure_ascii=False))]

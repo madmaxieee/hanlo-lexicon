@@ -91,11 +91,17 @@ LKK and MOE checks; same-form matches still require editorial identity review.
 Hanji metadata does not generate CSV output rows. Omit it when unknown.
 
 Checks also return `related_moe_entries` for human-review import suggestions.
-The search uses Hanji forms only, never pronunciation similarity: two Hanji AB
+The search requires exact shared Hanji/TL combos, never Hanji alone or
+pronunciation similarity: two Hanji AB
 match XAB, ABX, XYAB and ABXY; three Hanji ABC match AB, BC, XABC and ABCX.
 Seeds come from supplied `preferred_form`, `moe_forms` or `hanji_forms`, including
 verified MOE variants, or an explicitly cited MOE reading/headword row. A
-reading-only dictionary hit does not supply Hanji. Mixed/romanized requests need
+reading-only dictionary hit does not supply Hanji. Every shared glyph and its
+aligned syllable must agree, including tones and neutral markers. Compare each
+canonical or explicitly recorded alternate reading as a complete sequence; do
+not mix syllables across alternatives. For example, 中ng / tiong-ng does not
+match 中央公園 / Tiong-iong Kong-hn̂g because 央/ng differs from 央/iong.
+Mixed/romanized requests need
 supplied Hanji or that explicit MOE source selection. Only literal contiguous
 Hanji count; glyph variation selectors stay attached to their character. Explicit
 MOE annotations are ignored for matching and retained in the original evidence.
@@ -103,7 +109,10 @@ MOE annotations are ignored for matching and retained in the original evidence.
 Suggestions cover numbered `詞目` entries and their recorded variant forms,
 without comparison/name/surname-sheet duplicates. Each retains its MOE identity,
 original headword, reading, definitions and source row, plus `relations` naming
-the `base_form`, `matched_form` and `pattern`. Homographs remain separate and
+the `base_form`, `matched_form`, `pattern` and original `combo_matches` proofs.
+Only reading choices that satisfy a shared combo match are offered for spelling
+proposals and import review. Unalignable/contraction readings cannot establish
+a match. Homographs remain separate and
 results follow dictionary order. The requested word is omitted; suggestions do
 not recursively seed more suggestions. Shapes alone do not establish semantic
 relationship. `check`, `add` and per-request `add-batch` reports expose the same
@@ -159,7 +168,10 @@ duplicate. Unicode input is normalized to NFC. No raw source cells are copied.
 
 ## Standalone related-entry discovery and human review
 
-Related discovery needs only the Hanji seed, independently of import requests:
+Related discovery accepts a Hanji seed independently of import requests. Resolve
+its readings from matching existing entries, or from the exact original MOE form
+only when no existing seed entry is recorded. Missing/unalignable seed readings
+do not permit a glyph-only fallback:
 
 ```sh
 python3 tools/lexicon.py related 火車 \
@@ -167,12 +179,21 @@ python3 tools/lexicon.py related 火車 \
   --markdown /path/to/fire-train.review.md
 # Multiple seeds are allowed; related identities and relations are deduplicated.
 python3 tools/lexicon.py related 火車 火車頭
+# Restrict the source reading and identity to an existing entry.
+python3 tools/lexicon.py related 中央 --entry-id 629
 ```
 
 The JSON report contains original MOE evidence, all sourced reading choices,
 combo writing suggestions for longer matches, existing-entry identity candidates,
+matching seed-entry identities and shared Hanji/TL evidence,
 and one `review` object per related entry. The optional Markdown report presents
-the same evidence for a human to inspect. Output files must be outside the
+the same evidence for a human to inspect, with distinct supporting-entry counts
+for Hanji and romanization and at most three example preferred spellings per side.
+The complete evidence remains in JSON. The new-only review index omits related
+words with existing-entry candidates (shared recorded Hanji form or MOE source
+identity) and shows the existing seed entries' preferred forms separately from
+the proposed form of the new word. Such a candidate is an identity-review lead,
+not proof of a duplicate. Output files must be outside the
 repository or under ignored `.cache/related-moe/`. Discovery only reads entries;
 it does not allocate IDs, approve words, or import entries.
 
@@ -212,8 +233,8 @@ evidence, so the seed word's corpus context is not copied as an occurrence of th
 longer word. Optional human rationale is preserved without inventing an explanation.
 The writer repeats normal source/duplicate/ID checks and validates after import.
 
-The report seals dictionary identity, source evidence, combo support and entry
-state separately from editable human decisions. Changed evidence, entry data,
+The report seals dictionary identity, source evidence, combo support, entry state
+and seed-entry scope separately from editable human decisions. Changed evidence, entry data,
 dictionary pins or implementation require regeneration and review of the updated
 report. The writer rechecks the entry/dictionary state under its lock before any
 IDs are reserved. After importing part of a report, regenerate for remaining

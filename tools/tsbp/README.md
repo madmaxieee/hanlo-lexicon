@@ -184,11 +184,12 @@ The preview validates issue/corpus/candidate fingerprints and selected original
 MOE references, then runs offline existing-entry/LKK/MOE checks. Structured custom
 requests receive a separate `custom_previews` proposal and dictionary report.
 Both ordinary approval `checks` and custom previews include
-`related_moe_entries` from the maintenance tool's Hanji-only word-shape search
+`related_moe_entries` from the maintenance tool's combo-matched word-shape search
 (AB → XAB / ABX / XYAB / ABXY; ABC → AB / BC / XABC / ABCX). These retain
 original MOE evidence and require separate review. They are suggestions in the
-JSON report, not additional approvals or imports; pronunciation similarity is
-not used. Article-only romanized approvals have no Hanji seed; a structured custom
+JSON report, not additional approvals or imports. Every shared Hanji and aligned
+TL syllable must match exactly, including tone and neutral markers; Hanji alone
+and pronunciation similarity are insufficient. Article-only romanized approvals have no Hanji seed; a structured custom
 request can supply verified Hanji when needed.
 Longer related words also include combo-based `writing_suggestions`, with original
 entry evidence for every Hanji/romanization conflict. Every related word needs

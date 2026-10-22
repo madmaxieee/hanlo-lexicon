@@ -578,7 +578,7 @@ def hanji_glyphs(text):
 
 
 class RelatedMoeIndex:
-    """Index literal edge extensions of numbered MOE headwords once per batch."""
+    """Index Hanji shape candidates; WritingIndex then requires matching combos."""
 
     def __init__(self, records):
         self.records, self.forms, self.extensions = [], {}, {}
@@ -605,7 +605,7 @@ class RelatedMoeIndex:
     def suggest(self, candidate, moe_matches):
         forms = {candidate['preferred_form'], *candidate['moe_forms'], *candidate.get('hanji_forms', [])}
         hanji_forms = {annotation_key(form) for form in forms if hanji_glyphs(form)}
-        # Search Hanji only. A reading-only homophone never supplies a seed.
+        # Propose Hanji shapes first; the caller validates all shared combos.
         cited = [record for source in candidate.get('sources', [])
                  if (record := self.source_records.get(tuple(sorted(source.items())))) is not None]
         selected_ids = set()
@@ -674,7 +674,7 @@ def check(root, candidate, current=None, evidence=None, lookup=None):
     related = lookup.related_moe if lookup is not None else RelatedMoeIndex(moe[2])
     suggestions = related.suggest(candidate, moe_matches)
     if suggestions:
-        from related_moe import WritingIndex
+        from related_moe import WritingIndex, SeedComboIndex
         if lookup is not None:
             if lookup.writing_index is None:
                 lookup.writing_index = WritingIndex(root, lookup.combo_entries, moe[2])
@@ -683,7 +683,9 @@ def check(root, candidate, current=None, evidence=None, lookup=None):
             if combo_current is None:
                 combo_current = [(path, entry) for path, entry, _ in entry_snapshot(root)]
             writing = WritingIndex(root, combo_current, moe[2])
-        suggestions = writing.annotate(suggestions)
+        seed_combos = SeedComboIndex(resolver=writing.seed_resolver)
+        seed_combos.add_entry(candidate)
+        suggestions = writing.annotate(suggestions, seed_combos)
     return {'existing_entries': existing, 'lkk_matches': lkk_matches, 'moe_matches': moe_matches,
             'related_moe_entries': suggestions,
             'moe_checked': {'snapshot': moe[0]['id'], 'sha256': moe[0]['sha256']}}
@@ -900,10 +902,12 @@ def main():
     query.add_argument('text', nargs='?')
     query.add_argument('--id', type=int, dest='entry_id')
     query.add_argument('--no-cache', action='store_true', help='Read and validate all entry TOML directly.')
-    related = sub.add_parser('related', help='Find related MOE entries by Hanji and propose spellings for human review.')
+    related = sub.add_parser('related', help='Find MOE entries with matching Hanji/TL combos and propose spellings for human review.')
     related.add_argument('hanji', nargs='+')
     related.add_argument('--out', type=Path, help='Write the JSON review file.')
     related.add_argument('--markdown', type=Path, help='Write a readable evidence report.')
+    related.add_argument('--entry-id', action='append', type=int, dest='seed_entry_ids',
+                         help='Restrict seed readings to this existing entry ID; repeat for multiple entries.')
     related_import = sub.add_parser('import-related', help='Preview individually human-reviewed related entries.')
     related_import.add_argument('review', type=Path)
     related_import.add_argument('--apply', action='store_true', help='Import only individually approved entries as reviewed.')
@@ -947,7 +951,7 @@ def main():
                 raise Error('JSON and Markdown reports need different output files.')
             if any(path.is_relative_to(root) and not path.is_relative_to(root / '.cache/related-moe') for path in outputs):
                 raise Error('Write generated reviews outside the repository or under .cache/related-moe/.')
-            result = find(root, args.hanji)
+            result = find(root, args.hanji, args.seed_entry_ids)
             if args.markdown:
                 atomic_write(args.markdown, markdown(result))
             if args.out:

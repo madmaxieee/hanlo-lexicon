@@ -1,4 +1,4 @@
-"""Hanji-only related-word suggestions with original dictionary provenance."""
+"""Combo-matched related-word suggestions with original dictionary provenance."""
 
 import hashlib
 import unittest
@@ -36,43 +36,49 @@ class RelatedMoeTests(unittest.TestCase):
     def test_two_glyphs_match_only_the_four_requested_edge_shapes(self):
         positives = [('丁甲乙', 'XAB'), ('甲乙丁', 'ABX'), ('丁戊甲乙', 'XYAB'), ('甲乙丁戊', 'ABXY')]
         negatives = ['甲乙', '甲', '乙甲', '甲丁乙', '丁甲乙戊', '丁戊己甲乙', '甲乙丁戊己', '甲-乙丁']
-        self.dictionary([(form, 'hó') for form, _ in positives] + [(form, 'hó') for form in negatives])
+        self.dictionary(list(zip([form for form, _ in positives], ['ting-kah-it', 'kah-it-ting', 'ting-goo-kah-it', 'kah-it-ting-goo'])) + [(form, 'hó') for form in negatives])
         result = self.suggestions()
         self.assertEqual([row['headword'] for row in result], [form for form, _ in positives])
         for row, (form, pattern) in zip(result, positives):
-            self.assertEqual(row['relations'], [{'base_form': '甲乙', 'matched_form': form, 'pattern': pattern}])
-        self.assertEqual(self.suggestions(reading='bóng'), result)
+            self.assertEqual({name: row['relations'][0][name] for name in ('base_form', 'matched_form', 'pattern')},
+                             {'base_form': '甲乙', 'matched_form': form, 'pattern': pattern})
+            self.assertTrue(row['relations'][0]['combo_matches'])
+        self.assertEqual(self.suggestions(reading='bóng'), [])
 
     def test_three_glyphs_match_two_components_and_one_glyph_extensions(self):
         positives = [('甲乙', 'AB'), ('乙丙', 'BC'), ('丁甲乙丙', 'XABC'), ('甲乙丙丁', 'ABCX')]
         negatives = ['甲乙丙', '甲丙', '甲', '丙', '丁戊甲乙丙', '甲乙丙丁戊', '甲丁乙丙', '乙丙丁']
-        self.dictionary([(form, 'hó') for form, _ in positives] + [(form, 'hó') for form in negatives])
-        result = self.suggestions('甲乙丙')
+        self.dictionary(list(zip([form for form, _ in positives], ['kah-it', 'it-ping', 'ting-kah-it-ping', 'kah-it-ping-ting'])) + [(form, 'hó') for form in negatives])
+        result = self.suggestions('甲乙丙', 'kah-it-ping')
         self.assertEqual([row['headword'] for row in result], [form for form, _ in positives])
         self.assertEqual([row['relations'][0]['pattern'] for row in result], [pattern for _, pattern in positives])
         for form in ['甲', '甲乙丙丁', 'kah乙', 'kah-it', '甲-乙']:
             with self.subTest(form=form):
                 self.assertEqual(self.suggestions(form), [])
 
-    def test_mixed_and_romanized_forms_use_supplied_hanji_without_reading_search(self):
-        self.dictionary([('甲乙', 'kah-it'), ('甲乙丁', 'other'), ('戊己', 'kah-it'), ('戊己丁', 'kah-it')])
+    def test_mixed_and_romanized_forms_require_both_supplied_hanji_and_matching_combos(self):
+        self.dictionary([('甲乙', 'kah-it'), ('甲乙丁', 'kah-it-ting'), ('戊己', 'kah-it'), ('戊己丁', 'kah-it-ting')])
         expected = self.suggestions()
         self.assertEqual([row['headword'] for row in expected], ['甲乙丁'])
-        self.assertEqual(self.suggestions('kah乙', hanji_forms=['甲乙']), expected)
-        self.assertEqual(self.suggestions('kah-it', moe_forms=['甲乙']), expected)
+        for form, extra in [('kah乙', {'hanji_forms': ['甲乙']}), ('kah-it', {'moe_forms': ['甲乙']})]:
+            found = self.suggestions(form, **extra)
+            self.assertEqual([row['headword'] for row in found], ['甲乙丁'])
+            self.assertEqual(found[0]['writing_suggestions'], expected[0]['writing_suggestions'])
+            self.assertEqual(found[0]['relations'][0]['combo_matches'][0]['seed_preferred_form'], form)
         self.assertEqual(self.suggestions('kah-it'), [])
-        # An explicit MOE source selects its Hanji even with no reading match.
+        # A cited Hanji form cannot override an incompatible requested reading.
         source = {'snapshot': 'moe-fixture', 'sheet': '詞目', 'row': 2}
-        self.assertEqual(self.suggestions('kah乙', 'other', sources=[source]), expected)
+        self.assertEqual(self.suggestions('kah乙', 'other', sources=[source]), [])
+        self.assertEqual([row['headword'] for row in self.suggestions('kah乙', sources=[source])], ['甲乙丁'])
 
     def test_variants_annotations_homographs_and_source_payload_are_preserved(self):
-        self.dictionary([('甲乙', 'kah-it'), ('丁甲乙【替】', '【文】hó, bái'),
-                         ('丁甲乙', 'bóng'), ('戊己', 'hó')], {
+        self.dictionary([('甲乙', 'kah-it'), ('丁甲乙【替】', '【文】ting-kah-it, tìng-kah-it'),
+                         ('丁甲乙', 'bóng-kah-it'), ('戊己', 'kah-it-ting')], {
             '異用字': [['詞目id', '漢字', '異用字'], [13, '戊己', '甲乙丁']]})
         result = self.suggestions()
         self.assertEqual([row['record_id'] for row in result], ['11', '12', '13'])
         self.assertEqual(result[0]['headword'], '丁甲乙【替】')
-        self.assertEqual(result[0]['reading'], '【文】hó, bái')
+        self.assertEqual(result[0]['reading'], '【文】ting-kah-it, tìng-kah-it')
         self.assertEqual(result[0]['definitions'], ['Original definition 11。'])
         self.assertEqual(result[0]['source'], {'snapshot': 'moe-fixture', 'sheet': '詞目', 'row': 3})
         self.assertEqual(result[0]['column'], '羅馬字')
@@ -81,7 +87,7 @@ class RelatedMoeTests(unittest.TestCase):
         self.assertEqual(result[2]['variant_forms'], ['甲乙丁'])
 
     def test_only_numbered_headwords_are_suggested_without_appendix_duplicates(self):
-        self.dictionary([('甲乙丁', 'hó')], {
+        self.dictionary([('甲乙丁', 'kah-it-ting')], {
             '詞彙比較': [['詞目id', '漢字', '羅馬字'], ['comparison', '丁甲乙', 'hó']],
             '姓': [['詞目id', '漢字', '羅馬字'], ['appendix', '甲乙丁', 'hó']],
             '又唸作': [['詞目id', '漢字', '羅馬字'], [10, '甲乙丁', 'bái']]})
@@ -90,8 +96,8 @@ class RelatedMoeTests(unittest.TestCase):
         self.assertEqual(result[0]['source']['sheet'], '詞目')
 
     def test_repeated_edges_and_multiple_seeds_deduplicate_relations(self):
-        self.dictionary([('甲甲甲', 'hó'), ('甲甲甲甲', 'hó')])
-        result = self.suggestions('甲甲', hanji_forms=['甲甲'], moe_forms=['甲甲'])
+        self.dictionary([('甲甲甲', 'kah-kah-kah'), ('甲甲甲甲', 'kah-kah-kah-kah')])
+        result = self.suggestions('甲甲', 'kah-kah', hanji_forms=['甲甲'], moe_forms=['甲甲'])
         self.assertEqual(len(result), 2)
         self.assertEqual({relation['pattern'] for relation in result[0]['relations']}, {'XAB', 'ABX'})
         self.assertEqual(len(result[0]['relations']), 2)
@@ -99,13 +105,13 @@ class RelatedMoeTests(unittest.TestCase):
 
     def test_variation_selectors_and_supplementary_hanji_count_as_glyphs(self):
         base = '𠞭\U000e0100心'
-        self.dictionary([(base + '丁', 'hó'), ('𠞭心丁', 'bái')])
-        result = self.suggestions(base)
+        self.dictionary([(base + '丁', 'lio-sim-ting'), ('𠞭心丁', 'lio-sim-ting')])
+        result = self.suggestions(base, 'lio-sim')
         self.assertEqual([row['headword'] for row in result], [base + '丁'])
         self.assertEqual(result[0]['relations'][0]['base_form'], base)
 
     def test_indexed_check_batch_preview_and_add_share_suggestions_without_extra_imports(self):
-        self.dictionary([('甲乙', 'kah-it'), ('丁甲乙', 'hó'), ('甲乙丙', 'bái')])
+        self.dictionary([('甲乙', 'kah-it'), ('丁甲乙', 'ting-kah-it'), ('甲乙丙', 'kah-it-ping')])
         request = lex.request_data(self.request('kah乙', 'kah-it', hanji_forms=['甲乙'], review_status='reviewed'))
         evidence = lex.lkk_data(self.root), lex.moe_data(self.root)
         direct = lex.check(self.root, request, [], evidence)

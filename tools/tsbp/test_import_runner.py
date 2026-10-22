@@ -139,7 +139,9 @@ class RunnerTests(unittest.TestCase):
             self.assertEqual(item['status'], expected_status)
             suggestion, = item['checks']['related_moe_entries']
             self.assertEqual(suggestion['headword'], '欲食飯')
-            self.assertEqual(suggestion['relations'], [{'base_form': '欲食', 'matched_form': '欲食飯', 'pattern': 'ABX'}])
+            self.assertEqual({name: suggestion['relations'][0][name] for name in ('base_form', 'matched_form', 'pattern')},
+                             {'base_form': '欲食', 'matched_form': '欲食飯', 'pattern': 'ABX'})
+            self.assertTrue(suggestion['relations'][0]['combo_matches'])
             if not flags:
                 self.assertEqual(fixtures.lex.entries(fixture.root), [])
         entry, = fixtures.lex.entries(fixture.root)

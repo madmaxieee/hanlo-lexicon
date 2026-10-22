@@ -26,9 +26,15 @@ Use `python3 tools/lexicon.py`; do not invent an ID or hand-format generated TOM
    evidence and does not prohibit an LKK writing recommendation.
    When importing human-reviewed entries, present the check's
    `related_moe_entries` as additional suggestions, with Hanji, original MOE
-   reading/definition, matching pattern and source row. Search by supplied Hanji
+   reading/definition, matching pattern and source row. Start from supplied Hanji
    (`preferred_form`, `moe_forms`, `hanji_forms`) or the explicitly cited MOE
-   entry's Hanji, never by reading similarity or a homophone's Hanji. For a
+   entry's Hanji, never by reading similarity or a homophone's Hanji. A relation
+   requires every shared Hanji/TL combo to match exactly, including tone and
+   neutral markers. Compare complete canonical or explicitly recorded alternate
+   readings separately; never combine syllables across alternatives. Hanji-only
+   overlap is insufficient: 中ng / tiong-ng cannot match 中央公園 /
+   Tiong-iong Kong-hn̂g because 央/ng and 央/iong differ. Unalignable readings
+   cannot prove a relation. For a
    two-Hanji form AB, suggest XAB, ABX, XYAB and ABXY; for three Hanji ABC,
    suggest AB, BC, XABC and ABCX. These are literal word-shape candidates, not
    claims of semantic relationship. For longer related words, use the attached
@@ -66,7 +72,13 @@ Use `python3 tools/lexicon.py`; do not invent an ID or hand-format generated TOM
 
 Related discovery is independently available through `tools/lexicon.py related
 HANJI [HANJI ...] --out /path/to/review.json --markdown /path/to/review.md`.
-No import request or reading is required. Use the readable report to present
+No import request is required. Seed readings come from matching existing entries;
+use `--entry-id ID` (repeatable) to restrict the source identities. Only when no
+existing seed entry is recorded can the exact MOE seed form supply readings.
+Do not substitute other dictionary readings for an unalignable existing entry.
+Use only matched reading options and the recorded `combo_matches` proofs; the
+existing-seed column must not attribute a suggestion to a glyph-only match.
+Use the readable report to present
 each dictionary identity, reading choices, proposed writing and both sides of
 combo conflicts. All decisions initially remain `pending`, regardless of combo
 consistency. Record a human's explicit entry-by-entry decisions only in each

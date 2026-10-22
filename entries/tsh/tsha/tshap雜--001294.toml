@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "tshap-tsa̍p"
+editorial_rationale = "The maintainer adopts tshap雜 for consistency with 插/tshap romanization in entries 250 and 630 and 雜/tsa̍p Hanji in entries 1284, 1909 and 2089. Original LKK row 760 recommends 插雜; the issue-388 source uses POJ chhap雜."
+id = 1294
+moe_forms = ["插雜"]
+preferred_form = "tshap雜"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 73; normalized source characters 2757:2763; written form chhap雜"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 760
+snapshot = "lkk-2024-05-10"
+
+[[sources]]
+row = 8400
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

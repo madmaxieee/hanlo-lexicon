@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kōo"
+id = 2427
+moe_forms = ["怙"]
+preferred_form = "kōo"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 4; normalized source characters 38:41; written form kōo"
+url = "https://tsbp.tgb.org.tw/2016/08/etsun.html"
+
+[[sources]]
+row = 3882
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

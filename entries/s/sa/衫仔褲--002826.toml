@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "sann-á-khòo"
+editorial_rationale = "Corpus-backed Hanji proposal screened in sampled source context by gpt-6-luna (medium reasoning), MOE identity 5512; issue 389 model-review SHA-256 371dcaebc2b6a4d1f23d6cf549e53365bb960ff95e749551c9302e360ba11224. Batch import authorized by the maintainer without individual human review."
+id = 2826
+moe_forms = []
+preferred_form = "衫仔褲"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 389; article text line 5; corpus Unicode code points 309:312; literal form 衫仔褲"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_234.html"
+
+[[sources]]
+row = 5512
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

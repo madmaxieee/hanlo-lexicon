@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ma-ióo-nè-tsuh"
+id = 2429
+moe_forms = []
+preferred_form = "ma-ióo-nè-tsuh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 31; normalized source characters 1403:1417; written form ma-ióo-nè-tsuh"
+url = "https://tsbp.tgb.org.tw/2016/08/mih_01956743503.html"

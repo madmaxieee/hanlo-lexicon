@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "guān"
+editorial_rationale = "Corpus-backed Hanji proposal screened in sampled source context by gpt-6-luna (medium reasoning), MOE identity 12925; issue 389 model-review SHA-256 371dcaebc2b6a4d1f23d6cf549e53365bb960ff95e749551c9302e360ba11224. Batch import authorized by the maintainer without individual human review."
+id = 2637
+moe_forms = []
+preferred_form = "願"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 389; article text line 14; corpus Unicode code points 1319:1320; literal form 願"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-e.html"
+
+[[sources]]
+row = 12919
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

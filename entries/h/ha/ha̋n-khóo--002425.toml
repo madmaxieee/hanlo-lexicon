@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ha̋n-khóo"
+id = 2425
+moe_forms = []
+preferred_form = "ha̋n-khóo"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 44; normalized source characters 1615:1623; written form hăn-khó͘"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah_0854771723.html"

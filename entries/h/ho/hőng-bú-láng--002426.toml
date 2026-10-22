@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "hőng-bú-láng"
+id = 2426
+moe_forms = []
+preferred_form = "hőng-bú-láng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 735:747; written form hőng-bú-láng"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-e.html"

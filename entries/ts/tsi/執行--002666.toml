@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tsip-hîng"
+editorial_rationale = "Corpus-backed Hanji proposal screened in sampled source context by gpt-6-luna (medium reasoning), MOE identity 7094; issue 389 model-review SHA-256 371dcaebc2b6a4d1f23d6cf549e53365bb960ff95e749551c9302e360ba11224. Batch import authorized by the maintainer without individual human review."
+id = 2666
+moe_forms = []
+preferred_form = "執行"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 389; article text line 1; corpus Unicode code points 108:110; literal form 執行"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_143.html"
+
+[[sources]]
+row = 7092
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

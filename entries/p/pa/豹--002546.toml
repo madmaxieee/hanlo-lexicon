@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "pà"
+editorial_rationale = "Corpus-backed Hanji proposal screened in sampled source context by gpt-6-luna (medium reasoning), MOE identity 6669; issue 389 model-review SHA-256 371dcaebc2b6a4d1f23d6cf549e53365bb960ff95e749551c9302e360ba11224. Batch import authorized by the maintainer without individual human review."
+id = 2546
+moe_forms = []
+preferred_form = "豹"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 389; article text line 1; corpus Unicode code points 65:66; literal form 豹"
+url = "https://tsbp.tgb.org.tw/2016/08/e_043196735.html"
+
+[[sources]]
+row = 6668
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "pâi-tsuí"
+editorial_rationale = "Corpus-backed Hanji proposal screened in sampled source context by gpt-6-luna (medium reasoning), MOE identity 23498; issue 389 model-review SHA-256 371dcaebc2b6a4d1f23d6cf549e53365bb960ff95e749551c9302e360ba11224. Batch import authorized by the maintainer without individual human review."
+id = 2994
+moe_forms = []
+preferred_form = "排水"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 389; article text line 7; corpus Unicode code points 775:777; literal form 排水"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue-e.html"
+
+[[sources]]
+row = 20163
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

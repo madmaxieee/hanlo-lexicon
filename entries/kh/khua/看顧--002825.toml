@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "khuànn-kòo"
+editorial_rationale = "Corpus-backed Hanji proposal screened in sampled source context by gpt-6-luna (medium reasoning), MOE identity 5363; issue 389 model-review SHA-256 371dcaebc2b6a4d1f23d6cf549e53365bb960ff95e749551c9302e360ba11224. Batch import authorized by the maintainer without individual human review."
+id = 2825
+moe_forms = []
+preferred_form = "看顧"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 389; article text line 13; corpus Unicode code points 1371:1373; literal form 看顧"
+url = "https://tsbp.tgb.org.tw/2016/08/lanmai-bong.html"
+
+[[sources]]
+row = 5363
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,13 @@
+alternate_readings = []
+canonical_tl = "tso-liāu"
+editorial_rationale = "The maintainer supplies tso料, canonical tso-liāu and Hanji 曹料. The cited source writes tsô料; the preferred spelling and reading are the maintainer’s explicit correction, not a MOE recommendation."
+hanji_forms = ["曹料"]
+id = 2432
+moe_forms = []
+preferred_form = "tso料"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 26; normalized source characters 1284:1288; written form tsô料"
+url = "https://tsbp.tgb.org.tw/2016/08/mih.html"

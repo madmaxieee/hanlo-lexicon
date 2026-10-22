@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tsuán-hîng"
+editorial_rationale = "Corpus-backed Hanji proposal screened in sampled source context by gpt-6-luna (medium reasoning), MOE identity 24387; issue 389 model-review SHA-256 371dcaebc2b6a4d1f23d6cf549e53365bb960ff95e749551c9302e360ba11224. Batch import authorized by the maintainer without individual human review."
+id = 3011
+moe_forms = []
+preferred_form = "轉型"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 389; article text line 6; corpus Unicode code points 604:606; literal form 轉型"
+url = "https://tsbp.tgb.org.tw/2016/08/30-e.html"
+
+[[sources]]
+row = 21052
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

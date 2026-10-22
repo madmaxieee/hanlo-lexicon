@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "pòo-tshī-á"
+editorial_rationale = "Corpus-backed Hanji proposal screened in sampled source context by gpt-6-luna (medium reasoning), MOE identity 1693; issue 389 model-review SHA-256 371dcaebc2b6a4d1f23d6cf549e53365bb960ff95e749551c9302e360ba11224. Batch import authorized by the maintainer without individual human review."
+id = 2512
+moe_forms = []
+preferred_form = "布市仔"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 389; article text line 19; corpus Unicode code points 1482:1485; literal form 布市仔"
+url = "https://tsbp.tgb.org.tw/2016/08/bong-ue.html"
+
+[[sources]]
+row = 1694
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

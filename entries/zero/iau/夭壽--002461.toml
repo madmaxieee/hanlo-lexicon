@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "iáu-siū"
+editorial_rationale = "Corpus-backed Hanji proposal screened in sampled source context by gpt-6-luna (medium reasoning), MOE identity 1126; issue 389 model-review SHA-256 371dcaebc2b6a4d1f23d6cf549e53365bb960ff95e749551c9302e360ba11224. Batch import authorized by the maintainer without individual human review."
+id = 2461
+moe_forms = []
+preferred_form = "夭壽"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 389; article text line 21; corpus Unicode code points 907:909; literal form 夭壽"
+url = "https://tsbp.tgb.org.tw/2016/08/mih_01956743503.html"
+
+[[sources]]
+locator = "Issue 389; article text line 48; corpus Unicode code points 2045:2047; literal form 夭壽"
+url = "https://tsbp.tgb.org.tw/2016/08/mih_01956743503.html"
+
+[[sources]]
+row = 1127
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

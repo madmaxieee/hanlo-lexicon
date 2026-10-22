@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "sún-si"
+editorial_rationale = "Corpus-backed Hanji proposal screened in sampled source context by gpt-6-luna (medium reasoning), MOE identity 8875; issue 389 model-review SHA-256 371dcaebc2b6a4d1f23d6cf549e53365bb960ff95e749551c9302e360ba11224. Batch import authorized by the maintainer without individual human review."
+id = 2563
+moe_forms = []
+preferred_form = "筍絲"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 389; article text line 23; corpus Unicode code points 1062:1064; literal form 筍絲"
+url = "https://tsbp.tgb.org.tw/2016/08/mih_01956743503.html"
+
+[[sources]]
+row = 8873
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

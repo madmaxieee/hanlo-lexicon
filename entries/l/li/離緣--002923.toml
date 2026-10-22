@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "lī-iân"
+editorial_rationale = "Corpus-backed Hanji proposal screened in sampled source context by gpt-6-luna (medium reasoning), MOE identity 12724; issue 389 model-review SHA-256 371dcaebc2b6a4d1f23d6cf549e53365bb960ff95e749551c9302e360ba11224. Batch import authorized by the maintainer without individual human review."
+id = 2923
+moe_forms = []
+preferred_form = "離緣"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 389; article text line 9; corpus Unicode code points 80:82; literal form 離緣"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_28.html"
+
+[[sources]]
+row = 12718
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

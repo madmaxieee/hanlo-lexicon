@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "làng"
+id = 2428
+moe_forms = ["閬"]
+preferred_form = "làng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 1035:1039; written form làng"
+url = "https://tsbp.tgb.org.tw/2016/08/gong.html"
+
+[[sources]]
+row = 11512
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

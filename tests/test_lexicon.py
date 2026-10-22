@@ -19,12 +19,13 @@ import xml.etree.ElementTree as ET
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'tools'))
 SPEC = importlib.util.spec_from_file_location('lexicon', ROOT / 'tools/lexicon.py')
 lex = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(lex)
 
 
-def make_ods(path):
+def make_ods(path, extra_sheets=None):
     office = ET.Element(lex.O + 'document-content')
     body = ET.SubElement(office, lex.O + 'body')
     spreadsheet = ET.SubElement(body, lex.O + 'spreadsheet')
@@ -36,6 +37,7 @@ def make_ods(path):
         '異用字': [['詞目id', '漢字', '異用字'], [7, '欲', '卜']],
         '漢字羅馬字對應': [['漢字', '羅馬字', '來源'], ['arbitrary example token', 'beh', '例句']],
     }
+    sheets.update(extra_sheets or {})
     for name, rows in sheets.items():
         table = ET.SubElement(spreadsheet, lex.T + 'table', {lex.T + 'name': name})
         for values in rows:

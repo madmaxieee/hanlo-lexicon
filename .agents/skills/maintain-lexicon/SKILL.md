@@ -24,6 +24,22 @@ Use `python3 tools/lexicon.py`; do not invent an ID or hand-format generated TOM
    definitions and original snapshot/sheet/row references for review. A same-form
    or same-reading hit is not proof of lexical identity. MOE presence is useful
    evidence and does not prohibit an LKK writing recommendation.
+   When importing human-reviewed entries, present the check's
+   `related_moe_entries` as additional suggestions, with Hanji, original MOE
+   reading/definition, matching pattern and source row. Search by supplied Hanji
+   (`preferred_form`, `moe_forms`, `hanji_forms`) or the explicitly cited MOE
+   entry's Hanji, never by reading similarity or a homophone's Hanji. For a
+   two-Hanji form AB, suggest XAB, ABX, XYAB and ABXY; for three Hanji ABC,
+   suggest AB, BC, XABC and ABCX. These are literal word-shape candidates, not
+   claims of semantic relationship. For longer related words, use the attached
+   `writing_suggestions`: consistent combos propose a complete spelling;
+   conflicts retain evidence for every Hanji and romanized choice, including
+   supporting entry IDs, spellings, readings, review status and original sources.
+   Unknown or unalignable positions need human spelling decisions. Do not choose
+   a conflict by majority or silently fill unknown positions.
+   Every related entry requires individual human review, including shorter words
+   and consistent proposals. The original entry's approval does not approve its
+   related words. If the request has no verified Hanji, do not invent a seed.
 4. For an existing word, edit the existing entry rather than creating another.
    For an unrelated homograph, supply a short `identity_note` explaining the
    distinction. Do not split a word merely because it has related senses or
@@ -45,6 +61,26 @@ Use `python3 tools/lexicon.py`; do not invent an ID or hand-format generated TOM
 7. Run `validate` and `format --check`. Report the resulting file/ID, relevant
    dictionary matches, and unresolved editorial issues. Keep the repository local
    and leave commit/publish actions to the user's instruction.
+
+## Standalone related-word review
+
+Related discovery is independently available through `tools/lexicon.py related
+HANJI [HANJI ...] --out /path/to/review.json --markdown /path/to/review.md`.
+No import request or reading is required. Use the readable report to present
+each dictionary identity, reading choices, proposed writing and both sides of
+combo conflicts. All decisions initially remain `pending`, regardless of combo
+consistency. Record a human's explicit entry-by-entry decisions only in each
+item's `review` object; approval must select the whole preferred form, canonical
+reading and any alternates, resolving conflicts and unknown positions.
+
+After human review, `import-related /path/to/review.json` previews only individual
+`approved` decisions; add `--apply` when their local import is authorized. These
+entries are imported as `reviewed`, preserving original MOE sources, without a
+`rule_generated` flag. Pending/rejected items are never imported. An overall
+request to import suggestions does not establish individual human review.
+Do not rewrite sealed report evidence. If entries, dictionary or implementation
+change, regenerate the report and review the updated evidence before import.
+Existing-entry conflicts still follow the resolution rules below.
 
 ## Import conflicts require maintainer review
 

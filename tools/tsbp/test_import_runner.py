@@ -11,6 +11,7 @@ import shutil
 from contextlib import redirect_stdout
 from unittest import mock
 from import_review import run_maintenance, coalesce_identical_approvals, apply_ready, main as review_main
+from review_support import add_review_choices
 
 ROOT = Path(__file__).resolve().parents[2]
 SPEC = importlib.util.spec_from_file_location('maintenance_fixtures', ROOT / 'tests/test_lexicon.py')
@@ -100,6 +101,53 @@ class RunnerTests(unittest.TestCase):
         first = fixtures.lex.load_toml(fixture.root / plan[0]['path'])
         self.assertEqual(len(first['sources']), 2)
 
+    def test_approved_moe_word_reports_hanji_suggestions_without_importing_them(self):
+        fixture = self.fixture()
+        # Install an original-source fixture with a two-Hanji word and extension.
+        old_digest = fixtures.lex.load_toml(fixture.root / 'references/moe.toml')['sha256']
+        fixtures.make_ods(fixture.moe_path, {
+            '詞目': [['詞目id', '漢字', '羅馬字'], [7, '欲食', 'beh-tsia̍h'], [8, '欲食飯', 'beh-tsia̍h-pn̄g']]})
+        digest = hashlib.sha256(fixture.moe_path.read_bytes()).hexdigest()
+        pin = fixture.root / 'references/moe.toml'
+        pin.write_text(pin.read_text().replace(old_digest, digest))
+        cache = fixture.root / '.cache/dictionaries/moe' / digest / 'kautian.ods'
+        cache.parent.mkdir(parents=True)
+        fixture.moe_path.replace(cache)
+        pilot, review = self.make_pilot(fixture, ['beh-tsia̍h'])
+        records = fixtures.lex.moe_data(fixture.root)[2]
+        groups = json.loads((pilot / 'groups.json').read_text())
+        groups[0]['moe_matches'] = [records[0]]
+        add_review_choices(groups, records)
+        (pilot / 'groups.json').write_text(json.dumps(groups, ensure_ascii=False))
+        groups_digest = hashlib.sha256((pilot / 'groups.json').read_bytes()).hexdigest()
+        summary = json.loads((pilot / 'summary.json').read_text())
+        summary['review_groups_sha256'] = groups_digest
+        (pilot / 'summary.json').write_text(json.dumps(summary))
+        bundle = json.loads(review.read_text())
+        bundle['groups_sha256'] = groups_digest
+        word = groups[0]['review_words'][0]
+        bundle['approvals'][0].update(import_mode='moe', word_id=word['id'],
+                                      canonical_choice_id=word['readings'][0]['id'])
+        review.write_text(json.dumps(bundle))
+        args = ['import_review.py', str(review), '--pilot', str(pilot)]
+        for flags, expected_status in (([], 'ready'), (['--apply'], 'created')):
+            output = io.StringIO()
+            with mock.patch.object(sys, 'argv', args + flags), redirect_stdout(output):
+                review_main()
+            result = json.loads(output.getvalue())
+            item = result['items'][0]
+            self.assertEqual(item['status'], expected_status)
+            suggestion, = item['checks']['related_moe_entries']
+            self.assertEqual(suggestion['headword'], '欲食飯')
+            self.assertEqual(suggestion['relations'], [{'base_form': '欲食', 'matched_form': '欲食飯', 'pattern': 'ABX'}])
+            if not flags:
+                self.assertEqual(fixtures.lex.entries(fixture.root), [])
+        entry, = fixtures.lex.entries(fixture.root)
+        self.assertEqual(entry[1]['preferred_form'], 'beh-tsia̍h')
+        self.assertEqual(entry[1]['moe_forms'], ['欲食'])
+        self.assertEqual(entry[1]['review_status'], 'imported')
+        self.assertEqual(fixtures.lex.next_id(fixture.root, [entry]), 2)
+
     def test_writer_recheck_blocks_stale_plan_without_allocating_or_individual_retries(self):
         fixture = self.fixture()
         request = fixtures.lex.request_data(fixture.request())
@@ -120,7 +168,7 @@ class RunnerTests(unittest.TestCase):
         previous = sys.argv
         try:
             (fixture.root / 'tools').mkdir()
-            shutil.copy2(ROOT / 'tools/lexicon.py', fixture.root / 'tools/lexicon.py')
+            shutil.copyfile(ROOT / 'tools/lexicon.py', fixture.root / 'tools/lexicon.py')
             pilot = fixture.root / 'pilot'
             pilot.mkdir()
             group = {'key': 'liô', 'occurrences': [{'url': 'https://example.com/article',

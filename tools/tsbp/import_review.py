@@ -271,6 +271,7 @@ def main():
                                      for form, reading in lexicon.spelling_readings(request)]
             item.update(request=request, checks={'existing_entries': report['existing_entries'],
                 'lkk_matches': len(report['lkk_matches']), 'moe_matches': len(report['moe_matches']),
+                'related_moe_entries': report['related_moe_entries'],
                 'moe_checked': report['moe_checked']})
             note = lexicon.key(request.get('identity_note', ''))
             existing = report['existing_entries']

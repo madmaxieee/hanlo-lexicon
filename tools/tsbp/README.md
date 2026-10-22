@@ -183,6 +183,19 @@ python3 tools/tsbp/import_review.py /path/to/review.json \
 The preview validates issue/corpus/candidate fingerprints and selected original
 MOE references, then runs offline existing-entry/LKK/MOE checks. Structured custom
 requests receive a separate `custom_previews` proposal and dictionary report.
+Both ordinary approval `checks` and custom previews include
+`related_moe_entries` from the maintenance tool's Hanji-only word-shape search
+(AB → XAB / ABX / XYAB / ABXY; ABC → AB / BC / XABC / ABCX). These retain
+original MOE evidence and require separate review. They are suggestions in the
+JSON report, not additional approvals or imports; pronunciation similarity is
+not used. Article-only romanized approvals have no Hanji seed; a structured custom
+request can supply verified Hanji when needed.
+Longer related words also include combo-based `writing_suggestions`, with original
+entry evidence for every Hanji/romanization conflict. Every related word needs
+individual human review. Use the independent `lexicon.py related HANJI --out ...
+--markdown ...` workflow to record that review and `lexicon.py import-related ...`
+to preview or apply the individually approved words as `reviewed`; ordinary TSBP
+approvals do not approve their related suggestions.
 `--apply` imports only explicit ordinary approvals, using the unchanged
 maintenance writer, duplicate checks and ID allocation. It does not execute free
 text or automatically add custom proposals. Resolve their sources and any

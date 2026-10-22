@@ -264,6 +264,7 @@ class LookupIndex:
     """Build once per batch; extend the entry index after each planned addition."""
 
     def __init__(self, current, evidence):
+        self.combo_entries, self.writing_index = tuple(current), None
         self.current, self.lkk, self.moe = KeyIndex(), KeyIndex(), KeyIndex()
         for row in current:
             self.add_entry(*row)
@@ -278,6 +279,7 @@ class LookupIndex:
                          {annotation_key(record['headword']),
                           *(annotation_key(form) for form in record['variant_forms'])},
                          reading_keys(record['reading']))
+        self.related_moe = RelatedMoeIndex(evidence[1][2])
 
     def add_entry(self, path, entry):
         self.current.add((path, entry), *entry_keys(entry))
@@ -414,6 +416,12 @@ def next_id(root, current):
     if type(value) is not int or value <= max((entry['id'] for _, entry in current), default=0):
         raise Error('id-sequence.toml must contain next_id greater than every allocated entry ID.')
     return value
+
+
+def entry_state(root, current):
+    """Fingerprint authoritative entry fields and paths for human review freshness."""
+    values = [(str(path.relative_to(root)), entry) for path, entry in sorted(current)]
+    return hashlib.sha256(json.dumps(values, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
 
 
 def ods_sheets(raw):
@@ -556,6 +564,76 @@ def verify_sources(entry, lkk, moe):
             raise Error(f'Unknown or unavailable source snapshot: {source["snapshot"]}.')
 
 
+def hanji_glyphs(text):
+    """Literal Hanji glyphs, retaining variation selectors; no separator removal."""
+    glyphs = []
+    for char in annotation_key(text):
+        if ud.name(char, '').startswith(('CJK UNIFIED IDEOGRAPH-', 'CJK COMPATIBILITY IDEOGRAPH-')) or char == '〇':
+            glyphs.append(char)
+        elif glyphs and (0xfe00 <= ord(char) <= 0xfe0f or 0xe0100 <= ord(char) <= 0xe01ef):
+            glyphs[-1] += char
+        else:
+            return ()
+    return tuple(glyphs)
+
+
+class RelatedMoeIndex:
+    """Index literal edge extensions of numbered MOE headwords once per batch."""
+
+    def __init__(self, records):
+        self.records, self.forms, self.extensions = [], {}, {}
+        self.source_records = {tuple(sorted(record['source'].items())): record for record in records}
+        for record in records:
+            if record['source']['sheet'] != '詞目' or not record['record_id'].isdecimal():
+                continue
+            number = len(self.records)
+            self.records.append(record)
+            forms = {hanji_glyphs(form) for form in [record['headword'], *record['variant_forms']]}
+            for form in sorted(forms):
+                if len(form) not in (2, 3, 4):
+                    continue
+                self.forms.setdefault(form, []).append((number, form))
+                for length in (2, 3):
+                    extra = len(form) - length
+                    if extra not in (1, 2) or length == 3 and extra != 1:
+                        continue
+                    base = 'AB' if length == 2 else 'ABC'
+                    for seed, pattern in ((form[:length], base + ('X' if extra == 1 else 'XY')),
+                                          (form[-length:], ('X' if extra == 1 else 'XY') + base)):
+                        self.extensions.setdefault(seed, []).append((number, form, pattern))
+
+    def suggest(self, candidate, moe_matches):
+        forms = {candidate['preferred_form'], *candidate['moe_forms'], *candidate.get('hanji_forms', [])}
+        hanji_forms = {annotation_key(form) for form in forms if hanji_glyphs(form)}
+        # Search Hanji only. A reading-only homophone never supplies a seed.
+        cited = [record for source in candidate.get('sources', [])
+                 if (record := self.source_records.get(tuple(sorted(source.items())))) is not None]
+        selected_ids = set()
+        for record in [*moe_matches, *cited]:
+            if (hanji_forms & {annotation_key(record['headword']),
+                               *(annotation_key(form) for form in record['variant_forms'])}
+                    or record['source'] in candidate.get('sources', [])):
+                forms.update([record['headword'], *record['variant_forms']])
+                if record['record_id']:
+                    selected_ids.add(record['record_id'])
+        seeds = {glyphs for form in forms if len(glyphs := hanji_glyphs(form)) in (2, 3)}
+        relations = {}
+        for seed in sorted(seeds):
+            matches = list(self.extensions.get(seed, []))
+            if len(seed) == 3:
+                for part, pattern in ((seed[:2], 'AB'), (seed[1:], 'BC')):
+                    matches.extend((number, form, pattern) for number, form in self.forms.get(part, []))
+            for number, form, pattern in matches:
+                if form in seeds or self.records[number]['record_id'] in selected_ids:
+                    continue
+                relation = (''.join(seed), ''.join(form), pattern)
+                relations.setdefault(number, set()).add(relation)
+        return [dict(self.records[number], relations=[
+                    {'base_form': base, 'matched_form': form, 'pattern': pattern}
+                    for base, form, pattern in sorted(relations[number])])
+                for number in sorted(relations)]
+
+
 def check(root, candidate, current=None, evidence=None, lookup=None):
     verify_entry(root, dict(candidate, id=candidate.get('id', 1)), lookup_only=True)
     lkk, moe = evidence if evidence else (lkk_data(root), moe_data(root))
@@ -563,6 +641,7 @@ def check(root, candidate, current=None, evidence=None, lookup=None):
     forms = {preferred, *(key(form) for form in candidate['moe_forms']),
              *(key(form) for form in candidate.get('hanji_forms', []))}
     readings = {key(candidate['canonical_tl']), *(key(reading) for reading in candidate['alternate_readings'])}
+    combo_current = current
     if lookup is not None:
         current = sorted(lookup.current.matching(forms, readings), key=lambda item: item[0])
     elif current is None:
@@ -592,7 +671,22 @@ def check(root, candidate, current=None, evidence=None, lookup=None):
         reading_match = bool(readings & reading_keys(record['reading']))
         if form_match or reading_match:
             moe_matches.append(dict(record, match='form_and_reading' if form_match and reading_match else 'same_form' if form_match else 'same_reading'))
-    return {'existing_entries': existing, 'lkk_matches': lkk_matches, 'moe_matches': moe_matches, 'moe_checked': {'snapshot': moe[0]['id'], 'sha256': moe[0]['sha256']}}
+    related = lookup.related_moe if lookup is not None else RelatedMoeIndex(moe[2])
+    suggestions = related.suggest(candidate, moe_matches)
+    if suggestions:
+        from related_moe import WritingIndex
+        if lookup is not None:
+            if lookup.writing_index is None:
+                lookup.writing_index = WritingIndex(root, lookup.combo_entries, moe[2])
+            writing = lookup.writing_index
+        else:
+            if combo_current is None:
+                combo_current = [(path, entry) for path, entry, _ in entry_snapshot(root)]
+            writing = WritingIndex(root, combo_current, moe[2])
+        suggestions = writing.annotate(suggestions)
+    return {'existing_entries': existing, 'lkk_matches': lkk_matches, 'moe_matches': moe_matches,
+            'related_moe_entries': suggestions,
+            'moe_checked': {'snapshot': moe[0]['id'], 'sha256': moe[0]['sha256']}}
 
 
 def normalize_request(data):
@@ -642,7 +736,7 @@ def validate(root, formatting=True, current=None, evidence=None):
     return {'entries': len(current), 'next_id': next_id(root, current), 'sources': len(lkk)}
 
 
-def add_batch(root, candidates, dry_run=False):
+def add_batch(root, candidates, dry_run=False, expected_state=None):
     """Preflight the complete batch under one writer lock before reserving IDs.
 
     Existing data and checksum-verified dictionaries are loaded once. Every
@@ -654,6 +748,9 @@ def add_batch(root, candidates, dry_run=False):
     with writer_lock(root):
         current = entries(root)
         evidence = lkk_data(root), moe_data(root)
+        if expected_state is not None and expected_state != {
+                'entries_sha256': entry_state(root, current), 'moe_sha256': evidence[1][0]['sha256']}:
+            raise Error('Human review evidence changed before import; regenerate and review again.')
         validate(root, current=current, evidence=evidence)
         lookup = LookupIndex(current, evidence)
         first_id = next_id(root, current)
@@ -803,6 +900,13 @@ def main():
     query.add_argument('text', nargs='?')
     query.add_argument('--id', type=int, dest='entry_id')
     query.add_argument('--no-cache', action='store_true', help='Read and validate all entry TOML directly.')
+    related = sub.add_parser('related', help='Find related MOE entries by Hanji and propose spellings for human review.')
+    related.add_argument('hanji', nargs='+')
+    related.add_argument('--out', type=Path, help='Write the JSON review file.')
+    related.add_argument('--markdown', type=Path, help='Write a readable evidence report.')
+    related_import = sub.add_parser('import-related', help='Preview individually human-reviewed related entries.')
+    related_import.add_argument('review', type=Path)
+    related_import.add_argument('--apply', action='store_true', help='Import only individually approved entries as reviewed.')
     args = parser.parse_args()
     root = args.root.resolve()
     try:
@@ -836,6 +940,21 @@ def main():
                 result = validate(root)
         elif args.command == 'check':
             result = check(root, request_data(args.request))
+        elif args.command == 'related':
+            from related_moe import find, markdown
+            outputs = [path.resolve() for path in (args.out, args.markdown) if path is not None]
+            if len(outputs) != len(set(outputs)):
+                raise Error('JSON and Markdown reports need different output files.')
+            if any(path.is_relative_to(root) and not path.is_relative_to(root / '.cache/related-moe') for path in outputs):
+                raise Error('Write generated reviews outside the repository or under .cache/related-moe/.')
+            result = find(root, args.hanji)
+            if args.markdown:
+                atomic_write(args.markdown, markdown(result))
+            if args.out:
+                atomic_write(args.out, json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2) + '\n')
+        elif args.command == 'import-related':
+            from related_moe import import_reviewed
+            result = import_reviewed(root, json.loads(args.review.read_text()), apply=args.apply)
         elif args.command == 'query':
             if (args.text is None) == (args.entry_id is None):
                 raise Error('Supply exactly one query text or --id.')

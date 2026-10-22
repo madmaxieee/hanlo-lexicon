@@ -137,7 +137,7 @@ class ExtractionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             (root / 'tools').mkdir()
-            shutil.copy2(Path(__file__).resolve().parents[1] / 'lexicon.py', root / 'tools/lexicon.py')
+            shutil.copyfile(Path(__file__).resolve().parents[1] / 'lexicon.py', root / 'tools/lexicon.py')
             (root / 'schema').mkdir()
             shutil.copyfile(Path(__file__).resolve().parents[2] / 'schema/entry.schema.json',
                             root / 'schema/entry.schema.json')

@@ -90,6 +90,43 @@ without asserting MOE inclusion. These forms are included in existing-entry,
 LKK and MOE checks; same-form matches still require editorial identity review.
 Hanji metadata does not generate CSV output rows. Omit it when unknown.
 
+Checks also return `related_moe_entries` for human-review import suggestions.
+The search uses Hanji forms only, never pronunciation similarity: two Hanji AB
+match XAB, ABX, XYAB and ABXY; three Hanji ABC match AB, BC, XABC and ABCX.
+Seeds come from supplied `preferred_form`, `moe_forms` or `hanji_forms`, including
+verified MOE variants, or an explicitly cited MOE reading/headword row. A
+reading-only dictionary hit does not supply Hanji. Mixed/romanized requests need
+supplied Hanji or that explicit MOE source selection. Only literal contiguous
+Hanji count; glyph variation selectors stay attached to their character. Explicit
+MOE annotations are ignored for matching and retained in the original evidence.
+
+Suggestions cover numbered `詞目` entries and their recorded variant forms,
+without comparison/name/surname-sheet duplicates. Each retains its MOE identity,
+original headword, reading, definitions and source row, plus `relations` naming
+the `base_form`, `matched_form` and `pattern`. Homographs remain separate and
+results follow dictionary order. The requested word is omitted; suggestions do
+not recursively seed more suggestions. Shapes alone do not establish semantic
+relationship. `check`, `add` and per-request `add-batch` reports expose the same
+suggestions, independently of review status. Present them when importing
+human-reviewed entries; they require their own review and import authorization.
+They never affect duplicate checks, allocate IDs, change review status, or enter
+entry TOML as metadata.
+
+For a longer related entry, `writing_suggestions` applies the existing combo
+inventory to each sourced reading separately. Tone and neutral-boundary keys
+remain exact. Every position includes Hanji, TL and all supported outputs with
+supporting entry IDs, preferred forms, readings, original sources and review
+status. Generated and disputed entries do not supply writing recommendations;
+other statuses retain their actual labels. One supported output per position
+produces a `consistent` complete spelling. Multiple outputs produce `conflicting`,
+with evidence for every Hanji and romanized alternative and no majority choice.
+Unknown positions produce `incomplete`; contractions/unsupported alignments are
+`unalignable`. Neither gets an invented fallback spelling. Shorter related words
+have reading choices but no longer-word writing proposals. Every related word
+requires individual human review, including consistent spelling suggestions.
+Batch checks use one combo snapshot from existing entries before the batch;
+unwritten requests do not become evidence for later requests.
+
 Before adding, include `sources` with original evidence, as documented in
 `schema/README.md`. Do not supply an ID. Optional prose fields are accepted;
 otherwise array fields default to empty and status defaults to `imported`.
@@ -119,6 +156,68 @@ python3 tools/lexicon.py format --check
 unless an explicit distinct-word `identity_note` is provided, reserves the next ID,
 and writes the sorted TOML file. Repeating the same identity note also blocks a
 duplicate. Unicode input is normalized to NFC. No raw source cells are copied.
+
+## Standalone related-entry discovery and human review
+
+Related discovery needs only the Hanji seed, independently of import requests:
+
+```sh
+python3 tools/lexicon.py related 火車 \
+  --out /path/to/fire-train.review.json \
+  --markdown /path/to/fire-train.review.md
+# Multiple seeds are allowed; related identities and relations are deduplicated.
+python3 tools/lexicon.py related 火車 火車頭
+```
+
+The JSON report contains original MOE evidence, all sourced reading choices,
+combo writing suggestions for longer matches, existing-entry identity candidates,
+and one `review` object per related entry. The optional Markdown report presents
+the same evidence for a human to inspect. Output files must be outside the
+repository or under ignored `.cache/related-moe/`. Discovery only reads entries;
+it does not allocate IDs, approve words, or import entries.
+
+Every `review.decision` starts as `pending`. After a human individually reviews
+that word, edit only its `review` object, for example:
+
+```json
+{
+  "decision": "approved",
+  "preferred_form": "火車站",
+  "canonical_tl": "hué-tshia-tsām",
+  "alternate_readings": [],
+  "identity_note": "",
+  "editorial_rationale": ""
+}
+```
+
+Use `rejected` to decline a word or retain `pending` for later review. Approval
+must explicitly select the preferred spelling, canonical reading and any
+alternates, including choices for conflicts and unknown positions. There is no
+approve-all operation or automatic acceptance of consistent proposals. Readings
+must belong to that same original MOE identity; alternate, colloquial, contracted
+and dialect sources remain available. Human choices can adopt a different
+spelling from a generated proposal. An existing-entry overlap needs explicit
+identity resolution; this importer never updates or silently dismisses it.
+
+```sh
+python3 tools/lexicon.py import-related /path/to/fire-train.review.json
+python3 tools/lexicon.py import-related /path/to/fire-train.review.json --apply
+```
+
+The first command previews, allocating nothing. `--apply` submits only individual
+`approved` decisions to the ordinary batch writer, with `review_status: reviewed`
+and original MOE citations. Human-adopted recommendations omit `rule_generated`.
+Pending and rejected suggestions are excluded. The related word is dictionary
+evidence, so the seed word's corpus context is not copied as an occurrence of the
+longer word. Optional human rationale is preserved without inventing an explanation.
+The writer repeats normal source/duplicate/ID checks and validates after import.
+
+The report seals dictionary identity, source evidence, combo support and entry
+state separately from editable human decisions. Changed evidence, entry data,
+dictionary pins or implementation require regeneration and review of the updated
+report. The writer rechecks the entry/dictionary state under its lock before any
+IDs are reserved. After importing part of a report, regenerate for remaining
+suggestions because the current entry/consistency evidence has changed.
 
 ## Existing entries and IDs
 

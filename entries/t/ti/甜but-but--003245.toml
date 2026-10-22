@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tinn-but-but"
+id = 3245
+moe_forms = ["甜粅粅"]
+preferred_form = "甜but-but"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 2931:2939; written form 甜but-but"
+url = "https://tsbp.tgb.org.tw/2016/06/lanmai-ti.html"
+
+[[sources]]
+row = 7661
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

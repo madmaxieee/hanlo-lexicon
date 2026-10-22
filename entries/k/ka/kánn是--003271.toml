@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "kánn-sī"
+id = 3271
+identity_note = "MOE word 14321 敢是, kánn-sī (conjecture: probably or perhaps), distinct from MOE word 14320 敢是, kám-sī / kiám-sī (questions), retained as entry 413. The maintainer explicitly chooses separate entries despite their shared Hanji."
+moe_forms = ["敢是"]
+preferred_form = "kánn是"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 1606:1611; written form Kánn是"
+url = "https://tsbp.tgb.org.tw/2016/06/bong-ue-echoa.html"
+
+[[sources]]
+row = 14315
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

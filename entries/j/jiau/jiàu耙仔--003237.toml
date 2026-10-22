@@ -1,0 +1,16 @@
+alternate_readings = ["liàu-pê-á"]
+canonical_tl = "jiàu-pê-á"
+id = 3237
+moe_forms = ["抓耙仔"]
+preferred_form = "jiàu耙仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 636:642; written form jiàu耙仔"
+url = "https://tsbp.tgb.org.tw/2016/06/bong-ue-echoa.html"
+
+[[sources]]
+row = 3245
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

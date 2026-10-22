@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "giàng-giàng"
+id = 3253
+moe_forms = []
+preferred_form = "giàng-giàng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 2; normalized source characters 59:70; written form giàng-giàng"
+url = "https://tsbp.tgb.org.tw/2016/06/blog-post_771.html"

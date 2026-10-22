@@ -1,0 +1,16 @@
+alternate_readings = ["buē-hô"]
+canonical_tl = "bē-hô"
+id = 3233
+moe_forms = ["袂和"]
+preferred_form = "bē和"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 766:769; written form bē和"
+url = "https://tsbp.tgb.org.tw/2016/06/e_01657329949.html"
+
+[[sources]]
+row = 6644
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

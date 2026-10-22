@@ -1,0 +1,13 @@
+alternate_readings = []
+canonical_tl = "--tńg-lâi"
+editorial_rationale = "The maintainer supplies the complete source phrase --tńg-來 with canonical TL --tńg-lâi and Hanji --轉-來, retaining the source’s leading neutral marker."
+hanji_forms = ["--轉-來"]
+id = 3269
+moe_forms = []
+preferred_form = "--tńg-來"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 53; normalized source characters 2274:2281; written form --tńg-來"
+url = "https://tsbp.tgb.org.tw/2016/06/sann-kap-ka-choah.html"

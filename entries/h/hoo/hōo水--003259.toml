@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hōo-tsuí"
+id = 3259
+moe_forms = ["雨水"]
+preferred_form = "hōo水"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 28; normalized source characters 1994:1998; written form hōo水"
+url = "https://tsbp.tgb.org.tw/2016/06/e_01657329949.html"
+
+[[sources]]
+row = 4515
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

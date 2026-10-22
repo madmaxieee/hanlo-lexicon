@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsuá-lok-á"
+id = 3246
+moe_forms = ["紙橐仔"]
+preferred_form = "紙lok仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 16; normalized source characters 749:754; written form 紙lok仔"
+url = "https://tsbp.tgb.org.tw/2016/06/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 6522
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

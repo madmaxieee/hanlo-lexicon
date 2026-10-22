@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshiú-lok-á"
+id = 3231
+moe_forms = ["手橐仔"]
+preferred_form = "手lok仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 32; normalized source characters 2412:2417; written form 手lok仔"
+url = "https://tsbp.tgb.org.tw/2016/06/e_01657329949.html"
+
+[[sources]]
+row = 1161
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

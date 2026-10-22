@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kuân suann"
+id = 3266
+moe_forms = ["懸山"]
+preferred_form = "kuân山"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 42; normalized source characters 1300:1305; written form kuân山"
+url = "https://tsbp.tgb.org.tw/2016/06/an-ne-lan-tsit-siu.html"
+
+[[sources]]
+row = 12967
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

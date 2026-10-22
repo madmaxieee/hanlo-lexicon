@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khong-khám"
+id = 3263
+moe_forms = ["悾歁"]
+preferred_form = "khong-khám"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 16; normalized source characters 991:1001; written form Khong-khám"
+url = "https://tsbp.tgb.org.tw/2016/06/e_01657329949.html"
+
+[[sources]]
+row = 7265
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "giàng"
+id = 3227
+moe_forms = ["齴"]
+preferred_form = "giàng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 2; normalized source characters 59:64; written form giàng"
+url = "https://tsbp.tgb.org.tw/2016/06/blog-post_771.html"
+
+[[sources]]
+row = 13350
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kat-kat"
+id = 3260
+moe_forms = []
+preferred_form = "kat-kat"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 113; normalized source characters 4225:4232; written form kat-kat"
+url = "https://tsbp.tgb.org.tw/2016/06/sann-kap-ka-choah.html"

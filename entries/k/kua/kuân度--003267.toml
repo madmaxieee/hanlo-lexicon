@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kuân-tōo"
+id = 3267
+moe_forms = ["懸度"]
+preferred_form = "kuân度"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 4; normalized source characters 33:38; written form kuân度"
+url = "https://tsbp.tgb.org.tw/2016/06/blog-post_26.html"
+
+[[sources]]
+row = 12974
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

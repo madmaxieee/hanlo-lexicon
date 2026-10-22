@@ -1,0 +1,21 @@
+alternate_readings = ["bueh-sí-tōng-hàinn"]
+canonical_tl = "beh-sí-tōng-hàinn"
+id = 3248
+moe_forms = ["欲死盪幌"]
+preferred_form = "beh死盪幌"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 71; normalized source characters 2798:2804; written form beh死盪幌"
+url = "https://tsbp.tgb.org.tw/2016/06/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 1203
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 15235
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

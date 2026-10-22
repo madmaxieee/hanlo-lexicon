@@ -1,0 +1,16 @@
+alternate_readings = ["hip-lua̍h"]
+canonical_tl = "hip-jua̍h"
+id = 3254
+moe_forms = ["翕熱"]
+preferred_form = "hip熱"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 2030:2034; written form hip熱"
+url = "https://tsbp.tgb.org.tw/2016/06/lanmai-ti.html"
+
+[[sources]]
+row = 8922
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

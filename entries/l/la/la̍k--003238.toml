@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "la̍k"
+id = 3238
+moe_forms = ["搦"]
+preferred_form = "la̍k"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 31; normalized source characters 3919:3923; written form la̍k"
+url = "https://tsbp.tgb.org.tw/2016/06/lanmai-ti.html"
+
+[[sources]]
+row = 9483
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

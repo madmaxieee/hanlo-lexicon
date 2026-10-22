@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ênn-á"
+id = 3244
+moe_forms = ["楹仔"]
+preferred_form = "ênn仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 104:108; written form ênn仔"
+url = "https://tsbp.tgb.org.tw/2016/06/an-ne-lan-tsit-siu.html"
+
+[[sources]]
+row = 9643
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

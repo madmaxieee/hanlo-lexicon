@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsu̍t-bí"
+id = 3235
+moe_forms = ["秫米"]
+preferred_form = "tsu̍t米"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 40:46; written form chu̍t米"
+url = "https://tsbp.tgb.org.tw/2016/06/e_0452595938.html"
+
+[[sources]]
+row = 6436
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

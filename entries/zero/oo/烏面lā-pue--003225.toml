@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "oo-bīn-lā-pue"
+id = 3225
+moe_forms = ["烏面抐桮"]
+preferred_form = "烏面lā-pue"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 49; normalized source characters 1735:1743; written form 烏面lā-pue"
+url = "https://tsbp.tgb.org.tw/2016/06/an-ne-lan-tsit-siu.html"
+
+[[sources]]
+row = 6269
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

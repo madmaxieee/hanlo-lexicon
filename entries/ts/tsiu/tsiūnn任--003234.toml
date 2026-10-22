@@ -1,0 +1,16 @@
+alternate_readings = ["tsiūnn-līm"]
+canonical_tl = "tsiūnn-jīm"
+id = 3234
+moe_forms = ["上任"]
+preferred_form = "tsiūnn任"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 24; normalized source characters 1080:1086; written form chiūⁿ任"
+url = "https://tsbp.tgb.org.tw/2016/06/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 299
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

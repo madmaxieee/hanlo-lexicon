@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "huah-siann"
+id = 3256
+moe_forms = ["喝聲"]
+preferred_form = "huah聲"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 81; normalized source characters 3141:3146; written form hoah聲"
+url = "https://tsbp.tgb.org.tw/2016/06/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 15145
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "iu"
+id = 3236
+moe_forms = ["釉"]
+preferred_form = "iu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 6; normalized source characters 543:545; written form iu"
+url = "https://tsbp.tgb.org.tw/2016/06/blog-post_771.html"
+
+[[sources]]
+row = 14964
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

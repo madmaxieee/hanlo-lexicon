@@ -1,5 +1,6 @@
-alternate_readings = []
+alternate_readings = ["tsok"]
 canonical_tl = "tsiok"
+editorial_rationale = "The maintainer requests the source POJ chok as an alternate for 足 / tsiok. The converter verifies TL tsok. MOE word 3391 explicitly permits tsok for the intensifier sense, matching the issue-387 contexts; canonical and preferred tsiok are retained."
 id = 281
 moe_forms = ["足"]
 preferred_form = "tsiok"
@@ -7,5 +8,27 @@ review_status = "imported"
 schema_version = 1
 
 [[sources]]
+locator = "Article text line 17; normalized source characters 1428:1432; written form chok"
+url = "https://tsbp.tgb.org.tw/2016/06/blog-post_678.html"
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 1435:1439; written form chok"
+url = "https://tsbp.tgb.org.tw/2016/06/blog-post_678.html"
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 427:431; written form chok"
+url = "https://tsbp.tgb.org.tw/2016/06/blog-post_678.html"
+
+[[sources]]
+row = 3392
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
 row = 848
 snapshot = "lkk-2024-05-10"
+
+[[sources]]
+row = 9421
+sheet = "詞彙比較"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khai-tsînn"
+id = 3262
+moe_forms = ["開錢"]
+preferred_form = "khai錢"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 4; normalized source characters 481:486; written form khai錢"
+url = "https://tsbp.tgb.org.tw/2016/06/blog-post_771.html"
+
+[[sources]]
+row = 9203
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

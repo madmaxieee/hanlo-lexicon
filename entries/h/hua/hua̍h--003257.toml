@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hua̍h"
+id = 3257
+moe_forms = ["伐"]
+preferred_form = "hua̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 1757:1762; written form hoa̍h"
+url = "https://tsbp.tgb.org.tw/2016/06/bong-ue-echoa.html"
+
+[[sources]]
+row = 2049
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

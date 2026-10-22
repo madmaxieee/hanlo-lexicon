@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tńg-se̍h"
+id = 3243
+moe_forms = ["轉踅"]
+preferred_form = "tńg-se̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 8; normalized source characters 69:77; written form tńg-se̍h"
+url = "https://tsbp.tgb.org.tw/2016/06/blog-post_26.html"
+
+[[sources]]
+row = 12633
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

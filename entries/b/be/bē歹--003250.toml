@@ -1,0 +1,16 @@
+alternate_readings = ["buē pháinn"]
+canonical_tl = "bē pháinn"
+id = 3250
+moe_forms = ["袂歹"]
+preferred_form = "bē歹"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 734:737; written form bē歹"
+url = "https://tsbp.tgb.org.tw/2016/06/e_0452595938.html"
+
+[[sources]]
+row = 6634
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

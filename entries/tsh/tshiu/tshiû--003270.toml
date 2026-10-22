@@ -1,0 +1,22 @@
+alternate_readings = []
+canonical_tl = "tshiû"
+id = 3270
+identity_note = "MOE word 9430 揫 (pull or disentangle), distinct from MOE word 9424 愁 (worry or sadness), which shares the reading tshiû."
+moe_forms = ["揫"]
+preferred_form = "tshiû"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 100; normalized source characters 3859:3864; written form chhiû"
+url = "https://tsbp.tgb.org.tw/2016/06/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 3460
+sheet = "名"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 9428
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

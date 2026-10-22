@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "li-li-khok-khok"
+id = 3268
+moe_forms = []
+preferred_form = "li-li-khok-khok"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 928:943; written form li-li-khok-khok"
+url = "https://tsbp.tgb.org.tw/2016/06/seh-seh-liau.html"

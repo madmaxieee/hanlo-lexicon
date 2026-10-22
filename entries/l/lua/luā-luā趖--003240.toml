@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "luā-luā-sô"
+id = 3240
+moe_forms = ["賴賴趖"]
+preferred_form = "luā-luā趖"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 845:853; written form luā-luā趖"
+url = "https://tsbp.tgb.org.tw/2016/06/lanmai-ti.html"
+
+[[sources]]
+row = 14485
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

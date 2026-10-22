@@ -208,6 +208,8 @@ and network download were excluded; timings depend on the machine and cache stat
 ```sh
 python3 tools/lexicon.py build-csv
 python3 tools/lexicon.py build-csv --include-pure-hanji
+python3 tools/lexicon.py build-csv --canonical-only
+python3 tools/lexicon.py build-csv --include-pure-hanji --canonical-only
 ```
 
 The default command validates the repository and atomically writes
@@ -221,8 +223,16 @@ sorted by written form and then reading using Unicode code-point order. Identica
 rows are emitted once, including rows shared by unrelated homographs. The TOML
 records, IDs, source snapshots, and allocation counter are unchanged.
 
+Use `--canonical-only` to export only each included entry's `preferred_form` with
+its `canonical_tl`, without generating any alternate-reading rows. It writes
+`dist/lexicon-canonical.csv`, or `dist/lexicon-all-canonical.csv` when combined with
+`--include-pure-hanji`, leaving the regular exports untouched. Sorting,
+deduplication, source validation, and the pure-Hanji filter work the same way.
+Alternate readings remain in the TOML records. Canonical-only builds do not try
+to align alternate spellings, so an unalignable alternate does not block them.
+
 Each included entry contributes its `preferred_form` with its `canonical_tl`.
-For each `alternate_readings` value:
+Unless `--canonical-only` is set, each `alternate_readings` value also contributes:
 
 - If the preferred form contains only Hanji, retain that form for every reading.
   Punctuation, spaces, and combining marks are ignored for this classification,

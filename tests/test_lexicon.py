@@ -416,6 +416,43 @@ class MaintenanceTests(unittest.TestCase):
                 self.assertEqual(lex.written_form(form, canonical, alternate), expected)
         self.assertEqual(lex.written_form('想bèh', 'siūnn-bèh', 'siūnn-bueh'), '想bueh')
 
+    def test_canonical_only_filters_deduplicates_and_keeps_regular_exports(self):
+        self.run_cli('add', str(self.request(alternate_readings=['bueh'])))
+        self.run_cli('add', str(self.request(alternate_readings=['bueh'], identity_note='A separate fixture lexeme.')))
+        self.run_cli('add', str(self.request(form='欲', alternate_readings=['bueh'])))
+        self.run_cli('add', str(self.request(form='想beh', reading='siūnn-beh', alternate_readings=['siūnn-bueh'])))
+        self.run_cli('build-csv')
+        self.run_cli('build-csv', '--include-pure-hanji')
+        regular = {name: (self.root / 'dist' / name).read_bytes()
+                   for name in ('lexicon.csv', 'lexicon-all.csv')}
+        entries = {path: path.read_bytes() for path, _ in lex.entries(self.root)}
+        result = self.run_cli('build-csv', '--canonical-only')
+        self.assertEqual(result, {'csv': 'dist/lexicon-canonical.csv', 'entries': 4, 'rows': 2})
+        self.assertEqual(self.csv_rows('lexicon-canonical.csv'), [
+            ['preferred_form', 'tl'], ['beh', 'beh'], ['想beh', 'siūnn-beh'],
+        ])
+        result = self.run_cli('build-csv', '--canonical-only', '--include-pure-hanji')
+        self.assertEqual(result, {'csv': 'dist/lexicon-all-canonical.csv', 'entries': 4, 'rows': 3})
+        self.assertEqual(self.csv_rows('lexicon-all-canonical.csv'), [
+            ['preferred_form', 'tl'], ['beh', 'beh'], ['想beh', 'siūnn-beh'], ['欲', 'beh'],
+        ])
+        self.assertEqual({name: (self.root / 'dist' / name).read_bytes() for name in regular}, regular)
+        self.assertEqual({path: path.read_bytes() for path, _ in lex.entries(self.root)}, entries)
+
+    def test_canonical_only_does_not_align_alternates_but_still_validates(self):
+        self.run_cli('add', str(self.request(form='想beh', reading='siūnn-beh', alternate_readings=['sióng'])))
+        self.run_cli('build-csv', expected=2)
+        self.assertEqual(self.run_cli('build-csv', '--canonical-only')['rows'], 1)
+        self.assertEqual(self.csv_rows('lexicon-canonical.csv'), [
+            ['preferred_form', 'tl'], ['想beh', 'siūnn-beh'],
+        ])
+        target = self.root / 'dist/lexicon-canonical.csv'
+        before = target.read_bytes()
+        source = self.root / 'sources/lkk-fixture/word-list.tsv'
+        source.write_bytes(source.read_bytes() + b'changed')
+        self.run_cli('build-csv', '--canonical-only', expected=2)
+        self.assertEqual(target.read_bytes(), before)
+
     def test_ambiguous_mixed_alternate_fails_before_csv_replacement(self):
         self.run_cli('add', str(self.request(form='想beh', reading='siūnn-beh')))
         self.run_cli('build-csv')

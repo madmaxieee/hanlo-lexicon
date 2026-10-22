@@ -40,6 +40,9 @@ preferred form's Han characters and change its romanized syllables to match the
 alternate reading.
 Hanji-only forms retain the same suggested Hanji for every reading. Identical
 CSV rows are deduplicated while distinct TOML word identities are preserved.
+Add `--canonical-only` to either command to export only each entry's
+`preferred_form,canonical_tl` pair, skipping alternate readings. These exports
+write `dist/lexicon-canonical.csv` and `dist/lexicon-all-canonical.csv`, respectively.
 See `tools/README.md` for examples and GitHub Actions build/release instructions.
 Optional `hanji_forms` records Hanji spellings independently of MOE inclusion;
 it is lookup metadata and does not add CSV output rows. The TSBP discovery and

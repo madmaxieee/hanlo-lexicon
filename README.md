@@ -38,7 +38,9 @@ Use `python3 tools/lexicon.py build-csv --include-pure-hanji` to write
 `dist/lexicon-all.csv` containing all forms. Alternate outputs preserve the
 preferred form's Han characters and change its romanized syllables to match the
 alternate reading.
-Hanji-only forms retain the same suggested Hanji for every reading. Identical
+Alternates with fewer syllables than the canonical reading are treated as
+contractions and use the full alternate reading as both suggested form and TL.
+Other Hanji-only readings retain the same suggested Hanji. Identical
 CSV rows are deduplicated while distinct TOML word identities are preserved.
 Add `--canonical-only` to either command to export only each entry's
 `preferred_form,canonical_tl` pair, skipping alternate readings. These exports
@@ -54,6 +56,25 @@ Both GitHub workflows generate both CSV versions. Tagged releases include
 JSON exports and contribution forms are not implemented.
 
 See `schema/README.md` for record conventions and `RIGHTS.md` for source rights.
+
+## Shortcuts with just
+
+With `just` installed, run `just` to list commands. Recipes use the project folder
+as their working directory, including when invoked from a subdirectory.
+
+| Command | Result |
+| --- | --- |
+| `just export` | `dist/lexicon.csv`, including alternate readings |
+| `just export-all` | `dist/lexicon-all.csv`, including pure Hanji |
+| `just export-canonical` | `dist/lexicon-canonical.csv`, canonical readings only |
+| `just export-all-canonical` | `dist/lexicon-all-canonical.csv`, all forms, canonical readings only |
+| `just validate` | Validate entries and source references |
+| `just format-check` | Check formatting without edits |
+| `just format` | Apply canonical formatting and entry paths |
+| `just test` | Run the maintenance tool tests |
+| `just check` | Run validation, formatting checks, and tests |
+
+The Python commands remain available without `just`.
 
 ## Maintain entries
 

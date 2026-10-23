@@ -1,0 +1,25 @@
+alternate_readings = []
+canonical_tl = "tiōng-tiám"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 22267; issue 388 model-review SHA-256 b164c7a5ce866c77cc24551a24db133457e3bfb27ba22682e88707657d0c2338. Batch import authorized by the maintainer without individual human review."
+id = 3381
+moe_forms = []
+preferred_form = "重點"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 388; article text line 1; corpus Unicode code points 77:79; literal form 重點"
+url = "https://tsbp.tgb.org.tw/2016/08/lanmai-let-me-speak-like-taiwanese.html"
+
+[[sources]]
+locator = "Issue 388; article text line 31; corpus Unicode code points 3369:3371; literal form 重點"
+url = "https://tsbp.tgb.org.tw/2016/08/lanmai-euie-guarani-e.html"
+
+[[sources]]
+locator = "Issue 388; article text line 42; corpus Unicode code points 4514:4516; literal form 重點"
+url = "https://tsbp.tgb.org.tw/2016/08/lanmai-euie-guarani-e.html"
+
+[[sources]]
+row = 18932
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

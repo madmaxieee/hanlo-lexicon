@@ -1,0 +1,33 @@
+alternate_readings = []
+canonical_tl = "tiàu-tsi̍p"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 1561; issue 388 model-review SHA-256 b164c7a5ce866c77cc24551a24db133457e3bfb27ba22682e88707657d0c2338; issue 387 model-review SHA-256 7efd062919241be4a2a8e8bebdde5f652a7b250bdd0d829e9dc07bc794c54195. Batch import authorized by the maintainer without individual human review."
+id = 3429
+moe_forms = []
+preferred_form = "召集"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 387; article text line 12; corpus Unicode code points 572:574; literal form 召集"
+url = "https://tsbp.tgb.org.tw/2016/06/sann-kap-ka-choah.html"
+
+[[sources]]
+locator = "Issue 387; article text line 20; corpus Unicode code points 849:851; literal form 召集"
+url = "https://tsbp.tgb.org.tw/2016/06/sann-kap-ka-choah.html"
+
+[[sources]]
+locator = "Issue 387; article text line 53; corpus Unicode code points 2243:2245; literal form 召集"
+url = "https://tsbp.tgb.org.tw/2016/06/sann-kap-ka-choah.html"
+
+[[sources]]
+locator = "Issue 388; article text line 19; corpus Unicode code points 1115:1117; literal form 召集"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_185.html"
+
+[[sources]]
+locator = "Issue 388; article text line 45; corpus Unicode code points 1831:1833; literal form 召集"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_185.html"
+
+[[sources]]
+row = 1562
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

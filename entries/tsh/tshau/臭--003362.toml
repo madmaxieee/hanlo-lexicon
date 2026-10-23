@@ -1,0 +1,33 @@
+alternate_readings = []
+canonical_tl = "tshàu"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 6531; issue 388 model-review SHA-256 b164c7a5ce866c77cc24551a24db133457e3bfb27ba22682e88707657d0c2338; issue 387 model-review SHA-256 7efd062919241be4a2a8e8bebdde5f652a7b250bdd0d829e9dc07bc794c54195. Batch import authorized by the maintainer without individual human review."
+id = 3362
+moe_forms = []
+preferred_form = "臭"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 387; article text line 5; corpus Unicode code points 519:520; literal form 臭"
+url = "https://tsbp.tgb.org.tw/2016/06/lanmai-ti.html"
+
+[[sources]]
+locator = "Issue 387; article text line 9; corpus Unicode code points 585:586; literal form 臭"
+url = "https://tsbp.tgb.org.tw/2016/06/e_01657329949.html"
+
+[[sources]]
+locator = "Issue 388; article text line 12; corpus Unicode code points 1254:1255; literal form 臭"
+url = "https://tsbp.tgb.org.tw/2016/08/lanmai-koh-khah.html"
+
+[[sources]]
+locator = "Issue 388; article text line 7; corpus Unicode code points 592:593; literal form 臭"
+url = "https://tsbp.tgb.org.tw/2016/08/e-e_01417223691.html"
+
+[[sources]]
+locator = "Issue 388; article text line 83; corpus Unicode code points 3349:3350; literal form 臭"
+url = "https://tsbp.tgb.org.tw/2016/08/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 6530
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

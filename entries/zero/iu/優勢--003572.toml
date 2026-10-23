@@ -1,0 +1,25 @@
+alternate_readings = []
+canonical_tl = "iu-sè"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 22326; issue 388 model-review SHA-256 b164c7a5ce866c77cc24551a24db133457e3bfb27ba22682e88707657d0c2338; issue 387 model-review SHA-256 7efd062919241be4a2a8e8bebdde5f652a7b250bdd0d829e9dc07bc794c54195. Batch import authorized by the maintainer without individual human review."
+id = 3572
+moe_forms = []
+preferred_form = "優勢"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 387; article text line 30; corpus Unicode code points 1445:1447; literal form 優勢"
+url = "https://tsbp.tgb.org.tw/2016/06/sann-kap-ka-choah.html"
+
+[[sources]]
+locator = "Issue 387; article text line 85; corpus Unicode code points 3299:3301; literal form 優勢"
+url = "https://tsbp.tgb.org.tw/2016/06/sann-kap-ka-choah.html"
+
+[[sources]]
+locator = "Issue 388; article text line 3; corpus Unicode code points 260:262; literal form 優勢"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_185.html"
+
+[[sources]]
+row = 18991
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

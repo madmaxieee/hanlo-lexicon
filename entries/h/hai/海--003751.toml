@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "hái"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 6155; issue 387 model-review SHA-256 7efd062919241be4a2a8e8bebdde5f652a7b250bdd0d829e9dc07bc794c54195. Batch import authorized by the maintainer without individual human review."
+id = 3751
+moe_forms = []
+preferred_form = "海"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 387; article text line 40; corpus Unicode code points 2915:2916; literal form 海"
+url = "https://tsbp.tgb.org.tw/2016/06/e_01657329949.html"
+
+[[sources]]
+locator = "Issue 387; article text line 44; corpus Unicode code points 1426:1427; literal form 海"
+url = "https://tsbp.tgb.org.tw/2016/06/an-ne-lan-tsit-siu.html"
+
+[[sources]]
+row = 6154
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

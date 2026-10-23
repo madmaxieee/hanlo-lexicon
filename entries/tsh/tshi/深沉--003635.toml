@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tshim-tîm"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 25757; issue 388 model-review SHA-256 b164c7a5ce866c77cc24551a24db133457e3bfb27ba22682e88707657d0c2338. Batch import authorized by the maintainer without individual human review."
+id = 3635
+moe_forms = []
+preferred_form = "深沉"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 388; article text line 19; corpus Unicode code points 1867:1869; literal form 深沉"
+url = "https://tsbp.tgb.org.tw/2016/08/lanmai-euie-guarani-e.html"
+
+[[sources]]
+row = 22422
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

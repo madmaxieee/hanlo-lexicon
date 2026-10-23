@@ -1,0 +1,25 @@
+alternate_readings = []
+canonical_tl = "kai-tsân"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 23649; issue 388 model-review SHA-256 b164c7a5ce866c77cc24551a24db133457e3bfb27ba22682e88707657d0c2338. Batch import authorized by the maintainer without individual human review."
+id = 3286
+moe_forms = []
+preferred_form = "階層"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 388; article text line 19; corpus Unicode code points 1833:1835; literal form 階層"
+url = "https://tsbp.tgb.org.tw/2016/08/lanmai-euie-guarani-e.html"
+
+[[sources]]
+locator = "Issue 388; article text line 23; corpus Unicode code points 1296:1298; literal form 階層"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_185.html"
+
+[[sources]]
+locator = "Issue 388; article text line 7; corpus Unicode code points 573:575; literal form 階層"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_185.html"
+
+[[sources]]
+row = 20314
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

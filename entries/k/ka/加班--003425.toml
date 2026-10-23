@@ -1,0 +1,25 @@
+alternate_readings = []
+canonical_tl = "ka-pan"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 24701; issue 388 model-review SHA-256 b164c7a5ce866c77cc24551a24db133457e3bfb27ba22682e88707657d0c2338. Batch import authorized by the maintainer without individual human review."
+id = 3425
+moe_forms = []
+preferred_form = "加班"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 388; article text line 1; corpus Unicode code points 152:154; literal form 加班"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_431.html"
+
+[[sources]]
+locator = "Issue 388; article text line 3; corpus Unicode code points 157:159; literal form 加班"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_431.html"
+
+[[sources]]
+locator = "Issue 388; article text line 5; corpus Unicode code points 337:339; literal form 加班"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_431.html"
+
+[[sources]]
+row = 21366
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

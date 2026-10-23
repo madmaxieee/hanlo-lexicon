@@ -1,0 +1,25 @@
+alternate_readings = []
+canonical_tl = "kán-tshing"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 23348; issue 388 model-review SHA-256 b164c7a5ce866c77cc24551a24db133457e3bfb27ba22682e88707657d0c2338. Batch import authorized by the maintainer without individual human review."
+id = 3423
+moe_forms = []
+preferred_form = "簡稱"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 388; article text line 11; corpus Unicode code points 758:760; literal form 簡稱"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_826.html"
+
+[[sources]]
+locator = "Issue 388; article text line 13; corpus Unicode code points 922:924; literal form 簡稱"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_826.html"
+
+[[sources]]
+locator = "Issue 388; article text line 9; corpus Unicode code points 497:499; literal form 簡稱"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_826.html"
+
+[[sources]]
+row = 20013
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "khùn-khóo"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 3035; issue 387 model-review SHA-256 7efd062919241be4a2a8e8bebdde5f652a7b250bdd0d829e9dc07bc794c54195. Batch import authorized by the maintainer without individual human review."
+id = 3825
+moe_forms = []
+preferred_form = "困苦"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 387; article text line 51; corpus Unicode code points 5791:5793; literal form 困苦"
+url = "https://tsbp.tgb.org.tw/2016/06/lanmai-ti.html"
+
+[[sources]]
+locator = "Issue 387; article text line 51; corpus Unicode code points 5815:5817; literal form 困苦"
+url = "https://tsbp.tgb.org.tw/2016/06/lanmai-ti.html"
+
+[[sources]]
+row = 3036
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

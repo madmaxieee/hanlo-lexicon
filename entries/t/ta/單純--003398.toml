@@ -1,0 +1,25 @@
+alternate_readings = []
+canonical_tl = "tan-sûn"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 8269; issue 388 model-review SHA-256 b164c7a5ce866c77cc24551a24db133457e3bfb27ba22682e88707657d0c2338; issue 387 model-review SHA-256 7efd062919241be4a2a8e8bebdde5f652a7b250bdd0d829e9dc07bc794c54195. Batch import authorized by the maintainer without individual human review."
+id = 3398
+moe_forms = []
+preferred_form = "單純"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 387; article text line 32; corpus Unicode code points 1514:1516; literal form 單純"
+url = "https://tsbp.tgb.org.tw/2016/06/sann-kap-ka-choah.html"
+
+[[sources]]
+locator = "Issue 388; article text line 3; corpus Unicode code points 188:190; literal form 單純"
+url = "https://tsbp.tgb.org.tw/2016/08/e-e_01417223691.html"
+
+[[sources]]
+locator = "Issue 388; article text line 5; corpus Unicode code points 384:386; literal form 單純"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_185.html"
+
+[[sources]]
+row = 8267
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

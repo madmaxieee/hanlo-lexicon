@@ -1,0 +1,25 @@
+alternate_readings = []
+canonical_tl = "ngôo-khî"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 10043; issue 388 model-review SHA-256 b164c7a5ce866c77cc24551a24db133457e3bfb27ba22682e88707657d0c2338. Batch import authorized by the maintainer without individual human review."
+id = 3291
+moe_forms = []
+preferred_form = "蜈蜞"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 388; article text line 13; corpus Unicode code points 655:657; literal form 蜈蜞"
+url = "https://tsbp.tgb.org.tw/2016/08/sa-ehuah.html"
+
+[[sources]]
+locator = "Issue 388; article text line 13; corpus Unicode code points 719:721; literal form 蜈蜞"
+url = "https://tsbp.tgb.org.tw/2016/08/sa-ehuah.html"
+
+[[sources]]
+locator = "Issue 388; article text line 13; corpus Unicode code points 731:733; literal form 蜈蜞"
+url = "https://tsbp.tgb.org.tw/2016/08/sa-ehuah.html"
+
+[[sources]]
+row = 10040
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

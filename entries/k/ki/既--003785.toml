@@ -1,0 +1,25 @@
+alternate_readings = []
+canonical_tl = "kì"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 15262; issue 387 model-review SHA-256 7efd062919241be4a2a8e8bebdde5f652a7b250bdd0d829e9dc07bc794c54195. Batch import authorized by the maintainer without individual human review."
+id = 3785
+moe_forms = []
+preferred_form = "既"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 387; article text line 16; corpus Unicode code points 903:904; literal form 既"
+url = "https://tsbp.tgb.org.tw/2016/06/lanmai-501.html"
+
+[[sources]]
+locator = "Issue 387; article text line 19; corpus Unicode code points 1029:1030; literal form 既"
+url = "https://tsbp.tgb.org.tw/2016/06/seh-seh-liau.html"
+
+[[sources]]
+locator = "Issue 387; article text line 28; corpus Unicode code points 1823:1824; literal form 既"
+url = "https://tsbp.tgb.org.tw/2016/06/lanmai-501.html"
+
+[[sources]]
+row = 16213
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

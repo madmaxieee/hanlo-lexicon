@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "siú-too"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 25683; issue 388 model-review SHA-256 b164c7a5ce866c77cc24551a24db133457e3bfb27ba22682e88707657d0c2338. Batch import authorized by the maintainer without individual human review."
+id = 3339
+moe_forms = []
+preferred_form = "首都"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 388; article text line 13; corpus Unicode code points 954:956; literal form 首都"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_826.html"
+
+[[sources]]
+row = 22348
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

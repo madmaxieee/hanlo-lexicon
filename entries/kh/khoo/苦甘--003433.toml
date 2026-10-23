@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "khóo-kam"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 5466; issue 388 model-review SHA-256 b164c7a5ce866c77cc24551a24db133457e3bfb27ba22682e88707657d0c2338. Batch import authorized by the maintainer without individual human review."
+id = 3433
+moe_forms = []
+preferred_form = "苦甘"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 388; article text line 11; corpus Unicode code points 931:933; literal form 苦甘"
+url = "https://tsbp.tgb.org.tw/2016/08/e-e.html"
+
+[[sources]]
+locator = "Issue 388; article text line 11; corpus Unicode code points 933:935; literal form 苦甘"
+url = "https://tsbp.tgb.org.tw/2016/08/e-e.html"
+
+[[sources]]
+row = 5466
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

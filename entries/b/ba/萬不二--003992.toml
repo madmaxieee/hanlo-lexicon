@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "bān-put-jī"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 20195; issue 387 model-review SHA-256 7efd062919241be4a2a8e8bebdde5f652a7b250bdd0d829e9dc07bc794c54195. Batch import authorized by the maintainer without individual human review."
+id = 3992
+moe_forms = []
+preferred_form = "萬不二"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 387; article text line 75; corpus Unicode code points 3032:3035; literal form 萬不二"
+url = "https://tsbp.tgb.org.tw/2016/06/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 14723
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

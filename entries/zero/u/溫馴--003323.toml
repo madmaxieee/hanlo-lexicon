@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "un-sûn"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts per issue by gpt-6-luna (medium reasoning), with coordinator checks, MOE identity 9670; issue 388 model-review SHA-256 b164c7a5ce866c77cc24551a24db133457e3bfb27ba22682e88707657d0c2338; issue 387 model-review SHA-256 7efd062919241be4a2a8e8bebdde5f652a7b250bdd0d829e9dc07bc794c54195. Batch import authorized by the maintainer without individual human review."
+id = 3323
+moe_forms = []
+preferred_form = "溫馴"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 387; article text line 11; corpus Unicode code points 91:93; literal form 溫馴"
+url = "https://tsbp.tgb.org.tw/2016/06/e_01150203356.html"
+
+[[sources]]
+locator = "Issue 388; article text line 7; corpus Unicode code points 527:529; literal form 溫馴"
+url = "https://tsbp.tgb.org.tw/2016/08/lanmai-euie-guarani-e.html"
+
+[[sources]]
+row = 9668
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

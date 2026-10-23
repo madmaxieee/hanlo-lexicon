@@ -1,4 +1,4 @@
-alternate_readings = []
+alternate_readings = ["--ooh"]
 canonical_tl = "ooh"
 id = 165
 moe_forms = ["喔"]
@@ -7,5 +7,14 @@ review_status = "imported"
 schema_version = 1
 
 [[sources]]
+locator = "Article text line 25; normalized source characters 1176:1181; written form --o͘h"
+url = "https://tsbp.tgb.org.tw/2016/05/sann-kap-ka-choah.html"
+
+[[sources]]
 row = 460
 snapshot = "lkk-2024-05-10"
+
+[[sources]]
+row = 8170
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

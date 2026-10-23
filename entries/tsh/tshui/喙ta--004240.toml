@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshuì-ta"
+id = 4240
+moe_forms = ["喙焦"]
+preferred_form = "喙ta"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 109:112; written form 喙ta"
+url = "https://tsbp.tgb.org.tw/2016/05/blog-post_18.html"
+
+[[sources]]
+row = 8223
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

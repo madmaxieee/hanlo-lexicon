@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hit-tah"
+id = 4250
+moe_forms = ["彼搭"]
+preferred_form = "hit搭"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 571:575; written form hit搭"
+url = "https://tsbp.tgb.org.tw/2016/05/seh.html"
+
+[[sources]]
+row = 3921
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ngiâ"
+id = 4272
+moe_forms = ["迎"]
+preferred_form = "ngiâ"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 16:20; written form ngiâ"
+url = "https://tsbp.tgb.org.tw/2016/05/seh.html"
+
+[[sources]]
+row = 4487
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

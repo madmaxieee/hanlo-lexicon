@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "moo-lé-luh"
+id = 4269
+moe_forms = []
+preferred_form = "moo-lé-luh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 47; normalized source characters 2947:2957; written form moo-lé-luh"
+url = "https://tsbp.tgb.org.tw/2016/05/pho-tau-e.html"

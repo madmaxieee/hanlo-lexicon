@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "--hiooh"
+id = 4245
+moe_forms = []
+preferred_form = "--hiooh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 976:983; written form --hiooh"
+url = "https://tsbp.tgb.org.tw/2016/05/pho-tau-e.html"

@@ -1,0 +1,21 @@
+alternate_readings = ["giú-tuā-soh"]
+canonical_tl = "khiú-tuā-soh"
+id = 4258
+moe_forms = ["搝大索"]
+preferred_form = "khiú大索"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 117:123; written form khiú大索"
+url = "https://tsbp.tgb.org.tw/2016/05/tsiah.html"
+
+[[sources]]
+row = 751
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 9498
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

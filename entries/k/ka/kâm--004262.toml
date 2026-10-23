@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kâm"
+id = 4262
+moe_forms = ["含"]
+preferred_form = "kâm"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 444:447; written form kâm"
+url = "https://tsbp.tgb.org.tw/2016/05/seh.html"
+
+[[sources]]
+row = 2959
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

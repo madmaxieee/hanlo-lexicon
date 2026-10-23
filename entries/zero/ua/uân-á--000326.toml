@@ -1,10 +1,14 @@
-alternate_readings = []
+alternate_readings = ["uân-nā"]
 canonical_tl = "uân-á"
 id = 326
 moe_forms = []
 preferred_form = "uân-á"
 review_status = "imported"
 schema_version = 1
+
+[[sources]]
+locator = "Article text line 31; normalized source characters 1121:1127; written form uân-nā"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"
 
 [[sources]]
 row = 881

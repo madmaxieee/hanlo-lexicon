@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "iah-khang"
+id = 4251
+moe_forms = ["搤空"]
+preferred_form = "iah空"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 191:195; written form iah空"
+url = "https://tsbp.tgb.org.tw/2016/05/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 9511
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

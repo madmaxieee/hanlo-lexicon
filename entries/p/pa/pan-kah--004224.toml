@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pan-kah"
+id = 4224
+moe_forms = ["斑鴿"]
+preferred_form = "pan-kah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 25; normalized source characters 1452:1459; written form Pan-kah"
+url = "https://tsbp.tgb.org.tw/2016/05/pho-tau-e.html"
+
+[[sources]]
+row = 8470
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

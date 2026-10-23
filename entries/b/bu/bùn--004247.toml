@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bùn"
+id = 4247
+moe_forms = ["濆"]
+preferred_form = "bùn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 37; normalized source characters 1652:1655; written form bùn"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"
+
+[[sources]]
+row = 11183
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

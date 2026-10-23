@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "mî-tsinn"
+id = 4271
+moe_forms = ["綿精"]
+preferred_form = "mî-tsinn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 51; normalized source characters 3431:3439; written form mî-tsinn"
+url = "https://tsbp.tgb.org.tw/2016/05/pho-tau-e.html"
+
+[[sources]]
+row = 14441
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "se̍h-sîn"
+id = 4238
+moe_forms = ["踅神"]
+preferred_form = "se̍h神"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 35; normalized source characters 2517:2522; written form se̍h神"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"
+
+[[sources]]
+row = 10881
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ba̍t-tsiuh-tsiuh"
+id = 4231
+moe_forms = ["密喌喌"]
+preferred_form = "ba̍t-tsiuh-tsiuh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 6; normalized source characters 44:60; written form ba̍t-tsiuh-tsiuh"
+url = "https://tsbp.tgb.org.tw/2016/05/blog-post_18.html"
+
+[[sources]]
+row = 7163
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

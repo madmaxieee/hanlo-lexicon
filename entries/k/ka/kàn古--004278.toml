@@ -1,0 +1,13 @@
+alternate_readings = []
+canonical_tl = "kàn-kóo"
+editorial_rationale = "The maintainer supplied preferred kàn古, canonical TL kàn-kóo, and Hanji 姦古 in the issue-386 batch-1 custom request; the cited article contains kàn古. Offline LKK and MOE checks found no whole-word match; hanji_forms does not assert MOE inclusion."
+hanji_forms = ["姦古"]
+id = 4278
+moe_forms = []
+preferred_form = "kàn古"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 64; normalized source characters 2751:2755; written form kàn古"
+url = "https://tsbp.tgb.org.tw/2016/05/sann-kap-ka-choah.html"

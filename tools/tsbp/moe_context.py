@@ -241,7 +241,9 @@ def tracked_mixed_contexts(contexts, texts, tracked_multi_forms):
                 first, last = starts.get(position), ends.get(position + len(form))
                 if first is not None and last is not None:
                     selected = units[first:last + 1]
-                    if all(u['kind'] in ('roman', 'han') for u in selected):
+                    if all(u['kind'] in ('roman', 'han')
+                           or (u['kind'] == 'boundary' and u['char'] == '-')
+                           for u in selected):
                         start, end = selected[0]['start'], selected[-1]['end']
                         result.append({'document_id': document, 'anchor': text[start:end],
                                        'key': norm(text[start:end]), 'anchor_start': start,
@@ -282,7 +284,12 @@ def suppress_covered_singles(buckets, tracked_multi_forms=(), tracked_contexts=(
     for group_key, locations in list(buckets.items()):
         for identity, row in list(locations.items()):
             matches = row['moe_context_matches']
-            if not matches or not all(len(parts(match['reading'])) == 1 for match in matches):
+            if matches:
+                if not all(len(parts(match['reading'])) == 1 for match in matches):
+                    continue
+            elif (len(parts(row.get('base_normalized_tl') or '')) != 1
+                  or (row['anchor_start'], row['anchor_end']) !=
+                     (row['base_anchor_start'], row['base_anchor_end'])):
                 continue
             covering = [other for other in multi[row['document_id']].values()
                         if other['anchor_start'] <= row['anchor_start']

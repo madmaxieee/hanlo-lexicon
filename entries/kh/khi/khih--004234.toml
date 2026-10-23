@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khih"
+id = 4234
+moe_forms = ["缺"]
+preferred_form = "khih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 833:837; written form khih"
+url = "https://tsbp.tgb.org.tw/2016/05/blog-post_613.html"
+
+[[sources]]
+row = 6481
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

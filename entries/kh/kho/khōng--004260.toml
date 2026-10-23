@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khōng"
+id = 4260
+moe_forms = ["鞏"]
+preferred_form = "khōng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 41; normalized source characters 1840:1845; written form khōng"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"
+
+[[sources]]
+row = 11529
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

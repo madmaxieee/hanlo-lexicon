@@ -31,6 +31,8 @@ Nested and overlapping multi-syllable matches remain separate. A contained singl
 is suppressed only where a supported MOE or tracked compound covers it; standalone
 occurrences remain eligible. Tracked custom mixed forms can provide coverage
 without fabricating a MOE compound match.
+Exact tracked forms retain their literal hyphens, including neutral-tone forms
+such as `--tńg-來`, and can cover a parsed single syllable without an MOE match.
 
 Each anchor has a **Copy note** icon button with a tooltip and accessible label.
 It copies the original anchor spelling, the displayed source snippet and its

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "mí-lih"
+id = 4270
+moe_forms = []
+preferred_form = "mí-lih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 35; normalized source characters 1364:1370; written form mí-lih"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"

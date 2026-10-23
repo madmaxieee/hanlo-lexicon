@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pū-nn̄g"
+id = 4225
+moe_forms = ["孵卵"]
+preferred_form = "pū卵"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 25; normalized source characters 1553:1556; written form pū卵"
+url = "https://tsbp.tgb.org.tw/2016/05/pho-tau-e.html"
+
+[[sources]]
+row = 10456
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

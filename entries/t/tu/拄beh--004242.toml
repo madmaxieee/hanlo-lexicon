@@ -1,0 +1,21 @@
+alternate_readings = ["tú bueh"]
+canonical_tl = "tú beh"
+id = 4242
+moe_forms = ["拄欲"]
+preferred_form = "拄beh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 217:221; written form 拄beh"
+url = "https://tsbp.tgb.org.tw/2016/05/mih-tioh-ai-tsit.html"
+
+[[sources]]
+row = 322
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 4089
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

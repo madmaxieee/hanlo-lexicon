@@ -1,0 +1,21 @@
+alternate_readings = ["lak-sui"]
+canonical_tl = "lo̍h-sue"
+id = 4263
+moe_forms = ["落衰"]
+preferred_form = "lo̍h-sue"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 25; normalized source characters 1896:1903; written form lak-sui"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"
+
+[[sources]]
+row = 791
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 9935
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

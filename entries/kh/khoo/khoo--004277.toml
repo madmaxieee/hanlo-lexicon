@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "khoo"
+id = 4277
+identity_note = "MOE word 3692 呼 (khoo), calling people or animals, distinct from entry 1056 箍 (khoo), the ring/measure-word identity supported by LKK row 296."
+moe_forms = ["呼"]
+preferred_form = "khoo"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 1019:1023; written form khoo"
+url = "https://tsbp.tgb.org.tw/2016/05/kah_01704220398.html"
+
+[[sources]]
+row = 3692
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

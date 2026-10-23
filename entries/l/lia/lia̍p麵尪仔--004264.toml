@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lia̍p-mī-ang-á"
+id = 4264
+moe_forms = ["捏麵尪仔"]
+preferred_form = "lia̍p麵尪仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 668:676; written form lia̍p麵尪仔"
+url = "https://tsbp.tgb.org.tw/2016/05/seh.html"
+
+[[sources]]
+row = 6073
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,13 @@
+alternate_readings = []
+canonical_tl = "kha-sau-king-á"
+editorial_rationale = "The maintainer explicitly approved this whole preferred form and dictionary filing reading as an issue-386 batch-1 related-word recommendation. Retain the approved seed spelling kha-sau間 (entry 4255) and append the consistently Hanji 仔 · á; this explicitly resolves the 跤 · kha component conflict in favor of the existing seed spelling."
+id = 4282
+moe_forms = ["跤梢間仔"]
+preferred_form = "kha-sau間仔"
+review_status = "reviewed"
+schema_version = 1
+
+[[sources]]
+row = 10102
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

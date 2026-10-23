@@ -1,0 +1,21 @@
+alternate_readings = ["giâ-nāu-jia̍t", "giâ-nāu-lia̍t", "ngiâ-lāu-lia̍t"]
+canonical_tl = "ngiâ-lāu-jia̍t"
+id = 4273
+moe_forms = ["迎鬧熱"]
+preferred_form = "ngiâ鬧熱"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 47:53; written form ngiâ鬧熱"
+url = "https://tsbp.tgb.org.tw/2016/05/seh.html"
+
+[[sources]]
+row = 366
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 4642
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

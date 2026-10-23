@@ -1,0 +1,16 @@
+alternate_readings = ["khueh"]
+canonical_tl = "kheh"
+id = 4256
+moe_forms = ["𤲍"]
+preferred_form = "kheh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 36; normalized source characters 1671:1675; written form kheh"
+url = "https://tsbp.tgb.org.tw/2016/05/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 13535
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

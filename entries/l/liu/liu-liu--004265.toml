@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "liu-liu"
+id = 4265
+moe_forms = []
+preferred_form = "liu-liu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 21; normalized source characters 1365:1372; written form liu-liu"
+url = "https://tsbp.tgb.org.tw/2016/05/pho-tau-e.html"

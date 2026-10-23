@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "gōng-sîn"
+id = 4233
+moe_forms = ["戇神"]
+preferred_form = "gōng神"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 45; normalized source characters 3069:3074; written form gōng神"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"
+
+[[sources]]
+row = 13417
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

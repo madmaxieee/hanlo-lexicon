@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khà-hóo-lān"
+id = 4259
+moe_forms = ["敲虎𡳞"]
+preferred_form = "khà-hóo-lān"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 64; normalized source characters 2739:2750; written form khà-hó͘-lān"
+url = "https://tsbp.tgb.org.tw/2016/05/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 15404
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

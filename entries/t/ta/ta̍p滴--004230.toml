@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ta̍p-tih"
+id = 4230
+moe_forms = ["沓滴"]
+preferred_form = "ta̍p滴"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 83:88; written form ta̍p滴"
+url = "https://tsbp.tgb.org.tw/2016/05/e.html"
+
+[[sources]]
+row = 4299
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

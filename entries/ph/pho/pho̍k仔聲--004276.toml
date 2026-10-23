@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pho̍k-á-siann"
+id = 4276
+moe_forms = ["噗仔聲"]
+preferred_form = "pho̍k仔聲"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 74; normalized source characters 3076:3083; written form pho̍k仔聲"
+url = "https://tsbp.tgb.org.tw/2016/05/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 14448
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

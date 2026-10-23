@@ -1,0 +1,21 @@
+alternate_readings = ["kuâinn-tíng"]
+canonical_tl = "kuân-tíng"
+id = 4261
+moe_forms = ["懸頂"]
+preferred_form = "kuân頂"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 915:920; written form kuân頂"
+url = "https://tsbp.tgb.org.tw/2016/05/e_0576457554.html"
+
+[[sources]]
+row = 1129
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 14526
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

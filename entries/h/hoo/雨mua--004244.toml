@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hōo-mua"
+id = 4244
+moe_forms = ["雨幔"]
+preferred_form = "雨mua"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 47:51; written form 雨mua"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"
+
+[[sources]]
+row = 4631
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

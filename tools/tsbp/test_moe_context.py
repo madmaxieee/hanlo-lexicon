@@ -225,6 +225,29 @@ class MoeContextTests(unittest.TestCase):
         _, stats = regroup(groups, {'test:1': text}, build_lookups(groups, records), {'liô心'})
         self.assertEqual(stats['suppressed_single_syllable_occurrences'], 0)
 
+    def test_tracked_hyphenated_mixed_form_covers_unknown_neutral_single(self):
+        text = '無飛--tńg-來。趕--tńg-來。--tńg。--tńg-去。--tńg -來。'
+        groups = groups_for(text)
+        result, stats = regroup(groups, {'test:1': text}, build_lookups(groups, []),
+                                {'--tńg-來'})
+        by_key = {g['key']: g for g in result}
+        self.assertCountEqual([r['clause'] for r in by_key['--tńg']['occurrences']],
+                              ['--tńg', '--tńg-去', '--tńg -來'])
+        audit = stats['covered_single_syllable_audit']
+        self.assertEqual(len(audit), 2)
+        self.assertTrue(all(r['covered_by'][0]['tracked_written_forms'] == ['--tńg-來']
+                            for r in audit))
+        self.assertTrue(all(not r['covered_by'][0]['moe_match'] for r in audit))
+
+    def test_tracked_hyphenated_mixed_form_covers_moe_single(self):
+        text = 'liô-心。liô。'
+        groups = groups_for(text)
+        records = [record('𠞭', 'liô', '1')]
+        result, stats = regroup(groups, {'test:1': text}, build_lookups(groups, records),
+                                {'liô-心'})
+        self.assertEqual([r['clause'] for r in result[0]['occurrences']], ['liô'])
+        self.assertEqual(stats['suppressed_single_syllable_occurrences'], 1)
+
     def test_tracking_ab_does_not_hide_abc_or_overlapping_bc(self):
         text = '相ki器'
         groups = groups_for(text)

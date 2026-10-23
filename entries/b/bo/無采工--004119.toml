@@ -1,0 +1,13 @@
+alternate_readings = []
+canonical_tl = "bô-tshái-kang"
+editorial_rationale = "Codex (GPT-6) screened the original MOE identity/definitions and exact shared Hanji/TL evidence, then checked the complete spelling against consistent existing combo outputs. The maintainer batch-adopted these consistent proposals for machine-reviewed import; this records no individual human review and no claim of corpus attestation for the new word."
+id = 4119
+moe_forms = ["無彩工"]
+preferred_form = "無采工"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+row = 8637
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

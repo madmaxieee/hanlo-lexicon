@@ -1,0 +1,13 @@
+alternate_readings = ["tsuè-tshin-tsiânn"]
+canonical_tl = "tsò-tshin-tsiânn"
+editorial_rationale = "Codex (GPT-6) screened the original MOE identity/definitions and exact shared Hanji/TL evidence, then checked the complete spelling against consistent existing combo outputs. The maintainer batch-adopted these consistent proposals for machine-reviewed import; this records no individual human review and no claim of corpus attestation for the new word."
+id = 4111
+moe_forms = ["做親情"]
+preferred_form = "做親tsiânn"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+row = 6993
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -212,6 +212,13 @@ that word, edit only its `review` object, for example:
 ```
 
 Use `rejected` to decline a word or retain `pending` for later review. Approval
+may instead record `"review_status": "machine-reviewed"` for batch-authorized,
+contextually screened consistent proposals. These retain machine-review
+provenance and do not claim individual human review. This mode rejects
+conflicting, incomplete and shorter proposals. Omission preserves the ordinary
+individually human-reviewed mode.
+
+Approval
 must explicitly select the preferred spelling, canonical reading and any
 alternates, including choices for conflicts and unknown positions. There is no
 approve-all operation or automatic acceptance of consistent proposals. Readings

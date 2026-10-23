@@ -251,6 +251,22 @@ class RelatedReviewTests(unittest.TestCase):
         entry = lex.load_toml(self.root / result['results'][0]['created'])
         self.assertEqual((entry['preferred_form'], entry['review_status']), ('kah-it丁', 'reviewed'))
 
+    def test_batch_adopted_consistent_proposals_preserve_machine_review_status(self):
+        self.setup_dictionary()
+        self.evidence_words()
+        report = self.approve(self.report(), review_status='machine-reviewed')
+        result = related.import_reviewed(self.root, report, apply=True)
+        entry = lex.load_toml(self.root / result['results'][0]['created'])
+        self.assertEqual(entry['review_status'], 'machine-reviewed')
+
+    def test_machine_review_mode_does_not_approve_combo_conflicts(self):
+        self.setup_dictionary()
+        self.evidence_words()
+        self.word('kah', 'kah', '甲')
+        report = self.approve(self.report(), review_status='machine-reviewed')
+        with self.assertRaisesRegex(lex.Error, 'consistent complete'):
+            related.import_reviewed(self.root, report, apply=True)
+
     def test_import_cli_applies_only_the_individually_approved_word_and_leaves_pending_out(self):
         self.setup_dictionary()
         report = self.run_cli('related', '甲乙')

@@ -43,8 +43,12 @@ Use `python3 tools/lexicon.py`; do not invent an ID or hand-format generated TOM
    supporting entry IDs, spellings, readings, review status and original sources.
    Unknown or unalignable positions need human spelling decisions. Do not choose
    a conflict by majority or silently fill unknown positions.
-   Every related entry requires individual human review, including shorter words
-   and consistent proposals. The original entry's approval does not approve its
+   Related entries normally require individual human review. The maintainer's
+   standing exception permits batch-authorized consistent proposals to be
+   screened against dictionary and combo evidence and imported as
+   `machine-reviewed`, without claiming individual human review. Record the
+   model/agent, scope and original evidence. Conflicting, incomplete and shorter
+   proposals still need explicit resolution. The original entry's approval does not approve its
    related words. If the request has no verified Hanji, do not invent a seed.
 4. For an existing word, edit the existing entry rather than creating another.
    For an unrelated homograph, supply a short `identity_note` explaining the
@@ -84,6 +88,12 @@ combo conflicts. All decisions initially remain `pending`, regardless of combo
 consistency. Record a human's explicit entry-by-entry decisions only in each
 item's `review` object; approval must select the whole preferred form, canonical
 reading and any alternates, resolving conflicts and unknown positions.
+
+For a batch-authorized consistent proposal, set its review object's
+`review_status` to `machine-reviewed`, retain the selected spelling/readings,
+record contextual dictionary/combo screening provenance, and mark the batch
+decision approved. This is import authorization, not individual human review;
+do not upgrade these entries to `reviewed`. Existing-entry overlaps stay pending.
 
 After human review, `import-related /path/to/review.json` previews only individual
 `approved` decisions; add `--apply` when their local import is authorized. These

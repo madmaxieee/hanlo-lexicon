@@ -1,0 +1,13 @@
+alternate_readings = []
+canonical_tl = "piān-tong-kheh-á"
+editorial_rationale = "Codex (GPT-6) screened the original MOE identity/definitions and exact shared Hanji/TL evidence, then checked the complete spelling against consistent existing combo outputs. The maintainer batch-adopted these consistent proposals for machine-reviewed import; this records no individual human review and no claim of corpus attestation for the new word."
+id = 4094
+moe_forms = ["便當篋仔"]
+preferred_form = "便當kheh仔"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+row = 4687
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -242,6 +242,11 @@ def find(root, seeds, seed_entry_ids=None):
 
 def reviewed_request(item):
     review = item['review']
+    status = review.get('review_status', 'reviewed')
+    if status not in {'reviewed', 'machine-reviewed'}:
+        raise lex.Error('Related review status must be reviewed or machine-reviewed.')
+    if status == 'machine-reviewed' and review_category(item) != 'Consistent proposals':
+        raise lex.Error('Batch machine-reviewed imports require consistent complete spelling proposals.')
     preferred, reading = review.get('preferred_form'), review.get('canonical_tl')
     if not isinstance(preferred, str) or not preferred.strip() or not isinstance(reading, str):
         raise lex.Error('Each approved related entry needs its human-selected preferred form and reading.')
@@ -268,7 +273,7 @@ def reviewed_request(item):
     request = lex.normalize_request({'preferred_form': form, 'canonical_tl': reading,
         'alternate_readings': alternates,
         'moe_forms': sorted({re.sub(r'【[^】]*】', '', item['headword']).strip()} - {form}),
-        'sources': sources, 'review_status': 'reviewed'})
+        'sources': sources, 'review_status': status})
     if note.strip():
         request['identity_note'] = unicodedata.normalize('NFC', note.strip())
     if rationale.strip():

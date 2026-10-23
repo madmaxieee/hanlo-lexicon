@@ -543,7 +543,7 @@ def lkk_data(root):
     return result
 
 
-def verify_sources(entry, lkk, moe):
+def verify_sources(entry, lkk, moe, moe_rows=None):
     pin, sheets, _ = moe if moe else (None, None, None)
     for source in entry['sources']:
         if 'url' in source:
@@ -558,7 +558,9 @@ def verify_sources(entry, lkk, moe):
             if source.get('sheet') not in sheets:
                 raise Error('MOE citation requires a valid sheet name.')
             rows = sheets[source['sheet']]
-            if not any(number == source['row'] for number, _ in rows[1:]):
+            valid_row = (source['row'] in moe_rows[source['sheet']] if moe_rows is not None
+                         else any(number == source['row'] for number, _ in rows[1:]))
+            if not valid_row:
                 raise Error('MOE citation does not identify a data row.')
         else:
             raise Error(f'Unknown or unavailable source snapshot: {source["snapshot"]}.')
@@ -724,8 +726,11 @@ def validate(root, formatting=True, current=None, evidence=None):
     # Pure repository validation needs no MOE file unless an entry cites it.
     ids = {source['snapshot'] for _, entry in current for source in entry['sources'] if 'snapshot' in source}
     moe = (evidence[1] if evidence is not None else moe_data(root)) if ids - lkk.keys() else None
+    # Rebuild from this validation pass's verified source, never across calls.
+    moe_rows = {sheet: {number for number, _ in rows[1:]}
+                for sheet, rows in moe[1].items()} if moe else None
     for path, entry in current:
-        verify_sources(entry, lkk, moe)
+        verify_sources(entry, lkk, moe, moe_rows=moe_rows)
         if formatting and (path != entry_path(root, entry) or path.read_text() != render(entry)):
             raise Error(f'{path.relative_to(root)}: run format to canonicalize content and filename.')
     # Same-pair homographs require an explicit identity note on each additional word.
@@ -933,7 +938,9 @@ def main():
                     target = entry_path(root, entry)
                     if target != path and target.exists():
                         raise Error(f'Refusing to overwrite {target}.')
-                    atomic_write(target, render(entry))
+                    rendered = render(entry)
+                    if target != path or path.read_bytes() != rendered.encode('utf-8'):
+                        atomic_write(target, rendered)
                     if path != target:
                         path.unlink()
                         directory = path.parent

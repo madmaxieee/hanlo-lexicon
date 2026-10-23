@@ -6,6 +6,7 @@ import hashlib
 import importlib.util
 import io
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -221,6 +222,36 @@ class MaintenanceTests(unittest.TestCase):
         self.run_cli('validate')
         invalid = self.request(form='重', reading='tîng', sources=[{'snapshot': 'moe-fixture', 'sheet': '詞目', 'row': 999}])
         self.run_cli('add', str(invalid), expected=2)
+
+    def test_validation_rechecks_moe_rows_and_checksum_on_every_call(self):
+        self.run_cli('add', str(self.request(sources=[
+            {'snapshot': 'moe-fixture', 'sheet': '詞目', 'row': 2}])))
+        lex.validate(self.root)
+        path, entry = lex.entries(self.root)[0]
+        for row in (1, 999):
+            entry['sources'][0]['row'] = row
+            path.write_text(lex.render(entry))
+            with self.assertRaisesRegex(lex.Error, 'data row'):
+                lex.validate(self.root)
+        entry['sources'][0]['row'] = 2
+        path.write_text(lex.render(entry))
+        lex.validate(self.root)
+        self.moe_path.write_bytes(b'changed')
+        with self.assertRaisesRegex(lex.Error, 'checksum mismatch'):
+            lex.validate(self.root)
+
+    def test_format_skips_unchanged_bytes_but_repairs_line_endings(self):
+        self.run_cli('add', str(self.request()))
+        path, _ = lex.entries(self.root)[0]
+        canonical = path.read_bytes()
+        timestamp = 1700000000000000000
+        os.utime(path, ns=(timestamp, timestamp))
+        self.run_cli('format')
+        self.assertEqual(path.stat().st_mtime_ns, timestamp)
+        self.assertEqual(path.read_bytes(), canonical)
+        path.write_bytes(canonical.replace(b'\n', b'\r\n'))
+        self.run_cli('format')
+        self.assertEqual(path.read_bytes(), canonical)
 
     def test_corrupt_moe_never_reports_success_or_allocates(self):
         request = self.request()

@@ -250,6 +250,10 @@ python3 tools/lexicon.py validate
 
 `next-id` only previews. `format` retains IDs, sorts keys and set-like arrays, and
 renames/moves entries to the canonical path after deliberate spelling edits.
+It skips writes when an entry is already at its canonical path with exactly the
+canonical bytes. Full validation still runs before and after formatting. Source
+row lookups are rebuilt within each validation pass from freshly loaded,
+checksum-verified dictionaries; they are never saved or reused between passes.
 `validate` checks the full entry schema, source checksums and locators, ID uniqueness,
 homograph distinctions, counter bounds, and canonical formatting/filing. It does
 not infer whether a cited source supports an editorial choice.

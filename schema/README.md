@@ -12,8 +12,9 @@ format files, and validate this schema.
 - `canonical_tl`: a verified TL filing reading, including tone marks.
 - `preferred_form`: recommended output; may be Hanji, romanization, or mixed.
 - `alternate_readings`: explicitly supported alternate input readings, excluding
-  `canonical_tl` itself. Generated alternate outputs retain Han characters and
-  change the corresponding romanized syllables; alternate readings remain part
+  `canonical_tl` itself. Shorter alternates export as their full romanized reading;
+  other generated alternate outputs retain Han characters and change the
+  corresponding romanized syllables. Alternate readings remain part
   of the same editorial identity. See `tools/README.md` for alignment rules.
 - `moe_forms`: verified MOE spellings, distinct from the preferred recommendation.
 - `hanji_forms`: optional nonempty array of source-backed or explicitly curated

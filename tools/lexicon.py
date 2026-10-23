@@ -800,10 +800,14 @@ def is_hanji(form):
 def written_form(form, canonical, reading):
     """Render a sourced alternate in the same Han/romanized writing pattern.
 
-    Mixed forms require one Han character or romanized syllable per reading
-    syllable. Fail on contractions or mismatched romanization, rather than
-    silently replacing the Han characters with a full romanized reading.
+    Shorter alternates are contractions and use the full reading as output.
+    Otherwise mixed forms require one Han character or romanized syllable per
+    reading syllable, with matching romanization.
     """
+    primary = list(re.finditer(r'[^\s-]+', canonical))
+    alternate = list(re.finditer(r'[^\s-]+', reading))
+    if len(alternate) < len(primary):
+        return reading
     if is_hanji(form):
         return form
     if not any(is_hanji(char) for char in form):
@@ -827,8 +831,6 @@ def written_form(form, canonical, reading):
             i += 1
         else:
             raise Error(f'Cannot align mixed written form {form!r}; review its spelling.')
-    primary = list(re.finditer(r'[^\s-]+', canonical))
-    alternate = list(re.finditer(r'[^\s-]+', reading))
     if len(units) != len(primary) or len(primary) != len(alternate):
         raise Error(f'Cannot align alternate {reading!r} to mixed form {form!r}; syllable counts differ.')
     output, cursor = [], 0

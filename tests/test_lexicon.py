@@ -442,7 +442,7 @@ class MaintenanceTests(unittest.TestCase):
         self.assertEqual({path: path.read_bytes() for path, _ in lex.entries(self.root)}, entries)
 
     def test_canonical_only_does_not_align_alternates_but_still_validates(self):
-        self.run_cli('add', str(self.request(form='想beh', reading='siūnn-beh', alternate_readings=['sióng'])))
+        self.run_cli('add', str(self.request(form='想beh', reading='siūnn-beh', alternate_readings=['siūnn-bueh-ah'])))
         self.run_cli('build-csv', expected=2)
         self.assertEqual(self.run_cli('build-csv', '--canonical-only')['rows'], 1)
         self.assertEqual(self.csv_rows('lexicon-canonical.csv'), [
@@ -460,7 +460,7 @@ class MaintenanceTests(unittest.TestCase):
         self.run_cli('build-csv')
         before = (self.root / 'dist/lexicon.csv').read_bytes()
         path, entry = lex.entries(self.root)[0]
-        entry['alternate_readings'] = ['sióng']
+        entry['alternate_readings'] = ['siūnn-bueh-ah']
         path.write_text(lex.render(entry))
         self.run_cli('build-csv', expected=2)
         self.assertEqual((self.root / 'dist/lexicon.csv').read_bytes(), before)
@@ -468,6 +468,22 @@ class MaintenanceTests(unittest.TestCase):
             lex.written_form('想beh', 'siūnn-bueh', 'siūnn-beh')
         with self.assertRaisesRegex(lex.Error, 'Neutral-tone'):
             lex.written_form('想beh', 'siūnn-beh', 'siūnn--beh')
+
+    def test_contracted_alternates_export_as_full_romanization(self):
+        self.run_cli('add', str(self.request(form='tann仔', reading='tann-á', alternate_readings=['ta̋nn'])))
+        self.run_cli('add', str(self.request(form='今仔', reading='tann-á', alternate_readings=['ta̋nn'])))
+        before = {path: path.read_bytes() for path, _ in lex.entries(self.root)}
+        self.run_cli('build-csv')
+        self.assertEqual(self.csv_rows(), [
+            ['preferred_form', 'tl'], ['tann仔', 'tann-á'], ['ta̋nn', 'ta̋nn'],
+        ])
+        self.run_cli('build-csv', '--include-pure-hanji')
+        self.assertEqual(self.csv_rows('lexicon-all.csv'), [
+            ['preferred_form', 'tl'], ['tann仔', 'tann-á'], ['ta̋nn', 'ta̋nn'], ['今仔', 'tann-á'],
+        ])
+        self.assertEqual({path: path.read_bytes() for path, _ in lex.entries(self.root)}, before)
+        # Spaces and double hyphens delimit syllables; preserve the reading verbatim.
+        self.assertEqual(lex.written_form('tann仔好', 'tann-á hó', 'ta̋nn--hó'), 'ta̋nn--hó')
 
     def test_build_csv_deduplicates_rows_without_merging_homographs(self):
         self.run_cli('add', str(self.request(alternate_readings=['bueh'])))

@@ -354,16 +354,29 @@ to align alternate spellings, so an unalignable alternate does not block them.
 Each included entry contributes its `preferred_form` with its `canonical_tl`.
 Unless `--canonical-only` is set, each `alternate_readings` value also contributes:
 
-- If the preferred form contains only Hanji, retain that form for every reading.
+- If the alternate has fewer syllables than the canonical reading, treat it as a
+  contraction and use the complete alternate reading as both written form and TL,
+  regardless of the preferred form's writing system. For example, `tann仔` with
+  canonical `tann-á` and alternate `ta̋nn` produces `tann仔,tann-á` and `ta̋nn,ta̋nn`.
+  The pure-Hanji entry filter still applies before generating rows.
+- Otherwise, if the preferred form contains only Hanji, retain it for each reading.
   Punctuation, spaces, and combining marks are ignored for this classification,
   so `後--日` retains its written form for both `āu--ji̍t` and `āu--li̍t`.
 - For fully romanized forms, use each alternate reading as its written output.
 - For mixed forms, preserve Han characters and separators, and replace only the
   romanized syllables with the corresponding syllables of the alternate reading.
   Alignment requires one Han character or romanized syllable per reading syllable,
-  with the written romanization matching the canonical reading. Contractions,
+  with the written romanization matching the canonical reading. Longer alternates,
   mismatched spellings, or changed neutral-tone boundaries require explicit review;
   the build fails before replacing the CSV instead of guessing a spelling.
+
+Reading syllables are nonempty runs separated by whitespace or ASCII hyphens
+(`-` or `--`); tone marks and nasalization remain part of the syllable. The
+exporter does not infer internal syllable boundaries in unseparated romanization.
+For mixed-form alignment, each Han character or contiguous Latin run (including
+combining marks, digits and apostrophes) counts as one written unit. Separators
+are preserved in aligned outputs; contracted outputs preserve the alternate
+reading verbatim.
 
 For example, `beh` with alternate `bueh` produces:
 

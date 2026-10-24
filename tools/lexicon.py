@@ -861,7 +861,7 @@ def spelling_readings(entry):
             for reading in [canonical, *entry['alternate_readings']]]
 
 
-def build_csv(root, include_pure_hanji=False, canonical_only=False):
+def build_csv(root, include_pure_hanji=False, canonical_only=False, header=False):
     """Build a flat spelling/reading CSV without changing editorial records."""
     with writer_lock(root):
         validate(root)
@@ -876,8 +876,9 @@ def build_csv(root, include_pure_hanji=False, canonical_only=False):
                 rows.update(spelling_readings(entry))
         stream = io.StringIO(newline='')
         writer = csv.writer(stream, lineterminator='\n')
-        writer.writerow(('preferred_form', 'tl'))
-        writer.writerows(sorted(rows))
+        if header:
+            writer.writerow(('tl', 'preferred_form'))
+        writer.writerows((reading, form) for form, reading in sorted(rows))
         name = 'lexicon-all' if include_pure_hanji else 'lexicon'
         if canonical_only:
             name += '-canonical'
@@ -893,6 +894,8 @@ def main():
     for name in ('validate', 'next-id', 'fetch-moe'):
         sub.add_parser(name)
     csv_export = sub.add_parser('build-csv')
+    csv_export.add_argument('--header', action='store_true',
+                            help='Include a tl,preferred_form header (default: no header).')
     csv_export.add_argument('--include-pure-hanji', action='store_true',
                             help='Include pure-Hanji preferred forms and write dist/lexicon-all.csv (default: exclude them in dist/lexicon.csv).')
     csv_export.add_argument('--canonical-only', action='store_true',
@@ -928,7 +931,7 @@ def main():
             result = {'next_id': next_id(root, entries(root)), 'reserved': False}
         elif args.command == 'build-csv':
             result = build_csv(root, include_pure_hanji=args.include_pure_hanji,
-                               canonical_only=args.canonical_only)
+                               canonical_only=args.canonical_only, header=args.header)
         elif args.command == 'validate' or args.command == 'format' and args.check:
             result = validate(root)
         elif args.command == 'format':

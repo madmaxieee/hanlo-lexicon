@@ -349,10 +349,15 @@ The default command validates the repository and atomically writes
 leaving the default file untouched. Filtering uses `preferred_form`, independently
 of Hanji metadata in `moe_forms` or `hanji_forms`. Punctuation, spaces and combining
 marks do not make a pure-Hanji form mixed: `後--日` is excluded by default.
-Both UTF-8 files have an exact `preferred_form,tl` header, LF line endings, and rows
+Both UTF-8 files have columns `tl,preferred_form`, no header row by default for
+TaigiKeyboard import, LF line endings, and rows
 sorted by written form and then reading using Unicode code-point order. Identical
 rows are emitted once, including rows shared by unrelated homographs. The TOML
 records, IDs, source snapshots, and allocation counter are unchanged.
+
+Add `--header` to any build variant to include the exact `tl,preferred_form`
+header row. This writes to the same output filename; the reported row count
+counts data rows only. An empty export without a header is a zero-byte file.
 
 Use `--canonical-only` to export only each included entry's `preferred_form` with
 its `canonical_tl`, without generating any alternate-reading rows. It writes
@@ -368,7 +373,7 @@ Unless `--canonical-only` is set, each `alternate_readings` value also contribut
 - If the alternate has fewer syllables than the canonical reading, treat it as a
   contraction and use the complete alternate reading as both written form and TL,
   regardless of the preferred form's writing system. For example, `tann仔` with
-  canonical `tann-á` and alternate `ta̋nn` produces `tann仔,tann-á` and `ta̋nn,ta̋nn`.
+  canonical `tann-á` and alternate `ta̋nn` produces `tann-á,tann仔` and `ta̋nn,ta̋nn`.
   The pure-Hanji entry filter still applies before generating rows.
 - Otherwise, if the preferred form contains only Hanji, retain it for each reading.
   Punctuation, spaces, and combining marks are ignored for this classification,
@@ -392,16 +397,15 @@ reading verbatim.
 For example, `beh` with alternate `bueh` produces:
 
 ```csv
-preferred_form,tl
 beh,beh
 bueh,bueh
 ```
 
-A Hanji entry `欲` with readings `beh` and `bueh` produces `欲,beh` and `欲,bueh`
+A Hanji entry `欲` with readings `beh` and `bueh` produces `beh,欲` and `bueh,欲`
 only in the inclusive export. A mixed entry `想beh` with readings `siūnn-beh` and
 `siūnn-bueh` produces
-`想beh,siūnn-beh` and `想bueh,siūnn-bueh`. Likewise, `beh食飯` with alternate
-`bueh-tsiah-pn̄g` produces `bueh食飯,bueh-tsiah-pn̄g`. If only a Han-written
+`siūnn-beh,想beh` and `siūnn-bueh,想bueh`. Likewise, `beh食飯` with alternate
+`bueh-tsiah-pn̄g` produces `bueh-tsiah-pn̄g,bueh食飯`. If only a Han-written
 syllable changes pronunciation, its written form stays the same: `hip相` supports
 both `hip-siòng` and `hip-siōng`.
 

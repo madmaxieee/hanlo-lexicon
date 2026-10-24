@@ -33,7 +33,8 @@ distinct identity note. Canonical readings select a filing reference, not a supe
 
 TOML files are the editable source. Build a CSV locally with
 `python3 tools/lexicon.py build-csv`; the result is `dist/lexicon.csv` with columns
-`preferred_form,tl`. This default export excludes pure-Hanji preferred forms.
+`tl,preferred_form` and no header row, for TaigiKeyboard import. Add `--header`
+to include the column names. This default export excludes pure-Hanji preferred forms.
 Use `python3 tools/lexicon.py build-csv --include-pure-hanji` to write
 `dist/lexicon-all.csv` containing all forms. Alternate outputs preserve the
 preferred form's Han characters and change its romanized syllables to match the
@@ -43,7 +44,7 @@ contractions and use the full alternate reading as both suggested form and TL.
 Other Hanji-only readings retain the same suggested Hanji. Identical
 CSV rows are deduplicated while distinct TOML word identities are preserved.
 Add `--canonical-only` to either command to export only each entry's
-`preferred_form,canonical_tl` pair, skipping alternate readings. These exports
+`canonical_tl,preferred_form` pair, skipping alternate readings. These exports
 write `dist/lexicon-canonical.csv` and `dist/lexicon-all-canonical.csv`, respectively.
 See `tools/README.md` for examples and GitHub Actions build/release instructions.
 Optional `hanji_forms` records Hanji spellings independently of MOE inclusion;

@@ -123,7 +123,7 @@ class MaintenanceTests(unittest.TestCase):
         self.run_cli('format')
         self.assertEqual(path.read_bytes(), before)
         self.assertEqual(self.run_cli('build-csv')['rows'], 1)
-        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl'], ['beh', 'beh']])
+        self.assertEqual(self.csv_rows(), [['beh', 'beh']])
         entry['rule_generated'] = False
         path.write_text(lex.render(entry))
         self.run_cli('format')
@@ -141,7 +141,7 @@ class MaintenanceTests(unittest.TestCase):
         self.assertEqual(path.read_bytes(), before)
         self.assertEqual(self.run_cli('validate')['entries'], 1)
         self.assertEqual(self.run_cli('build-csv')['rows'], 1)
-        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl'], ['beh', 'beh']])
+        self.assertEqual(self.csv_rows(), [['beh', 'beh']])
         self.run_cli('add', str(self.request(form='other', reading='other',
                                            review_status='machine_reviewed')), expected=2)
         self.assertEqual(self.run_cli('next-id')['next_id'], 2)
@@ -170,7 +170,7 @@ class MaintenanceTests(unittest.TestCase):
         self.assertTrue(any(row['record_id'] == '7' for row in dictionary['moe_matches']))
         self.run_cli('format', '--check')
         self.run_cli('build-csv')
-        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl'], ['liô心', 'liô-sim']])
+        self.assertEqual(self.csv_rows(), [['liô-sim', 'liô心']])
 
     def test_hanji_forms_are_optional_and_validate_script_and_nonempty_sets(self):
         for values in [[], ['liô心'], ['心\n心'], ['心', '心']]:
@@ -370,7 +370,7 @@ class MaintenanceTests(unittest.TestCase):
         self.assertEqual({entry['id']: path.read_bytes() for path, entry in lex.entries(self.root)}, before)
         self.assertEqual((self.root / 'id-sequence.toml').read_bytes(), counter)
         self.assertEqual(self.run_cli('build-csv')['rows'], 2)
-        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl'], ['beh', 'beh'], ['bueh', 'bueh']])
+        self.assertEqual(self.csv_rows(), [['beh', 'beh'], ['bueh', 'bueh']])
         old = self.root / second['created']
         entry = lex.load_toml(old)
         entry.update(canonical_tl='bu', preferred_form='bu')
@@ -413,16 +413,32 @@ class MaintenanceTests(unittest.TestCase):
         self.run_cli('add', str(self.request(alternate_readings=['bueh'], hanji_forms=['欲'])))
         result = self.run_cli('build-csv')
         self.assertEqual(result, {'csv': 'dist/lexicon.csv', 'entries': 1, 'rows': 2})
-        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl'], ['beh', 'beh'], ['bueh', 'bueh']])
+        self.assertEqual(self.csv_rows(), [['beh', 'beh'], ['bueh', 'bueh']])
+
+    def test_build_csv_header_is_opt_in_for_all_variants(self):
+        self.run_cli('add', str(self.request(form='想beh', reading='siūnn-beh',
+                                           alternate_readings=['siūnn-bueh'])))
+        self.run_cli('add', str(self.request(form='欲', alternate_readings=['bueh'])))
+        for flags in ([], ['--include-pure-hanji'], ['--canonical-only'],
+                      ['--include-pure-hanji', '--canonical-only']):
+            with self.subTest(flags=flags):
+                result = self.run_cli('build-csv', *flags)
+                target = self.root / result['csv']
+                data = target.read_bytes()
+                self.assertFalse(data.startswith(b'tl,preferred_form\n'))
+                self.assertEqual(len(self.csv_rows(target.name)), result['rows'])
+                self.assertEqual(self.run_cli('build-csv', *flags, '--header'), result)
+                self.assertEqual(target.read_bytes(), b'tl,preferred_form\n' + data)
+                self.run_cli('build-csv', *flags)
+                self.assertEqual(target.read_bytes(), data)
 
     def test_build_csv_hanji_keeps_form_and_mixed_alias_preserves_hanji(self):
         self.run_cli('add', str(self.request(form='欲', alternate_readings=['bueh'])))
         self.run_cli('add', str(self.request(form='beh食飯', reading='beh-tsiah-pn̄g', alternate_readings=['bueh-tsiah-pn̄g'])))
         self.run_cli('build-csv')
         self.assertEqual(self.csv_rows(), [
-            ['preferred_form', 'tl'],
-            ['beh食飯', 'beh-tsiah-pn̄g'],
-            ['bueh食飯', 'bueh-tsiah-pn̄g'],
+            ['beh-tsiah-pn̄g', 'beh食飯'],
+            ['bueh-tsiah-pn̄g', 'bueh食飯'],
         ])
         default = (self.root / 'dist/lexicon.csv').read_bytes()
         result = self.run_cli('build-csv', '--include-pure-hanji')
@@ -430,10 +446,9 @@ class MaintenanceTests(unittest.TestCase):
         self.assertEqual(result['rows'], 4)
         self.assertEqual((self.root / 'dist/lexicon.csv').read_bytes(), default)
         self.assertEqual(self.csv_rows('lexicon-all.csv'), [
-            ['preferred_form', 'tl'],
-            ['beh食飯', 'beh-tsiah-pn̄g'],
-            ['bueh食飯', 'bueh-tsiah-pn̄g'],
-            ['欲', 'beh'], ['欲', 'bueh'],
+            ['beh-tsiah-pn̄g', 'beh食飯'],
+            ['bueh-tsiah-pn̄g', 'bueh食飯'],
+            ['beh', '欲'], ['bueh', '欲'],
         ])
 
     def test_mixed_alternates_change_only_romanized_syllables(self):
@@ -462,12 +477,12 @@ class MaintenanceTests(unittest.TestCase):
         result = self.run_cli('build-csv', '--canonical-only')
         self.assertEqual(result, {'csv': 'dist/lexicon-canonical.csv', 'entries': 4, 'rows': 2})
         self.assertEqual(self.csv_rows('lexicon-canonical.csv'), [
-            ['preferred_form', 'tl'], ['beh', 'beh'], ['想beh', 'siūnn-beh'],
+            ['beh', 'beh'], ['siūnn-beh', '想beh'],
         ])
         result = self.run_cli('build-csv', '--canonical-only', '--include-pure-hanji')
         self.assertEqual(result, {'csv': 'dist/lexicon-all-canonical.csv', 'entries': 4, 'rows': 3})
         self.assertEqual(self.csv_rows('lexicon-all-canonical.csv'), [
-            ['preferred_form', 'tl'], ['beh', 'beh'], ['想beh', 'siūnn-beh'], ['欲', 'beh'],
+            ['beh', 'beh'], ['siūnn-beh', '想beh'], ['beh', '欲'],
         ])
         self.assertEqual({name: (self.root / 'dist' / name).read_bytes() for name in regular}, regular)
         self.assertEqual({path: path.read_bytes() for path, _ in lex.entries(self.root)}, entries)
@@ -477,7 +492,7 @@ class MaintenanceTests(unittest.TestCase):
         self.run_cli('build-csv', expected=2)
         self.assertEqual(self.run_cli('build-csv', '--canonical-only')['rows'], 1)
         self.assertEqual(self.csv_rows('lexicon-canonical.csv'), [
-            ['preferred_form', 'tl'], ['想beh', 'siūnn-beh'],
+            ['siūnn-beh', '想beh'],
         ])
         target = self.root / 'dist/lexicon-canonical.csv'
         before = target.read_bytes()
@@ -506,11 +521,11 @@ class MaintenanceTests(unittest.TestCase):
         before = {path: path.read_bytes() for path, _ in lex.entries(self.root)}
         self.run_cli('build-csv')
         self.assertEqual(self.csv_rows(), [
-            ['preferred_form', 'tl'], ['tann仔', 'tann-á'], ['ta̋nn', 'ta̋nn'],
+            ['tann-á', 'tann仔'], ['ta̋nn', 'ta̋nn'],
         ])
         self.run_cli('build-csv', '--include-pure-hanji')
         self.assertEqual(self.csv_rows('lexicon-all.csv'), [
-            ['preferred_form', 'tl'], ['tann仔', 'tann-á'], ['ta̋nn', 'ta̋nn'], ['今仔', 'tann-á'],
+            ['tann-á', 'tann仔'], ['ta̋nn', 'ta̋nn'], ['tann-á', '今仔'],
         ])
         self.assertEqual({path: path.read_bytes() for path, _ in lex.entries(self.root)}, before)
         # Spaces and double hyphens delimit syllables; preserve the reading verbatim.
@@ -523,7 +538,7 @@ class MaintenanceTests(unittest.TestCase):
         before = {path: path.read_bytes() for path, _ in lex.entries(self.root)}
         counter = (self.root / 'id-sequence.toml').read_bytes()
         self.assertEqual(self.run_cli('build-csv')['rows'], 2)
-        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl'], ['beh', 'beh'], ['bueh', 'bueh']])
+        self.assertEqual(self.csv_rows(), [['beh', 'beh'], ['bueh', 'bueh']])
         self.assertEqual({path: path.read_bytes() for path, _ in lex.entries(self.root)}, before)
         self.assertEqual((self.root / 'id-sequence.toml').read_bytes(), counter)
         self.assertEqual(self.run_cli('validate')['entries'], 3)
@@ -532,14 +547,14 @@ class MaintenanceTests(unittest.TestCase):
         self.run_cli('add', str(self.request(form='後--日', reading='āu--ji̍t', alternate_readings=['āu--li̍t'])))
         self.run_cli('add', str(self.request(form='「欲,愛」', reading='bóng')))
         self.run_cli('build-csv')
-        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl']])
+        self.assertEqual(self.csv_rows(), [])
         self.run_cli('build-csv', '--include-pure-hanji')
         target = self.root / 'dist/lexicon-all.csv'
         before = target.read_bytes()
         self.assertNotIn(b'\r', before)
         self.assertEqual(self.csv_rows('lexicon-all.csv'), [
-            ['preferred_form', 'tl'], ['「欲,愛」', 'bóng'],
-            ['後--日', 'āu--ji̍t'], ['後--日', 'āu--li̍t'],
+            ['bóng', '「欲,愛」'],
+            ['āu--ji̍t', '後--日'], ['āu--li̍t', '後--日'],
         ])
         self.run_cli('build-csv', '--include-pure-hanji')
         self.assertEqual(target.read_bytes(), before)
@@ -563,7 +578,11 @@ class MaintenanceTests(unittest.TestCase):
         self.assertFalse((self.root / 'dist/lexicon.csv').exists())
         (self.root / '.lexicon.lock').rmdir()
         self.assertEqual(self.run_cli('build-csv')['rows'], 0)
-        self.assertEqual(self.csv_rows(), [['preferred_form', 'tl']])
+        self.assertEqual(self.csv_rows(), [])
+        target = self.root / 'dist/lexicon.csv'
+        self.assertEqual(target.read_bytes(), b'')
+        self.assertEqual(self.run_cli('build-csv', '--header')['rows'], 0)
+        self.assertEqual(target.read_bytes(), b'tl,preferred_form\n')
 
 
 if __name__ == '__main__':

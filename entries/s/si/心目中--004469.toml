@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "sim-bo̍k-tiong"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts by gpt-6-luna (medium reasoning), with coordinator checks; MOE identity 26034. Batch import authorized without individual human review. Issue 386 model-review SHA-256 c62c159b6c2ed6ddad5382195566f2b746c5f746cd490065745dfe89756746c0."
+id = 4469
+moe_forms = []
+preferred_form = "心目中"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 386; article text line 1; corpus Unicode code points 223:226; literal form 心目中"
+url = "https://tsbp.tgb.org.tw/2016/05/e.html"
+
+[[sources]]
+locator = "Issue 386; article text line 1; corpus Unicode code points 24:27; literal form 心目中"
+url = "https://tsbp.tgb.org.tw/2016/05/e_0576457554.html"
+
+[[sources]]
+row = 22699
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

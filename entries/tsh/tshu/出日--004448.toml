@@ -1,0 +1,25 @@
+alternate_readings = []
+canonical_tl = "tshut-ji̍t"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts by gpt-6-luna (medium reasoning), with coordinator checks; MOE identity 27562. Batch import authorized without individual human review. Issue 386 model-review SHA-256 c62c159b6c2ed6ddad5382195566f2b746c5f746cd490065745dfe89756746c0."
+id = 4448
+moe_forms = []
+preferred_form = "出日"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 386; article text line 19; corpus Unicode code points 1390:1392; literal form 出日"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"
+
+[[sources]]
+locator = "Issue 386; article text line 21; corpus Unicode code points 1397:1399; literal form 出日"
+url = "https://tsbp.tgb.org.tw/2016/05/e_0576457554.html"
+
+[[sources]]
+locator = "Issue 386; article text line 33; corpus Unicode code points 1196:1198; literal form 出日"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"
+
+[[sources]]
+row = 14914
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

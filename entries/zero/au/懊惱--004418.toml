@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "àu-náu"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts by gpt-6-luna (medium reasoning), with coordinator checks; MOE identity 11680. Batch import authorized without individual human review. Issue 386 model-review SHA-256 c62c159b6c2ed6ddad5382195566f2b746c5f746cd490065745dfe89756746c0."
+id = 4418
+moe_forms = []
+preferred_form = "懊惱"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 386; article text line 25; corpus Unicode code points 270:272; literal form 懊惱"
+url = "https://tsbp.tgb.org.tw/2016/05/blog-post_18.html"
+
+[[sources]]
+row = 11676
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

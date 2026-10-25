@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tsip-kuat"
+editorial_rationale = "Individually approved by the maintainer after reviewing the issue 386 corpus passage; MOE identity 29486. The maintainer clarified 執訣 as 頑強，固執 (stubborn, obstinate), resolving the model's suspected source-error hold. This adopts the whole word and does not approve 訣 independently. Issue 386 model-review SHA-256 c62c159b6c2ed6ddad5382195566f2b746c5f746cd490065745dfe89756746c0."
+id = 4430
+moe_forms = []
+preferred_form = "執訣"
+review_status = "reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 386; article text line 72; corpus Unicode code points 3029:3031; literal form 執訣"
+url = "https://tsbp.tgb.org.tw/2016/05/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 29390
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

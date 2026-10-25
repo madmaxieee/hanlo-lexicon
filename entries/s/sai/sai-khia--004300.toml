@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sai-khia"
+id = 4300
+moe_forms = ["私奇"]
+preferred_form = "sai-khia"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 765:773; written form sai-khia"
+url = "https://tsbp.tgb.org.tw/2016/05/kah_01704220398.html"
+
+[[sources]]
+row = 3365
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

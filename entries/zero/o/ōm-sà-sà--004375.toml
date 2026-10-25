@@ -1,0 +1,13 @@
+alternate_readings = []
+canonical_tl = "ōm-sà-sà"
+editorial_rationale = "The maintainer supplied this complete preferred spelling, canonical TL and Hanji in the issue-386 batch-2 custom request; the cited article preserves the whole source phrase. hanji_forms records the supplied spelling without asserting MOE inclusion."
+hanji_forms = ["茂嗄嗄"]
+id = 4375
+moe_forms = []
+preferred_form = "ōm-sà-sà"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 384:392; written form ōm-sà-sà"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"

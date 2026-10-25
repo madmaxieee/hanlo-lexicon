@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kok-pih"
+id = 4293
+moe_forms = ["各馝"]
+preferred_form = "kok-pih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 1670:1677; written form kok-pih"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"
+
+[[sources]]
+row = 2243
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

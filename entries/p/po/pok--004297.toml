@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pok"
+id = 4297
+moe_forms = ["噗"]
+preferred_form = "pok"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 41; normalized source characters 2842:2845; written form pok"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"
+
+[[sources]]
+row = 10974
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

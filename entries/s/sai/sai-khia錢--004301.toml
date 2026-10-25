@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sai-khia-tsînn"
+id = 4301
+moe_forms = ["私奇錢"]
+preferred_form = "sai-khia錢"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 765:774; written form sai-khia錢"
+url = "https://tsbp.tgb.org.tw/2016/05/kah_01704220398.html"
+
+[[sources]]
+row = 26975
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sio-suà"
+id = 4303
+moe_forms = ["相紲"]
+preferred_form = "sio-suà"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 1:8; written form sio-suà"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"
+
+[[sources]]
+row = 27168
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

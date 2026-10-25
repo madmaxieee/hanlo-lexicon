@@ -1,0 +1,16 @@
+alternate_readings = ["ngī-táu"]
+canonical_tl = "ngē-táu"
+id = 4360
+moe_forms = ["硬篤"]
+preferred_form = "硬táu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 904:908; written form 硬táu"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"
+
+[[sources]]
+row = 8807
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = ["kín-mí"]
+canonical_tl = "kín-mé"
+id = 4361
+moe_forms = ["緊猛"]
+preferred_form = "緊mé"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 152:155; written form 緊mé"
+url = "https://tsbp.tgb.org.tw/2016/05/mih-tioh-ai-tsit.html"
+
+[[sources]]
+row = 15514
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

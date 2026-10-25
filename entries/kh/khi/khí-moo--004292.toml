@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khí-moo"
+id = 4292
+moe_forms = ["起毛"]
+preferred_form = "khí-moo"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 18:25; written form khí-moo"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"
+
+[[sources]]
+row = 6688
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

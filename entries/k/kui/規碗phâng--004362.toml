@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kui-uánn-phâng"
+id = 4362
+moe_forms = ["規碗捀"]
+preferred_form = "規碗phâng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 60; normalized source characters 2628:2635; written form 規碗phâng"
+url = "https://tsbp.tgb.org.tw/2016/05/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 14288
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

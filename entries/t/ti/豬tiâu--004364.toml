@@ -1,0 +1,16 @@
+alternate_readings = ["tu-tiâu"]
+canonical_tl = "ti-tiâu"
+id = 4364
+moe_forms = ["豬牢"]
+preferred_form = "豬tiâu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 29; normalized source characters 1810:1815; written form 豬tiâu"
+url = "https://tsbp.tgb.org.tw/2016/05/sa-ham.html"
+
+[[sources]]
+row = 11413
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

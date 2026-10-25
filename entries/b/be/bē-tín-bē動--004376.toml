@@ -1,0 +1,13 @@
+alternate_readings = []
+canonical_tl = "bē-tín-bē-tāng"
+editorial_rationale = "The maintainer supplied this complete preferred spelling, canonical TL and Hanji in the issue-386 batch-2 custom request; the cited article preserves the whole source phrase. hanji_forms records the supplied spelling without asserting MOE inclusion."
+hanji_forms = ["袂振袂動"]
+id = 4376
+moe_forms = []
+preferred_form = "bē-tín-bē動"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 168:178; written form bē-tín-bē動"
+url = "https://tsbp.tgb.org.tw/2016/05/kah_01704220398.html"

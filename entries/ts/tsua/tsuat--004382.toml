@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tsuat"
+id = 4382
+identity_note = "The maintainer explicitly approves a separate entry for MOE word 4261 泏 (tsuat), liquid splashing out because of motion or overflow, distinct from entry 739 tsuh, MOE word 4259 泏, liquid seeping/dripping through small openings."
+moe_forms = ["泏"]
+preferred_form = "tsuat"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 614:619; written form tsuat"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"
+
+[[sources]]
+row = 4261
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsun-tshûn"
+id = 4342
+moe_forms = ["尊存"]
+preferred_form = "尊tshûn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 183:189; written form 尊tshûn"
+url = "https://tsbp.tgb.org.tw/2016/05/pho-tau-e.html"
+
+[[sources]]
+row = 13730
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

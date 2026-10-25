@@ -1,0 +1,13 @@
+alternate_readings = []
+canonical_tl = "n̂g-huánn-n̂g-huánn"
+editorial_rationale = "The maintainer supplied this complete preferred spelling, canonical TL and Hanji in the issue-386 batch-2 custom request; the cited article preserves the whole source phrase. hanji_forms records the supplied spelling without asserting MOE inclusion."
+hanji_forms = ["黃幻黃幻"]
+id = 4374
+moe_forms = []
+preferred_form = "黃huánn黃huánn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 299:311; written form 黃huánn黃huánn"
+url = "https://tsbp.tgb.org.tw/2016/05/mih.html"

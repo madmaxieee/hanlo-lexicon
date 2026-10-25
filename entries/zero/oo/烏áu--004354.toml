@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "oo-áu"
+id = 4354
+moe_forms = ["烏漚"]
+preferred_form = "烏áu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 43; normalized source characters 2918:2921; written form 烏áu"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"
+
+[[sources]]
+row = 6304
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

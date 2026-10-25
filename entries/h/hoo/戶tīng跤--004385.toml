@@ -1,0 +1,13 @@
+alternate_readings = []
+canonical_tl = "hōo-tīng-kha"
+editorial_rationale = "The maintainer explicitly selects Hanji 跤 for kha while retaining the adopted 戶tīng seed spelling."
+id = 4385
+moe_forms = ["戶橂跤"]
+preferred_form = "戶tīng跤"
+review_status = "reviewed"
+schema_version = 1
+
+[[sources]]
+row = 29041
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

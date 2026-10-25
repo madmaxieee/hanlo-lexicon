@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thâu-tsiūnn-á"
+id = 4370
+moe_forms = ["頭上仔"]
+preferred_form = "頭tsiūnn仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 164:172; written form 頭tsiūnn仔"
+url = "https://tsbp.tgb.org.tw/2016/05/tsiah.html"
+
+[[sources]]
+row = 12035
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

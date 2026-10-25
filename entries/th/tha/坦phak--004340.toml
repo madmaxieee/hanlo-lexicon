@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thán-phak"
+id = 4340
+moe_forms = ["坦覆"]
+preferred_form = "坦phak"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 301:306; written form 坦phak"
+url = "https://tsbp.tgb.org.tw/2016/05/tsiah.html"
+
+[[sources]]
+row = 3748
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

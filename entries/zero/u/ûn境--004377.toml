@@ -1,0 +1,13 @@
+alternate_readings = []
+canonical_tl = "ûn-kíng"
+editorial_rationale = "The maintainer supplied this complete preferred spelling, canonical TL and Hanji in the issue-386 batch-2 custom request; the cited article preserves the whole source phrase. hanji_forms records the supplied spelling without asserting MOE inclusion."
+hanji_forms = ["勻境"]
+id = 4377
+moe_forms = []
+preferred_form = "ûn境"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 787:790; written form ûn境"
+url = "https://tsbp.tgb.org.tw/2016/05/seh.html"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tńg-tsâi"
+id = 4332
+moe_forms = ["轉臍"]
+preferred_form = "tńg臍"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 861:865; written form Tńg臍"
+url = "https://tsbp.tgb.org.tw/2016/05/tsiah.html"
+
+[[sources]]
+row = 12638
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

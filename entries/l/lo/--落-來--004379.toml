@@ -1,0 +1,13 @@
+alternate_readings = []
+canonical_tl = "--lo̍h-lâi"
+editorial_rationale = "The maintainer adopts the neutral-marked form --落-來 with reading --lo̍h-lâi; the original article uses this literal form for rain dripping down."
+hanji_forms = ["--落-來"]
+id = 4379
+moe_forms = []
+preferred_form = "--落-來"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 421:426; written form --落-來"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"

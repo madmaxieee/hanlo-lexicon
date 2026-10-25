@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tin"
+id = 4286
+moe_forms = ["津"]
+preferred_form = "tin"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 27; normalized source characters 2038:2041; written form tin"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"
+
+[[sources]]
+row = 5130
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

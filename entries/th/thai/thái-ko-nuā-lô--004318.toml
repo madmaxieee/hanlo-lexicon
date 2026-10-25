@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thái-ko-nuā-lô"
+id = 4318
+moe_forms = ["癩𰣻爛癆"]
+preferred_form = "thái-ko-nuā-lô"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 539:553; written form thái-ko-nuā-lô"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"
+
+[[sources]]
+row = 13088
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

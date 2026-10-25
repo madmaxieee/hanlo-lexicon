@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsàn"
+id = 4327
+moe_forms = ["纘"]
+preferred_form = "tsàn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 47; normalized source characters 3260:3264; written form tsàn"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"
+
+[[sources]]
+row = 15271
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

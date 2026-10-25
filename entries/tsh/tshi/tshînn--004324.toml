@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshînn"
+id = 4324
+moe_forms = ["瀳"]
+preferred_form = "tshînn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 652:658; written form tshînn"
+url = "https://tsbp.tgb.org.tw/2016/05/mih.html"
+
+[[sources]]
+row = 12961
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

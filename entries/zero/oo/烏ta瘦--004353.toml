@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "oo-ta-sán"
+id = 4353
+moe_forms = ["烏焦瘦"]
+preferred_form = "烏ta瘦"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 195:199; written form 烏ta瘦"
+url = "https://tsbp.tgb.org.tw/2016/05/blog-post_18.html"
+
+[[sources]]
+row = 6290
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "píng-tsûn"
+id = 4299
+moe_forms = ["反船"]
+preferred_form = "píng船"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 746:751; written form píng船"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"
+
+[[sources]]
+row = 1059
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

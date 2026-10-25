@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshì kiâm-tsiánn"
+id = 4363
+moe_forms = ["試鹹汫"]
+preferred_form = "試鹹tsiánn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 570:578; written form 試鹹tsiánn"
+url = "https://tsbp.tgb.org.tw/2016/05/mih.html"
+
+[[sources]]
+row = 10046
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

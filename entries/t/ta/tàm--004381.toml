@@ -1,0 +1,22 @@
+alternate_readings = ["tìm"]
+canonical_tl = "tàm"
+id = 4381
+identity_note = "MOE word 10914 頕, drooping or nodding, with sourced alternate tìm, is distinct from entry 310 抌 (tìm), throwing, and entry 1254 踮 (tiàm, alternate tàm), location/residence. The source describes flower-laden mango branches drooping."
+moe_forms = ["頕"]
+preferred_form = "tàm"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 41; normalized source characters 2793:2796; written form tàm"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"
+
+[[sources]]
+row = 10911
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 834
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"

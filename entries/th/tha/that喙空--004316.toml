@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "that-tshuì-khang"
+id = 4316
+moe_forms = ["窒喙空"]
+preferred_form = "that喙空"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 612:618; written form that喙空"
+url = "https://tsbp.tgb.org.tw/2016/05/seh.html"
+
+[[sources]]
+row = 7705
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

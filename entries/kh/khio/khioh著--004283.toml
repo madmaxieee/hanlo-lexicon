@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khioh-tio̍h"
+id = 4283
+moe_forms = ["抾著"]
+preferred_form = "khioh著"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 27; normalized source characters 1626:1632; written form khioh著"
+url = "https://tsbp.tgb.org.tw/2016/05/sa-ham.html"
+
+[[sources]]
+row = 4110
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

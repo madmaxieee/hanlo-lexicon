@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sai-nai"
+id = 4302
+moe_forms = ["司奶"]
+preferred_form = "sai-nai"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 709:716; written form sai-nai"
+url = "https://tsbp.tgb.org.tw/2016/05/seh.html"
+
+[[sources]]
+row = 1457
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

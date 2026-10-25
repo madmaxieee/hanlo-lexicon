@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tiām"
+id = 4380
+identity_note = "MOE word 10411 墊, planting seeds or placing something underneath, is distinct from entry 1255 恬 (tiām), quiet/silent, LKK row 687. The source uses tiām花子 for sowing flower seeds."
+moe_forms = ["墊"]
+preferred_form = "tiām"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 35; normalized source characters 2257:2261; written form tiām"
+url = "https://tsbp.tgb.org.tw/2016/05/pho-tau-e.html"
+
+[[sources]]
+row = 10408
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

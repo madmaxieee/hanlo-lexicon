@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "gû-lān-pha-suāinn"
+id = 4357
+moe_forms = ["牛𡳞脬檨"]
+preferred_form = "牛lān-pha檨"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 33; normalized source characters 2471:2480; written form 牛lān-pha檨"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"
+
+[[sources]]
+row = 1221
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tâm-lok-lok"
+id = 4330
+moe_forms = ["澹漉漉"]
+preferred_form = "tâm-lok-lok"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 25; normalized source characters 975:986; written form tâm-lok-lok"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"
+
+[[sources]]
+row = 11759
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,21 @@
+alternate_readings = ["pui̍h"]
+canonical_tl = "pue̍h"
+id = 4296
+moe_forms = ["拔"]
+preferred_form = "pue̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 140:145; written form poe̍h"
+url = "https://tsbp.tgb.org.tw/2016/05/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 3963
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 70
+sheet = "語音差異"
+snapshot = "moe-kautian-3e0b2023e0bd"

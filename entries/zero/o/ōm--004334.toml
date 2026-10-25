@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ōm"
+id = 4334
+moe_forms = ["茂"]
+preferred_form = "ōm"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 384:386; written form ōm"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"
+
+[[sources]]
+row = 5454
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

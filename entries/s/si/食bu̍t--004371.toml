@@ -1,0 +1,21 @@
+alternate_readings = ["tsia̍h-mi̍h", "tsia̍h-mn̍gh"]
+canonical_tl = "si̍t-bu̍t"
+id = 4371
+moe_forms = ["食物"]
+preferred_form = "食bu̍t"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 8:13; written form 食mi̍h"
+url = "https://tsbp.tgb.org.tw/2016/05/mih.html"
+
+[[sources]]
+row = 443
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 5602
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

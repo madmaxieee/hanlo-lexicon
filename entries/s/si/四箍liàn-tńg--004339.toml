@@ -1,0 +1,21 @@
+alternate_readings = ["sì-khoo-lìn-tńg"]
+canonical_tl = "sì-khoo-liàn-tńg"
+id = 4339
+moe_forms = ["四箍輾轉"]
+preferred_form = "四箍liàn-tńg"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 25; normalized source characters 1397:1407; written form 四箍liàn-tńg"
+url = "https://tsbp.tgb.org.tw/2016/05/sa-ham.html"
+
+[[sources]]
+row = 130
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 1593
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

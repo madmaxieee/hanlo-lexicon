@@ -1,0 +1,13 @@
+alternate_readings = []
+canonical_tl = "lut-kuann"
+editorial_rationale = "The maintainer adopts lut官, Hanji 甪官, reading lut-kuann, for dismissal/removal from office (罷免、免官); the cited sentence concerns a county magistrate removed after corruption."
+hanji_forms = ["甪官"]
+id = 4378
+moe_forms = []
+preferred_form = "lut官"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 180:184; written form lut官"
+url = "https://tsbp.tgb.org.tw/2016/05/sann-kap-ka-choah.html"

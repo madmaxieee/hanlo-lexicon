@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsiâu-ûn"
+id = 4325
+moe_forms = ["齊勻"]
+preferred_form = "tsiâu勻"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 182:188; written form tsiâu勻"
+url = "https://tsbp.tgb.org.tw/2016/05/mih.html"
+
+[[sources]]
+row = 10938
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

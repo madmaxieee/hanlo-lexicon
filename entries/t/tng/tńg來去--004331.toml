@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tńg--lâi-khì"
+id = 4331
+moe_forms = ["轉來去"]
+preferred_form = "tńg來去"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 1024:1029; written form tńg來去"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"
+
+[[sources]]
+row = 14769
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

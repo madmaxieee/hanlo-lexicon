@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "âm-kau"
+id = 4333
+moe_forms = ["涵溝"]
+preferred_form = "âm溝"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 41; normalized source characters 1969:1972; written form âm溝"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"
+
+[[sources]]
+row = 7499
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

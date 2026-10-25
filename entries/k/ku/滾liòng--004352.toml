@@ -1,0 +1,21 @@
+alternate_readings = ["kún-lìng"]
+canonical_tl = "kún-liòng"
+id = 4352
+moe_forms = ["滾躘"]
+preferred_form = "滾liòng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 711:717; written form 滾liòng"
+url = "https://tsbp.tgb.org.tw/2016/05/e_03390994.html"
+
+[[sources]]
+row = 1157
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 14760
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

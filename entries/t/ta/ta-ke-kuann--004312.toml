@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ta-ke-kuann"
+id = 4312
+moe_forms = ["大家官"]
+preferred_form = "ta-ke-kuann"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 8; normalized source characters 86:97; written form Ta-ke-kuann"
+url = "https://tsbp.tgb.org.tw/2016/05/blog-post_849.html"
+
+[[sources]]
+row = 416
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

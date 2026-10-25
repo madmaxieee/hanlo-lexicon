@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "suà-tshuì"
+id = 4309
+moe_forms = ["紲喙"]
+preferred_form = "suà喙"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 778:782; written form suà喙"
+url = "https://tsbp.tgb.org.tw/2016/05/mih.html"
+
+[[sources]]
+row = 7759
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

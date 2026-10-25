@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bô-khuì"
+id = 4355
+moe_forms = ["無氣"]
+preferred_form = "無khuì"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 179:184; written form 無khuì"
+url = "https://tsbp.tgb.org.tw/2016/05/kah_01704220398.html"
+
+[[sources]]
+row = 8627
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

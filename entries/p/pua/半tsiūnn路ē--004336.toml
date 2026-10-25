@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "puànn-tsiūnn-lōo-ē"
+id = 4336
+moe_forms = ["半上路下"]
+preferred_form = "半tsiūnn路ē"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 898:907; written form 半tsiūnn路ē"
+url = "https://tsbp.tgb.org.tw/2016/05/kah_01704220398.html"
+
+[[sources]]
+row = 14699
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

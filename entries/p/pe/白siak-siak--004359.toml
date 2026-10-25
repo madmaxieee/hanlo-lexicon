@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pe̍h-siak-siak"
+id = 4359
+moe_forms = ["白鑠鑠"]
+preferred_form = "白siak-siak"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 554:564; written form 白siak-siak"
+url = "https://tsbp.tgb.org.tw/2016/05/blog-post_613.html"
+
+[[sources]]
+row = 2038
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

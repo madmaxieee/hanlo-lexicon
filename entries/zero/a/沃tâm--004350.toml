@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ak-tâm"
+id = 4350
+moe_forms = ["沃澹"]
+preferred_form = "沃tâm"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 406:410; written form 沃tâm"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"
+
+[[sources]]
+row = 3325
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bô-sî-bô-tsūn"
+id = 4356
+moe_forms = ["無時無陣"]
+preferred_form = "無時無tsūn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 33; normalized source characters 1177:1184; written form 無時無tsūn"
+url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"
+
+[[sources]]
+row = 15032
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

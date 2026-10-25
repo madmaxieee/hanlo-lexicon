@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "mî-tsioh"
+id = 4347
+moe_forms = ["棉襀"]
+preferred_form = "棉tsioh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 18; normalized source characters 212:218; written form 棉tsioh"
+url = "https://tsbp.tgb.org.tw/2016/05/blog-post_849.html"
+
+[[sources]]
+row = 8511
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

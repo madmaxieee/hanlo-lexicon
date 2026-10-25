@@ -1,0 +1,16 @@
+alternate_readings = ["tōo uē kè"]
+canonical_tl = "tōo ē kuè"
+id = 4344
+moe_forms = ["度會過"]
+preferred_form = "度ē過"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 66; normalized source characters 2834:2837; written form 度ē過"
+url = "https://tsbp.tgb.org.tw/2016/05/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 27136
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

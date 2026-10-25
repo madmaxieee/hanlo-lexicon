@@ -1,0 +1,13 @@
+alternate_readings = ["suà-tshuì-bé"]
+canonical_tl = "suà-tshuì-bué"
+editorial_rationale = "The maintainer approves suà喙尾 and both sourced readings, selecting bué as the canonical 尾 reading in line with other 尾 entries. Retain Hanji 尾 for both readings; no unresolved spelling conflict remains."
+id = 4384
+moe_forms = ["紲喙尾"]
+preferred_form = "suà喙尾"
+review_status = "reviewed"
+schema_version = 1
+
+[[sources]]
+row = 7760
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

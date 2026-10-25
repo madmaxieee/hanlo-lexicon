@@ -2,6 +2,9 @@
 function writtenForm(form, canonical, reading) {
   const han = char => /^[\p{Script=Han}〇々〆]$/u.test(char);
   const clean = text => text.normalize('NFC').trim().replace(/\s+/gu, ' ').toLowerCase();
+  const primary = [...canonical.matchAll(/[^\s-]+/gu)], alternate = [...reading.matchAll(/[^\s-]+/gu)];
+  // A contraction cannot retain a one-to-one Han/syllable layout.
+  if (alternate.length < primary.length) return reading;
   const significant = Array.from(form).filter(char => !/[\p{P}\p{Z}\p{M}]/u.test(char));
   if (significant.length && significant.every(han)) return form;
   if (!Array.from(form).some(han)) return clean(canonical) === clean(reading) ? form : reading;
@@ -10,7 +13,6 @@ function writtenForm(form, canonical, reading) {
   for (const unit of units) {rest += form.slice(cursor, unit.index); cursor = unit.index + unit[0].length;}
   rest += form.slice(cursor);
   if (Array.from(rest).some(char => !/[\p{P}\p{Z}\p{M}]/u.test(char))) throw Error('Cannot align this mixed spelling; review it.');
-  const primary = [...canonical.matchAll(/[^\s-]+/gu)], alternate = [...reading.matchAll(/[^\s-]+/gu)];
   if (units.length !== primary.length || primary.length !== alternate.length) throw Error('Syllable counts differ; review the alternate spelling.');
   let output = ''; cursor = 0;
   units.forEach((unit, index) => {

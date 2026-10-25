@@ -58,25 +58,84 @@ class RelatedReviewTests(unittest.TestCase):
         self.assertEqual(lex.check(self.root, request)['related_moe_entries'][0]['writing_suggestions'],
                          report['items'][0]['writing_suggestions'])
 
-    def test_conflicts_attach_all_hanji_and_romanization_evidence_without_majority_choice(self):
+    def test_existing_seed_spelling_is_retained_with_full_inventory_conflict_evidence(self):
         self.setup_dictionary()
         self.evidence_words()
         roman = self.word('kah', 'kah', '甲', review_status='reviewed')
         self.word('kah乙', 'kah-it', '甲乙', review_status='machine-reviewed')
         item = self.report()['items'][0]
         proposal, = item['writing_suggestions']
-        self.assertIsNone(proposal['suggested_form'])
-        self.assertEqual(proposal['status'], 'conflicting')
-        hanji, romanized = proposal['positions'][0]['choices']
+        self.assertEqual(proposal['suggested_form'], 'kah乙丁')
+        self.assertEqual(proposal['status'], 'consistent')
+        self.assertTrue(proposal['positions'][0]['inherited_from_seed'])
+        self.assertEqual(proposal['positions'][0]['inventory_status'], 'conflicting')
+        hanji, romanized = proposal['positions'][0]['inventory_choices']
         self.assertEqual((hanji['kind'], hanji['token']), ('hanji', '甲'))
         self.assertEqual((romanized['kind'], romanized['token']), ('romanized', 'kah'))
         self.assertIn(roman, romanized['entry_ids'])
         self.assertEqual(len(romanized['evidence']), 2)
         document = related.markdown(self.report())
-        self.assertIn('hanji: **甲**', document)
         self.assertIn('romanized: **kah**', document)
         self.assertIn('https://example.org/source', document)
-        self.assertIn('manual review (conflicting)', document)
+        self.assertIn('Retained from the matching existing seed', document)
+
+    def test_added_positions_still_preserve_conflicts(self):
+        self.setup_dictionary()
+        self.word('kah乙', 'kah-it', '甲乙')
+        self.word('丁', 'ting')
+        self.word('ting', 'ting', '丁')
+        proposal = self.report()['items'][0]['writing_suggestions'][0]
+        self.assertEqual(proposal['status'], 'conflicting')
+        self.assertIsNone(proposal['suggested_form'])
+        self.assertEqual(len(proposal['positions'][2]['choices']), 2)
+
+    def test_seed_preserves_ke_and_dictionary_variant_does_not_demote_main_spelling(self):
+        self.dictionary([('頭家', 'thâu-ke'), ('厝頭家', 'tshù-thâu-ke')],
+                        {'異用字': [['詞目id', '漢字', '異用字'], [11, '厝頭家', '茨頭家']]})
+        identity = self.word('頭ke', 'thâu-ke', '頭家')
+        self.word('家', 'ke')
+        self.word('厝', 'tshù')
+        item, = related.find(self.root, ['頭家'], [identity])['items']
+        proposal, = item['writing_suggestions']
+        self.assertEqual(proposal['hanji_form'], '厝頭家')
+        self.assertEqual(proposal['suggested_form'], '厝頭ke')
+        self.assertEqual(related.review_category(item), 'Consistent proposals')
+        variant, = item['variant_writing_suggestions']
+        self.assertEqual(variant['hanji_form'], '茨頭家')
+        self.assertEqual(variant['positions'][0]['status'], 'unknown')
+
+    def test_imported_seed_supplies_repeated_new_combo(self):
+        self.dictionary([('平坦', 'pênn-thánn'), ('平坦坦', 'pênn-thánn-thánn')])
+        identity = self.word('平thánn', 'pênn-thánn', '平坦')
+        item, = related.find(self.root, ['平坦'], [identity])['items']
+        proposal, = item['writing_suggestions']
+        self.assertEqual(proposal['suggested_form'], '平thánn-thánn')
+        self.assertEqual(proposal['positions'][2]['status'], 'consistent_romanized')
+
+    def test_shorter_words_remove_the_extra_seed_units_without_new_writing_questions(self):
+        self.dictionary([('塞喙空', 'that-tshuì-khang'), ('塞喙', 'that-tshuì'), ('喙空', 'tshuì-khang')])
+        identity = self.word('that喙空', 'that-tshuì-khang', '塞喙空')
+        report = related.find(self.root, ['塞喙空'], [identity])
+        self.assertEqual({item['headword']: item['writing_suggestions'][0]['suggested_form']
+                          for item in report['items']}, {'塞喙': 'that喙', '喙空': '喙空'})
+        self.assertTrue(all(related.review_category(item) == 'Consistent proposals' for item in report['items']))
+
+    def test_shorter_overlap_does_not_conflict_over_a_removed_leading_separator(self):
+        self.dictionary([('甲乙丙', 'kah-it-ping'), ('乙丙丁', 'it-ping-ting'), ('乙丙', 'it-ping')])
+        first = self.word('kah-it-ping', 'kah-it-ping', '甲乙丙')
+        second = self.word('it-ping-ting', 'it-ping-ting', '乙丙丁')
+        item = next(i for i in related.find(self.root, ['甲乙丙', '乙丙丁'], [first, second])['items']
+                    if i['headword'] == '乙丙')
+        self.assertEqual(item['writing_suggestions'][0]['suggested_form'], 'it-ping')
+        self.assertEqual(item['writing_suggestions'][0]['status'], 'consistent')
+
+    def test_generated_seed_does_not_supply_inherited_recommendation_evidence(self):
+        self.setup_dictionary()
+        identity = self.word('kah乙', 'kah-it', '甲乙', rule_generated=True)
+        self.word('丁', 'ting')
+        proposal = related.find(self.root, ['甲乙'], [identity])['items'][0]['writing_suggestions'][0]
+        self.assertEqual(proposal['status'], 'incomplete')
+        self.assertFalse(any(p.get('inherited_from_seed') for p in proposal['positions']))
 
     def test_unknown_generated_disputed_and_contracted_positions_require_manual_review(self):
         self.setup_dictionary('kah-it-ting, khah-it-ting, hó')
@@ -122,6 +181,13 @@ class RelatedReviewTests(unittest.TestCase):
         self.assertNotIn('[丙甲乙 — MOE 12]', document)
         self.assertIn('**1 new candidates** shown; **1** rows', document)
         self.assertIn('Proposed form of new word', document)
+        path = self.root / '.cache/related-moe/post-import.md'
+        related.write_markdown(report, path)
+        self.assertNotIn('[丙甲乙 — MOE 12]', path.read_text())
+        self.assertFalse((path.with_name('post-import-entries') / 'moe-12-row-4.md').exists())
+        page = path.with_name('post-import-entries') / 'moe-11-row-3.md'
+        self.assertIn('Original definition 11', page.read_text())
+        self.assertTrue(next(i for i in report['items'] if i['record_id'] == '12')['existing_entry_candidates'])
 
     def test_central_ng_seed_does_not_match_central_iong_in_larger_word(self):
         self.dictionary([('中央', 'tiong-ng'), ('中央公園', 'Tiong-iong Kong-hn̂g'),

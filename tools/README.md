@@ -116,25 +116,37 @@ a match. Homographs remain separate and
 results follow dictionary order. The requested word is omitted; suggestions do
 not recursively seed more suggestions. Shapes alone do not establish semantic
 relationship. `check`, `add` and per-request `add-batch` reports expose the same
-suggestions, independently of review status. Present them when importing
-human-reviewed entries; they require their own review and import authorization.
+suggestions, independently of review status. Preserve these pre-import results
+as audit data. After the authorized import and conflict resolutions, rerun
+`related` using the imported entry IDs and the current inventory; publish that
+fresh report instead of copying pre-import check payloads. The Markdown output
+is a new-only index with separate evidence pages. Existing-entry candidates and
+explicitly rejected rows are hidden there but retained in the sealed JSON.
+New suggestions require their own review and import authorization.
 They never affect duplicate checks, allocate IDs, change review status, or enter
 entry TOML as metadata.
 
-For a longer related entry, `writing_suggestions` applies the existing combo
-inventory to each sourced reading separately. Tone and neutral-boundary keys
+For a related entry, `writing_suggestions` retains the spelling of the matching
+existing seed at all shared positions, using each complete sourced reading
+separately. Shorter AB/BC words remove the extra aligned seed units; they need
+no new character-writing choice. Longer words use the current combo inventory
+only for added positions. Tone and neutral-boundary keys
 remain exact. Every position includes Hanji, TL and all supported outputs with
 supporting entry IDs, preferred forms, readings, original sources and review
-status. Generated and disputed entries do not supply writing recommendations;
-other statuses retain their actual labels. One supported output per position
+status. Shared positions also retain full inventory choices as audit evidence;
+an inventory conflict does not reopen an adopted seed spelling. Generated and
+disputed entries do not supply writing recommendations; other statuses retain
+their actual labels. One supported output per added position
 produces a `consistent` complete spelling. Multiple outputs produce `conflicting`,
 with evidence for every Hanji and romanized alternative and no majority choice.
 Unknown positions produce `incomplete`; contractions/unsupported alignments are
-`unalignable`. Neither gets an invented fallback spelling. Shorter related words
-have reading choices but no longer-word writing proposals. Every related word
+`unalignable`. Neither gets an invented fallback spelling. Canonical-headword
+proposals and `variant_writing_suggestions` are separate: uncertainty in a
+dictionary variant must not demote the canonical proposal. Every related word
 requires individual human review, including consistent spelling suggestions.
 Batch checks use one combo snapshot from existing entries before the batch;
-unwritten requests do not become evidence for later requests.
+unwritten requests do not become evidence for later requests. This is why the
+recommendation report must be regenerated after the import.
 
 Before adding, include `sources` with original evidence, as documented in
 `schema/README.md`. Do not supply an ID. Optional prose fields are accepted;

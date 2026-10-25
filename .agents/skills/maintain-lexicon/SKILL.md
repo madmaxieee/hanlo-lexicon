@@ -24,9 +24,13 @@ Use `python3 tools/lexicon.py`; do not invent an ID or hand-format generated TOM
    definitions and original snapshot/sheet/row references for review. A same-form
    or same-reading hit is not proof of lexical identity. MOE presence is useful
    evidence and does not prohibit an LKK writing recommendation.
-   When importing human-reviewed entries, present the check's
-   `related_moe_entries` as additional suggestions, with Hanji, original MOE
-   reading/definition, matching pattern and source row. Start from supplied Hanji
+   Treat check-time `related_moe_entries` as pre-import audit data. Complete
+   the authorized import and resolve its conflicts first, then rerun the
+   standalone related workflow against the current inventory, scoped to the
+   imported entry IDs. Publish the new-only Markdown index with original MOE
+   readings/definitions, matching patterns and source rows; do not copy stale
+   per-request checks into the recommendation list. Existing-entry candidates
+   and explicitly rejected words stay in JSON but are hidden from that index. Start from supplied Hanji
    (`preferred_form`, `moe_forms`, `hanji_forms`) or the explicitly cited MOE
    entry's Hanji, never by reading similarity or a homophone's Hanji. A relation
    requires every shared Hanji/TL combo to match exactly, including tone and
@@ -37,18 +41,22 @@ Use `python3 tools/lexicon.py`; do not invent an ID or hand-format generated TOM
    cannot prove a relation. For a
    two-Hanji form AB, suggest XAB, ABX, XYAB and ABXY; for three Hanji ABC,
    suggest AB, BC, XABC and ABCX. These are literal word-shape candidates, not
-   claims of semantic relationship. For longer related words, use the attached
-   `writing_suggestions`: consistent combos propose a complete spelling;
-   conflicts retain evidence for every Hanji and romanized choice, including
-   supporting entry IDs, spellings, readings, review status and original sources.
-   Unknown or unalignable positions need human spelling decisions. Do not choose
-   a conflict by majority or silently fill unknown positions.
+   claims of semantic relationship. Retain the matching current seed spelling
+   at shared positions. For shorter AB/BC words, remove the extra aligned seed
+   units; no new spelling decision is needed. For longer words, use the current
+   combo inventory only for added positions. Repeated added combos can therefore
+   reuse evidence from the freshly imported seed. Retain full inventory conflicts
+   as audit evidence without reopening an adopted seed spelling. Unknown or
+   conflicting added positions need human spelling decisions; never choose by
+   majority. Keep canonical-headword proposals separate from dictionary-variant
+   evidence so an unknown variant glyph does not demote the main spelling.
    Related entries normally require individual human review. The maintainer's
    standing exception permits batch-authorized consistent proposals to be
    screened against dictionary and combo evidence and imported as
    `machine-reviewed`, without claiming individual human review. Record the
-   model/agent, scope and original evidence. Conflicting, incomplete and shorter
-   proposals still need explicit resolution. The original entry's approval does not approve its
+   model/agent, scope and original evidence. Conflicting or incomplete added
+   positions still need explicit resolution. Shorter words inherit their spelling
+   but still need word-level adoption. The original entry's approval does not approve its
    related words. If the request has no verified Hanji, do not invent a seed.
 4. For an existing word, edit the existing entry rather than creating another.
    For an unrelated homograph, supply a short `identity_note` explaining the
@@ -82,6 +90,12 @@ existing seed entry is recorded can the exact MOE seed form supply readings.
 Do not substitute other dictionary readings for an unalignable existing entry.
 Use only matched reading options and the recorded `combo_matches` proofs; the
 existing-seed column must not attribute a suggestion to a glyph-only match.
+When following a batch import, generate this report only after that batch and
+its conflict resolutions are complete. Use the resulting entry IDs as the scope.
+The Markdown output must hide related words already represented by existing
+entries and explicit rejections, while preserving those identities in JSON.
+Shared writing comes from the exact matching seed; shorten it by aligned unit
+removal or extend it using fresh combo evidence only at added positions.
 Use the readable report to present
 each dictionary identity, reading choices, proposed writing and both sides of
 combo conflicts. All decisions initially remain `pending`, regardless of combo

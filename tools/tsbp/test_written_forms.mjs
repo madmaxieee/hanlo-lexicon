@@ -16,6 +16,10 @@ const cases = [
   ['beh', 'beh', 'bueh', 'bueh'],
   ['--ah', '--ah', '--a', '--a'],
   ['想bèh', 'siūnn-bèh', 'siūnn-bueh', '想bueh'],
+  ['查某kán', 'tsa-bóo-kán', 'tsőo-kán', 'tsőo-kán'],
+  ['查某kán', 'tsa-bóo-kán', 'tsa̋u-kán', 'tsa̋u-kán'],
+  ['查某kán', 'tsa-bóo-kán', 'tsa̋-kán', 'tsa̋-kán'],
+  ['查某𡢃', 'tsa-bóo-kán', 'tsa̋-kán', 'tsa̋-kán'],
 ];
 const context = vm.createContext({});
 vm.runInContext(fs.readFileSync(new URL('./written_forms.js', import.meta.url), 'utf8'), context);
@@ -103,8 +107,34 @@ test('review and repository generate identical alternate spellings', () => {
     assert.equal(context.writtenForm(...row.slice(0,3)), row[3]);
     assert.equal(python[index], row[3]);
   });
-  for (const args of [['想beh','siūnn-beh','sióng'], ['想beh','siūnn-bueh','siūnn-beh'], ['想beh','siūnn-beh','siūnn--beh']])
+  for (const args of [['想beh','siūnn-beh','siūnn-beh--ah'], ['想beh','siūnn-bueh','siūnn-beh'], ['想beh','siūnn-beh','siūnn--beh']])
     assert.throws(()=>context.writtenForm(...args));
+});
+
+test('three-to-two-syllable MOE contractions remain approvable and export all selected readings', () => {
+  const readings=['tsa-bóo-kán','tsőo-kán','tsa̋u-kán','tsa̋-kán'];
+  const group={key:'查某kán',display:'查某kán',normalized_forms:['查某kán'],dedup_lookup_forms:['查某kán'],
+    article_count:1,occurrences:[{snippet:'查某kán',anchor_start:0,anchor_end:5,context_start:0,context_end:5,
+      document_id:'test',url:'https://example.com',title:'Fixture',line:1,clause:'查某kán'}],
+    review_words:[{id:'moe:5096',headword:'查某𡢃',readings:readings.map((reading,index)=>({
+      id:String(index),headword:'查某𡢃',reading,detected:index===0,
+      references:[{source:{sheet:index===0?'詞目':'合音唸作'}}]}))}]};
+  const nodes=new Map();
+  const document={getElementById(id){if(!nodes.has(id))nodes.set(id,{value:'',checked:false,innerHTML:'',textContent:''});return nodes.get(id);},querySelectorAll(){return [];}};
+  const data={groups:[group],tracked_preferred_forms:[],unparseable_forms:[],known_forms:[],issue:386,
+    corpus_sha256:'contraction-test',moe:{snapshot:'test'},baseline:{source_characters:5,article_count:1},
+    context_exclusions:{phrases:[],skipped_anchor_occurrences:0}};
+  const saved={ignored:[],decisions:{'查某kán':{preferred_form:'查某kán',word_id:'moe:5096',canonical_choice_id:'0',
+    alternate_choice_ids:['1','2','3'],identity_note:'',approved:true}}};
+  const page=vm.createContext({data,document,setTimeout,localStorage:{getItem(){return JSON.stringify(saved);},setItem(){}}});
+  vm.runInContext(fs.readFileSync(new URL('./written_forms.js',import.meta.url),'utf8')+'\n'+fs.readFileSync(new URL('./review.js',import.meta.url),'utf8'),page);
+  assert.equal(vm.runInContext('approvable(data.groups[0])',page),true);
+  assert.deepEqual(JSON.parse(vm.runInContext('JSON.stringify(outputForms(data.groups[0]))',page)),
+    readings.map((reading,index)=>({form:index===0?'查某kán':reading,reading})));
+  assert.match(nodes.get('rows').innerHTML,/class="approve-box"[^>]*checked[^>]*> Approve import/);
+  const bundle=JSON.parse(vm.runInContext('JSON.stringify(reviewExport())',page));
+  assert.equal(bundle.approvals.length,1);
+  assert.deepEqual(bundle.approvals[0].alternate_choice_ids,['1','2','3']);
 });
 
 test('review shows both approved outputs and rejects inconsistent mixed readings', () => {

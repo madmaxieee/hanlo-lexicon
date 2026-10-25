@@ -144,6 +144,10 @@ preferred spelling follows the selected filing reading when its Roman syllables
 can be aligned; ambiguous spellings remain for manual review.
 Comparison entries remain available and show their original sheet and row.
 Saved entry/reading choices are preserved. Defaults never approve an import.
+Selected MOE contractions with fewer syllables remain approvable. Their output
+uses the complete contracted romanization, matching the maintenance writer;
+the full reading retains the preferred mixed spelling. For example, `查某kán`
+with `tsa-bóo-kán` can also export `tsőo-kán`, `tsa̋u-kán` and `tsa̋-kán`.
 
 ## Custom handling
 
@@ -188,13 +192,22 @@ requests receive a separate `custom_previews` proposal and dictionary report.
 Both ordinary approval `checks` and custom previews include
 `related_moe_entries` from the maintenance tool's combo-matched word-shape search
 (AB → XAB / ABX / XYAB / ABXY; ABC → AB / BC / XABC / ABCX). These retain
-original MOE evidence and require separate review. They are suggestions in the
-JSON report, not additional approvals or imports. Every shared Hanji and aligned
+original MOE evidence and require separate review. They are pre-import audit
+data, not the final recommendation list or additional approvals/imports.
+After the authorized batch and its conflict resolutions, run `lexicon.py related`
+again with the imported entry IDs. Publish its new-only Markdown index and
+evidence pages, not a table assembled from the earlier check payloads.
+Every shared Hanji and aligned
 TL syllable must match exactly, including tone and neutral markers; Hanji alone
 and pronunciation similarity are insufficient. Article-only romanized approvals have no Hanji seed; a structured custom
 request can supply verified Hanji when needed.
-Longer related words also include combo-based `writing_suggestions`, with original
-entry evidence for every Hanji/romanization conflict. Every related word needs
+Related words retain the current seed's preferred spelling at shared positions;
+shorter words remove its extra units, and only added positions need combo-based
+writing choices. Full inventory conflicts remain audit evidence rather than
+overriding the seed. Dictionary variants have separate suggestions and cannot
+make the main headword look unresolved. Existing-entry candidates and explicit
+rejections are omitted from the new-only index and retained in JSON.
+Every related word needs
 individual human review. Use the independent `lexicon.py related HANJI --out ...
 --markdown ...` workflow to record that review and `lexicon.py import-related ...`
 to preview or apply the individually approved words as `reviewed`; ordinary TSBP

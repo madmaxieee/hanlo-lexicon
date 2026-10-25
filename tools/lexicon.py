@@ -957,7 +957,7 @@ def main():
         elif args.command == 'check':
             result = check(root, request_data(args.request))
         elif args.command == 'related':
-            from related_moe import find, markdown
+            from related_moe import find, write_markdown
             outputs = [path.resolve() for path in (args.out, args.markdown) if path is not None]
             if len(outputs) != len(set(outputs)):
                 raise Error('JSON and Markdown reports need different output files.')
@@ -965,7 +965,7 @@ def main():
                 raise Error('Write generated reviews outside the repository or under .cache/related-moe/.')
             result = find(root, args.hanji, args.seed_entry_ids)
             if args.markdown:
-                atomic_write(args.markdown, markdown(result))
+                write_markdown(result, args.markdown)
             if args.out:
                 atomic_write(args.out, json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2) + '\n')
         elif args.command == 'import-related':

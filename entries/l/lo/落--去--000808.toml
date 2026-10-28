@@ -1,0 +1,34 @@
+alternate_readings = ["lueh"]
+canonical_tl = "lo̍h--khì"
+editorial_rationale = "The maintainer adopted 落--去 as the preferred form and identified lueh as an alternate contraction. Two additional TSBP articles attest the literal spelling 落--去. The original lueh citations support the contraction; the MOE headword records lo̍h-khì and explicitly gives lo̍h--khì in its definition."
+id = 808
+moe_forms = ["落去"]
+preferred_form = "落--去"
+review_status = "reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 26; normalized source characters 1330:1334; written form lueh"
+url = "https://tsbp.tgb.org.tw/2016/08/mih.html"
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 554:558; written form lueh"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_431.html"
+
+[[sources]]
+locator = "Issue 347; article text line 11; corpus Unicode code points 1283:1287; literal form 落--去"
+url = "https://tsbp.tgb.org.tw/2015/03/e_62.html"
+
+[[sources]]
+locator = "Issue 359; article text line 89; corpus Unicode code points 3310:3314; literal form 落--去"
+url = "https://tsbp.tgb.org.tw/2015/03/blog-post_78.html"
+
+[[sources]]
+row = 45
+sheet = "合音唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 9891
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

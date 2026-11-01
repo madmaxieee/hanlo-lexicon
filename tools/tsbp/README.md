@@ -387,7 +387,9 @@ tracked preferred spellings or source mappings, longer tracked-word coverage,
 parser incompatibility, and language-screen rejection. This changes visibility;
 it does not restore, approve, or import anything by itself.
 
-Use the **Ignored segments only** filter to find **Restore segment** directly.
+**Ignored segments only** is the default filter when excluded rows are enabled,
+so **Restore segment** is easy to find. Select **All rows, including excluded**
+to inspect the other exclusion categories.
 Both normal and excluded views show 20 Roman-text segments per page. Search
 examines the full result set and resets to its first page. Occurrence histories
 are built only when opened and initially show 25 rows, with an explicit button

@@ -287,7 +287,7 @@ mark{background:#ffdf89;border-radius:3px;padding:1px 0}a{color:#165ab0}details{
 <button id="apply">Apply ignored forms</button> <button id="download">Download ignored forms</button>
 </details>
 <label><input id="showKnown" type="checkbox"> Show excluded rows</label>
-<label id="excluded-filter-label" hidden>Show <select id="excluded-filter"><option value="all">All rows, including excluded</option><option value="segments">Ignored segments only</option></select></label>
+<label id="excluded-filter-label" hidden>Show <select id="excluded-filter"><option value="segments" selected>Ignored segments only</option><option value="all">All rows, including excluded</option></select></label>
 <p class="muted">Excluded rows include ignored matches and segments, tracked spellings, covered fragments, unrecognized forms and model rejections. Use Ignored segments only to find Restore segment.</p>
 <input id="search" type="text" placeholder="Search an anchor, snippet, or article title">
 <p class="muted" id="count"></p>

@@ -35,8 +35,36 @@ function save() {
   try { localStorage.setItem(storageKey, JSON.stringify(state)); }
   catch { storageAvailable = false; }
 }
+const entryById = new Map((data.lexicon_inventory||[]).map(entry=>[entry.id,entry]));
+function sourceMapping(group) {
+  const item=state.decisions[group.key];
+  const mapping=item&&Object.hasOwn(item,'source_mapping')?item.source_mapping:group.source_mapping;
+  const entry=mapping&&entryById.get(mapping.entry_id);
+  return entry&&entry.preferred_form===mapping.preferred_form&&entry.canonical_tl===mapping.canonical_tl?mapping:null;
+}
+function mapToEntry(group, id) {
+  const entry=entryById.get(Number(id));
+  if(!entry)throw Error('Choose an existing entry ID from this lexicon.');
+  const item=decision(group);
+  if(hasCustomRequest(item))throw Error('Resolve the custom request before mapping this word.');
+  item.source_mapping={source_form:group.key,entry_id:entry.id,preferred_form:entry.preferred_form,canonical_tl:entry.canonical_tl};
+  item.approved=false;
+  ignored.delete(group.key);
+  save();
+}
+function mappingEditor(group) {
+  const mapping=sourceMapping(group);
+  if(mapping)return '<div class="mapping-editor" data-key="'+esc(group.key)+'"><strong>Already handled → '+esc(mapping.preferred_form)+'</strong> · '+esc(mapping.canonical_tl)+' · entry '+mapping.entry_id+
+    '<button class="unmap-source" type="button">Review again</button></div>';
+  const stale=(data.stale_source_mappings||[]).find(row=>norm(row.source_form)===norm(group.key));
+  return '<details class="mapping-editor" data-key="'+esc(group.key)+'"><summary>Map to existing entry</summary>'+
+    (stale?'<p>Previous mapping needs review: entry '+stale.entry_id+' · '+esc(stale.preferred_form)+' · '+esc(stale.canonical_tl)+'. The target changed or disappeared.</p>':'')+
+    '<p>Confirm that this whole source word is the same word as the selected entry. Its preferred spelling and readings stay in effect.</p>'+
+    '<label>Existing entry ID <input class="mapping-id" type="number" min="1"></label><div class="mapping-preview"></div>'+
+    '<button class="map-source" type="button">Confirm whole-word mapping</button><div class="mapping-status" role="status"></div></details>';
+}
 function isIgnored(group) { return group.dedup_lookup_forms.some(form => ignored.has(form)); }
-function excluded(group) { return isIgnored(group) || tracked.has(group.key) || unparseable.has(group.key) || machineRejected.has(group.key); }
+function excluded(group) { return !!sourceMapping(group) || isIgnored(group) || tracked.has(group.key) || unparseable.has(group.key) || machineRejected.has(group.key); }
 function pureRomanized(text) {
   return typeof text==='string' && /\p{Script=Latin}/u.test(text)
     && /^[\p{Script=Latin}\p{M}\p{Nd}\-’' ]+$/u.test(text);
@@ -97,7 +125,7 @@ function outputForms(group) {
 }
 function approvable(group) {
   const {item, word, canonical} = choices(group);
-  if (!item.preferred_form.trim() || hasCustomRequest(item) || isIgnored(group) || unparseable.has(group.key) || machineRejected.has(group.key)
+  if (sourceMapping(group) || !item.preferred_form.trim() || hasCustomRequest(item) || isIgnored(group) || unparseable.has(group.key) || machineRejected.has(group.key)
     || (tracked.has(group.key) && !item.identity_note.trim())) return false;
   try { outputForms(group); } catch { return false; }
   if (item.import_mode==='source_anchor') return sourceAnchorEligible(group) && !item.word_id && !item.canonical_choice_id && !item.alternate_choice_ids.length;
@@ -243,7 +271,7 @@ function customEditor(group) {
 function moePanel(group) {
   const cards=group.moe_cards||[], related=group.moe_related||[], preferred=group.preferred_matches||[];
   return (preferred.length?'<details><summary>Final preferred-form matches ('+preferred.length+')</summary>'+preferred.map(record=>'<div class="occurrence">Entry '+record.id+' · <strong>'+esc(record.preferred_form)+'</strong><div>Matched written form: '+esc((record.matched_written_forms||[record.preferred_form]).join(', '))+'</div>'+(record.hanji_forms?.length?'<div>Hanji: '+esc(record.hanji_forms.join(', '))+'</div>':'')+'<div class="muted">'+esc(record.path)+'</div></div>').join('')+'</details>':'')+
-    customEditor(group)+importEditor(group)+(cards.length?'<details class="anchor-matches" data-key="'+esc(group.key)+'"'+(decision(group).moe_matches_collapsed?'':' open')+'><summary>MOE anchor match ('+cards.length+')</summary>'+cards.map(moeCard).join('')+'</details>':'')+
+    mappingEditor(group)+customEditor(group)+importEditor(group)+(cards.length?'<details class="anchor-matches" data-key="'+esc(group.key)+'"'+(decision(group).moe_matches_collapsed?'':' open')+'><summary>MOE anchor match ('+cards.length+')</summary>'+cards.map(moeCard).join('')+'</details>':'')+
     (related.length?'<details class="moe-related" data-key="'+esc(group.key)+'"><summary>MOE related entries</summary><div class="moe-results"></div></details>':'');
 }
 function render() {
@@ -253,13 +281,28 @@ function render() {
   const query=norm($('search').value), shown=data.groups.filter(group=>(!excluded(group)||$('showKnown').checked)&&(!query||norm(group.key+' '+(group.normalized_tl||'')+' '+(group.moe_related||[]).map(record=>record.headword+' '+record.matched_reading).join(' ')+' '+group.occurrences.map(row=>row.snippet+' '+row.title).join(' ')).includes(query)));
   const approved=data.groups.filter(group=>decision(group).approved&&approvable(group)).length;
   $('count').textContent=shown.length+' visible groups · '+ignored.size+' ignored forms · '+approved+' approved imports · '+customRequests().length+' custom requests · '+compact.toLocaleString()+' compact snippet characters / '+total.toLocaleString()+' source characters · '+union.toLocaleString()+' source characters covered by all contexts';
-  $('review-status').textContent=(storageAvailable?'Decisions save locally in this browser. ':'Local saving is unavailable; export decisions before closing. ')+approved+' ready approvals and '+customRequests().length+' custom requests. Export review.json to hand them to the import script; nothing is imported by this page.';
+  $('review-status').textContent=(storageAvailable?'Decisions save locally in this browser. ':'Local saving is unavailable; export decisions before closing. ')+approved+' ready approvals and '+customRequests().length+' custom requests. '+data.groups.filter(sourceMapping).length+' mapped words. '+(data.stale_source_mappings?.length?data.stale_source_mappings.length+' saved mappings need target review. ':'')+'Export review.json to hand them to the import script; nothing is imported by this page.';
   $('rows').innerHTML=shown.map(group=>{
     const row=group.occurrences[0], item=decision(group), omit=excluded(group);
-    return '<tr class="'+(omit?'known':'')+'" data-key="'+esc(group.key)+'"><td><input class="ignore-box" type="checkbox" data-key="'+esc(group.key)+'" aria-label="Ignore '+esc(group.key)+'" '+(omit?'checked ':'')+(tracked.has(group.key)||unparseable.has(group.key)||machineRejected.has(group.key)?'disabled':'')+'>'+(tracked.has(group.key)?'<br><span class="tag">Tracked form</span>':'')+(unparseable.has(group.key)?'<br><span class="tag">Parser did not recognize</span>':'')+(machineRejected.has(group.key)?'<br><span class="tag">Model rejected</span>':'')+'</td><td><strong>'+esc(group.display)+'</strong>'+(group.kind==='moe_context'?'<br><span class="tag">MOE-backed mixed form</span>':'')+(group.normalized_tl&&group.normalized_tl!==group.key?'<br><span class="tag">TL lookup: '+esc(group.normalized_tl)+'</span>':'')+'<br>'+group.occurrences.length+' occurrences<br>'+group.article_count+' articles'+
+    return '<tr class="'+(omit?'known':'')+'" data-key="'+esc(group.key)+'"><td><input class="ignore-box" type="checkbox" data-key="'+esc(group.key)+'" aria-label="Ignore '+esc(group.key)+'" '+(omit?'checked ':'')+(sourceMapping(group)||tracked.has(group.key)||unparseable.has(group.key)||machineRejected.has(group.key)?'disabled':'')+'>'+(sourceMapping(group)?'<br><span class="tag">Mapped source spelling</span>':'')+(tracked.has(group.key)?'<br><span class="tag">Tracked form</span>':'')+(unparseable.has(group.key)?'<br><span class="tag">Parser did not recognize</span>':'')+(machineRejected.has(group.key)?'<br><span class="tag">Model rejected</span>':'')+'</td><td><strong>'+esc(group.display)+'</strong>'+(group.kind==='moe_context'?'<br><span class="tag">MOE-backed mixed form</span>':'')+(group.normalized_tl&&group.normalized_tl!==group.key?'<br><span class="tag">TL lookup: '+esc(group.normalized_tl)+'</span>':'')+'<br>'+group.occurrences.length+' occurrences<br>'+group.article_count+' articles'+
       '<div class="note-controls"><button class="copy-note" data-key="'+esc(group.key)+'" type="button" title="Copy note" aria-label="Copy note for '+esc(group.display)+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg></button><span class="muted" role="status"></span><textarea hidden readonly aria-label="Anchor note"></textarea></div>'+
       '<label class="approve-label '+(item.approved?'approval-good':'')+'"><input class="approve-box" data-key="'+esc(group.key)+'" type="checkbox" aria-label="Approve import '+esc(group.key)+'" '+(item.approved&&approvable(group)?'checked ':'')+(approvable(group)?'':'disabled')+'> Approve import</label></td><td><div class="snippet">'+snippet(row)+'</div>'+source(row)+screeningNote(row)+moePanel(group)+'<details><summary>Full clause and all '+group.occurrences.length+' occurrences</summary>'+group.occurrences.map(row=>'<div class="occurrence"><div class="snippet">'+snippet(row)+'</div>'+source(row)+screeningNote(row)+'<div>'+esc(row.clause)+'</div></div>').join('')+'</details>'+(group.machine_rejected_occurrences?.length?'<details><summary>Model-rejected occurrences ('+group.machine_rejected_occurrences.length+')</summary>'+group.machine_rejected_occurrences.map(row=>'<div class="occurrence"><div class="snippet">'+snippet(row)+'</div>'+source(row)+screeningNote(row)+'</div>').join('')+'</details>':'')+'</td></tr>';
   }).join('');
+  document.querySelectorAll('.mapping-editor').forEach(editor=>{
+    const group=byKey.get(editor.dataset.key), input=editor.querySelector('.mapping-id');
+    const clear=editor.querySelector('.unmap-source');
+    if(clear)clear.onclick=()=>{decision(group).source_mapping=null;save();render();};
+    if(input) {
+      input.oninput=()=>{
+        const entry=entryById.get(Number(input.value));
+        editor.querySelector('.mapping-preview').textContent=entry?entry.preferred_form+' · '+entry.canonical_tl+' · '+entry.path:'No such entry';
+      };
+      editor.querySelector('.map-source').onclick=()=>{
+        try {mapToEntry(group,input.value);render();}
+        catch(error){editor.querySelector('.mapping-status').textContent=error.message;}
+      };
+    }
+  });
   document.querySelectorAll('.copy-note').forEach(button=>button.onclick=()=>copyAnchorNote(byKey.get(button.dataset.key),button));
   document.querySelectorAll('.anchor-matches').forEach(detail=>detail.ontoggle=()=>{decision(byKey.get(detail.dataset.key)).moe_matches_collapsed=!detail.open;save();});
   document.querySelectorAll('.moe-related').forEach(detail=>detail.ontoggle=()=>{if(detail.open&&!detail.dataset.loaded){const cards=collapseRelated(byKey.get(detail.dataset.key).moe_related);detail.querySelector('.moe-results').innerHTML=cards.map(moeCard).join('');detail.dataset.loaded='yes';}});
@@ -307,7 +350,9 @@ function reviewExport() {
   reconcileHandledRequests();
   const approvals=data.groups.filter(group=>decision(group).approved&&approvable(group)).map(group=>({anchor_key:group.key,approved:true,...decision(group),...(decision(group).import_mode==='source_anchor'?{source_reading:group.normalized_tl}:{})}));
   return {schema_version:1,issue:data.issue,corpus_sha256:data.corpus_sha256,groups_sha256:data.review_groups_sha256,
-    moe_snapshot:data.moe?.snapshot,screening_sha256:data.machine_screening?.sha256||null,ignored_forms:[...ignored].sort(),approvals,custom_requests:customRequests(),decisions:state.decisions};
+    moe_snapshot:data.moe?.snapshot,screening_sha256:data.machine_screening?.sha256||null,ignored_forms:[...ignored].sort(),
+    source_mappings:data.groups.map(sourceMapping).filter(Boolean),
+    source_mapping_removals:data.groups.filter(g=>g.source_mapping&&Object.hasOwn(decision(g),'source_mapping')&&decision(g).source_mapping===null).map(g=>g.key),approvals,custom_requests:customRequests(),decisions:state.decisions};
 }
 $('title').textContent='TSBP issue '+data.issue+' · vocabulary review pilot';
 $('screening-policy').textContent=data.machine_screening?
@@ -329,6 +374,8 @@ $('review-file').onchange=async event=>{
     const bundle=JSON.parse(await event.target.files[0].text());
     if(bundle.schema_version!==1||bundle.corpus_sha256!==data.corpus_sha256||bundle.issue!==data.issue)throw Error('This review belongs to another corpus or issue.');
     state={ignored:bundle.ignored_forms||data.known_forms,decisions:bundle.decisions||{}};
+    for(const mapping of bundle.source_mappings||[]){const group=byKey.get(norm(mapping.source_form));if(group)decision(group).source_mapping=mapping;}
+    for(const form of bundle.source_mapping_removals||[]){const group=byKey.get(norm(form));if(group)decision(group).source_mapping=null;}
     for(const approval of bundle.approvals||[])state.decisions[approval.anchor_key]=approval;
     for(const request of bundle.custom_requests||[]){
       const group=byKey.get(request.anchor_key);

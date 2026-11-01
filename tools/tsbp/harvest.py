@@ -11,6 +11,7 @@ import re
 import tomllib
 import unicodedata
 
+from source_mappings import verified_mappings, apply_mappings
 from moe_context import enrich
 from screen import apply_screening, read as read_screening, sha as screening_sha
 
@@ -33,7 +34,7 @@ def preferred_index(root):
     records = []
     for path, entry, digest in lexicon.entry_snapshot(root):
         pairs = lexicon.spelling_readings(entry)
-        records.append({"id": entry["id"], "preferred_form": entry["preferred_form"],
+        records.append({"id": entry["id"], "preferred_form": entry["preferred_form"], "canonical_tl": entry["canonical_tl"],
                         **({'hanji_forms': entry['hanji_forms']} if entry.get('hanji_forms') else {}),
                         "written_forms": sorted({form for form, _ in pairs}),
                         "multi_syllable_written_forms": sorted({form for form, reading in pairs
@@ -266,7 +267,7 @@ table{width:100%;border-collapse:collapse;background:white}th,td{text-align:left
 <h1 id="title"></h1>
 <p>Review 漢羅合用 candidates with source context and MOE evidence where available. Approve pure romanized anchors using the displayed TL reading and article, or choose an MOE entry and readings.</p>
 <div class="cards" id="stats"></div>
-<p><strong>Ignore</strong> skips a candidate. <strong>Approve import</strong> approves your chosen spelling and readings. Use <strong>Export review.json</strong> to pass approvals to the import script.</p>
+<p><strong>Map to existing entry</strong> confirms a whole-word source spelling is already handled. Export review.json to retain confirmed mappings for future issues. <strong>Ignore</strong> skips a candidate. <strong>Approve import</strong> approves your chosen spelling and readings. Use <strong>Export review.json</strong> to pass approvals to the import script.</p>
 <button id="export-review">Export review.json</button> <button id="load-review">Load review.json</button><input id="review-file" type="file" accept="application/json" hidden>
 <p id="review-status" class="muted" role="status"></p>
 <p id="screening-policy" class="muted"></p>
@@ -305,6 +306,7 @@ def main():
     parser.add_argument("--exclude-articles", type=Path, default=None,
                         help="JSON array of exact document IDs to omit from this issue")
     parser.add_argument("--lexicon", type=Path, help="Read tracked preferred forms recursively from entries/")
+    parser.add_argument("--mappings", type=Path, help="Shared whole-word source mappings (defaults to decisions/tsbp-source-mappings.json)")
     parser.add_argument("--normalization", type=Path, help="Output from normalize_anchors.mjs")
     parser.add_argument("--moe", action="store_true", help="Look up the pinned MOE dictionary and match mixed-form contexts")
     parser.add_argument("--radius", type=int, default=6)
@@ -379,7 +381,12 @@ def main():
         grouped, moe, moe_lookups = enrich(grouped, texts, args.lexicon, tracked_multi)
         covered_singles = moe.pop('covered_single_syllable_audit', [])
     curated, tracked, unparseable = apply_final_exclusions(grouped, known, preferred)
-    effective = curated | tracked | unparseable
+    mapping_path = args.mappings or ((args.lexicon / "decisions/tsbp-source-mappings.json") if args.lexicon else args.out / "source-mappings.json")
+    mapping_rows = json.loads(mapping_path.read_text()) if mapping_path.exists() else []
+    active_mappings, stale_mappings = verified_mappings(mapping_rows, records)
+    apply_mappings(grouped, active_mappings)
+    mapped = {g["key"] for g in grouped if g["source_mapping"]}
+    effective = curated | tracked | unparseable | mapped
     def excluded_counts(forms):
         matches = [g for g in grouped if g["key"] in forms]
         return {"matched_groups": len(matches), "occurrences": sum(len(g["occurrences"]) for g in matches)}
@@ -395,6 +402,7 @@ def main():
                                 for d in omitted]},
                "known_forms": sorted(known), "baseline": baseline,
                "handled_custom_requests": custom_resolutions,
+               "source_mappings": active_mappings, "stale_source_mappings": stale_mappings,
                "context_exclusions": {'phrases': excluded_contexts, 'source_matches': len(blocked_records),
                                       'skipped_anchor_occurrences': len(skipped_anchors),
                                       'matching': 'exact literal, case-sensitive; before extraction and MOE lookup',
@@ -407,7 +415,7 @@ def main():
                "regrouped_baseline": metrics(grouped, texts, set()),
                "lexicon_root": str(args.lexicon.resolve()) if args.lexicon else None,
                "lexicon_entry_count": len(records), "lexicon_inventory": records,
-               "exclusions": {"curated_form": {**excluded_counts(curated), "forms": sorted(known)},
+               "exclusions": {"mapped_source_form": excluded_counts(mapped), "curated_form": {**excluded_counts(curated), "forms": sorted(known)},
                               "tracked_preferred_form": {**excluded_counts(tracked),
                                   "eligible_preferred_forms": len(preferred), "forms": sorted(tracked)},
                               "unparseable": {**excluded_counts(unparseable), "forms": sorted(unparseable)}},
@@ -447,7 +455,7 @@ def main():
         (args.out / "moe-lookup.json").write_text(json.dumps(moe_lookups, ensure_ascii=False, indent=2) + "\n")
     exclusions = [{"anchor": g["key"], "reason": g["exclusion_reason"],
                    "occurrences": len(g["occurrences"]), "article_count": g["article_count"],
-                   "preferred_matches": g["preferred_matches"]}
+                   "preferred_matches": g["preferred_matches"], "source_mapping": g.get("source_mapping")}
                   for g in grouped if g["exclusion_reason"]]
     (args.out / "exclusions.json").write_text(json.dumps(exclusions, ensure_ascii=False, indent=2) + "\n")
     (args.out / "known-forms.json").write_text(json.dumps(sorted(known), ensure_ascii=False, indent=2) + "\n")

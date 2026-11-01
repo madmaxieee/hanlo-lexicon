@@ -248,3 +248,35 @@ CONVERTER_ROOT=/path/to/taigi-converter \
 Tests use temporary fixtures and mocked local browser state; they do not need a
 corpus or a generated review. The Node normalization test needs the converter
 checkout. Core maintenance tests remain `python3 -m unittest discover -s tests -v`.
+
+## Source spellings of existing words
+
+Use **Map to existing entry**, enter the stable entry ID, inspect its preferred
+form and filing reading, then **Confirm whole-word mapping** after checking the
+source context and lexical identity. For example, `hit陣` maps to entry 493,
+whose preferred output remains `hit-tsūn`. The source text and offsets stay literal.
+Mapped rows show **Already handled → hit-tsūn** under **Show excluded rows**;
+they cannot also be approved for import. This does not change entry readings,
+spellings, review status, or character-level combo recommendations.
+
+Browser decisions save locally and are included in **Export review.json**.
+Persist the exported decisions for reuse across issues:
+
+```sh
+python3 tools/tsbp/source_mappings.py --review /path/to/review.json --pilot /path/to/pilot
+python3 tools/tsbp/source_mappings.py --review /path/to/review.json --pilot /path/to/pilot --apply
+```
+
+The shared file is `decisions/tsbp-source-mappings.json` under the lexicon root;
+`--mappings PATH` on both this command and `harvest.py` selects another file.
+Rerun the normalized MOE harvest after saving mappings. Only exact complete
+anchor spellings match (NFC and case folding); neither a reading match nor a
+mapped component suppresses another word. No mappings are inferred from MOE.
+The command checks review fingerprints and current target identity, retaining
+original article locators as provenance. Conflicting saved decisions require
+explicit resolution in the shared file. **Review again** clears a mapping in the
+browser; export and persist that removal to clear the shared decision.
+
+Every harvest verifies the target's ID, preferred form and canonical reading.
+Deleted or changed targets are reported as stale and their source forms return
+to review. Ambiguous identities remain unmapped pending a maintainer decision.

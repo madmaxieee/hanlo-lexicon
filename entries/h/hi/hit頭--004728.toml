@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hit-thâu"
+id = 4728
+moe_forms = ["彼頭"]
+preferred_form = "hit頭"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 1851:1855; written form hit頭"
+url = "https://tsbp.tgb.org.tw/2016/04/sa-ekah.html"
+
+[[sources]]
+row = 3928
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

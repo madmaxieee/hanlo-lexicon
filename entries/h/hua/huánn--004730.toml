@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "huánn"
+id = 4730
+moe_forms = ["晃"]
+preferred_form = "huánn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 54:59; written form huánn"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_97.html"
+
+[[sources]]
+row = 6006
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

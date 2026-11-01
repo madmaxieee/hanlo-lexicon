@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshuā-thâu"
+id = 4724
+moe_forms = ["𤆬頭"]
+preferred_form = "tshuā頭"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 283:289; written form chhōa頭"
+url = "https://tsbp.tgb.org.tw/2016/04/lanmai-taoa.html"
+
+[[sources]]
+row = 13508
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

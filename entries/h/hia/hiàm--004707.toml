@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hiàm"
+id = 4707
+moe_forms = ["喊"]
+preferred_form = "hiàm"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 178:182; written form hiàm"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_2.html"
+
+[[sources]]
+row = 8166
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

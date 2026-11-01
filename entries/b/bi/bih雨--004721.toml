@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bih-hōo"
+id = 4721
+moe_forms = ["覕雨"]
+preferred_form = "bih雨"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 547:551; written form bih雨"
+url = "https://tsbp.tgb.org.tw/2016/04/e_76.html"
+
+[[sources]]
+row = 9002
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

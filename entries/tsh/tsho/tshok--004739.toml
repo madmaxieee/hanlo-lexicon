@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tshok"
+id = 4739
+identity_note = "MOE entry 11104 (詞目 row 11101), 撮 / tshok, a measure of a small gathered quantity, attested with salt; distinct from existing entry 1313 簇 / tshok, LKK row 794 and MOE entry 14509 (詞目 row 14503), a group or heap of people or things."
+moe_forms = ["撮"]
+preferred_form = "tshok"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 534:539; written form chhok"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_2.html"
+
+[[sources]]
+row = 11101
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

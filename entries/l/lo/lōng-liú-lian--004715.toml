@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "lōng-liú-lian"
+id = 4715
+moe_forms = []
+preferred_form = "lōng-liú-lian"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 31; normalized source characters 2451:2464; written form lōng-liú-lian"
+url = "https://tsbp.tgb.org.tw/2016/04/sa-ekah.html"

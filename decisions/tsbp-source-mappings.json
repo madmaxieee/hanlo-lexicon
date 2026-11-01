@@ -1,0 +1,28 @@
+[
+  {
+    "source_form": "hit陣",
+    "entry_id": 493,
+    "preferred_form": "hit-tsūn",
+    "canonical_tl": "hit-tsūn",
+    "rationale": "Maintainer confirmed treating hit陣 as a source spelling of the existing word, retaining hit-tsūn for consistency.",
+    "issue": 385,
+    "sources": [
+      {
+        "document_id": "tsbp:2016-04_e_76",
+        "url": "https://tsbp.tgb.org.tw/2016/04/e_76.html",
+        "line": 7,
+        "anchor_start": 780,
+        "anchor_end": 784,
+        "anchor": "hit陣"
+      },
+      {
+        "document_id": "tsbp:2016-04_sann-kap-ka-choah",
+        "url": "https://tsbp.tgb.org.tw/2016/04/sann-kap-ka-choah.html",
+        "line": 41,
+        "anchor_start": 2005,
+        "anchor_end": 2009,
+        "anchor": "hit陣"
+      }
+    ]
+  }
+]

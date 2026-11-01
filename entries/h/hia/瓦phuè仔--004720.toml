@@ -1,0 +1,16 @@
+alternate_readings = ["hiā-phè-á"]
+canonical_tl = "hiā-phuè-á"
+id = 4720
+moe_forms = ["瓦杮仔"]
+preferred_form = "瓦phuè仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 24; normalized source characters 2371:2377; written form 瓦phuè仔"
+url = "https://tsbp.tgb.org.tw/2016/04/e_76.html"
+
+[[sources]]
+row = 1909
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

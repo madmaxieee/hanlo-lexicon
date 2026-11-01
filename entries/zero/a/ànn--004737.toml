@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "ànn"
+id = 4737
+identity_note = "MOE entry 2120 (詞目 row 2121), bending or lowering oneself, used in 頭ànn-ànn; distinct from existing entry 700, 向 / ǹg, MOE entry 2123 (詞目 row 2124), facing or tending toward."
+moe_forms = ["向"]
+preferred_form = "ànn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 36; normalized source characters 1733:1736; written form ànn"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 2121
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

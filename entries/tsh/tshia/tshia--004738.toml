@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tshia"
+id = 4738
+identity_note = "MOE entry 6000 (詞目 row 5999), 捙 / tshia, overturning or turning over, attested in chhia龜弄甕; distinct from existing entry 1299 車 / tshia, LKK row 767, vehicle or machine."
+moe_forms = ["捙"]
+preferred_form = "tshia"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 71:76; written form chhia"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_2.html"
+
+[[sources]]
+row = 5999
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

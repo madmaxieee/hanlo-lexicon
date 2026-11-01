@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "gōng-tai"
+id = 4726
+moe_forms = ["戇呆"]
+preferred_form = "gōng呆"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 25; normalized source characters 2008:2013; written form gōng呆"
+url = "https://tsbp.tgb.org.tw/2016/04/e-tsua.html"
+
+[[sources]]
+row = 13412
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kap-phāng"
+id = 4731
+moe_forms = ["敆縫"]
+preferred_form = "kap縫"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 10; normalized source characters 482:486; written form kap縫"
+url = "https://tsbp.tgb.org.tw/2016/04/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 6068
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

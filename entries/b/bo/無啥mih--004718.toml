@@ -1,0 +1,21 @@
+alternate_readings = ["bô-siánn-mi̍h"]
+canonical_tl = "bô-siánn-mih"
+id = 4718
+moe_forms = ["無啥物"]
+preferred_form = "無啥mih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 35; normalized source characters 1919:1924; written form 無啥mih"
+url = "https://tsbp.tgb.org.tw/2016/04/e_25.html"
+
+[[sources]]
+row = 704
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 8633
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

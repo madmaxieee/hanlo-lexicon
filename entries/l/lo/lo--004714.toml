@@ -1,0 +1,21 @@
+alternate_readings = ["tho"]
+canonical_tl = "lo"
+id = 4714
+moe_forms = ["叨"]
+preferred_form = "lo"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 879:881; written form lo"
+url = "https://tsbp.tgb.org.tw/2016/04/e_21.html"
+
+[[sources]]
+row = 119
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 1399
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

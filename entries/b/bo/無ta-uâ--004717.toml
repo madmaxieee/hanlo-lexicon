@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bô-ta-uâ"
+id = 4717
+moe_forms = ["無奈何"]
+preferred_form = "無ta-uâ"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 8; normalized source characters 934:940; written form 無ta-ôa"
+url = "https://tsbp.tgb.org.tw/2016/04/lanmai-taoa.html"
+
+[[sources]]
+row = 8605
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

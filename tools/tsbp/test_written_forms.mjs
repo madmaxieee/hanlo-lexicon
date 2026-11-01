@@ -343,3 +343,30 @@ test('unique regular MOE entry and primary 1 default ahead of comparison rows', 
   assert.equal(vm.runInContext('decision(data.groups[0]).canonical_choice_id',page),'alternate');
   assert.equal(vm.runInContext('decision(data.groups[0]).preferred_form',page),'mn̍gh件');
 });
+
+test('whole-word mapping clears approval, exports, reopens, and rejects stale targets',()=>{
+  const group={key:'hit陣',display:'hit陣',dedup_lookup_forms:['hit陣'],normalized_forms:['hit陣'],
+    occurrences:[{anchor:'hit陣',snippet:'hit陣',anchor_start:0,anchor_end:4,context_start:0,context_end:4,
+      document_id:'test',url:'https://example.com',title:'Test',line:1,clause:'hit陣'}],article_count:1};
+  const nodes=new Map(),saved=new Map();
+  const document={getElementById(id){if(!nodes.has(id))nodes.set(id,{value:'',checked:false,innerHTML:'',textContent:''});return nodes.get(id);},querySelectorAll(){return [];}};
+  const data={groups:[group],tracked_preferred_forms:[],unparseable_forms:[],known_forms:[],issue:385,
+    corpus_sha256:'mapping-test',moe:{snapshot:'test'},baseline:{source_characters:4,article_count:1},
+    context_exclusions:{phrases:[],skipped_anchor_occurrences:0},
+    lexicon_inventory:[{id:493,preferred_form:'hit-tsūn',canonical_tl:'hit-tsūn',path:'entry.toml'}]};
+  const page=vm.createContext({data,document,setTimeout,localStorage:{getItem:k=>saved.get(k)||null,setItem:(k,v)=>saved.set(k,v)}});
+  vm.runInContext(fs.readFileSync(new URL('./written_forms.js',import.meta.url),'utf8')+'\n'+fs.readFileSync(new URL('./review.js',import.meta.url),'utf8'),page);
+  vm.runInContext("decision(data.groups[0]).approved=true;mapToEntry(data.groups[0],493);render();",page);
+  assert.equal(vm.runInContext('excluded(data.groups[0])',page),true);
+  assert.equal(vm.runInContext('decision(data.groups[0]).approved',page),false);
+  assert.equal(vm.runInContext('approvable(data.groups[0])',page),false);
+  assert.equal(vm.runInContext('reviewExport().source_mappings[0].entry_id',page),493);
+  assert.equal(vm.runInContext('reviewExport().approvals.length',page),0);
+  assert.equal(vm.runInContext("excluded({key:'hit陣仔',dedup_lookup_forms:['hit陣仔']})",page),false);
+  assert.throws(()=>vm.runInContext('mapToEntry(data.groups[0],999)',page),/existing entry/);
+  vm.runInContext("data.groups[0].source_mapping=sourceMapping(data.groups[0]);decision(data.groups[0]).source_mapping=null;",page);
+  assert.equal(vm.runInContext('excluded(data.groups[0])',page),false);
+  assert.equal(vm.runInContext('reviewExport().source_mapping_removals[0]',page),'hit陣');
+  vm.runInContext("mapToEntry(data.groups[0],493);entryById.get(493).preferred_form='hit陣';",page);
+  assert.equal(vm.runInContext('sourceMapping(data.groups[0])',page),null);
+});

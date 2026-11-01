@@ -1,0 +1,16 @@
+alternate_readings = ["bùn-tshú"]
+canonical_tl = "bùn-tshí"
+id = 4710
+moe_forms = ["鼢鼠"]
+preferred_form = "bùn鼠"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 6; normalized source characters 242:246; written form Bùn鼠"
+url = "https://tsbp.tgb.org.tw/2016/04/e_30.html"
+
+[[sources]]
+row = 12461
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

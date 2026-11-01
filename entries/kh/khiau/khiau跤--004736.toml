@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khiau-kha"
+id = 4736
+moe_forms = ["曲跤"]
+preferred_form = "khiau跤"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 91; normalized source characters 4358:4364; written form khiau跤"
+url = "https://tsbp.tgb.org.tw/2016/04/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 2545
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

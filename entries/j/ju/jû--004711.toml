@@ -1,0 +1,16 @@
+alternate_readings = ["lû"]
+canonical_tl = "jû"
+id = 4711
+moe_forms = ["挐"]
+preferred_form = "jû"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 708:710; written form jû"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_49.html"
+
+[[sources]]
+row = 5957
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

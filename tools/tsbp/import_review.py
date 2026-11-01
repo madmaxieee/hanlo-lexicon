@@ -59,6 +59,8 @@ def build_request(approval, group, ignored, moe_records):
     if any(approval.get(field, '').strip() for field in (
             'custom_handling', 'custom_preferred_form', 'custom_hanji', 'custom_reading')):
         raise ValueError('Resolve this anchor’s custom handling request before automatic import')
+    if group.get('source_mapping') or approval.get('source_mapping'):
+        raise ValueError('A mapped source spelling is already handled by an existing entry')
     if approval.get('approved') is not True:
         raise ValueError('Only explicit Approve import decisions can become requests')
     if set(group['dedup_lookup_forms']) & set(ignored):
@@ -256,6 +258,7 @@ def main():
             item.update(status='needs_resolution', reason=str(error))
         custom_previews.append(item)
     plan, batch_readings = [], []
+    mapped_forms = {nfc(row['source_form']).casefold() for row in bundle.get('source_mappings', [])}
     for approval in bundle.get('approvals', []):
         if approval.get('approved') is not True:
             continue
@@ -264,6 +267,10 @@ def main():
             if approval.get('anchor_key') in pending_custom:
                 raise ValueError('Resolve this anchor’s custom handling request before automatic import')
             group = groups[approval['anchor_key']]
+            if group['key'] in bundle.get('source_mapping_removals', []):
+                group = {**group, 'source_mapping': None}
+            if group['key'] in mapped_forms:
+                raise ValueError('A mapped source spelling cannot also be approved for import')
             request = build_request(approval, group, bundle.get('ignored_forms', []), evidence[1][2])
             report = lexicon.check(root, request, current, evidence, lookup)
             lexicon.verify_sources(request, *evidence)

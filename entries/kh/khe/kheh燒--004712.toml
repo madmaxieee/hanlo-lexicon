@@ -1,0 +1,16 @@
+alternate_readings = ["khueh-sio"]
+canonical_tl = "kheh-sio"
+id = 4712
+moe_forms = ["𤲍燒"]
+preferred_form = "kheh燒"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 542:547; written form kheh燒"
+url = "https://tsbp.tgb.org.tw/2016/04/e_76.html"
+
+[[sources]]
+row = 13536
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

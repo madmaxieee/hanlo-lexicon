@@ -1,0 +1,15 @@
+alternate_readings = []
+canonical_tl = "má-tsih"
+id = 4740
+moe_forms = []
+preferred_form = "má-tsih"
+review_status = "reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 1; anchor Unicode code points 56:60; literal clause: 佳哉阮má-chih--ê是韓國時行博士博; maintainer selected preferred form má-tsih and TL reading má-tsih"
+url = "https://tsbp.tgb.org.tw/2016/04/lanmai-taoa.html"
+
+[[sources]]
+locator = "Issue 385; article text line 9; anchor Unicode code points 1124:1128; literal clause: 阮má-chih--ê tiāⁿ-tiāⁿ講著電影beh按怎分鏡; maintainer selected preferred form má-tsih and TL reading má-tsih"
+url = "https://tsbp.tgb.org.tw/2016/04/lanmai-taoa.html"

@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "--tńg-khì"
+hanji_forms = ["轉去"]
+id = 4741
+identity_note = "The maintainer explicitly adopted --tńg-去 / --tńg-khì as a separate entry from entry 619, tńg去 / tńg--khì. The issue 385 sources write --tńg-去, with the neutral marker before tńg; entry 619 places the neutral marker before khì. Preserve both recommendations and their distinct neutral-tone boundaries."
+moe_forms = []
+preferred_form = "--tńg-去"
+review_status = "reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 11; anchor Unicode code points 716:721; literal clause: 到位tsiah用電龜kā接--tńg-去——tse就是做工ê過程; maintainer selected preferred form --tńg-去 and TL reading --tńg-khì"
+url = "https://tsbp.tgb.org.tw/2016/04/sa-ekah.html"
+
+[[sources]]
+locator = "Issue 385; article text line 23; anchor Unicode code points 931:936; literal clause: 阿仁菜割--tńg-去; maintainer selected preferred form --tńg-去 and TL reading --tńg-khì"
+url = "https://tsbp.tgb.org.tw/2016/04/an-ne.html"

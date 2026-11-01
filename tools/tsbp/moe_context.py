@@ -1,6 +1,7 @@
 """MOE reading lookup and conservative mixed-form context matching."""
 
 from collections import defaultdict
+from functools import lru_cache
 import hashlib
 import importlib.util
 import re
@@ -17,6 +18,7 @@ def han(char):
     return '\u3400' <= char <= '\u9fff' or '\U00020000' <= char <= '\U000323af'
 
 
+@lru_cache(maxsize=8192)
 def parts(reading):
     tokens = re.split(r'-+|\s+', norm(reading))
     return tuple(token for token in tokens if token)
@@ -41,6 +43,22 @@ def fragment_start(reading, segments, index):
 
 def reading_fragment(reading, segments, start, end):
     return reading[fragment_start(reading, segments, start):segments[end - 1].end()]
+
+
+@lru_cache(maxsize=8192)
+def reading_alignment(reading):
+    """Reuse immutable reading metadata across occurrences and Hanji variants.
+
+    Keep this derived state outside dictionary records, which become evidence in
+    serialized reports. Bound both reading caches for long-lived callers.
+    """
+    reading = norm(reading)
+    segments = syllable_segments(reading)
+    neutral = tuple('--' in reading[fragment_start(reading, segments, index):segment.start()]
+                    for index, segment in enumerate(segments))
+    separators = tuple(re.sub(r'\s+', '-', reading[segments[index - 1].end():segment.start()])
+                       if index else '' for index, segment in enumerate(segments))
+    return neutral, separators
 
 
 def build_lookups(groups, records):
@@ -137,21 +155,18 @@ def aligned_source_match(row, record, form, position, a, b, context, text):
     start, end = selected[0]['start'], selected[-1]['end']
     if start < row['clause_start'] or end > row['clause_end']:
         return None
-    reading = norm(record['matched_reading'])
-    segments = syllable_segments(reading)
+    neutral, separators = reading_alignment(record['matched_reading'])
     output, cursor = [], start
     for index, unit in enumerate(selected):
         if unit['kind'] == 'han':
             if unit['char'] != form[index]:
                 return None
         elif unit['kind'] == 'roman':
-            prefix = reading[fragment_start(reading, segments, index):segments[index].start()]
-            if unit['reading'] != record['syllables'][index] or unit['neutral'] != ('--' in prefix):
+            if unit['reading'] != record['syllables'][index] or unit['neutral'] != neutral[index]:
                 return None
             if index and selected[index - 1]['kind'] == 'roman':
                 actual = text[selected[index - 1]['end']:unit['syllable_start']]
-                expected = reading[segments[index - 1].end():segments[index].start()]
-                if re.sub(r'\s+', '-', actual) != re.sub(r'\s+', '-', expected):
+                if re.sub(r'\s+', '-', actual) != separators[index]:
                     return None
             output.extend((text[cursor:unit['syllable_start']], unit['reading']))
             cursor = unit['end']

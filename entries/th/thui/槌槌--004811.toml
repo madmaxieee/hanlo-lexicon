@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "thuî-thuî"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 10593. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4811
+moe_forms = []
+preferred_form = "槌槌"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 5; corpus Unicode code points 42:44; literal form 槌槌"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_97.html"
+
+[[sources]]
+row = 10590
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

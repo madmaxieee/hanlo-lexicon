@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tshàu-iû"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 6568. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4825
+moe_forms = []
+preferred_form = "臭油"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 37; corpus Unicode code points 1859:1861; literal form 臭油"
+url = "https://tsbp.tgb.org.tw/2016/04/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 6567
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "siù"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 12546. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4807
+moe_forms = []
+preferred_form = "繡"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 17; corpus Unicode code points 1149:1150; literal form 繡"
+url = "https://tsbp.tgb.org.tw/2016/04/lanmai-tueenana.html"
+
+[[sources]]
+locator = "Issue 385; article text line 2; corpus Unicode code points 15:16; literal form 繡"
+url = "https://tsbp.tgb.org.tw/2016/04/e_16.html"
+
+[[sources]]
+row = 12540
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

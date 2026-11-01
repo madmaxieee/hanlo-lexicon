@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tsíng"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 9856. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4809
+moe_forms = []
+preferred_form = "腫"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 29; corpus Unicode code points 1604:1605; literal form 腫"
+url = "https://tsbp.tgb.org.tw/2016/04/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 9854
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

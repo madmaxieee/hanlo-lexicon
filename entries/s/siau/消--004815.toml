@@ -1,0 +1,25 @@
+alternate_readings = []
+canonical_tl = "siau"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 6224. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4815
+moe_forms = []
+preferred_form = "消"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 12; corpus Unicode code points 1364:1365; literal form 消"
+url = "https://tsbp.tgb.org.tw/2016/04/e_76.html"
+
+[[sources]]
+locator = "Issue 385; article text line 29; corpus Unicode code points 1571:1572; literal form 消"
+url = "https://tsbp.tgb.org.tw/2016/04/e_25.html"
+
+[[sources]]
+locator = "Issue 385; article text line 46; corpus Unicode code points 3384:3385; literal form 消"
+url = "https://tsbp.tgb.org.tw/2016/04/e_30.html"
+
+[[sources]]
+row = 6223
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

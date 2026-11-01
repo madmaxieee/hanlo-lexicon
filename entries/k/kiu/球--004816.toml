@@ -1,0 +1,25 @@
+alternate_readings = []
+canonical_tl = "kiû"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 7577. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4816
+moe_forms = []
+preferred_form = "球"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 13; corpus Unicode code points 927:928; literal form 球"
+url = "https://tsbp.tgb.org.tw/2016/04/lanmai-tueenana.html"
+
+[[sources]]
+locator = "Issue 385; article text line 24; corpus Unicode code points 2450:2451; literal form 球"
+url = "https://tsbp.tgb.org.tw/2016/04/e_76.html"
+
+[[sources]]
+locator = "Issue 385; article text line 3; corpus Unicode code points 133:134; literal form 球"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_17.html"
+
+[[sources]]
+row = 7575
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

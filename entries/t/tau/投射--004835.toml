@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tâu-siā"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 24742. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4835
+moe_forms = []
+preferred_form = "投射"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 14; corpus Unicode code points 1047:1049; literal form 投射"
+url = "https://tsbp.tgb.org.tw/2016/04/hooe.html"
+
+[[sources]]
+row = 21407
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

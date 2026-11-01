@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "hun-in"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 22761. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4831
+moe_forms = []
+preferred_form = "婚姻"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 27; corpus Unicode code points 2167:2169; literal form 婚姻"
+url = "https://tsbp.tgb.org.tw/2016/04/sa-ekah.html"
+
+[[sources]]
+row = 19426
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "mōo"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 15179. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4819
+moe_forms = []
+preferred_form = "冒"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 63; corpus Unicode code points 3172:3173; literal form 冒"
+url = "https://tsbp.tgb.org.tw/2016/04/sann-kap-ka-choah.html"
+
+[[sources]]
+locator = "Issue 385; article text line 7; corpus Unicode code points 480:481; literal form 冒"
+url = "https://tsbp.tgb.org.tw/2016/04/hooe.html"
+
+[[sources]]
+row = 16130
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

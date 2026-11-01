@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "im-hû"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 24530. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4833
+moe_forms = []
+preferred_form = "音符"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 3; corpus Unicode code points 33:35; literal form 音符"
+url = "https://tsbp.tgb.org.tw/2016/04/e_16.html"
+
+[[sources]]
+row = 21195
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

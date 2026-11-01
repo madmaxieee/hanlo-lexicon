@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "un-kuàn"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 9680. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4828
+moe_forms = []
+preferred_form = "溫罐"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 22; corpus Unicode code points 1542:1544; literal form 溫罐"
+url = "https://tsbp.tgb.org.tw/2016/04/e_30.html"
+
+[[sources]]
+row = 9678
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

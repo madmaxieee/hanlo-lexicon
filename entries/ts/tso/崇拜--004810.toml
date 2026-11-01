@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tsông-pài"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 7202. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4810
+moe_forms = []
+preferred_form = "崇拜"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 37; corpus Unicode code points 2740:2742; literal form 崇拜"
+url = "https://tsbp.tgb.org.tw/2016/04/e_30.html"
+
+[[sources]]
+row = 7200
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

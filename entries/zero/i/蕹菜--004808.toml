@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "ìng-tshài"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 12327. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4808
+moe_forms = []
+preferred_form = "蕹菜"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 3; corpus Unicode code points 111:113; literal form 蕹菜"
+url = "https://tsbp.tgb.org.tw/2016/04/an-ne.html"
+
+[[sources]]
+row = 12321
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

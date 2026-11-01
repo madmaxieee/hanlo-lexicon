@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "ián-hì"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 10636. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4829
+moe_forms = []
+preferred_form = "演戲"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 19; corpus Unicode code points 1496:1498; literal form 演戲"
+url = "https://tsbp.tgb.org.tw/2016/04/sa-ekah.html"
+
+[[sources]]
+row = 10633
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

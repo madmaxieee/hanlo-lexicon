@@ -1,0 +1,25 @@
+alternate_readings = []
+canonical_tl = "kiānn"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 2043. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4814
+moe_forms = []
+preferred_form = "件"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 13; corpus Unicode code points 693:694; literal form 件"
+url = "https://tsbp.tgb.org.tw/2016/04/e_25.html"
+
+[[sources]]
+locator = "Issue 385; article text line 9; corpus Unicode code points 822:823; literal form 件"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_49.html"
+
+[[sources]]
+locator = "Issue 385; article text line 9; corpus Unicode code points 843:844; literal form 件"
+url = "https://tsbp.tgb.org.tw/2016/04/e_76.html"
+
+[[sources]]
+row = 2044
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

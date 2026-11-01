@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "khòng-khuah"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 13845. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4812
+moe_forms = []
+preferred_form = "曠闊"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 13; corpus Unicode code points 816:818; literal form 曠闊"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_2.html"
+
+[[sources]]
+row = 13839
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "uī-tì"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 2929. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4821
+moe_forms = []
+preferred_form = "位置"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 5; corpus Unicode code points 343:345; literal form 位置"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_17.html"
+
+[[sources]]
+row = 2930
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

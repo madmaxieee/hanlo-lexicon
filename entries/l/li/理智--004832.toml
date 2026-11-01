@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "lí-tì"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 23776. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4832
+moe_forms = []
+preferred_form = "理智"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 19; corpus Unicode code points 981:983; literal form 理智"
+url = "https://tsbp.tgb.org.tw/2016/04/e_25.html"
+
+[[sources]]
+row = 20441
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

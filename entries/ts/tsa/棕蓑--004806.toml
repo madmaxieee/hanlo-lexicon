@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tsang-sui"
+editorial_rationale = "Corpus-backed Hanji batch proposal from TSBP issue 385; MOE identity 8510. Batch import authorized by maintainer without location names (嘉義市 excluded)."
+id = 4806
+moe_forms = []
+preferred_form = "棕蓑"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 6; corpus Unicode code points 354:356; literal form 棕蓑"
+url = "https://tsbp.tgb.org.tw/2016/04/e_30.html"
+
+[[sources]]
+row = 8508
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

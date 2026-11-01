@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tú-siàu"
+id = 4785
+moe_forms = ["拄數"]
+preferred_form = "拄siàu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 335:340; written form 拄siàu"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_2.html"
+
+[[sources]]
+row = 4141
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

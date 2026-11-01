@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "liâng--ê"
+id = 4788
+moe_forms = ["涼的"]
+preferred_form = "涼--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 948:952; written form 涼--ê"
+url = "https://tsbp.tgb.org.tw/2016/04/e-tsua.html"
+
+[[sources]]
+row = 13718
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

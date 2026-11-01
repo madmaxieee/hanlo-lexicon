@@ -1,0 +1,21 @@
+alternate_readings = ["bak-tóo-iau"]
+canonical_tl = "pak-tóo-iau"
+id = 4794
+moe_forms = ["腹肚枵"]
+preferred_form = "腹肚iau"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 10; normalized source characters 76:81; written form 腹肚iau"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_97.html"
+
+[[sources]]
+row = 789
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 9907
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

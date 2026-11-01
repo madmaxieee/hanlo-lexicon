@@ -1,0 +1,22 @@
+alternate_readings = []
+canonical_tl = "siong-khî"
+editorial_rationale = "The maintainer adopted the whole spelling 傷khî from the issue 385 passage. MOE component entries supply 傷 / siong and 疧 / khî; no MOE whole-word match was found."
+id = 4799
+moe_forms = []
+preferred_form = "傷khî"
+review_status = "reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 24; literal clause 等傷khî hōo愛熨平……; maintainer adopted 傷khî as the extended word from khî."
+url = "https://tsbp.tgb.org.tw/2016/04/e_16.html"
+
+[[sources]]
+row = 5219
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 9287
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

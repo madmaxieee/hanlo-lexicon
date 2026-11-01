@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sa-te"
+id = 4754
+moe_forms = ["沙茶"]
+preferred_form = "sa-te"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 218:223; written form sa-te"
+url = "https://tsbp.tgb.org.tw/2016/04/an-ne.html"
+
+[[sources]]
+row = 3314
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

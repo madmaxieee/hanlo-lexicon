@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "lok-sōng"
+hanji_forms = ["橐蹌"]
+id = 4803
+moe_forms = []
+preferred_form = "lok-sōng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 42; normalized source characters 2056:2073; written form lok-sōng-lok-sōng"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"

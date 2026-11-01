@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "lè-táu"
+hanji_forms = ["麗倒"]
+id = 4804
+moe_forms = []
+preferred_form = "lè-táu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 253:259; written form lè-táu"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"

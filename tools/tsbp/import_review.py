@@ -13,6 +13,8 @@ import sys
 import unicodedata
 
 from screen import load_screening
+from review_context import corpus_texts
+from review_filters import annotate_coverage, filter_occurrences
 
 
 def nfc(value):
@@ -28,6 +30,8 @@ def pure_romanized(text):
 def article_source(group):
     if group.get('exclusion_reason') == 'machine_rejected':
         raise ValueError('This anchor has only machine-rejected occurrences; resolve its source evidence first')
+    if not group['occurrences']:
+        raise ValueError('All occurrences are ignored by segment or covered by tracked words')
     occurrence = group['occurrences'][0]
     return {'url': occurrence['url'], 'locator':
         f"Article text line {occurrence['line']}; normalized source characters "
@@ -243,8 +247,22 @@ def main():
                       if any(item.get(field) for field in ('prompt', 'preferred_form', 'hanji', 'reading'))}
     current = [(path, entry) for path, entry, _ in lexicon.entry_snapshot(root)]
     lookup = lexicon.LookupIndex(current, evidence)
-    groups = {group['key']: group for group in load_screening(
-        args.pilot, summary, json.loads(groups_path.read_text()))}
+    raw_groups = json.loads(groups_path.read_text())
+    texts = corpus_texts({**summary, 'groups': raw_groups})
+    records = [{'id': entry['id'], 'preferred_form': entry['preferred_form'],
+                'canonical_tl': entry['canonical_tl'],
+                'multi_syllable_written_forms': sorted({form for form, reading in lexicon.spelling_readings(entry)
+                                                        if len(re.findall(r'[^\s-]+', reading)) >= 2})}
+               for _, entry in current]
+    covered = annotate_coverage(raw_groups, records, texts)
+    eligible = filter_occurrences(covered, bundle.get('ignored_segments', []))
+    # Apply the screen after validating segment positions against the complete sealed queue.
+    screened = load_screening(args.pilot, summary, raw_groups)
+    allowed = {g['key']: {(r.get('document_id'), r['anchor_start'], r['anchor_end']) for r in g['occurrences']}
+               for g in eligible}
+    groups = {g['key']: {**g, 'occurrences': [r for r in g['occurrences']
+              if (r.get('document_id'), r['anchor_start'], r['anchor_end']) in allowed[g['key']]]}
+              for g in screened}
     custom_previews = []
     for custom in custom_requests:
         if not any(field in custom for field in ('preferred_form', 'hanji', 'reading')):

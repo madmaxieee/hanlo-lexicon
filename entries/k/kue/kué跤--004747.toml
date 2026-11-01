@@ -1,0 +1,16 @@
+alternate_readings = ["ké kha"]
+canonical_tl = "kué kha"
+id = 4747
+moe_forms = ["跂跤"]
+preferred_form = "kué跤"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 287:291; written form kué跤"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 7972
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

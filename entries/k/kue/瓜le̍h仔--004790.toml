@@ -1,0 +1,16 @@
+alternate_readings = ["kue-lue̍h-á"]
+canonical_tl = "kue-le̍h-á"
+id = 4790
+moe_forms = ["瓜笠仔"]
+preferred_form = "瓜le̍h仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 827:833; written form 瓜le̍h仔"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_2.html"
+
+[[sources]]
+row = 9982
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

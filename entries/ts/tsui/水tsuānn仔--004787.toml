@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsuí-tsuānn-á"
+id = 4787
+moe_forms = ["水濺仔"]
+preferred_form = "水tsuānn仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 821:829; written form 水tsuānn仔"
+url = "https://tsbp.tgb.org.tw/2016/04/an-ne.html"
+
+[[sources]]
+row = 13937
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

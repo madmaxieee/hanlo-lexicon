@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pit-hûn"
+id = 4751
+moe_forms = ["必痕"]
+preferred_form = "pit痕"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 38; normalized source characters 1814:1818; written form pit痕"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 13556
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

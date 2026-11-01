@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "iap-phiah"
+hanji_forms = ["揜僻"]
+id = 4801
+moe_forms = []
+preferred_form = "iap-phiah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 26:35; written form iap-phiah"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_49.html"

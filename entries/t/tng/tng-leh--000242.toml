@@ -1,4 +1,4 @@
-alternate_readings = ["tng-tih"]
+alternate_readings = ["tng-teh", "tng-tih"]
 canonical_tl = "tng-leh"
 id = 242
 moe_forms = ["當咧"]
@@ -7,5 +7,19 @@ review_status = "imported"
 schema_version = 1
 
 [[sources]]
+locator = "Article text line 6; normalized source characters 55:62; written form tng-teh"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post.html"
+
+[[sources]]
 row = 713
 snapshot = "lkk-2024-05-10"
+
+[[sources]]
+row = 777
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 9747
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

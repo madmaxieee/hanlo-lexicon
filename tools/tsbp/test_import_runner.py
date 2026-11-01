@@ -258,3 +258,41 @@ class RunnerTests(unittest.TestCase):
         finally:
             fixtures.lex.ods_sheets = original
             fixture.tearDown()
+
+    def test_segment_ignored_evidence_is_not_used_for_import_sources(self):
+        from review_context import context_id
+        fixture = self.fixture()
+        pilot, review = self.make_pilot(fixture, ['bueh'])
+        corpus = pilot / 'corpus.jsonl'
+        corpus.write_text(json.dumps({'id': 'doc', 'text': 'bueh，bueh'}, ensure_ascii=False) + '\n')
+        groups = json.loads((pilot / 'groups.json').read_text())
+        first = {**groups[0]['occurrences'][0], 'document_id': 'doc', 'line': 1,
+                 'clause_start': 0, 'clause_end': 4}
+        second = {**first, 'line': 2, 'anchor_start': 5, 'anchor_end': 9,
+                  'clause_start': 5, 'clause_end': 9}
+        groups[0]['occurrences'] = [first, second]
+        content = json.dumps(groups).encode()
+        (pilot / 'groups.json').write_bytes(content)
+        summary = json.loads((pilot / 'summary.json').read_text())
+        summary.update(corpus_path=str(corpus), corpus_sha256=hashlib.sha256(corpus.read_bytes()).hexdigest(),
+                       review_groups_sha256=hashlib.sha256(content).hexdigest())
+        (pilot / 'summary.json').write_text(json.dumps(summary))
+        bundle = json.loads(review.read_text())
+        bundle.update(corpus_sha256=summary['corpus_sha256'], groups_sha256=summary['review_groups_sha256'],
+                      ignored_segments=[context_id('doc', 0, 4)])
+        review.write_text(json.dumps(bundle))
+        args = ['import_review.py', str(review), '--pilot', str(pilot)]
+        output = io.StringIO()
+        with mock.patch.object(sys, 'argv', args), redirect_stdout(output):
+            review_main()
+        item, = json.loads(output.getvalue())['items']
+        self.assertEqual(item['status'], 'ready')
+        self.assertIn('line 2; normalized source characters 5:9', item['request']['sources'][0]['locator'])
+        bundle['ignored_segments'].append(context_id('doc', 5, 9))
+        review.write_text(json.dumps(bundle))
+        output = io.StringIO()
+        with mock.patch.object(sys, 'argv', args), redirect_stdout(output):
+            review_main()
+        item, = json.loads(output.getvalue())['items']
+        self.assertEqual(item['status'], 'blocked')
+        self.assertIn('All occurrences are ignored', item['reason'])

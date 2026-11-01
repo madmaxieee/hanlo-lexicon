@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tâng-sāi"
+id = 4772
+moe_forms = ["同姒"]
+preferred_form = "tâng-sāi"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 313:321; written form tâng-sāi"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 11058
+sheet = "詞彙比較"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ē-hô"
+id = 4778
+moe_forms = ["會和"]
+preferred_form = "ē和"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 62; normalized source characters 2738:2740; written form ē和"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 14703
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

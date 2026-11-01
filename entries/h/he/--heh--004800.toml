@@ -1,0 +1,22 @@
+alternate_readings = ["--hennh"]
+canonical_tl = "--heh"
+hanji_forms = ["嘿"]
+id = 4800
+moe_forms = []
+preferred_form = "--heh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 29; normalized source characters 1062:1067; written form Hennh"
+url = "https://tsbp.tgb.org.tw/2016/04/an-ne.html"
+
+[[sources]]
+row = 10972
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 838
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"

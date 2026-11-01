@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tī-sî"
+id = 4774
+moe_forms = ["底時"]
+preferred_form = "tī時"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 40; normalized source characters 1973:1976; written form tī時"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 3843
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

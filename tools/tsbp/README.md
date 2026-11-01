@@ -280,3 +280,79 @@ browser; export and persist that removal to clear the shared decision.
 Every harvest verifies the target's ID, preferred form and canonical reading.
 Deleted or changed targets are reported as stale and their source forms return
 to review. Ambiguous identities remain unmapped pending a maintainer decision.
+
+## Review layout and presentation-only refresh
+
+The page groups matches by the original Roman-text **position in an article**.
+All candidates triggered by that segment appear together, longest span first;
+sections follow the article inventory and source offsets rather than frequency.
+A match triggered by two segments joins those local segments into one section.
+Repeated spellings in other passages do not join unrelated sections. A word can
+appear in several sections, but its decisions remain shared by anchor key and
+are exported once. Approving one candidate does not approve its overlapping
+alternatives. Search retains the other candidates in any matching section.
+
+Each section shows a literal passage extending about 100 Unicode code points
+on either side of the matched area, including punctuation and nearby sentences.
+The original Roman segments are highlighted in that passage; each candidate
+also highlights its own exact span in a shorter excerpt. Article links, full
+clauses, all occurrences and dictionary references remain available.
+
+Each candidate has the same three handling panels: **Import word** (article or
+MOE evidence), **Custom handling**, and **Use existing entry**. **Ignore match**
+and **Copy note** sit beside its status. For a pending MOE-backed import, its
+spelling/reading controls and dictionary evidence open by default. Explicitly
+saved fold choices take precedence. Custom fields save while typing;
+**Save request and fold** closes that panel. Approving an import folds its
+editor. Manually opened or folded panels retain their state when another word
+changes, when searching, and across browser reloads. Panel state also travels
+in `review.json` as optional `ui_state`; old exports remain loadable.
+
+To update only the HTML presentation after changing these tools:
+
+```sh
+python3 tools/tsbp/render_review.py --pilot /path/to/pilot
+```
+
+This verifies the existing groups and corpus checksums, reapplies any sealed
+language screen, and reads longer literal contexts from that same corpus.
+It writes only `review.html`: no extraction, normalization, dictionary lookup,
+entry edits, approvals, or fingerprint changes occur. It refreshes short-fragment
+coverage from current entries, while retaining the harvest's candidate inventory
+and other deduplication decisions. Use a normal harvest separately for new discovery.
+
+Run the UI and layout regression tests with Node:
+
+```sh
+node --test tools/tsbp/test_written_forms.mjs tools/tsbp/test_review_layout.mjs
+```
+
+### Ignore a whole Roman-text segment
+
+**Ignore this segment** hides every candidate occurrence in that source section.
+It applies to those article positions, leaving other occurrences of the same
+word available for review. It also clears approvals for the affected words.
+Custom request drafts are retained; fully ignored words do not export active
+custom requests or approvals. Enable **Show excluded rows** and use **Restore
+segment** to undo it. The decision saves locally and travels in the optional
+`ignored_segments` array in `review.json`. Import previews validate these positions
+against the sealed harvest and exclude them from article evidence. If every
+occurrence is ignored or covered by an existing word, import is blocked.
+
+### Refresh compound coverage after an import
+
+Every HTML refresh rechecks short fragments against current compound spellings:
+
+```sh
+python3 tools/tsbp/render_review.py --pilot /path/to/pilot
+```
+
+This reads current entry recommendations and reuses the harvester's exact
+compound-coverage rule with recorded, normalized Roman triggers. It performs no
+new extraction or dictionary matching and writes only `review.html`. The corpus,
+`groups.json`, summary, source offsets and export fingerprints remain unchanged.
+Covered fragments stay inspectable under **Show excluded rows**, with the covering
+spelling and entry ID. For example, entry 4741 `--tńg-去` covers `--tńg` only inside
+that exact compound; a standalone `--tńg` or `--tńg-來` is not hidden by that entry.
+The importer independently rechecks coverage against current entries before
+choosing source evidence, so old approvals cannot bypass new compound coverage.

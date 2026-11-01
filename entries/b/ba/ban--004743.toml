@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ban"
+id = 4743
+moe_forms = ["屘"]
+preferred_form = "ban"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 34; normalized source characters 1664:1667; written form ban"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 5886
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

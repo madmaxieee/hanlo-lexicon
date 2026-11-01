@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ànn-ànn"
+id = 4775
+moe_forms = []
+preferred_form = "ànn-ànn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 36; normalized source characters 1733:1740; written form ànn-ànn"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"

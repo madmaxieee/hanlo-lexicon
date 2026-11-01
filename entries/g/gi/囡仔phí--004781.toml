@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "gín-á-phí"
+id = 4781
+moe_forms = ["囡仔疕"]
+preferred_form = "囡仔phí"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 48; normalized source characters 2460:2465; written form 囡仔phí"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 2149
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

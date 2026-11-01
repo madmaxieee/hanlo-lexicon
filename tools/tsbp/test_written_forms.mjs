@@ -51,7 +51,7 @@ test('Copy note preserves source spelling and context, with local-file clipboard
     }}};
     const page=vm.createContext(globals);
     vm.runInContext(fs.readFileSync(new URL('./written_forms.js',import.meta.url),'utf8')+'\n'+fs.readFileSync(new URL('./review.js',import.meta.url),'utf8'),page);
-    assert.match(nodes.get('rows').innerHTML,/class="copy-note" data-key="iân-nā" type="button" title="Copy note" aria-label="Copy note for iân-nā"><svg/);
+    assert.match(nodes.get('rows').innerHTML,/class="copy-note" data-key="iân-nā" data-occurrence="0" type="button" title="Copy note" aria-label="Copy note for iân-nā"><svg/);
     const before=vm.runInContext('JSON.stringify(reviewExport())',page);
     await button.onclick();
     assert.equal(button.disabled,false);
@@ -199,7 +199,7 @@ test('pure romanized anchor can be approved from article evidence and exported',
   const page=vm.createContext({data,document,setTimeout,localStorage:{getItem(key){return saved.get(key)||null;},setItem(key,value){saved.set(key,value);}}});
   vm.runInContext(fs.readFileSync(new URL('./written_forms.js',import.meta.url),'utf8')+'\n'+fs.readFileSync(new URL('./review.js',import.meta.url),'utf8'),page);
   assert.equal(vm.runInContext('approvable(data.groups[0])',page),true);
-  assert.match(nodes.get('rows').innerHTML,/Article anchor import/);
+  assert.match(nodes.get('rows').innerHTML,/Import word · article evidence/);
   assert.match(nodes.get('rows').innerHTML,/Filing TL reading: <strong>tshiū-lo̍h/);
   vm.runInContext('decision(data.groups[0]).approved=true;render();',page);
   const approval=JSON.parse(vm.runInContext('JSON.stringify(reviewExport().approvals[0])',page));
@@ -226,18 +226,18 @@ test('MOE anchor match folding survives rerenders and local reload', () => {
     dedup_lookup_forms:['hip'],review_words:[],moe_cards:[card],article_count:1,
     occurrences:[{snippet:'甲hip乙',anchor_start:1,anchor_end:4,context_start:0,context_end:5,
       document_id:'test',url:'https://example.com',title:'Fixture',line:1,clause:'甲hip乙'}]};
-  const nodes=new Map(),saved=new Map(),detail={dataset:{key:'hip'},open:true};
-  const document={getElementById(id){if(!nodes.has(id))nodes.set(id,{value:'',checked:false,innerHTML:'',textContent:''});return nodes.get(id);},querySelectorAll(selector){return selector==='.anchor-matches'?[detail]:[];}};
+  const nodes=new Map(),saved=new Map(),detail={dataset:{key:'hip',panel:'moe'},open:true};
+  const document={getElementById(id){if(!nodes.has(id))nodes.set(id,{value:'',checked:false,innerHTML:'',textContent:''});return nodes.get(id);},querySelectorAll(selector){return selector==='.review-disclosure'?[detail]:[];}};
   const data={groups:[group],tracked_preferred_forms:[],unparseable_forms:[],known_forms:[],issue:390,
     corpus_sha256:'fold-test',moe:{snapshot:'test'},baseline:{source_characters:20,article_count:1},context_exclusions:{phrases:[],skipped_anchor_occurrences:0}};
   const localStorage={getItem(key){return saved.get(key)||null;},setItem(key,value){saved.set(key,value);}};
   const source=fs.readFileSync(new URL('./written_forms.js',import.meta.url),'utf8')+'\n'+fs.readFileSync(new URL('./review.js',import.meta.url),'utf8');
   const page=vm.createContext({data,document,localStorage,setTimeout});vm.runInContext(source,page);
-  assert.match(nodes.get('rows').innerHTML,/<details class="anchor-matches" data-key="hip" open>/);
+  assert.match(nodes.get('rows').innerHTML,/<details class="review-disclosure anchor-matches" data-key="hip" data-panel="moe" open>/);
   detail.open=false;detail.ontoggle();vm.runInContext('render()',page);
-  assert.match(nodes.get('rows').innerHTML,/<details class="anchor-matches" data-key="hip"><summary>MOE anchor match \(1\)/);
+  assert.match(nodes.get('rows').innerHTML,/<details class="review-disclosure anchor-matches" data-key="hip" data-panel="moe"><summary>MOE evidence \(1\)/);
   const reloaded=vm.createContext({data,document,localStorage,setTimeout});vm.runInContext(source,reloaded);
-  assert.equal(vm.runInContext('decision(data.groups[0]).moe_matches_collapsed',reloaded),true);
+  assert.equal(vm.runInContext("state.disclosures[disclosureId('hip','moe')]",reloaded),false);
 });
 
 test('handled custom requests are reconciled after reload without hiding changed prompts', () => {
@@ -362,7 +362,7 @@ test('whole-word mapping clears approval, exports, reopens, and rejects stale ta
   assert.equal(vm.runInContext('approvable(data.groups[0])',page),false);
   assert.equal(vm.runInContext('reviewExport().source_mappings[0].entry_id',page),493);
   assert.equal(vm.runInContext('reviewExport().approvals.length',page),0);
-  assert.equal(vm.runInContext("excluded({key:'hit陣仔',dedup_lookup_forms:['hit陣仔']})",page),false);
+  assert.equal(vm.runInContext("excluded({...data.groups[0],key:'hit陣仔',dedup_lookup_forms:['hit陣仔']})",page),false);
   assert.throws(()=>vm.runInContext('mapToEntry(data.groups[0],999)',page),/existing entry/);
   vm.runInContext("data.groups[0].source_mapping=sourceMapping(data.groups[0]);decision(data.groups[0]).source_mapping=null;",page);
   assert.equal(vm.runInContext('excluded(data.groups[0])',page),false);

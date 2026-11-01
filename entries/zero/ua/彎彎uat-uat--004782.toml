@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "uan-uan-uat-uat"
+id = 4782
+moe_forms = ["彎彎斡斡"]
+preferred_form = "彎彎uat-uat"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 283:292; written form 彎彎uat-uat"
+url = "https://tsbp.tgb.org.tw/2016/04/e_21.html"
+
+[[sources]]
+row = 13204
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

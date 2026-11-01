@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hiau"
+id = 4744
+moe_forms = ["僥"]
+preferred_form = "hiau"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 390:394; written form hiau"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_49.html"
+
+[[sources]]
+row = 10371
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

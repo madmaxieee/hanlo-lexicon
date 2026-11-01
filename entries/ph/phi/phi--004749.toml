@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phi"
+id = 4749
+moe_forms = ["披"]
+preferred_form = "phi"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 506:509; written form phi"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_49.html"
+
+[[sources]]
+row = 3940
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

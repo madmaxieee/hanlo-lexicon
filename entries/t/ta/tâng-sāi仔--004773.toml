@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tâng-sāi-á"
+id = 4773
+moe_forms = ["同姒仔"]
+preferred_form = "tâng-sāi仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 313:322; written form tâng-sāi仔"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 2184
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

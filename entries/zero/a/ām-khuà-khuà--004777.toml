@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ām-khuà-khuà"
+id = 4777
+moe_forms = []
+preferred_form = "ām-khuà-khuà"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 31; normalized source characters 1144:1156; written form ām-khuà-khuà"
+url = "https://tsbp.tgb.org.tw/2016/04/an-ne.html"

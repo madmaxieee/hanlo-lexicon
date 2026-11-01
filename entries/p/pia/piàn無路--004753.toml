@@ -1,0 +1,16 @@
+alternate_readings = ["pìnn-bô-lōo"]
+canonical_tl = "piàn-bô-lōo"
+id = 4753
+moe_forms = ["變無路"]
+preferred_form = "piàn無路"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 54:60; written form pìnn無路"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_2.html"
+
+[[sources]]
+row = 28488
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

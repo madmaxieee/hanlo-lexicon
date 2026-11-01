@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsiūnn-tshiú"
+id = 4769
+moe_forms = ["上手"]
+preferred_form = "tsiūnn手"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 62; normalized source characters 2787:2794; written form tsiūnn手"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 250
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

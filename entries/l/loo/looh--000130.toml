@@ -1,10 +1,24 @@
-alternate_readings = []
+alternate_readings = ["--loh", "--looh"]
 canonical_tl = "looh"
 id = 130
 moe_forms = ["囉"]
 preferred_form = "looh"
 review_status = "imported"
 schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 1045:1051; written form --looh"
+url = "https://tsbp.tgb.org.tw/2016/04/e-tsua.html"
+
+[[sources]]
+row = 1008
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 13183
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
 
 [[sources]]
 row = 401

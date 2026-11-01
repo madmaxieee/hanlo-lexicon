@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "ka-tsuē"
+hanji_forms = ["瞌睡"]
+id = 4802
+moe_forms = []
+preferred_form = "ka-tsuē"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 531:538; written form ka-tsuē"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_49.html"

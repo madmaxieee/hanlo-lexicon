@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsa̍p-tsa̍p-kiò"
+id = 4764
+moe_forms = ["咂咂叫"]
+preferred_form = "tsa̍p-tsa̍p叫"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 234:246; written form tsa̍p-tsa̍p叫"
+url = "https://tsbp.tgb.org.tw/2016/04/an-ne.html"
+
+[[sources]]
+row = 3712
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pâng-sann"
+id = 4752
+moe_forms = ["縫衫"]
+preferred_form = "pâng衫"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 44; normalized source characters 2333:2338; written form pâng衫"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 12254
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

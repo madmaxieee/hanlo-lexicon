@@ -1,0 +1,16 @@
+alternate_readings = ["sǹg-buē-hô"]
+canonical_tl = "sǹg-bē-hô"
+id = 4792
+moe_forms = ["算袂和"]
+preferred_form = "算bē和"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 30; normalized source characters 1466:1470; written form 算bē和"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 10721
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

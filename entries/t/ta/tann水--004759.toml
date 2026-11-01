@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tann-tsuí"
+id = 4759
+moe_forms = ["擔水"]
+preferred_form = "tann水"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 795:800; written form Tann水"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_49.html"
+
+[[sources]]
+row = 11653
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

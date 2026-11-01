@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tà-bông"
+id = 4793
+moe_forms = ["罩雺"]
+preferred_form = "罩bông"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 27; normalized source characters 2055:2060; written form 罩bông"
+url = "https://tsbp.tgb.org.tw/2016/04/e-tsua.html"
+
+[[sources]]
+row = 9842
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

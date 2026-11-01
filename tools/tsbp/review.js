@@ -15,6 +15,119 @@ try {
 } catch { storageAvailable = false; }
 function editableIgnores(forms) {return new Set(forms.filter(form=>!tracked.has(form)));}
 let ignored = editableIgnores(state.ignored);
+let ignoredSegments = new Set(state.ignored_segments||[]);
+
+// Disclosure state is presentation state, independent of saved word decisions.
+state.disclosures ??= {};
+function disclosureId(key, panel) {return JSON.stringify([key,panel]);}
+function panelAttrs(group, panel, className, defaultOpen=false) {
+  const id=disclosureId(group.key,panel), open=state.disclosures[id]??defaultOpen;
+  return 'class="review-disclosure '+className+'" data-key="'+esc(group.key)+'" data-panel="'+panel+'"'+(open?' open':'');
+}
+function captureDisclosures() {
+  document.querySelectorAll('.review-disclosure').forEach(detail=>{
+    state.disclosures[disclosureId(detail.dataset.key,detail.dataset.panel)]=detail.open;
+  });
+}
+function setPanelOpen(key,panel,open) {
+  state.disclosures[disclosureId(key,panel)]=open;
+  document.querySelectorAll('.review-disclosure').forEach(detail=>{
+    if(detail.dataset.key===key&&detail.dataset.panel===panel)detail.open=open;
+  });
+}
+function rowTriggers(row) {
+  return row.source_triggers?.length?row.source_triggers:[{
+    anchor:row.base_anchor||row.anchor,
+    anchor_start:row.base_anchor_start??row.anchor_start,
+    anchor_end:row.base_anchor_end??row.anchor_end,
+  }];
+}
+function triggerId(document,trigger) {return JSON.stringify([document,trigger.anchor_start,trigger.anchor_end]);}
+function segmentIgnored(row) {return rowTriggers(row).some(t=>ignoredSegments.has(triggerId(row.document_id,t)));}
+function eligibleOccurrences(group) {return group.occurrences.filter(row=>!segmentIgnored(row)&&!row.tracked_coverage?.length);}
+function sectionIgnored(section) {return section.anchors.some(anchor=>ignoredSegments.has(anchor.id));}
+function reconcileSegmentIgnores() {
+  const known=new Set(data.groups.flatMap(group=>group.occurrences.flatMap(row=>rowTriggers(row).map(t=>triggerId(row.document_id,t)))));
+  ignoredSegments=new Set([...ignoredSegments].filter(id=>known.has(id)));
+}
+function setSegmentIgnored(section,ignore=true) {
+  for(const anchor of section.anchors)ignore?ignoredSegments.add(anchor.id):ignoredSegments.delete(anchor.id);
+  if(ignore)for(const {group} of section.matches)decision(group).approved=false;
+  save();
+}
+function coverageNote(row) {
+  const entries=(row.tracked_coverage||[]).flatMap(cover=>cover.entries||[]);
+  return entries.length?'<div class="muted">Covered by '+entries.map(e=>'entry '+e.id+' · '+esc(e.preferred_form)).join(', ')+'</div>':'';
+}
+function reviewSections(groups,showExcluded=false) {
+  const nodes=new Map(), records=[];
+  function root(node) {if(node.parent!==node)node.parent=root(node.parent);return node.parent;}
+  function join(a,b) {a=root(a);b=root(b);if(a!==b)b.parent=a;}
+  for(const group of groups)for(const row of group.occurrences) {
+    if(!showExcluded&&(segmentIgnored(row)||row.tracked_coverage?.length))continue;
+    const triggers=rowTriggers(row), anchors=triggers.map(trigger=>{
+      const id=triggerId(row.document_id,trigger);
+      if(!nodes.has(id)) {
+        const node={id,document:row.document_id,trigger,row};node.parent=node;nodes.set(id,node);
+      }
+      return nodes.get(id);
+    });
+    anchors.slice(1).forEach(node=>join(anchors[0],node));
+    records.push({group,row,node:anchors[0]});
+  }
+  // Older packets may record a subquery rather than the original whole trigger.
+  // Overlapping trigger positions still belong to the same local review section.
+  const ordered=[...nodes.values()].sort((a,b)=>a.document.localeCompare(b.document)||a.trigger.anchor_start-b.trigger.anchor_start||a.trigger.anchor_end-b.trigger.anchor_end);
+  let covering=null;
+  for(const node of ordered) {
+    if(covering&&covering.document===node.document&&node.trigger.anchor_start<covering.trigger.anchor_end) {
+      join(covering,node);
+      if(node.trigger.anchor_end>covering.trigger.anchor_end)covering=node;
+    } else covering=node;
+  }
+  const sections=new Map();
+  for(const node of nodes.values()) {
+    const id=root(node).id;
+    if(!sections.has(id))sections.set(id,{id,document:node.document,anchors:[],matches:new Map()});
+    sections.get(id).anchors.push(node);
+  }
+  for(const {group,row,node} of records) {
+    const section=sections.get(root(node).id);
+    if(!section.matches.has(group.key))section.matches.set(group.key,{group,rows:[]});
+    section.matches.get(group.key).rows.push(row);
+  }
+  const articles=new Map((data.article_inventory||[]).map((article,index)=>[article.id,index]));
+  return [...sections.values()].map(section=>{
+    section.anchors.sort((a,b)=>a.trigger.anchor_start-b.trigger.anchor_start||a.trigger.anchor_end-b.trigger.anchor_end);
+    section.start=section.anchors[0].trigger.anchor_start;
+    section.matches=[...section.matches.values()].sort((a,b)=>
+      Math.max(...b.rows.map(r=>r.anchor_end-r.anchor_start))-Math.max(...a.rows.map(r=>r.anchor_end-r.anchor_start))||
+      a.rows[0].anchor_start-b.rows[0].anchor_start||a.group.key.localeCompare(b.group.key));
+    return section;
+  }).sort((a,b)=>(articles.get(a.document)??Infinity)-(articles.get(b.document)??Infinity)||a.document.localeCompare(b.document)||a.start-b.start);
+}
+function sectionContext(section) {
+  const rows=section.matches.flatMap(match=>match.rows), first=rows[0];
+  const start=Math.min(...rows.map(row=>row.anchor_start),...section.anchors.map(a=>a.trigger.anchor_start));
+  const end=Math.max(...rows.map(row=>row.anchor_end),...section.anchors.map(a=>a.trigger.anchor_end));
+  const context=section.anchors.map(anchor=>data.reading_contexts?.[anchor.id]).find(c=>c&&c.context_start<=start&&c.context_end>=end);
+  if(context)return context;
+  const clause=rows.find(row=>row.clause&&row.clause_start<=start&&row.clause_end>=end);
+  if(clause)return {snippet:clause.clause,context_start:clause.clause_start,context_end:clause.clause_end};
+  return first;
+}
+function sectionSnippet(section) {
+  const context=sectionContext(section), chars=Array.from(context.snippet);
+  const ranges=section.anchors.map(({trigger})=>[trigger.anchor_start-context.context_start,trigger.anchor_end-context.context_start]);
+  let html='',marked=false;
+  chars.forEach((char,index)=>{
+    const inside=ranges.some(([start,end])=>start<=index&&index<end);
+    if(inside!==marked){html+=inside?'<mark>':'</mark>';marked=inside;}
+    html+=esc(char);
+  });
+  if(marked)html+='</mark>';
+  return (context.clipped_left?'…':'')+html+(context.clipped_right?'…':'');
+}
 
 function reconcileHandledRequests() {
   for(const resolution of data.handled_custom_requests||[]) {
@@ -32,6 +145,7 @@ function reconcileHandledRequests() {
 
 function save() {
   state.ignored = [...ignored].sort();
+  state.ignored_segments = [...ignoredSegments].sort();
   try { localStorage.setItem(storageKey, JSON.stringify(state)); }
   catch { storageAvailable = false; }
 }
@@ -54,17 +168,17 @@ function mapToEntry(group, id) {
 }
 function mappingEditor(group) {
   const mapping=sourceMapping(group);
-  if(mapping)return '<div class="mapping-editor" data-key="'+esc(group.key)+'"><strong>Already handled → '+esc(mapping.preferred_form)+'</strong> · '+esc(mapping.canonical_tl)+' · entry '+mapping.entry_id+
+  if(mapping)return '<div class="handling-panel mapping-editor" data-key="'+esc(group.key)+'"><strong>Already handled → '+esc(mapping.preferred_form)+'</strong> · '+esc(mapping.canonical_tl)+' · entry '+mapping.entry_id+
     '<button class="unmap-source" type="button">Review again</button></div>';
   const stale=(data.stale_source_mappings||[]).find(row=>norm(row.source_form)===norm(group.key));
-  return '<details class="mapping-editor" data-key="'+esc(group.key)+'"><summary>Map to existing entry</summary>'+
+  return '<details '+panelAttrs(group,'mapping','handling-panel mapping-editor')+'><summary>Use existing entry</summary>'+
     (stale?'<p>Previous mapping needs review: entry '+stale.entry_id+' · '+esc(stale.preferred_form)+' · '+esc(stale.canonical_tl)+'. The target changed or disappeared.</p>':'')+
     '<p>Confirm that this whole source word is the same word as the selected entry. Its preferred spelling and readings stay in effect.</p>'+
     '<label>Existing entry ID <input class="mapping-id" type="number" min="1"></label><div class="mapping-preview"></div>'+
     '<button class="map-source" type="button">Confirm whole-word mapping</button><div class="mapping-status" role="status"></div></details>';
 }
 function isIgnored(group) { return group.dedup_lookup_forms.some(form => ignored.has(form)); }
-function excluded(group) { return !!sourceMapping(group) || isIgnored(group) || tracked.has(group.key) || unparseable.has(group.key) || machineRejected.has(group.key); }
+function excluded(group) { return !eligibleOccurrences(group).length || !!sourceMapping(group) || isIgnored(group) || tracked.has(group.key) || unparseable.has(group.key) || machineRejected.has(group.key); }
 function pureRomanized(text) {
   return typeof text==='string' && /\p{Script=Latin}/u.test(text)
     && /^[\p{Script=Latin}\p{M}\p{Nd}\-’' ]+$/u.test(text);
@@ -125,24 +239,12 @@ function outputForms(group) {
 }
 function approvable(group) {
   const {item, word, canonical} = choices(group);
-  if (sourceMapping(group) || !item.preferred_form.trim() || hasCustomRequest(item) || isIgnored(group) || unparseable.has(group.key) || machineRejected.has(group.key)
+  if (!eligibleOccurrences(group).length || sourceMapping(group) || !item.preferred_form.trim() || hasCustomRequest(item) || isIgnored(group) || unparseable.has(group.key) || machineRejected.has(group.key)
     || (tracked.has(group.key) && !item.identity_note.trim())) return false;
   try { outputForms(group); } catch { return false; }
   if (item.import_mode==='source_anchor') return sourceAnchorEligible(group) && !item.word_id && !item.canonical_choice_id && !item.alternate_choice_ids.length;
   return !!(item.import_mode==='moe' && word && canonical
     && item.alternate_choice_ids.every(id => id !== canonical.id && word.readings.some(reading => reading.id === id)));
-}
-function countUnion(groups) {
-  const ranges = {};
-  for (const group of groups) for (const row of group.occurrences)
-    (ranges[row.document_id] ??= []).push([row.context_start, row.context_end]);
-  let count = 0;
-  for (const list of Object.values(ranges)) {
-    list.sort((a,b) => a[0]-b[0]); let start=-1, end=-1;
-    for (const [a,b] of list) { if(a<=end) end=Math.max(end,b); else {if(start>=0)count+=end-start;start=a;end=b;} }
-    if(start>=0) count+=end-start;
-  }
-  return count;
 }
 function snippet(row) {
   const text=Array.from(row.snippet), a=row.anchor_start-row.context_start, b=row.anchor_end-row.context_start;
@@ -155,13 +257,13 @@ function screeningNote(row) {
   const review=row.machine_screening;
   return review?'<div class="muted"><strong>Model '+esc(review.decision)+'</strong> · '+esc(review.model)+' · '+esc(review.reason)+'</div>':'';
 }
-function anchorNote(group) {
-  const row=group.occurrences[0];
+function anchorNote(group, row=group.occurrences[0]) {
   const title=row.title.replace(/[\\[\]]/g, '\\$&');
   return (row.anchor||group.display)+': '+row.snippet+' ['+title+']('+row.url+')';
 }
 async function copyAnchorNote(group, button) {
-  const text=anchorNote(group), controls=button.parentElement;
+  const row=group.occurrences[Number(button.dataset.occurrence)||0];
+  const text=anchorNote(group,row), controls=button.parentElement;
   const field=controls.querySelector('textarea'), status=controls.querySelector('[role="status"]');
   button.disabled=true;
   status.textContent='';
@@ -214,13 +316,13 @@ function importEditor(group) {
   const {item, word, canonical}=choices(group), words=group.review_words||[];
   const eligible=sourceAnchorEligible(group);
   const modeSelect=eligible&&words.length?'<label>Import evidence <select class="mode-select"><option value="moe" '+(item.import_mode==='moe'?'selected':'')+'>MOE entry and readings</option><option value="source_anchor" '+(item.import_mode==='source_anchor'?'selected':'')+'>Article anchor and normalized TL</option></select></label>':'';
-  if(item.import_mode==='source_anchor'&&eligible) return '<details class="import-editor" data-key="'+esc(group.key)+'"><summary>Article anchor import'+(item.approved?' · approved':'')+'</summary>'+modeSelect+
+  if(item.import_mode==='source_anchor'&&eligible) return '<details '+panelAttrs(group,'import','handling-panel import-editor')+'><summary>Import word · article evidence'+(item.approved?' · approved':'')+'</summary>'+modeSelect+
     '<label>Preferred spelling <input type="text" class="preferred-input" value="'+esc(item.preferred_form)+'"></label>'+
     '<div>Filing TL reading: <strong>'+esc(group.normalized_tl)+'</strong></div>'+
     '<div class="written-form-preview"><strong>'+esc(item.preferred_form)+'</strong> · '+esc(group.normalized_tl)+'</div>'+
     '<label>Distinct word note (optional) <input type="text" class="identity-input" value="'+esc(item.identity_note)+'"></label>'+
-    '<p class="muted">Approve this romanized form and reading using the article as evidence. No MOE match is required. New entries remain imported; offline LKK/MOE and existing-entry checks still run.</p></details>';
-  if(!words.length) return '<p class="muted">A mixed or unrecognized anchor needs a supported reading or custom handling before import.</p>';
+    '<p class="muted">Approve this romanized form and reading using the article as evidence. No MOE match is required. New entries remain imported; offline LKK/MOE and existing-entry checks still run.</p>'+approvalControl(group)+'</details>';
+  if(!words.length) return '<details '+panelAttrs(group,'import','handling-panel')+'><summary>Import word · reading needed</summary><p class="muted">This match needs a supported reading. Use Custom handling to propose its spelling and TL reading.</p></details>';
   const orderedWords=[...words].sort((a,b)=>Number(regularMoeWord(b))-Number(regularMoeWord(a)));
   const options='<option value="">Choose the MOE entry / meaning</option>'+orderedWords.map(option=>{
     const refs=option.readings.flatMap(reading=>reading.references||[]);
@@ -232,7 +334,7 @@ function importEditor(group) {
   try { preview=outputForms(group).map(row=>'<div><strong>'+esc(row.form)+'</strong> · '+esc(row.reading)+'</div>').join(''); }
   catch(error) { preview='<div class="muted">'+esc(error.message)+'</div>'; }
   const primary='<option value="">Choose the filing TL reading</option>'+readings.map(reading=>'<option value="'+reading.id+'" '+(reading.id===item.canonical_choice_id?'selected':'')+'>'+esc(reading.reading)+' · '+esc(reading.headword)+' · '+esc(moeReadingRole(reading))+(reading.id===item.canonical_choice_id?' · selected filing':'')+(reading.detected?' · anchor match':' · additional MOE reading')+'</option>').join('');
-  return '<details class="import-editor" data-key="'+esc(group.key)+'"><summary>Choose spelling and import readings'+(item.approved?' · approved':'')+'</summary>'+modeSelect+
+  return '<details '+panelAttrs(group,'import','handling-panel import-editor',!item.approved&&!hasCustomRequest(item)&&!sourceMapping(group))+'><summary>Import word · MOE evidence'+(item.approved?' · approved':'')+'</summary>'+modeSelect+
     '<label>Preferred spelling <input type="text" class="preferred-input" value="'+esc(item.preferred_form)+'"></label>'+
     '<label>MOE entry / meaning <select class="word-select">'+options+'</select></label>'+
     '<label>Filing TL reading <select class="canonical-select">'+primary+'</select></label>'+
@@ -240,13 +342,13 @@ function importEditor(group) {
       '<label class="reading-alt"><input type="checkbox" class="alternate-box" data-choice="'+reading.id+'" '+(item.alternate_choice_ids.includes(reading.id)?'checked':'')+'> '+esc(reading.reading)+' · '+esc(moeReadingRole(reading))+(reading.detected?'':' · additional MOE reading')+'</label>').join('')+
     '<div class="written-form-preview"><strong>Written forms to import</strong>'+preview+'</div>'+
     '<label>Distinct word note (optional) <input type="text" class="identity-input" value="'+esc(item.identity_note)+'"></label>'+
-    '<p class="muted">Alternate outputs preserve Han characters and change the romanized syllables. Keep readings of one word together. For an existing word, update its entry; use the distinct word note only for an unrelated homograph. New records start as imported.</p></details>';
+    '<p class="muted">Alternate outputs preserve Han characters and change the romanized syllables. Keep readings of one word together. For an existing word, update its entry; use the distinct word note only for an unrelated homograph. New records start as imported.</p>'+approvalControl(group)+'</details>';
 }
 function hasCustomRequest(item) {
   return ['custom_handling','custom_preferred_form','custom_hanji','custom_reading'].some(field=>item[field]?.trim());
 }
 function customRequests() {
-  return Object.entries(state.decisions).filter(([key,item])=>hasCustomRequest(item)).map(([key,item])=>{
+  return Object.entries(state.decisions).filter(([key,item])=>hasCustomRequest(item)&&(!byKey.has(key)||eligibleOccurrences(byKey.get(key)).length)).map(([key,item])=>{
     const request={anchor_key:key,prompt:(item.custom_handling||'').trim(),anchor_present:byKey.has(key)};
     if(['custom_preferred_form','custom_hanji','custom_reading'].some(field=>item[field]?.trim())) {
       request.preferred_form=(item.custom_preferred_form||'').trim().normalize('NFC');
@@ -259,35 +361,70 @@ function customRequests() {
 function customEditor(group) {
   const item=decision(group);
   const structured=!!(item.custom_preferred_form||item.custom_hanji||item.custom_reading);
-  return '<details class="custom-handling-editor" data-key="'+esc(group.key)+'"'+(hasCustomRequest(item)?' open':'')+'><summary>Custom handling'+(hasCustomRequest(item)?' · requested':'')+'</summary>'+
+  return '<details '+panelAttrs(group,'custom','handling-panel custom-handling-editor')+'><summary>Custom handling'+(hasCustomRequest(item)?' · requested':'')+'</summary>'+
     '<label>Preferred form <input class="custom-preferred-form-input" type="text" value="'+esc(item.custom_preferred_form)+'" placeholder="食飯"></label>'+
     '<label>Hanji (optional) <input class="custom-hanji-input" type="text" value="'+esc(item.custom_hanji)+'" placeholder="食飯"></label>'+
     '<label>Reading (TL) <input class="custom-reading-input" type="text" value="'+esc(item.custom_reading)+'" placeholder="tsia̍h-pn̄g"></label>'+
     (structured&&(!item.custom_preferred_form.trim()||!item.custom_reading.trim())?'<p class="muted">Enter both a preferred form and reading. Hanji is optional.</p>':'')+
     '<label>Additional instructions (optional)<textarea class="custom-handling-input" placeholder="For example: split these meanings or check a missing reading.">'+esc(item.custom_handling)+'</textarea></label>'+
     (item.handled_custom_request?'<div class="muted">Previous request handled by entry '+esc(item.handled_custom_request.entry_id)+': '+esc(item.handled_custom_request.prompt)+'</div>':'')+
-    '<p class="muted">Use preferred form and reading together; Hanji is optional and does not claim MOE inclusion. Saved locally and included in Export review.json for source and duplicate checks. Custom requests pause automatic import until reviewed.</p></details>';
+    '<p class="muted">Use preferred form and reading together; Hanji is optional and does not claim MOE inclusion. Saved locally and included in Export review.json for source and duplicate checks. Custom requests pause automatic import until reviewed.</p><button class="custom-save" type="button">Save request and fold</button></details>';
+}
+function approvalControl(group) {
+  const item=decision(group);
+  return '<label class="approve-label '+(item.approved?'approval-good':'')+'"><input class="approve-box" data-key="'+esc(group.key)+'" type="checkbox" aria-label="Approve import '+esc(group.key)+'" '+(item.approved&&approvable(group)?'checked ':'')+(approvable(group)?'':'disabled')+'> Approve import</label>';
 }
 function moePanel(group) {
   const cards=group.moe_cards||[], related=group.moe_related||[], preferred=group.preferred_matches||[];
-  return (preferred.length?'<details><summary>Final preferred-form matches ('+preferred.length+')</summary>'+preferred.map(record=>'<div class="occurrence">Entry '+record.id+' · <strong>'+esc(record.preferred_form)+'</strong><div>Matched written form: '+esc((record.matched_written_forms||[record.preferred_form]).join(', '))+'</div>'+(record.hanji_forms?.length?'<div>Hanji: '+esc(record.hanji_forms.join(', '))+'</div>':'')+'<div class="muted">'+esc(record.path)+'</div></div>').join('')+'</details>':'')+
-    mappingEditor(group)+customEditor(group)+importEditor(group)+(cards.length?'<details class="anchor-matches" data-key="'+esc(group.key)+'"'+(decision(group).moe_matches_collapsed?'':' open')+'><summary>MOE anchor match ('+cards.length+')</summary>'+cards.map(moeCard).join('')+'</details>':'')+
-    (related.length?'<details class="moe-related" data-key="'+esc(group.key)+'"><summary>MOE related entries</summary><div class="moe-results"></div></details>':'');
+  return '<div class="handling-options">'+importEditor(group)+customEditor(group)+mappingEditor(group)+'</div><div class="evidence">'+
+    (preferred.length?'<details '+panelAttrs(group,'preferred','preferred-evidence')+'><summary>Existing spelling matches ('+preferred.length+')</summary>'+preferred.map(record=>'<div class="occurrence">Entry '+record.id+' · <strong>'+esc(record.preferred_form)+'</strong><div>Matched written form: '+esc((record.matched_written_forms||[record.preferred_form]).join(', '))+'</div>'+(record.hanji_forms?.length?'<div>Hanji: '+esc(record.hanji_forms.join(', '))+'</div>':'')+'<div class="muted">'+esc(record.path)+'</div></div>').join('')+'</details>':'')+
+    (cards.length?'<details '+panelAttrs(group,'moe','anchor-matches',!decision(group).moe_matches_collapsed)+'><summary>MOE evidence ('+cards.length+')</summary>'+cards.map(moeCard).join('')+'</details>':'')+
+    (related.length?'<details '+panelAttrs(group,'related','moe-related')+'><summary>Related dictionary entries</summary><div class="moe-results"></div></details>':'')+'</div>';
+}
+function matchStatus(group,rows=group.occurrences) {
+  const item=decision(group);
+  return rows.every(segmentIgnored)?'Segment ignored':rows.every(row=>row.tracked_coverage?.length)?'Covered by tracked word':sourceMapping(group)?'Mapped source spelling':tracked.has(group.key)?'Tracked form':unparseable.has(group.key)?'Parser did not recognize':machineRejected.has(group.key)?'Model rejected':isIgnored(group)?'Ignored':hasCustomRequest(item)?'Custom request saved':item.approved&&approvable(group)?'Approved import':'Pending';
+}
+function matchCard({group,rows}) {
+  const row=rows[0],item=decision(group),omit=excluded(group)||rows.every(r=>segmentIgnored(r)||r.tracked_coverage?.length);
+  const fixed=rows.every(r=>segmentIgnored(r)||r.tracked_coverage?.length)||sourceMapping(group)||tracked.has(group.key)||unparseable.has(group.key)||machineRejected.has(group.key);
+  const status=matchStatus(group,rows);
+  return '<article class="match-card'+(omit?' known':'')+'" data-key="'+esc(group.key)+'"><div class="match-header"><div><h3>'+esc(group.display)+'</h3><div class="muted">'+(group.normalized_tl?'TL lookup: '+esc(group.normalized_tl)+' · ':'')+group.occurrences.length+' occurrence'+(group.occurrences.length===1?'':'s')+' in '+group.article_count+' article'+(group.article_count===1?'':'s')+'</div></div><div class="match-actions"><span class="match-status '+(item.approved?'approval-good':'')+'">'+status+'</span><label><input class="ignore-box" type="checkbox" data-key="'+esc(group.key)+'" aria-label="Ignore '+esc(group.key)+'" '+(omit?'checked ':'')+(fixed?'disabled':'')+'> Ignore match</label><div class="note-controls"><button class="copy-note" data-key="'+esc(group.key)+'" data-occurrence="'+group.occurrences.indexOf(row)+'" type="button" title="Copy note" aria-label="Copy note for '+esc(group.display)+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg></button><span class="muted" role="status"></span><textarea hidden readonly aria-label="Anchor note"></textarea></div></div></div>'+
+    rows.map(row=>'<div class="candidate-context">'+snippet(row)+'</div>'+screeningNote(row)+coverageNote(row)).join('')+moePanel(group)+
+    '<details '+panelAttrs(group,'occurrences','all-occurrences')+'><summary>All '+group.occurrences.length+' source occurrences</summary>'+group.occurrences.map(row=>'<div class="occurrence"><div class="snippet">'+snippet(row)+'</div>'+source(row)+screeningNote(row)+coverageNote(row)+(segmentIgnored(row)?'<div class="muted">Ignored with this Roman-text segment</div>':'')+'<div>'+esc(row.clause)+'</div></div>').join('')+'</details>'+
+    (group.machine_rejected_occurrences?.length?'<details '+panelAttrs(group,'rejected','rejected-occurrences')+'><summary>Model-rejected occurrences ('+group.machine_rejected_occurrences.length+')</summary>'+group.machine_rejected_occurrences.map(row=>'<div class="occurrence"><div class="snippet">'+snippet(row)+'</div>'+source(row)+screeningNote(row)+'</div>').join('')+'</details>':'')+'</article>';
+}
+function sectionHtml(section) {
+  const row=section.matches[0].rows[0];
+  return '<section class="anchor-group" data-section="'+esc(section.id)+'"><header class="anchor-context"><div class="eyebrow">Roman-text segment</div><h2>'+section.anchors.map(anchor=>esc(anchor.trigger.anchor||anchor.row.base_anchor||anchor.row.anchor)).join(' · ')+'</h2><div class="reading-context">'+sectionSnippet(section)+'</div>'+source(row)+'<div class="muted">'+section.matches.length+' candidate'+(section.matches.length===1?'':'s')+' · longest first</div><button class="ignore-segment" data-section="'+esc(section.id)+'" type="button">'+(sectionIgnored(section)?'Restore segment':'Ignore this segment')+'</button></header>'+section.matches.map(matchCard).join('')+'</section>';
 }
 function render() {
-  const active=data.groups.filter(group=>!excluded(group)), total=data.baseline.source_characters;
-  const compact=active.reduce((sum,group)=>sum+Array.from(group.occurrences[0].snippet).length,0), union=countUnion(active);
-  $('stats').innerHTML=[['Articles',data.baseline.article_count],['Candidate groups',active.length],['Occurrences',active.reduce((sum,group)=>sum+group.occurrences.length,0)],['Compact text reduction',((1-compact/total)*100).toFixed(1)+'%'],['All-context reduction',((1-union/total)*100).toFixed(1)+'%']].map(([label,value])=>'<div class="card"><div class="number">'+value+'</div>'+label+'</div>').join('');
-  const query=norm($('search').value), shown=data.groups.filter(group=>(!excluded(group)||$('showKnown').checked)&&(!query||norm(group.key+' '+(group.normalized_tl||'')+' '+(group.moe_related||[]).map(record=>record.headword+' '+record.matched_reading).join(' ')+' '+group.occurrences.map(row=>row.snippet+' '+row.title).join(' ')).includes(query)));
-  const approved=data.groups.filter(group=>decision(group).approved&&approvable(group)).length;
-  $('count').textContent=shown.length+' visible groups · '+ignored.size+' ignored forms · '+approved+' approved imports · '+customRequests().length+' custom requests · '+compact.toLocaleString()+' compact snippet characters / '+total.toLocaleString()+' source characters · '+union.toLocaleString()+' source characters covered by all contexts';
-  $('review-status').textContent=(storageAvailable?'Decisions save locally in this browser. ':'Local saving is unavailable; export decisions before closing. ')+approved+' ready approvals and '+customRequests().length+' custom requests. '+data.groups.filter(sourceMapping).length+' mapped words. '+(data.stale_source_mappings?.length?data.stale_source_mappings.length+' saved mappings need target review. ':'')+'Export review.json to hand them to the import script; nothing is imported by this page.';
-  $('rows').innerHTML=shown.map(group=>{
-    const row=group.occurrences[0], item=decision(group), omit=excluded(group);
-    return '<tr class="'+(omit?'known':'')+'" data-key="'+esc(group.key)+'"><td><input class="ignore-box" type="checkbox" data-key="'+esc(group.key)+'" aria-label="Ignore '+esc(group.key)+'" '+(omit?'checked ':'')+(sourceMapping(group)||tracked.has(group.key)||unparseable.has(group.key)||machineRejected.has(group.key)?'disabled':'')+'>'+(sourceMapping(group)?'<br><span class="tag">Mapped source spelling</span>':'')+(tracked.has(group.key)?'<br><span class="tag">Tracked form</span>':'')+(unparseable.has(group.key)?'<br><span class="tag">Parser did not recognize</span>':'')+(machineRejected.has(group.key)?'<br><span class="tag">Model rejected</span>':'')+'</td><td><strong>'+esc(group.display)+'</strong>'+(group.kind==='moe_context'?'<br><span class="tag">MOE-backed mixed form</span>':'')+(group.normalized_tl&&group.normalized_tl!==group.key?'<br><span class="tag">TL lookup: '+esc(group.normalized_tl)+'</span>':'')+'<br>'+group.occurrences.length+' occurrences<br>'+group.article_count+' articles'+
-      '<div class="note-controls"><button class="copy-note" data-key="'+esc(group.key)+'" type="button" title="Copy note" aria-label="Copy note for '+esc(group.display)+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg></button><span class="muted" role="status"></span><textarea hidden readonly aria-label="Anchor note"></textarea></div>'+
-      '<label class="approve-label '+(item.approved?'approval-good':'')+'"><input class="approve-box" data-key="'+esc(group.key)+'" type="checkbox" aria-label="Approve import '+esc(group.key)+'" '+(item.approved&&approvable(group)?'checked ':'')+(approvable(group)?'':'disabled')+'> Approve import</label></td><td><div class="snippet">'+snippet(row)+'</div>'+source(row)+screeningNote(row)+moePanel(group)+'<details><summary>Full clause and all '+group.occurrences.length+' occurrences</summary>'+group.occurrences.map(row=>'<div class="occurrence"><div class="snippet">'+snippet(row)+'</div>'+source(row)+screeningNote(row)+'<div>'+esc(row.clause)+'</div></div>').join('')+'</details>'+(group.machine_rejected_occurrences?.length?'<details><summary>Model-rejected occurrences ('+group.machine_rejected_occurrences.length+')</summary>'+group.machine_rejected_occurrences.map(row=>'<div class="occurrence"><div class="snippet">'+snippet(row)+'</div>'+source(row)+screeningNote(row)+'</div>').join('')+'</details>':'')+'</td></tr>';
-  }).join('');
+  captureDisclosures();
+  const active=data.groups.filter(group=>!excluded(group));
+  const approved=active.filter(group=>decision(group).approved&&approvable(group)).length;
+  const activeSections=reviewSections(active);
+  $('stats').innerHTML=[['Articles',data.baseline.article_count],['Roman-text segments',activeSections.length],['Candidate words',active.length],['Approved imports',approved]].map(([label,value])=>'<div class="card"><div class="number">'+value+'</div>'+label+'</div>').join('');
+  const query=norm($('search').value);
+  const available=data.groups.filter(group=>!excluded(group)||$('showKnown').checked);
+  const sections=reviewSections(available,$('showKnown').checked).filter(section=>!query||norm(sectionContext(section).snippet+' '+section.matches.map(({group,rows})=>group.key+' '+(group.normalized_tl||'')+' '+(group.moe_related||[]).map(record=>record.headword+' '+record.matched_reading).join(' ')+' '+rows.map(row=>row.snippet+' '+row.title).join(' ')).join(' ')).includes(query));
+  $('count').textContent=sections.length+' visible Roman-text segments · '+ignored.size+' ignored forms · '+approved+' approved imports · '+customRequests().length+' custom requests';
+  $('review-status').textContent=(storageAvailable?'Decisions save locally in this browser. ':'Local saving is unavailable; export decisions before closing. ')+approved+' ready approvals and '+customRequests().length+' custom requests. '+data.groups.filter(sourceMapping).length+' mapped words. '+(data.stale_source_mappings?.length?data.stale_source_mappings.length+' saved mappings need target review. ':'')+'Export review.json to retain approvals, requests and mappings. Nothing is imported by this page.';
+  $('rows').innerHTML=sections.map(sectionHtml).join('');
+  const sectionsById=new Map(sections.map(section=>[section.id,section]));
+  document.querySelectorAll('.ignore-segment').forEach(button=>button.onclick=()=>{
+    const section=sectionsById.get(button.dataset.section);setSegmentIgnored(section,!sectionIgnored(section));render();
+  });
+  document.querySelectorAll('.review-disclosure').forEach(detail=>detail.ontoggle=()=>{
+    if(detail.isConnected===false)return;
+    setPanelOpen(detail.dataset.key,detail.dataset.panel,detail.open);save();
+    if(detail.dataset.panel==='related'&&detail.open&&!detail.dataset.loaded) {
+      detail.querySelector('.moe-results').innerHTML=collapseRelated(byKey.get(detail.dataset.key).moe_related).map(moeCard).join('');
+      detail.dataset.loaded='yes';
+    }
+  });
+  document.querySelectorAll('.moe-related').forEach(detail=>{
+    if(detail.open){detail.querySelector('.moe-results').innerHTML=collapseRelated(byKey.get(detail.dataset.key).moe_related).map(moeCard).join('');detail.dataset.loaded='yes';}
+  });
   document.querySelectorAll('.mapping-editor').forEach(editor=>{
     const group=byKey.get(editor.dataset.key), input=editor.querySelector('.mapping-id');
     const clear=editor.querySelector('.unmap-source');
@@ -304,26 +441,35 @@ function render() {
     }
   });
   document.querySelectorAll('.copy-note').forEach(button=>button.onclick=()=>copyAnchorNote(byKey.get(button.dataset.key),button));
-  document.querySelectorAll('.anchor-matches').forEach(detail=>detail.ontoggle=()=>{decision(byKey.get(detail.dataset.key)).moe_matches_collapsed=!detail.open;save();});
-  document.querySelectorAll('.moe-related').forEach(detail=>detail.ontoggle=()=>{if(detail.open&&!detail.dataset.loaded){const cards=collapseRelated(byKey.get(detail.dataset.key).moe_related);detail.querySelector('.moe-results').innerHTML=cards.map(moeCard).join('');detail.dataset.loaded='yes';}});
   document.querySelectorAll('.ignore-box').forEach(box=>box.onchange=()=>{
     box.checked?ignored.add(box.dataset.key):ignored.delete(box.dataset.key);
     if(box.checked)decision(byKey.get(box.dataset.key)).approved=false;
     $('known').value=[...ignored].sort().join(', ');save();render();
   });
-  document.querySelectorAll('.approve-box').forEach(box=>box.onchange=()=>{decision(byKey.get(box.dataset.key)).approved=box.checked;save();render();});
+  document.querySelectorAll('.approve-box').forEach(box=>box.onchange=()=>{const group=byKey.get(box.dataset.key);decision(group).approved=box.checked&&approvable(group);if(box.checked)setPanelOpen(group.key,'import',false);save();render();});
   document.querySelectorAll('.custom-handling-editor').forEach(editor=>{
     const item=decision(byKey.get(editor.dataset.key));
+    editor.querySelector('.custom-save').onclick=()=>{setPanelOpen(editor.dataset.key,'custom',false);save();render();};
     for(const [selector,field] of [['.custom-handling-input','custom_handling'],
       ['.custom-preferred-form-input','custom_preferred_form'],['.custom-hanji-input','custom_hanji'],
       ['.custom-reading-input','custom_reading']])
-      editor.querySelector(selector).onchange=event=>{
-        item[field]=event.target.value.normalize('NFC');item.approved=false;save();render();
+      editor.querySelector(selector).oninput=event=>{
+        item[field]=event.target.value.normalize('NFC');item.approved=false;
+        editor.querySelector('summary').textContent='Custom handling'+(hasCustomRequest(item)?' · requested':'');
+        document.querySelectorAll('.approve-box').forEach(box=>{
+          if(box.dataset.key===editor.dataset.key){box.checked=false;box.disabled=!approvable(byKey.get(editor.dataset.key));}
+        });
+        document.querySelectorAll('.match-card').forEach(card=>{
+          if(card.dataset.key===editor.dataset.key) {
+            const status=card.querySelector('.match-status');status.textContent=matchStatus(byKey.get(editor.dataset.key));status.classList.remove('approval-good');
+          }
+        });
+        save();
       };
   });
   document.querySelectorAll('.import-editor').forEach(editor=>{
     const group=byKey.get(editor.dataset.key), item=decision(group);
-    function update(callback){callback();item.approved=false;save();const key=group.key;render();document.querySelectorAll('.import-editor').forEach(node=>{if(node.dataset.key===key)node.open=true;});}
+    function update(callback){callback();item.approved=false;setPanelOpen(group.key,'import',true);save();render();}
     editor.querySelector('.preferred-input').onchange=event=>update(()=>item.preferred_form=event.target.value.normalize('NFC'));
     editor.querySelector('.identity-input').onchange=event=>update(()=>item.identity_note=event.target.value);
     const modeSelect=editor.querySelector('.mode-select');
@@ -347,10 +493,12 @@ function download(filename,value) {
   link.href=url;link.download=filename;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 function reviewExport() {
+  captureDisclosures();
+  reconcileSegmentIgnores();
   reconcileHandledRequests();
   const approvals=data.groups.filter(group=>decision(group).approved&&approvable(group)).map(group=>({anchor_key:group.key,approved:true,...decision(group),...(decision(group).import_mode==='source_anchor'?{source_reading:group.normalized_tl}:{})}));
   return {schema_version:1,issue:data.issue,corpus_sha256:data.corpus_sha256,groups_sha256:data.review_groups_sha256,
-    moe_snapshot:data.moe?.snapshot,screening_sha256:data.machine_screening?.sha256||null,ignored_forms:[...ignored].sort(),
+    moe_snapshot:data.moe?.snapshot,screening_sha256:data.machine_screening?.sha256||null,ignored_forms:[...ignored].sort(),ignored_segments:[...ignoredSegments].sort(),ui_state:{disclosures:state.disclosures},
     source_mappings:data.groups.map(sourceMapping).filter(Boolean),
     source_mapping_removals:data.groups.filter(g=>g.source_mapping&&Object.hasOwn(decision(g),'source_mapping')&&decision(g).source_mapping===null).map(g=>g.key),approvals,custom_requests:customRequests(),decisions:state.decisions};
 }
@@ -360,7 +508,7 @@ $('screening-policy').textContent=data.machine_screening?
   data.machine_screening.decision_counts.reject+' rejected; '+data.machine_screening.decision_counts.hold+
   ' held for your review. Model rejections are visible under Show excluded rows. This screen does not approve imports.':'';
 $('known').value=[...ignored].sort().join(', ');
-$('policy').textContent='Nested and overlapping multi-syllable anchors are listed. A single-syllable match is shown only where no longer MOE or tracked-word match contains it. Identical article/span matches appear once; text coverage counts overlaps once. Exclusions apply to each final written form. Matches remain candidates for human review.';
+$('policy').textContent='The page groups candidates by original Roman-text positions, in article order, longest first. Decisions remain per word; repeated passages share that decision. Nested and overlapping multi-syllable anchors are listed. A single-syllable match is shown only where no longer MOE or tracked-word match contains it. Identical article/span matches appear once; text coverage counts overlaps once. Exclusions apply to each final written form. Matches remain candidates for human review.';
 $('normalization').textContent='TL lookup spellings preserve original source text. Identical MOE headword/reading cards are merged while all IDs, definitions and source references remain available.';
 $('moe-policy').textContent='Nested and overlapping multi-syllable anchors are listed separately; contained single-syllable matches are suppressed. Pure romanized anchors can use the article and displayed normalized TL reading without an MOE match. For dictionary-backed imports, choose one MOE entry / meaning, its filing reading and any alternates. Additional readings are sourced from that same MOE entry, even when they were not the detected anchor reading.';
 $('context-policy').textContent='Exact context exclusions: '+data.context_exclusions.phrases.join(', ')+' · '+data.context_exclusions.skipped_anchor_occurrences+' anchor occurrences omitted.';
@@ -373,7 +521,7 @@ $('review-file').onchange=async event=>{
   try {
     const bundle=JSON.parse(await event.target.files[0].text());
     if(bundle.schema_version!==1||bundle.corpus_sha256!==data.corpus_sha256||bundle.issue!==data.issue)throw Error('This review belongs to another corpus or issue.');
-    state={ignored:bundle.ignored_forms||data.known_forms,decisions:bundle.decisions||{}};
+    state={ignored:bundle.ignored_forms||data.known_forms,decisions:bundle.decisions||{},ignored_segments:bundle.ignored_segments||[],disclosures:bundle.ui_state?.disclosures||{}};
     for(const mapping of bundle.source_mappings||[]){const group=byKey.get(norm(mapping.source_form));if(group)decision(group).source_mapping=mapping;}
     for(const form of bundle.source_mapping_removals||[]){const group=byKey.get(norm(form));if(group)decision(group).source_mapping=null;}
     for(const approval of bundle.approvals||[])state.decisions[approval.anchor_key]=approval;
@@ -384,9 +532,10 @@ $('review-file').onchange=async event=>{
       item.custom_preferred_form=request.preferred_form||'';
       item.custom_hanji=request.hanji||'';item.custom_reading=request.reading||'';
     }
-    ignored=editableIgnores(state.ignored);$('known').value=[...ignored].sort().join(', ');reconcileHandledRequests();save();render();
+    ignored=editableIgnores(state.ignored);ignoredSegments=new Set(state.ignored_segments||[]);$('known').value=[...ignored].sort().join(', ');reconcileHandledRequests();reconcileSegmentIgnores();$('rows').innerHTML='';save();render();
   } catch(error) {$('review-status').textContent='Could not load review: '+error.message;}
 };
 reconcileHandledRequests();
+reconcileSegmentIgnores();
 save();
 render();

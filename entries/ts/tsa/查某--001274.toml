@@ -1,10 +1,15 @@
-alternate_readings = []
+alternate_readings = ["tsa̋", "tsa̋u", "tsőo"]
 canonical_tl = "tsa-bóo"
+editorial_rationale = "The maintainer explicitly adopted tsa̋, tsa̋u and tsőo as alternate contractions of 查某; preserve the LKK preferred form and canonical tsa-bóo."
 id = 1274
 moe_forms = []
 preferred_form = "查某"
 review_status = "imported"
 schema_version = 1
+
+[[sources]]
+locator = "Issue 385; article text line 30; source characters 1400:1404; literal form Tsa̋; maintainer adopted contractions tsa̋, tsa̋u, tsőo"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
 
 [[sources]]
 row = 729

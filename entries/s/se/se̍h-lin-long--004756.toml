@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "se̍h-lin-long"
+id = 4756
+moe_forms = ["踅玲瑯"]
+preferred_form = "se̍h-lin-long"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 8; normalized source characters 86:99; written form se̍h-lin-long"
+url = "https://tsbp.tgb.org.tw/2016/04/e_16.html"
+
+[[sources]]
+row = 10879
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

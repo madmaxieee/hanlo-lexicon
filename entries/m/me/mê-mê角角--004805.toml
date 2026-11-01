@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "mê-mê-kak-kak"
+hanji_forms = ["鋩鋩角角"]
+id = 4805
+moe_forms = []
+preferred_form = "mê-mê角角"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 46; normalized source characters 1969:1974; written form mê-mê"
+url = "https://tsbp.tgb.org.tw/2016/04/an-ne.html"

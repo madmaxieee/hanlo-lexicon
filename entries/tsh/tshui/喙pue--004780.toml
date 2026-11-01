@@ -1,0 +1,21 @@
+alternate_readings = ["tshuì-pe"]
+canonical_tl = "tshuì-pue"
+id = 4780
+moe_forms = ["喙桮"]
+preferred_form = "喙pue"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 6; normalized source characters 65:69; written form 喙pue"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post.html"
+
+[[sources]]
+row = 1106
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 14306
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

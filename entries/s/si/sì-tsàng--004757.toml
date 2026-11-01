@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sì-tsàng"
+id = 4757
+moe_forms = ["四壯"]
+preferred_form = "sì-tsàng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 189:197; written form sì-tsàng"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 15191
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

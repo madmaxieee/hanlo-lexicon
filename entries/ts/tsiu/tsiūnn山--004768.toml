@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsiūnn-suann"
+id = 4768
+moe_forms = ["上山"]
+preferred_form = "tsiūnn山"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 6:13; written form tsiūnn山"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_97.html"
+
+[[sources]]
+row = 226
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

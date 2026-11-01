@@ -11,6 +11,7 @@ import re
 import tomllib
 import unicodedata
 
+from review_context import reading_contexts
 from source_mappings import verified_mappings, apply_mappings
 from moe_context import enrich
 from screen import apply_screening, read as read_screening, sha as screening_sha
@@ -251,28 +252,29 @@ def metrics(groups, texts, known):
             "full_clauses_union_retained_pct": round(100 * clause / total, 2)}
 
 
-def review_page(payload):
+def review_page(payload, texts=None):
+    payload = {**payload, "reading_contexts": reading_contexts(payload, texts)}
     data = json.dumps(payload, ensure_ascii=False).replace("<", "\\u003c")
     return '''<!doctype html><html lang="en"><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>TSBP issue review</title>
 <style>
-body{font:16px/1.6 system-ui,sans-serif;max-width:1250px;margin:auto;padding:32px;color:#202833;background:#f6f7f9}
-h1{font-size:28px;margin:0}p{max-width:1000px}.muted{color:#626d7c;font-size:14px}
-.cards{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}.card{background:white;border:1px solid #dce1e7;border-radius:8px;padding:14px 20px;min-width:170px}.number{font-size:25px;font-weight:650}
-input[type=text],textarea{font:inherit;border:1px solid #bfc8d2;border-radius:5px;padding:8px;box-sizing:border-box}textarea{width:100%;min-height:65px}button{font:inherit;padding:7px 12px;cursor:pointer}#search{width:100%;margin:12px 0}
-.custom-handling-editor label{display:block;margin:10px 0}.custom-handling-editor input[type=text],.custom-handling-editor textarea{display:block;width:100%;min-width:0;margin-top:4px}
-table{width:100%;border-collapse:collapse;background:white}th,td{text-align:left;vertical-align:top;border-bottom:1px solid #e1e5ea;padding:12px}th{background:#e9eef3;position:sticky;top:0}td:nth-child(2){min-width:130px}mark{background:#ffdf89;border-radius:3px;padding:1px 0}a{color:#165ab0}details{margin-top:6px}summary{cursor:pointer;color:#36638b;font-size:14px}.snippet{font-size:18px;white-space:pre-wrap}.occurrence{padding:12px 0;border-top:1px solid #eee}.known{opacity:.5}.tag{font-size:12px;color:#777}.import-editor{border:1px solid #dce1e7;padding:10px;border-radius:6px;margin:12px 0}.import-editor label{display:block;margin:8px 0}.import-editor input[type=text],.import-editor select{font:inherit;width:100%;padding:6px;box-sizing:border-box}.approve-label{display:block;margin-top:12px}.approval-good{color:#167344}.reading-alt{display:block}button{margin:3px}
+*{box-sizing:border-box}body{font:16px/1.6 system-ui,sans-serif;max-width:1100px;margin:auto;padding:32px 24px;color:#243044;background:#f5f6f8}
+h1{font-size:28px;margin:0}h2,h3,p{margin:0 0 12px}h2{font-size:20px}h3{font-size:21px}.muted{color:#626d7c;font-size:14px}.eyebrow{font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.07em;color:#626d7c}
+.cards,.toolbar,.match-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}.cards{margin:20px 0}.card{background:white;border:1px solid #dce1e7;border-radius:8px;padding:10px 18px}.number{font-size:24px;font-weight:650}.toolbar{margin:16px 0}
+input,textarea,select,button{font:inherit}input[type=text],input[type=number],textarea,select{border:1px solid #bfc8d2;border-radius:5px;padding:8px;width:100%}textarea{min-height:85px}button{padding:7px 12px;border:1px solid #bfc8d2;border-radius:5px;background:white;cursor:pointer}button:hover{background:#edf2f8}button:disabled{cursor:default}#search{margin:12px 0}input[type=checkbox]{accent-color:#216246}
+.anchor-group{border:1px solid #d6dde5;border-radius:12px;background:white;margin:24px 0;overflow:hidden}.anchor-context{padding:22px 24px;background:#edf2f7;border-bottom:1px solid #d6dde5}.reading-context{font-size:19px;line-height:1.9;white-space:normal;overflow-wrap:anywhere}.match-card{padding:20px 24px;border-bottom:1px solid #e1e5ea}.match-card:last-child{border-bottom:0}.match-header{display:flex;align-items:start;justify-content:space-between;gap:16px}.match-actions{font-size:14px}.tag{font-size:12px;color:#526174;background:#edf2f7;border-radius:4px;padding:2px 6px}.known{background:#fafbfc;color:#626d7c}.approval-good{color:#167344}.candidate-context{margin:10px 0;font-size:16px;white-space:pre-wrap}.note-controls{display:inline-flex;gap:6px;align-items:center}.note-controls textarea{min-width:220px}.note-controls button{padding:5px 8px}
+mark{background:#ffdf89;border-radius:3px;padding:1px 0}a{color:#165ab0}details{margin:8px 0}summary{cursor:pointer;color:#315d87;font-size:14px;padding:6px 0}.handling-options{display:grid;grid-template-columns:1fr;gap:8px;margin:14px 0}.handling-panel{margin:0;border:1px solid #dce1e7;border-radius:7px;padding:8px 14px}.handling-panel>summary{font-size:15px;font-weight:600}.handling-panel label{display:block;margin:10px 0}.handling-panel input[type=text],.handling-panel textarea,.handling-panel select{display:block;margin-top:4px}.handling-panel .reading-alt,.approve-label{display:block}.approve-label{padding-top:12px;border-top:1px solid #e1e5ea;font-weight:600}.written-form-preview{background:#f3f7f5;border-radius:5px;padding:10px;margin:12px 0}.occurrence{padding:12px 0;border-top:1px solid #eee}.snippet{white-space:pre-wrap}.evidence{margin-top:12px}.mapping-status{color:#8c3225}.match-status{font-size:13px}.custom-save{margin:8px 0}
+@media(max-width:640px){body{padding:20px 12px}.anchor-context,.match-card{padding:16px}.match-header{display:block}.match-actions{margin-bottom:12px}.cards{gap:8px}.card{padding:8px 12px}.reading-context{font-size:18px}}
 </style>
 <h1 id="title"></h1>
-<p>Review 漢羅合用 candidates with source context and MOE evidence where available. Approve pure romanized anchors using the displayed TL reading and article, or choose an MOE entry and readings.</p>
+<p>Review matches around each original Roman-text segment. Read the shared passage, then choose how to handle each candidate word.</p>
 <div class="cards" id="stats"></div>
-<p><strong>Map to existing entry</strong> confirms a whole-word source spelling is already handled. Export review.json to retain confirmed mappings for future issues. <strong>Ignore</strong> skips a candidate. <strong>Approve import</strong> approves your chosen spelling and readings. Use <strong>Export review.json</strong> to pass approvals to the import script.</p>
-<button id="export-review">Export review.json</button> <button id="load-review">Load review.json</button><input id="review-file" type="file" accept="application/json" hidden>
+<p class="muted">Candidates sharing a Roman-text segment appear together in article order, longest first. A word appearing in several passages shares one review decision. Approving one candidate does not approve the others.</p>
+<div class="toolbar"><button id="export-review">Export review.json</button> <button id="load-review">Load review.json</button><input id="review-file" type="file" accept="application/json" hidden></div>
 <p id="review-status" class="muted" role="status"></p>
 <p id="screening-policy" class="muted"></p>
 <details><summary>Extraction method and filters</summary>
-<p class="muted">Compact review counts one displayed snippet per retained group. Coverage counts the union of all retained snippet positions across articles, so overlaps count once. Percentages use Unicode code points including whitespace in the 24 normalized article bodies. Titles, controls and source labels are excluded from the reading-size measure. Opening more occurrences adds reading; these figures do not measure vocabulary recall or noise rate.</p>
 <p class="muted" id="policy"></p>
 <p class="muted" id="normalization"></p>
 <p class="muted" id="moe-policy"></p>
@@ -286,7 +288,7 @@ table{width:100%;border-collapse:collapse;background:white}th,td{text-align:left
 <label><input id="showKnown" type="checkbox"> Show excluded rows</label>
 <input id="search" type="text" placeholder="Search an anchor, snippet, or article title">
 <p class="muted" id="count"></p>
-<table><thead><tr><th>Ignore</th><th>Anchor / import</th><th>Source context and MOE</th></tr></thead><tbody id="rows"></tbody></table>
+<main id="rows" aria-label="Matches grouped by Roman-text segment"></main>
 <p class="muted">All processing is local. Every romanized span uses the same MOE lookup and anchoring process. Deduplication compares complete final spellings, including normalized TL spellings with Han characters preserved, against tracked preferred forms. Romanized components, inferred Han readings, MOE headwords, canonical readings and aliases do not trigger deduplication. Source files and lexicon entries were not modified.</p>
 <script>
 const data=PAYLOAD;
@@ -459,7 +461,7 @@ def main():
                   for g in grouped if g["exclusion_reason"]]
     (args.out / "exclusions.json").write_text(json.dumps(exclusions, ensure_ascii=False, indent=2) + "\n")
     (args.out / "known-forms.json").write_text(json.dumps(sorted(known), ensure_ascii=False, indent=2) + "\n")
-    (args.out / "review.html").write_text(review_page({**summary, "groups": grouped}))
+    (args.out / "review.html").write_text(review_page({**summary, "groups": grouped}, texts))
     print(json.dumps({k: summary[k] for k in ("issue", "known_forms", "exclusions", "moe", "baseline", "curated_only", "filtered")}, ensure_ascii=False, indent=2))
 
 

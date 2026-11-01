@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tàn-thó-ka̍k"
+id = 4771
+moe_forms = ["擲討捔"]
+preferred_form = "tàn-thó-ka̍k"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 438:450; written form tàn-thó-ka̍k"
+url = "https://tsbp.tgb.org.tw/2016/04/an-ne.html"
+
+[[sources]]
+row = 29537
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

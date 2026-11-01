@@ -1,0 +1,21 @@
+alternate_readings = ["ió", "iónn"]
+canonical_tl = "iúnn"
+id = 4745
+moe_forms = ["舀"]
+preferred_form = "iúnn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 36; normalized source characters 1750:1754; written form iúnn"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 124
+sheet = "語音差異"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 6531
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

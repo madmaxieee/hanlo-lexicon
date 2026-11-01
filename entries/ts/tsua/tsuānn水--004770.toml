@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsuānn tsuí"
+id = 4770
+moe_forms = ["濺水"]
+preferred_form = "tsuānn水"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 36; normalized source characters 1759:1766; written form tsuānn水"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 12506
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

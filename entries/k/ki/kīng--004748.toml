@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kīng"
+id = 4748
+moe_forms = ["楗"]
+preferred_form = "kīng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 294:298; written form kīng"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 9568
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

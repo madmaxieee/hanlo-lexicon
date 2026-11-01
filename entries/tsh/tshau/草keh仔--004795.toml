@@ -1,0 +1,16 @@
+alternate_readings = ["tsháu-kueh-á"]
+canonical_tl = "tsháu-keh-á"
+id = 4795
+moe_forms = ["草鍥仔"]
+preferred_form = "草keh仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 21; normalized source characters 871:876; written form 草keh仔"
+url = "https://tsbp.tgb.org.tw/2016/04/an-ne.html"
+
+[[sources]]
+row = 6621
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

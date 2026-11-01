@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kui-nî-thàng-thinn"
+id = 4796
+moe_forms = ["規年迵天"]
+preferred_form = "規年thàng天"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 44; normalized source characters 1831:1839; written form 規年thàng天"
+url = "https://tsbp.tgb.org.tw/2016/04/an-ne.html"
+
+[[sources]]
+row = 7856
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

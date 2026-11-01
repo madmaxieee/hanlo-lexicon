@@ -1,0 +1,16 @@
+alternate_readings = ["àu-ut-lua̍h"]
+canonical_tl = "àu-ut-jua̍h"
+id = 4776
+moe_forms = ["漚鬱熱"]
+preferred_form = "àu鬱熱"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 38; normalized source characters 1915:1919; written form àu鬱熱"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 10641
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

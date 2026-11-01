@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tia̍p"
+id = 4763
+moe_forms = ["揲"]
+preferred_form = "tia̍p"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 279:284; written form tia̍p"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_2.html"
+
+[[sources]]
+row = 8409
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "líng-ki-ki"
+id = 4779
+moe_forms = ["冷吱吱"]
+preferred_form = "冷ki-ki"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 977:983; written form 冷ki-ki"
+url = "https://tsbp.tgb.org.tw/2016/04/e-tsua.html"
+
+[[sources]]
+row = 2896
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

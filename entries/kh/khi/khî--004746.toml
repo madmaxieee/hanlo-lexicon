@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khî"
+id = 4746
+moe_forms = ["疧"]
+preferred_form = "khî"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 24; normalized source characters 263:266; written form khî"
+url = "https://tsbp.tgb.org.tw/2016/04/e_16.html"
+
+[[sources]]
+row = 5219
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

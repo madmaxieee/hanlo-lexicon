@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tiām-tsiuh-tsiuh"
+id = 4783
+moe_forms = ["恬喌喌"]
+preferred_form = "恬tsiuh-tsiuh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 865:877; written form 恬chiuh-chiuh"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_2.html"
+
+[[sources]]
+row = 15144
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

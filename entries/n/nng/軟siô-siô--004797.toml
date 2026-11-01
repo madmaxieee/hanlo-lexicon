@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "nńg-siô-siô"
+id = 4797
+moe_forms = ["軟荍荍"]
+preferred_form = "軟siô-siô"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 265:273; written form 軟siô-siô"
+url = "https://tsbp.tgb.org.tw/2016/04/an-ne.html"
+
+[[sources]]
+row = 7950
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

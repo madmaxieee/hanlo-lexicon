@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshiūnn-tsuí"
+id = 4766
+moe_forms = ["上水"]
+preferred_form = "tshiūnn水"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 475:483; written form tshiūnn水"
+url = "https://tsbp.tgb.org.tw/2016/04/e-e.html"
+
+[[sources]]
+row = 251
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

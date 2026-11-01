@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sannh-sim"
+id = 4755
+moe_forms = ["煞心"]
+preferred_form = "sannh心"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 144:150; written form sannh心"
+url = "https://tsbp.tgb.org.tw/2016/04/blog-post_49.html"
+
+[[sources]]
+row = 9694
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

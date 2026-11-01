@@ -876,8 +876,8 @@ def spelling_readings(entry):
 def build_csv(root, include_pure_hanji=False, canonical_only=False, header=False):
     """Build a flat spelling/reading CSV without changing editorial records."""
     with writer_lock(root):
-        validate(root)
         current = entries(root)
+        validate(root, current=current)
         rows = set()
         for _, entry in current:
             if not include_pure_hanji and is_hanji(entry['preferred_form']):

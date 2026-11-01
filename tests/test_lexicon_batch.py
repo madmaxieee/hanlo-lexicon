@@ -26,6 +26,16 @@ class BatchAndCacheTests(unittest.TestCase):
         path.write_text(json.dumps(rows, ensure_ascii=False))
         return path
 
+    def test_csv_export_reads_authoritative_entries_once(self):
+        lex.add_batch(self.root, [self.candidate(alternate_readings=['bueh']),
+                                  self.candidate('重', 'tîng')])
+        with mock.patch.object(lex, 'entries', wraps=lex.entries) as entries:
+            result = lex.build_csv(self.root, include_pure_hanji=True)
+        self.assertEqual(entries.call_count, 1)
+        self.assertEqual(result['entries'], 2)
+        self.assertEqual(result['rows'], 3)
+        self.assertEqual((self.root / result['csv']).read_text(), 'beh,beh\nbueh,bueh\ntîng,重\n')
+
     def test_bulk_readers_read_schema_once_for_multiple_entries(self):
         lex.add_batch(self.root, [self.candidate(), self.candidate('重', 'tîng')])
         schema_path = self.root / 'schema/entry.schema.json'

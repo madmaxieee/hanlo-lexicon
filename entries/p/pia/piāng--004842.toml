@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "piāng"
+id = 4842
+moe_forms = []
+preferred_form = "piāng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 992:997; written form piāng"
+url = "https://tsbp.tgb.org.tw/2016/04/e_25.html"

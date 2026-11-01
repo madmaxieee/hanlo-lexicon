@@ -1,0 +1,21 @@
+alternate_readings = ["pàng-sat"]
+canonical_tl = "pàng-sak"
+id = 4848
+moe_forms = ["放捒"]
+preferred_form = "放sak"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 1222:1226; written form 放sak"
+url = "https://tsbp.tgb.org.tw/2016/04/e_25.html"
+
+[[sources]]
+row = 319
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 4069
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

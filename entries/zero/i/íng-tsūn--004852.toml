@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "íng-tsūn"
+hanji_forms = ["往陣"]
+id = 4852
+moe_forms = []
+preferred_form = "íng-tsūn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 60:68; written form íng-tsūn"
+url = "https://tsbp.tgb.org.tw/2016/04/e.html"

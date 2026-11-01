@@ -1,0 +1,16 @@
+alternate_readings = ["uàn-tshueh"]
+canonical_tl = "uàn-tsheh"
+id = 4847
+moe_forms = ["怨慼"]
+preferred_form = "怨tsheh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 794:800; written form 怨tsheh"
+url = "https://tsbp.tgb.org.tw/2016/04/e_25.html"
+
+[[sources]]
+row = 4965
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "ki"
+id = 4853
+identity_note = "MOE 吱, 詞目 row 2964, shrill crying or squeaking, attested in ki kah tsiok噪耳--ê. Distinct from existing entries 1059 枝 (LKK row 303, long-object measure) and 1060 支 (LKK row 304, measure of mouths/noses/bones)."
+moe_forms = ["吱"]
+preferred_form = "ki"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 35; normalized source characters 2595:2597; written form ki"
+url = "https://tsbp.tgb.org.tw/2016/04/e_30.html"
+
+[[sources]]
+row = 2964
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

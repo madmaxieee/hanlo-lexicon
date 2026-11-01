@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tsn̄g"
+id = 4854
+identity_note = "MOE 旋, 詞目 row 7428, a hair whorl, attested in 頷頸後壁ê頭毛tsn̄g. Distinct from existing entry 1334 舐 / tsīnn with alternate tsn̄g, LKK row 846, licking."
+moe_forms = ["旋"]
+preferred_form = "tsn̄g"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 33; normalized source characters 1790:1795; written form tsn̄g"
+url = "https://tsbp.tgb.org.tw/2016/04/e_25.html"
+
+[[sources]]
+row = 7428
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khoo-si-á"
+id = 4839
+moe_forms = ["呼噓仔"]
+preferred_form = "khoo-si-á"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 14; normalized source characters 1101:1110; written form khoo-si-á"
+url = "https://tsbp.tgb.org.tw/2016/04/e_30.html"
+
+[[sources]]
+row = 3744
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

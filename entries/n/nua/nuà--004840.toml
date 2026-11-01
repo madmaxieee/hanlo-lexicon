@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "nuà"
+id = 4840
+moe_forms = ["躽"]
+preferred_form = "nuà"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 287:290; written form nuà"
+url = "https://tsbp.tgb.org.tw/2016/04/e_25.html"
+
+[[sources]]
+row = 11942
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "huah-hiu"
+id = 4837
+moe_forms = ["喝咻"]
+preferred_form = "huah-hiu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 35; normalized source characters 2586:2594; written form huah-hiu"
+url = "https://tsbp.tgb.org.tw/2016/04/e_30.html"
+
+[[sources]]
+row = 8204
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

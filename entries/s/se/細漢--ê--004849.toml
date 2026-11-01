@@ -1,0 +1,16 @@
+alternate_readings = ["suè-hàn--ê"]
+canonical_tl = "sè-hàn--ê"
+id = 4849
+moe_forms = ["細漢的"]
+preferred_form = "細漢--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 390:395; written form 細漢--ê"
+url = "https://tsbp.tgb.org.tw/2016/04/e_76.html"
+
+[[sources]]
+row = 14673
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

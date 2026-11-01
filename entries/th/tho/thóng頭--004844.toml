@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thóng-thâu"
+id = 4844
+moe_forms = ["捅頭"]
+preferred_form = "thóng頭"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 22; normalized source characters 1653:1659; written form thóng頭"
+url = "https://tsbp.tgb.org.tw/2016/04/e_30.html"
+
+[[sources]]
+row = 6065
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

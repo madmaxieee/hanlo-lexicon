@@ -7,7 +7,7 @@ const tracked = new Set([...data.tracked_preferred_forms,
 const unparseable = new Set(data.unparseable_forms);
 const machineRejected = new Set(data.groups.filter(group=>group.exclusion_reason==='machine_rejected').map(group=>group.key));
 const storageKey = 'hanlo-review:v1:' + data.issue + ':' + data.corpus_sha256 + ':' + data.moe?.snapshot;
-let state = {ignored: data.known_forms, decisions: {}};
+let state = {ignored: data.known_forms, ignored_segments:data.ignored_segments||[], decisions: {}};
 let storageAvailable = true;
 try {
   const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
@@ -15,8 +15,42 @@ try {
 } catch { storageAvailable = false; }
 function editableIgnores(forms) {return new Set(forms.filter(form=>!tracked.has(form)));}
 let ignored = editableIgnores(state.ignored);
-let ignoredSegments = new Set(state.ignored_segments||[]);
+let ignoredSegments = new Set(state.ignored_segments||data.ignored_segments||[]);
+// Rebase local edits onto persisted settings when a rerun embeds a new snapshot.
+if(data.segment_settings_sha256&&data.segment_settings_sha256!==state.segment_settings_sha256) {
+  const previous=new Set(state.segment_settings_base||[]);
+  const removed=new Set([...previous].filter(id=>!ignoredSegments.has(id)));
+  const added=[...ignoredSegments].filter(id=>!previous.has(id));
+  ignoredSegments=new Set([...(data.ignored_segments||[]).filter(id=>!removed.has(id)),...added]);
+  state.segment_settings_base=data.ignored_segments||[];
+  state.segment_settings_sha256=data.segment_settings_sha256;
+}
 
+const sectionPageSize=20;
+let sectionPage=0;
+const occurrenceLimits=new Map();
+function occurrenceRows(group,rejected=false) {
+  const rows=rejected?(group.machine_rejected_occurrences||[]):group.occurrences;
+  const key=disclosureId(group.key,rejected?'rejected':'occurrences');
+  const limit=occurrenceLimits.get(key)||25;
+  return rows.slice(0,limit).map(row=>'<div class="occurrence"><div class="snippet">'+snippet(row)+'</div>'+source(row)+screeningNote(row)+coverageNote(row)+(segmentIgnored(row)?'<div class="muted">Ignored with this Roman-text segment</div>':'')+'<div>'+esc(row.clause||'')+'</div></div>').join('')+
+    (rows.length>limit?'<button type="button" class="more-occurrences">Show next '+Math.min(25,rows.length-limit)+' occurrences</button>':'');
+}
+function loadDisclosure(detail) {
+  if(detail.dataset.loaded||!detail.open)return;
+  const group=byKey.get(detail.dataset.key),panel=detail.dataset.panel;
+  if(panel==='related')detail.querySelector('.moe-results').innerHTML=collapseRelated(group.moe_related).map(moeCard).join('');
+  else if(panel==='occurrences'||panel==='rejected') {
+    const target=detail.querySelector('.occurrence-results');
+    target.innerHTML=occurrenceRows(group,panel==='rejected');
+    const more=target.querySelector('.more-occurrences');
+    if(more)more.onclick=()=>{
+      const key=disclosureId(group.key,panel);occurrenceLimits.set(key,(occurrenceLimits.get(key)||25)+25);
+      delete detail.dataset.loaded;loadDisclosure(detail);
+    };
+  } else return;
+  detail.dataset.loaded='yes';
+}
 // Disclosure state is presentation state, independent of saved word decisions.
 state.disclosures ??= {};
 function disclosureId(key, panel) {return JSON.stringify([key,panel]);}
@@ -46,10 +80,6 @@ function triggerId(document,trigger) {return JSON.stringify([document,trigger.an
 function segmentIgnored(row) {return rowTriggers(row).some(t=>ignoredSegments.has(triggerId(row.document_id,t)));}
 function eligibleOccurrences(group) {return group.occurrences.filter(row=>!segmentIgnored(row)&&!row.tracked_coverage?.length);}
 function sectionIgnored(section) {return section.anchors.some(anchor=>ignoredSegments.has(anchor.id));}
-function reconcileSegmentIgnores() {
-  const known=new Set(data.groups.flatMap(group=>group.occurrences.flatMap(row=>rowTriggers(row).map(t=>triggerId(row.document_id,t)))));
-  ignoredSegments=new Set([...ignoredSegments].filter(id=>known.has(id)));
-}
 function setSegmentIgnored(section,ignore=true) {
   for(const anchor of section.anchors)ignore?ignoredSegments.add(anchor.id):ignoredSegments.delete(anchor.id);
   if(ignore)for(const {group} of section.matches)decision(group).approved=false;
@@ -391,8 +421,8 @@ function matchCard({group,rows}) {
   const status=matchStatus(group,rows);
   return '<article class="match-card'+(omit?' known':'')+'" data-key="'+esc(group.key)+'"><div class="match-header"><div><h3>'+esc(group.display)+'</h3><div class="muted">'+(group.normalized_tl?'TL lookup: '+esc(group.normalized_tl)+' · ':'')+group.occurrences.length+' occurrence'+(group.occurrences.length===1?'':'s')+' in '+group.article_count+' article'+(group.article_count===1?'':'s')+'</div></div><div class="match-actions"><span class="match-status '+(item.approved?'approval-good':'')+'">'+status+'</span><label><input class="ignore-box" type="checkbox" data-key="'+esc(group.key)+'" aria-label="Ignore '+esc(group.key)+'" '+(omit?'checked ':'')+(fixed?'disabled':'')+'> Ignore match</label><div class="note-controls"><button class="copy-note" data-key="'+esc(group.key)+'" data-occurrence="'+group.occurrences.indexOf(row)+'" type="button" title="Copy note" aria-label="Copy note for '+esc(group.display)+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg></button><span class="muted" role="status"></span><textarea hidden readonly aria-label="Anchor note"></textarea></div></div></div>'+
     rows.map(row=>'<div class="candidate-context">'+snippet(row)+'</div>'+screeningNote(row)+coverageNote(row)).join('')+moePanel(group)+
-    '<details '+panelAttrs(group,'occurrences','all-occurrences')+'><summary>All '+group.occurrences.length+' source occurrences</summary>'+group.occurrences.map(row=>'<div class="occurrence"><div class="snippet">'+snippet(row)+'</div>'+source(row)+screeningNote(row)+coverageNote(row)+(segmentIgnored(row)?'<div class="muted">Ignored with this Roman-text segment</div>':'')+'<div>'+esc(row.clause)+'</div></div>').join('')+'</details>'+
-    (group.machine_rejected_occurrences?.length?'<details '+panelAttrs(group,'rejected','rejected-occurrences')+'><summary>Model-rejected occurrences ('+group.machine_rejected_occurrences.length+')</summary>'+group.machine_rejected_occurrences.map(row=>'<div class="occurrence"><div class="snippet">'+snippet(row)+'</div>'+source(row)+screeningNote(row)+'</div>').join('')+'</details>':'')+'</article>';
+    '<details '+panelAttrs(group,'occurrences','all-occurrences')+'><summary>All '+group.occurrences.length+' source occurrences</summary><div class="occurrence-results"></div></details>'+
+    (group.machine_rejected_occurrences?.length?'<details '+panelAttrs(group,'rejected','rejected-occurrences')+'><summary>Model-rejected occurrences ('+group.machine_rejected_occurrences.length+')</summary><div class="occurrence-results"></div></details>':'')+'</article>';
 }
 function sectionHtml(section) {
   const row=section.matches[0].rows[0];
@@ -406,10 +436,17 @@ function render() {
   $('stats').innerHTML=[['Articles',data.baseline.article_count],['Roman-text segments',activeSections.length],['Candidate words',active.length],['Approved imports',approved]].map(([label,value])=>'<div class="card"><div class="number">'+value+'</div>'+label+'</div>').join('');
   const query=norm($('search').value);
   const available=data.groups.filter(group=>!excluded(group)||$('showKnown').checked);
-  const sections=reviewSections(available,$('showKnown').checked).filter(section=>!query||norm(sectionContext(section).snippet+' '+section.matches.map(({group,rows})=>group.key+' '+(group.normalized_tl||'')+' '+(group.moe_related||[]).map(record=>record.headword+' '+record.matched_reading).join(' ')+' '+rows.map(row=>row.snippet+' '+row.title).join(' ')).join(' ')).includes(query));
+  const sections=reviewSections(available,$('showKnown').checked).filter(section=>!query||norm(sectionContext(section).snippet+' '+section.matches.map(({group,rows})=>group.key+' '+(group.normalized_tl||'')+' '+(group.moe_related||[]).map(record=>record.headword+' '+record.matched_reading).join(' ')+' '+rows.map(row=>row.snippet+' '+row.title).join(' ')).join(' ')).includes(query)).filter(section=>!$('showKnown').checked||$('excluded-filter').value!=='segments'||sectionIgnored(section));
   $('count').textContent=sections.length+' visible Roman-text segments · '+ignored.size+' ignored forms · '+approved+' approved imports · '+customRequests().length+' custom requests';
   $('review-status').textContent=(storageAvailable?'Decisions save locally in this browser. ':'Local saving is unavailable; export decisions before closing. ')+approved+' ready approvals and '+customRequests().length+' custom requests. '+data.groups.filter(sourceMapping).length+' mapped words. '+(data.stale_source_mappings?.length?data.stale_source_mappings.length+' saved mappings need target review. ':'')+'Export review.json to retain approvals, requests and mappings. Nothing is imported by this page.';
-  $('rows').innerHTML=sections.map(sectionHtml).join('');
+  const pageCount=Math.ceil(sections.length/sectionPageSize);
+  sectionPage=Math.max(0,Math.min(sectionPage,pageCount-1));
+  const pageSections=sections.slice(sectionPage*sectionPageSize,(sectionPage+1)*sectionPageSize);
+  $('rows').innerHTML=pageSections.map(sectionHtml).join('');
+  $('section-page').textContent=pageCount?'Page '+(sectionPage+1)+' of '+pageCount+' · '+pageSections.length+' segments shown':'No matching segments';
+  $('previous-page').disabled=sectionPage===0;
+  $('next-page').disabled=sectionPage+1>=pageCount;
+  $('excluded-filter-label').hidden=!$('showKnown').checked;
   const sectionsById=new Map(sections.map(section=>[section.id,section]));
   document.querySelectorAll('.ignore-segment').forEach(button=>button.onclick=()=>{
     const section=sectionsById.get(button.dataset.section);setSegmentIgnored(section,!sectionIgnored(section));render();
@@ -417,14 +454,9 @@ function render() {
   document.querySelectorAll('.review-disclosure').forEach(detail=>detail.ontoggle=()=>{
     if(detail.isConnected===false)return;
     setPanelOpen(detail.dataset.key,detail.dataset.panel,detail.open);save();
-    if(detail.dataset.panel==='related'&&detail.open&&!detail.dataset.loaded) {
-      detail.querySelector('.moe-results').innerHTML=collapseRelated(byKey.get(detail.dataset.key).moe_related).map(moeCard).join('');
-      detail.dataset.loaded='yes';
-    }
+    loadDisclosure(detail);
   });
-  document.querySelectorAll('.moe-related').forEach(detail=>{
-    if(detail.open){detail.querySelector('.moe-results').innerHTML=collapseRelated(byKey.get(detail.dataset.key).moe_related).map(moeCard).join('');detail.dataset.loaded='yes';}
-  });
+  document.querySelectorAll('.review-disclosure').forEach(loadDisclosure);
   document.querySelectorAll('.mapping-editor').forEach(editor=>{
     const group=byKey.get(editor.dataset.key), input=editor.querySelector('.mapping-id');
     const clear=editor.querySelector('.unmap-source');
@@ -494,7 +526,6 @@ function download(filename,value) {
 }
 function reviewExport() {
   captureDisclosures();
-  reconcileSegmentIgnores();
   reconcileHandledRequests();
   const approvals=data.groups.filter(group=>decision(group).approved&&approvable(group)).map(group=>({anchor_key:group.key,approved:true,...decision(group),...(decision(group).import_mode==='source_anchor'?{source_reading:group.normalized_tl}:{})}));
   return {schema_version:1,issue:data.issue,corpus_sha256:data.corpus_sha256,groups_sha256:data.review_groups_sha256,
@@ -513,7 +544,10 @@ $('normalization').textContent='TL lookup spellings preserve original source tex
 $('moe-policy').textContent='Nested and overlapping multi-syllable anchors are listed separately; contained single-syllable matches are suppressed. Pure romanized anchors can use the article and displayed normalized TL reading without an MOE match. For dictionary-backed imports, choose one MOE entry / meaning, its filing reading and any alternates. Additional readings are sourced from that same MOE entry, even when they were not the detected anchor reading.';
 $('context-policy').textContent='Exact context exclusions: '+data.context_exclusions.phrases.join(', ')+' · '+data.context_exclusions.skipped_anchor_occurrences+' anchor occurrences omitted.';
 $('apply').onclick=()=>{ignored=editableIgnores($('known').value.split(/[,，\n]+/).map(text=>norm(text.trim())).filter(Boolean));$('known').value=[...ignored].sort().join(', ');for(const group of data.groups)if(isIgnored(group))decision(group).approved=false;save();render();};
-$('search').oninput=render;$('showKnown').onchange=render;
+$('search').oninput=()=>{sectionPage=0;render();};$('showKnown').onchange=()=>{sectionPage=0;render();};
+$('excluded-filter').onchange=()=>{sectionPage=0;render();};
+$('previous-page').onclick=()=>{sectionPage--;render();};
+$('next-page').onclick=()=>{sectionPage++;render();};
 $('download').onclick=()=>download('ignored-forms.json',[...ignored].sort());
 $('export-review').onclick=()=>download('review.json',reviewExport());
 $('load-review').onclick=()=>$('review-file').click();
@@ -521,7 +555,7 @@ $('review-file').onchange=async event=>{
   try {
     const bundle=JSON.parse(await event.target.files[0].text());
     if(bundle.schema_version!==1||bundle.corpus_sha256!==data.corpus_sha256||bundle.issue!==data.issue)throw Error('This review belongs to another corpus or issue.');
-    state={ignored:bundle.ignored_forms||data.known_forms,decisions:bundle.decisions||{},ignored_segments:bundle.ignored_segments||[],disclosures:bundle.ui_state?.disclosures||{}};
+    state={ignored:bundle.ignored_forms||data.known_forms,decisions:bundle.decisions||{},ignored_segments:bundle.ignored_segments||[],segment_settings_base:data.ignored_segments||[],segment_settings_sha256:data.segment_settings_sha256,disclosures:bundle.ui_state?.disclosures||{}};
     for(const mapping of bundle.source_mappings||[]){const group=byKey.get(norm(mapping.source_form));if(group)decision(group).source_mapping=mapping;}
     for(const form of bundle.source_mapping_removals||[]){const group=byKey.get(norm(form));if(group)decision(group).source_mapping=null;}
     for(const approval of bundle.approvals||[])state.decisions[approval.anchor_key]=approval;
@@ -532,10 +566,10 @@ $('review-file').onchange=async event=>{
       item.custom_preferred_form=request.preferred_form||'';
       item.custom_hanji=request.hanji||'';item.custom_reading=request.reading||'';
     }
-    ignored=editableIgnores(state.ignored);ignoredSegments=new Set(state.ignored_segments||[]);$('known').value=[...ignored].sort().join(', ');reconcileHandledRequests();reconcileSegmentIgnores();$('rows').innerHTML='';save();render();
+    ignored=editableIgnores(state.ignored);ignoredSegments=new Set(state.ignored_segments||[]);$('known').value=[...ignored].sort().join(', ');reconcileHandledRequests();$('rows').innerHTML='';save();render();
   } catch(error) {$('review-status').textContent='Could not load review: '+error.message;}
 };
 reconcileHandledRequests();
-reconcileSegmentIgnores();
+
 save();
 render();

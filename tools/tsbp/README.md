@@ -356,3 +356,40 @@ spelling and entry ID. For example, entry 4741 `--tńg-去` covers `--tńg` only
 that exact compound; a standalone `--tńg` or `--tńg-來` is not hidden by that entry.
 The importer independently rechecks coverage against current entries before
 choosing source evidence, so old approvals cannot bypass new compound coverage.
+
+### Remember exclusions across reruns
+
+Applied review imports save both match and segment ignores to the pilot's
+`review-settings.json`, scoped to the issue and exact corpus checksum. Rerunning
+harvest or refreshing HTML loads this file automatically. Segment decisions are
+retained even when their candidates disappear from the queue, so they still apply
+if those candidates return. Browser-local edits and restores remain effective.
+
+To recover exclusions from an earlier export without reimporting its approvals:
+
+```sh
+python3 tools/tsbp/review_settings.py --review /path/to/review.json --pilot /path/to/pilot
+python3 tools/tsbp/render_review.py --pilot /path/to/pilot
+```
+
+The settings command accepts exports from an older candidate queue for the same
+issue/corpus. It validates segment positions against original Roman spans in that
+corpus, rather than requiring those spans to still have pending candidates.
+It writes no entries or approvals. Export the review to carry recent browser
+choices back into local workflow settings; a static HTML page cannot write that
+file directly. An export predating segment ignores preserves the saved segment
+settings; an explicit empty `ignored_segments` array clears them.
+
+### Browse excluded candidates without loading the entire queue
+
+**Show excluded rows** reveals candidates hidden by match/segment ignores,
+tracked preferred spellings or source mappings, longer tracked-word coverage,
+parser incompatibility, and language-screen rejection. This changes visibility;
+it does not restore, approve, or import anything by itself.
+
+Use the **Ignored segments only** filter to find **Restore segment** directly.
+Both normal and excluded views show 20 Roman-text segments per page. Search
+examines the full result set and resets to its first page. Occurrence histories
+are built only when opened and initially show 25 rows, with an explicit button
+to load more. This prevents common words from duplicating thousands of hidden
+source rows across every section.

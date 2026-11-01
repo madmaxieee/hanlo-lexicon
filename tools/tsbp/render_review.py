@@ -8,6 +8,7 @@ from harvest import review_page, preferred_index
 from review_context import corpus_texts
 from review_filters import annotate_coverage
 from screen import load_screening
+from review_settings import read_settings
 
 
 def render(pilot):
@@ -16,7 +17,11 @@ def render(pilot):
     if hashlib.sha256(content).hexdigest() != summary['review_groups_sha256']:
         raise ValueError('Harvest groups changed; cannot refresh this review')
     groups = load_screening(pilot, summary, json.loads(content))
+    settings = read_settings(pilot, summary)
     payload = {**summary, 'groups': groups}
+    if settings:
+        payload.update(ignored_segments=settings.get('ignored_segments', []),
+                       segment_settings_sha256=settings['settings_sha256'])
     texts = corpus_texts(payload)
     if summary.get('lexicon_root'):
         records, _ = preferred_index(Path(summary['lexicon_root']))

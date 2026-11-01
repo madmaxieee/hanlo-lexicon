@@ -14,6 +14,7 @@ import unicodedata
 
 from screen import load_screening
 from review_context import corpus_texts
+from review_settings import save_settings, validate_segments
 from review_filters import annotate_coverage, filter_occurrences
 
 
@@ -255,7 +256,8 @@ def main():
                                                         if len(re.findall(r'[^\s-]+', reading)) >= 2})}
                for _, entry in current]
     covered = annotate_coverage(raw_groups, records, texts)
-    eligible = filter_occurrences(covered, bundle.get('ignored_segments', []))
+    validate_segments(bundle.get('ignored_segments', []), summary)
+    eligible = filter_occurrences(covered, bundle.get('ignored_segments', []), allow_absent=True)
     # Apply the screen after validating segment positions against the complete sealed queue.
     screened = load_screening(args.pilot, summary, raw_groups)
     allowed = {g['key']: {(r.get('document_id'), r['anchor_start'], r['anchor_end']) for r in g['occurrences']}
@@ -314,6 +316,7 @@ def main():
     coalesce_identical_approvals(plan)
     created = []
     if args.apply:
+        save_settings(args.pilot, bundle, summary)
         created = apply_ready(lexicon, root, plan)
         for command in (['validate'], ['format', '--check']):
             code, output, errors = run_maintenance(lexicon, root, command)

@@ -12,6 +12,7 @@ import tomllib
 import unicodedata
 
 from review_context import reading_contexts
+from review_settings import read_settings
 from source_mappings import verified_mappings, apply_mappings
 from moe_context import enrich
 from screen import apply_screening, read as read_screening, sha as screening_sha
@@ -286,8 +287,11 @@ mark{background:#ffdf89;border-radius:3px;padding:1px 0}a{color:#165ab0}details{
 <button id="apply">Apply ignored forms</button> <button id="download">Download ignored forms</button>
 </details>
 <label><input id="showKnown" type="checkbox"> Show excluded rows</label>
+<label id="excluded-filter-label" hidden>Show <select id="excluded-filter"><option value="all">All rows, including excluded</option><option value="segments">Ignored segments only</option></select></label>
+<p class="muted">Excluded rows include ignored matches and segments, tracked spellings, covered fragments, unrecognized forms and model rejections. Use Ignored segments only to find Restore segment.</p>
 <input id="search" type="text" placeholder="Search an anchor, snippet, or article title">
 <p class="muted" id="count"></p>
+<nav class="toolbar" aria-label="Review pages"><button id="previous-page" type="button">Previous page</button><span id="section-page" class="muted" role="status"></span><button id="next-page" type="button">Next page</button></nav>
 <main id="rows" aria-label="Matches grouped by Roman-text segment"></main>
 <p class="muted">All processing is local. Every romanized span uses the same MOE lookup and anchoring process. Deduplication compares complete final spellings, including normalized TL spellings with Han characters preserved, against tracked preferred forms. Romanized components, inferred Han readings, MOE headwords, canonical readings and aliases do not trigger deduplication. Source files and lexicon entries were not modified.</p>
 <script>
@@ -332,6 +336,9 @@ def main():
     normalization = json.loads(args.normalization.read_text()) if args.normalization else None
     normalized = {row["anchor"]: row for row in normalization["records"]} if normalization else {}
     content = args.corpus.read_bytes()
+    persisted = read_settings(args.out, {'issue':args.issue, 'corpus_sha256':hashlib.sha256(content).hexdigest(),
+                                         'corpus_path':str(args.corpus)})
+    known.update(key(form) for form in persisted.get('ignored_forms', []))
     tagged = [json.loads(line) for line in content.splitlines()
               if f'issue:{args.issue}'.encode() in line]
     tagged = [d for d in tagged if f"issue:{args.issue}" in d["metadata"]["tags"]]
@@ -404,6 +411,8 @@ def main():
                                 for d in omitted]},
                "known_forms": sorted(known), "baseline": baseline,
                "handled_custom_requests": custom_resolutions,
+               "ignored_segments": persisted.get("ignored_segments", []),
+               "segment_settings_sha256": persisted.get("settings_sha256"),
                "source_mappings": active_mappings, "stale_source_mappings": stale_mappings,
                "context_exclusions": {'phrases': excluded_contexts, 'source_matches': len(blocked_records),
                                       'skipped_anchor_occurrences': len(skipped_anchors),

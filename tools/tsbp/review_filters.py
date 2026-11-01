@@ -60,13 +60,13 @@ def annotate_coverage(groups, records, texts):
     return result
 
 
-def filter_occurrences(groups, ignored_segments):
+def filter_occurrences(groups, ignored_segments, allow_absent=False):
     """Validate saved segment positions and select only eligible import evidence."""
     if not isinstance(ignored_segments, list) or any(not isinstance(s, str) for s in ignored_segments):
         raise ValueError('Ignored segments must be an array of source-position identities')
     known = {identity for g in groups for r in g['occurrences'] for identity in segment_ids(r)} if ignored_segments else set()
     ignored = set(ignored_segments)
-    if ignored - known:
+    if not allow_absent and ignored - known:
         raise ValueError('Ignored segment is not in the sealed harvest; reload and export the review again')
     result = []
     for group in groups:

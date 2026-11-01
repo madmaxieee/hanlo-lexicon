@@ -180,3 +180,53 @@ test('covered fragment hides only covered occurrences and cannot be approved wit
   nodes.get('showKnown').checked=true;vm.runInContext('render()',page);
   assert.match(nodes.get('rows').innerHTML,/Covered by entry 4741/);
 });
+
+test('segment ignores survive a rerun where the candidate disappears and later returns',()=>{
+  const groups=[group('roman',[occurrence('roman',5)])];
+  const original=setup(groups);
+  vm.runInContext('setSegmentIgnored(reviewSections(data.groups)[0])',original.page);
+  const absent=setup([],{saved:original.saved});
+  assert.equal(value(absent.page,'reviewExport().ignored_segments.length'),1);
+  const returned=setup(groups,{saved:original.saved});
+  assert.equal(value(returned.page,'reviewSections(data.groups).length'),0);
+});
+
+test('persisted segment settings seed fresh browsers and preserve local restores across reruns',()=>{
+  const groups=[group('roman',[occurrence('roman',5)])],id='["article",5,10]';
+  const first=setup(groups,{extra:{ignored_segments:[id],segment_settings_sha256:'one'}});
+  assert.equal(value(first.page,'reviewSections(data.groups).length'),0);
+  vm.runInContext('setSegmentIgnored(reviewSections(data.groups,true)[0],false)',first.page);
+  const rerun=setup(groups,{saved:first.saved,extra:{ignored_segments:[id],segment_settings_sha256:'two'}});
+  assert.equal(value(rerun.page,'reviewSections(data.groups).length'),1);
+});
+
+test('excluded rows are paged and search covers results beyond the current page',()=>{
+  const groups=Array.from({length:45},(_,i)=>group('roman'+i,[occurrence('roman'+i,i*20)]));
+  const {page,nodes}=setup(groups,{extra:{known_forms:groups.map(g=>g.key)}});
+  nodes.get('showKnown').checked=true;nodes.get('showKnown').onchange();
+  assert.equal((nodes.get('rows').innerHTML.match(/class="anchor-group"/g)||[]).length,20);
+  assert.match(nodes.get('section-page').textContent,/Page 1 of 3/);
+  nodes.get('next-page').onclick();
+  assert.match(nodes.get('section-page').textContent,/Page 2 of 3/);
+  nodes.get('search').value='roman44';nodes.get('search').oninput();
+  assert.match(nodes.get('rows').innerHTML,/<h3>roman44<\/h3>/);
+  assert.match(nodes.get('section-page').textContent,/Page 1 of 1/);
+});
+
+test('frequent words do not eagerly repeat their full occurrence history in every section',()=>{
+  const {page,nodes}=setup([group('roman',Array.from({length:100},(_,i)=>occurrence('roman',i*20)))]);
+  assert.equal((nodes.get('rows').innerHTML.match(/class="anchor-group"/g)||[]).length,20);
+  assert.doesNotMatch(nodes.get('rows').innerHTML,/class="occurrence"/);
+  const history=value(page,'occurrenceRows(data.groups[0])');
+  assert.equal((history.match(/class="occurrence"/g)||[]).length,25);
+  assert.match(history,/Show next 25 occurrences/);
+});
+
+test('ignored-segments filter shows restore controls without unrelated tracked rows',()=>{
+  const groups=[group('roman',[occurrence('roman',5)]),group('second',[occurrence('second',30)])];
+  const {page,nodes}=setup(groups,{extra:{known_forms:['second']}});
+  vm.runInContext('setSegmentIgnored(reviewSections([data.groups[0]])[0])',page);
+  nodes.get('showKnown').checked=true;nodes.get('excluded-filter').value='segments';nodes.get('excluded-filter').onchange();
+  assert.match(nodes.get('rows').innerHTML,/Restore segment/);
+  assert.doesNotMatch(nodes.get('rows').innerHTML,/<h3>second<\/h3>/);
+});

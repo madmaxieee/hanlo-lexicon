@@ -26,6 +26,44 @@ class BatchAndCacheTests(unittest.TestCase):
         path.write_text(json.dumps(rows, ensure_ascii=False))
         return path
 
+    def test_bulk_readers_read_schema_once_for_multiple_entries(self):
+        lex.add_batch(self.root, [self.candidate(), self.candidate('重', 'tîng')])
+        schema_path = self.root / 'schema/entry.schema.json'
+        original_read = type(schema_path).read_bytes
+        reads = []
+
+        def read_bytes(path):
+            if path == schema_path:
+                reads.append(path)
+            return original_read(path)
+
+        for reader in (lex.entries, lex.entry_snapshot):
+            with self.subTest(reader=reader.__name__):
+                reads.clear()
+                with mock.patch.object(type(schema_path), 'read_bytes', read_bytes):
+                    self.assertEqual(len(reader(self.root)), 2)
+                self.assertEqual(len(reads), 1)
+
+    def test_lookup_validation_does_not_relax_shared_schema(self):
+        schema = lex.entry_schema(self.root)
+        original = json.dumps(schema, sort_keys=True)
+        candidate = dict(self.candidate(), id=1)
+        candidate.pop('sources')
+        lex.verify_entry(self.root, candidate, lookup_only=True, schema=schema)
+        self.assertEqual(json.dumps(schema, sort_keys=True), original)
+        with self.assertRaisesRegex(lex.Error, 'missing required fields'):
+            lex.verify_entry(self.root, candidate, schema=schema)
+
+    def test_authoritative_reads_reload_schema_between_operations(self):
+        lex.add_batch(self.root, [self.candidate()])
+        self.assertEqual(len(lex.entries(self.root)), 1)
+        path = self.root / 'schema/entry.schema.json'
+        schema = json.loads(path.read_text())
+        schema['properties']['preferred_form']['const'] = 'different'
+        path.write_text(json.dumps(schema))
+        with self.assertRaisesRegex(lex.Error, 'unexpected constant'):
+            lex.entries(self.root)
+
     def test_batch_matches_sequential_adds_and_loads_inputs_once(self):
         rows = [self.candidate(alternate_readings=['bueh']), self.candidate('重', 'tîng')]
         expected = []
@@ -38,11 +76,13 @@ class BatchAndCacheTests(unittest.TestCase):
             path.unlink()
         (self.root / 'id-sequence.toml').write_text('next_id = 1\n')
         with mock.patch.object(lex, 'entries', wraps=lex.entries) as entries, \
+             mock.patch.object(lex, 'entry_schema', wraps=lex.entry_schema) as schema, \
              mock.patch.object(lex, 'moe_data', wraps=lex.moe_data) as moe, \
              mock.patch.object(lex, 'lkk_data', wraps=lex.lkk_data) as lkk:
             actual = lex.add_batch(self.root, rows)
         self.assertEqual(actual['results'], expected)
         self.assertEqual(entries.call_count, 1)
+        self.assertEqual(schema.call_count, 1)
         self.assertEqual(moe.call_count, 1)
         self.assertEqual(lkk.call_count, 1)
         self.assertEqual({p.relative_to(self.root): p.read_bytes() for p, _ in lex.entries(self.root)}, expected_bytes)

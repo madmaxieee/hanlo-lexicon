@@ -186,10 +186,15 @@ def validate_schema(value, rule, location='entry'):
         require(value >= rule.get('minimum', value), 'integer too small')
 
 
-def verify_entry(root, entry, lookup_only=False):
-    schema = json.loads((root / 'schema/entry.schema.json').read_text())
+def entry_schema(root):
+    """Load a fresh schema for one operation; never cache across operations."""
+    return json.loads((root / 'schema/entry.schema.json').read_bytes())
+
+
+def verify_entry(root, entry, lookup_only=False, schema=None):
+    schema = entry_schema(root) if schema is None else schema
     if lookup_only:
-        schema['required'].remove('sources')
+        schema = {**schema, 'required': [name for name in schema['required'] if name != 'sources']}
     validate_schema(entry, schema)
     subbucket(entry['canonical_tl'])
     readings = [entry['canonical_tl'], *entry['alternate_readings']]
@@ -213,11 +218,13 @@ def verify_entry(root, entry, lookup_only=False):
             raise Error('External citations require an HTTP(S) source URL.')
 
 
-def entries(root):
+def entries(root, schema=None):
     result, ids, paths, senses = [], set(), set(), set()
     for path in entry_files(root):
         entry = load_toml(path)
-        verify_entry(root, entry)
+        if schema is None:
+            schema = entry_schema(root)
+        verify_entry(root, entry, schema=schema)
         if entry['id'] in ids:
             raise Error(f'Duplicate ID {entry["id"]}.')
         ids.add(entry['id'])
@@ -331,9 +338,11 @@ def cached_entry_rows(root, forms=(), readings=(), entry_id=None, use_cache=True
             CREATE INDEX IF NOT EXISTS entry_identities ON entries(identity);
             CREATE INDEX IF NOT EXISTS entry_targets ON entries(target);
         ''')
+        schema_raw = (root / 'schema/entry.schema.json').read_bytes()
+        schema = None
         fingerprint = hashlib.sha256(
             b'entry-index-v2\0' + str(root.resolve()).encode() +
-            (root / 'schema/entry.schema.json').read_bytes() + Path(__file__).read_bytes()).hexdigest()
+            schema_raw + Path(__file__).read_bytes()).hexdigest()
         with connection:
             connection.execute('BEGIN IMMEDIATE')
             # Upgrade the disposable v1 index, rebuilding hashes from source bytes.
@@ -356,7 +365,9 @@ def cached_entry_rows(root, forms=(), readings=(), entry_id=None, use_cache=True
                     continue
                 raw = path.read_bytes()
                 entry = load_toml(path, raw)
-                verify_entry(root, entry)
+                if schema is None:
+                    schema = json.loads(schema_raw)
+                verify_entry(root, entry, schema=schema)
                 identity = json.dumps([key(entry['preferred_form']), key(entry['canonical_tl']),
                                        key(entry.get('identity_note', ''))])
                 connection.execute('DELETE FROM entries WHERE path = ?', (relative,))
@@ -636,8 +647,8 @@ class RelatedMoeIndex:
                 for number in sorted(relations)]
 
 
-def check(root, candidate, current=None, evidence=None, lookup=None):
-    verify_entry(root, dict(candidate, id=candidate.get('id', 1)), lookup_only=True)
+def check(root, candidate, current=None, evidence=None, lookup=None, schema=None):
+    verify_entry(root, dict(candidate, id=candidate.get('id', 1)), lookup_only=True, schema=schema)
     lkk, moe = evidence if evidence else (lkk_data(root), moe_data(root))
     preferred = key(candidate['preferred_form'])
     forms = {preferred, *(key(form) for form in candidate['moe_forms']),
@@ -753,7 +764,8 @@ def add_batch(root, candidates, dry_run=False, expected_state=None):
     if not candidates:
         raise Error('A batch must contain at least one request.')
     with writer_lock(root):
-        current = entries(root)
+        schema = entry_schema(root)
+        current = entries(root, schema=schema)
         evidence = lkk_data(root), moe_data(root)
         if expected_state is not None and expected_state != {
                 'entries_sha256': entry_state(root, current), 'moe_sha256': evidence[1][0]['sha256']}:
@@ -765,8 +777,8 @@ def add_batch(root, candidates, dry_run=False, expected_state=None):
         for number, candidate in enumerate(candidates, 1):
             try:
                 entry = dict(candidate, id=first_id + len(planned))
-                verify_entry(root, entry)
-                report = check(root, candidate, current, evidence, lookup)
+                verify_entry(root, entry, schema=schema)
+                report = check(root, candidate, current, evidence, lookup, schema=schema)
                 for match in report['existing_entries']:
                     if match['match'] in ('exact_pair', 'alias_pair'):
                         note = key(candidate.get('identity_note', ''))

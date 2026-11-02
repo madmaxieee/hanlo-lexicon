@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "ham-ham"
+id = 4945
+moe_forms = []
+preferred_form = "ham-ham"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 37; normalized source characters 1866:1873; written form ham-ham"
+url = "https://tsbp.tgb.org.tw/2016/04/sann-kap-ka-choah.html"

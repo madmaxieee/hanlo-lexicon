@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pho"
+id = 4953
+moe_forms = ["泡"]
+preferred_form = "pho"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 21; normalized source characters 1418:1421; written form pho"
+url = "https://tsbp.tgb.org.tw/2016/04/lanmai-tueenana.html"
+
+[[sources]]
+row = 4312
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

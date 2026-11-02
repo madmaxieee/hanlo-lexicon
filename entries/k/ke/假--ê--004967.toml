@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ké--ê"
+id = 4967
+moe_forms = ["假的"]
+preferred_form = "假--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 73; normalized source characters 3569:3573; written form 假--ê"
+url = "https://tsbp.tgb.org.tw/2016/04/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 27377
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

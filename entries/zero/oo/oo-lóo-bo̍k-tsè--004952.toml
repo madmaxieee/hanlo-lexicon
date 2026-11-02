@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "oo-lóo-bo̍k-tsè"
+id = 4952
+moe_forms = ["烏魯木齊"]
+preferred_form = "oo-lóo-bo̍k-tsè"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 8; normalized source characters 966:981; written form o͘-ló͘-bo̍k-chè"
+url = "https://tsbp.tgb.org.tw/2016/04/lanmai-taoa.html"
+
+[[sources]]
+row = 6315
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

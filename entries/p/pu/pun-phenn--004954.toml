@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pun-phenn"
+id = 4954
+moe_forms = ["分伻"]
+preferred_form = "pun-phenn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 47; normalized source characters 2214:2222; written form pun-pheⁿ"
+url = "https://tsbp.tgb.org.tw/2016/04/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 658
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

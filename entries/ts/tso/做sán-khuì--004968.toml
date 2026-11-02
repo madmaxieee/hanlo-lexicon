@@ -1,0 +1,16 @@
+alternate_readings = ["tsuè-sán-khuì"]
+canonical_tl = "tsò-sán-khuì"
+id = 4968
+moe_forms = ["做瘦氣"]
+preferred_form = "做sán-khuì"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 4; normalized source characters 202:211; written form 做sán-khùi"
+url = "https://tsbp.tgb.org.tw/2016/04/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 6992
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "má-tsih--ê"
+id = 4942
+moe_forms = []
+preferred_form = "má-tsih--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 1121:1131; written form má-chih--ê"
+url = "https://tsbp.tgb.org.tw/2016/04/lanmai-taoa.html"

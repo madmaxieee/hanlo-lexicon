@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "làu-làu"
+id = 4948
+moe_forms = ["落落"]
+preferred_form = "làu-làu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 4; normalized source characters 72:79; written form làu-làu"
+url = "https://tsbp.tgb.org.tw/2016/04/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 9954
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

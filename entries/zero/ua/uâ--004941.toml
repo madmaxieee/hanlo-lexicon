@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "uâ"
+id = 4941
+moe_forms = ["何"]
+preferred_form = "uâ"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 358:360; written form ôa"
+url = "https://tsbp.tgb.org.tw/2016/04/lanmai-taoa.html"
+
+[[sources]]
+row = 15771
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

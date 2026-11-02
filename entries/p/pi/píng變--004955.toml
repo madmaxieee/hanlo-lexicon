@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "píng-pìnn"
+id = 4955
+moe_forms = ["反變"]
+preferred_form = "píng變"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 6; normalized source characters 812:817; written form péng變"
+url = "https://tsbp.tgb.org.tw/2016/04/lanmai-taoa.html"
+
+[[sources]]
+row = 13902
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

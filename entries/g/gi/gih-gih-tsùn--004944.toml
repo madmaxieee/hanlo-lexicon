@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "gih-gih-tsùn"
+id = 4944
+moe_forms = []
+preferred_form = "gih-gih-tsùn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 59; normalized source characters 2911:2923; written form gih-gih-chùn"
+url = "https://tsbp.tgb.org.tw/2016/04/sann-kap-ka-choah.html"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshiah-siù"
+id = 4962
+moe_forms = ["刺繡"]
+preferred_form = "tshiah繡"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 1143:1150; written form tshiah繡"
+url = "https://tsbp.tgb.org.tw/2016/04/lanmai-tueenana.html"
+
+[[sources]]
+row = 3682
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

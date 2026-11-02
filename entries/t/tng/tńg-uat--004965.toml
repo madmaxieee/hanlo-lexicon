@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tńg-uat"
+id = 4965
+moe_forms = ["轉斡"]
+preferred_form = "tńg-uat"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 65:72; written form tńg-uat"
+url = "https://tsbp.tgb.org.tw/2016/04/lanmai-tueenana.html"
+
+[[sources]]
+row = 12632
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

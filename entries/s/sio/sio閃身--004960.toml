@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sio-siám-sin"
+id = 4960
+moe_forms = ["相閃身"]
+preferred_form = "sio閃身"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 21; normalized source characters 165:170; written form sio閃身"
+url = "https://tsbp.tgb.org.tw/2016/04/khioh.html"
+
+[[sources]]
+row = 5269
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

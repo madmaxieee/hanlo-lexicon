@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "siak-phānn"
+id = 4958
+moe_forms = ["鑠奅"]
+preferred_form = "siak-phānn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 53; normalized source characters 2523:2532; written form siak-phāⁿ"
+url = "https://tsbp.tgb.org.tw/2016/04/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 15353
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

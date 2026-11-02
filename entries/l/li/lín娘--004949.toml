@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lín-niâ"
+id = 4949
+moe_forms = ["恁娘"]
+preferred_form = "lín娘"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 12; normalized source characters 722:726; written form lín娘"
+url = "https://tsbp.tgb.org.tw/2016/04/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 5967
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

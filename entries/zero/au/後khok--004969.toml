@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "āu-khok"
+id = 4969
+moe_forms = ["後擴"]
+preferred_form = "後khok"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 43; normalized source characters 2062:2067; written form 後khok"
+url = "https://tsbp.tgb.org.tw/2016/04/sann-kap-ka-choah.html"
+
+[[sources]]
+row = 4973
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

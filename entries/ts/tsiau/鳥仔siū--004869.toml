@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsiáu-á-siū"
+id = 4869
+moe_forms = ["鳥仔岫"]
+preferred_form = "鳥仔siū"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 6; normalized source characters 302:307; written form 鳥仔siū"
+url = "https://tsbp.tgb.org.tw/2016/06/an-ne-lan-tsit-siu.html"
+
+[[sources]]
+row = 8095
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

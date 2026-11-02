@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "té-ńg"
+id = 4866
+moe_forms = ["短䘼"]
+preferred_form = "短ńg"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 28:31; written form 短ńg"
+url = "https://tsbp.tgb.org.tw/2016/06/an-ne-lan-tsit-siu.html"
+
+[[sources]]
+row = 8774
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

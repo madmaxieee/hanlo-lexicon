@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tńg-kut"
+id = 4860
+moe_forms = ["轉骨"]
+preferred_form = "tńg骨"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 63:67; written form tńg骨"
+url = "https://tsbp.tgb.org.tw/2016/06/blog-post.html"
+
+[[sources]]
+row = 12627
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

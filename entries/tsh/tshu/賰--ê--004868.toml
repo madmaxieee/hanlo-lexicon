@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshun--ê"
+id = 4868
+moe_forms = ["賰的"]
+preferred_form = "賰--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 549:553; written form 賰--ê"
+url = "https://tsbp.tgb.org.tw/2016/06/blog-post_135.html"
+
+[[sources]]
+row = 11920
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

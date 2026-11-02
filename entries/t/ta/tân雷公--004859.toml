@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tân-luî-kong"
+id = 4859
+moe_forms = ["霆雷公"]
+preferred_form = "tân雷公"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 1132:1137; written form tân雷公"
+url = "https://tsbp.tgb.org.tw/2016/06/blog-post_678.html"
+
+[[sources]]
+row = 11559
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

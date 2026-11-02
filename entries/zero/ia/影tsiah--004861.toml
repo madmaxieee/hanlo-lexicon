@@ -1,0 +1,21 @@
+alternate_readings = ["iánn-jiah", "iánn-liah"]
+canonical_tl = "iánn-tsiah"
+id = 4861
+moe_forms = ["影跡"]
+preferred_form = "影tsiah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 28; normalized source characters 832:838; written form 影tsiah"
+url = "https://tsbp.tgb.org.tw/2016/06/an-ne-lan-tsit-siu.html"
+
+[[sources]]
+row = 1055
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 13808
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

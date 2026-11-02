@@ -1,0 +1,21 @@
+alternate_readings = ["peh--khui"]
+canonical_tl = "peh-khui"
+id = 4857
+moe_forms = ["擘開"]
+preferred_form = "peh開"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 6; normalized source characters 53:57; written form peh開"
+url = "https://tsbp.tgb.org.tw/2016/06/blog-post.html"
+
+[[sources]]
+row = 12165
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 929
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"

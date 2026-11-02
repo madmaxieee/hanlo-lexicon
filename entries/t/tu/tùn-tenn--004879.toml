@@ -1,0 +1,16 @@
+alternate_readings = ["tùn-tinn"]
+canonical_tl = "tùn-tenn"
+id = 4879
+moe_forms = ["頓蹬"]
+preferred_form = "tùn-tenn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 10; normalized source characters 821:829; written form tùn-tenn"
+url = "https://tsbp.tgb.org.tw/2016/04/hooe.html"
+
+[[sources]]
+row = 14419
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

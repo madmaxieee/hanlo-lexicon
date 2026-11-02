@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshi-bú-tshi̍h-tshū"
+id = 4875
+moe_forms = ["嗤舞嗤呲"]
+preferred_form = "tshi-bú-tshi̍h-tshū"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 8; normalized source characters 643:662; written form tshi-bú-tshi̍h-tshū"
+url = "https://tsbp.tgb.org.tw/2016/04/hooe.html"
+
+[[sources]]
+row = 9394
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thāu"
+id = 4874
+moe_forms = ["毒"]
+preferred_form = "thāu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 18; normalized source characters 1905:1909; written form thāu"
+url = "https://tsbp.tgb.org.tw/2016/04/e_76.html"
+
+[[sources]]
+row = 5122
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "siàn"
+id = 4871
+moe_forms = ["搧"]
+preferred_form = "siàn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 26; normalized source characters 2740:2744; written form siàn"
+url = "https://tsbp.tgb.org.tw/2016/04/e_76.html"
+
+[[sources]]
+row = 9485
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

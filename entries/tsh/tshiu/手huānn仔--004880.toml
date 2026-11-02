@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshiú-huānn-á"
+id = 4880
+moe_forms = ["手扞仔"]
+preferred_form = "手huānn仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 20; normalized source characters 2064:2071; written form 手huānn仔"
+url = "https://tsbp.tgb.org.tw/2016/04/e_76.html"
+
+[[sources]]
+row = 910
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

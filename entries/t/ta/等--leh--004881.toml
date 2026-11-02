@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tán--leh"
+id = 4881
+moe_forms = ["等咧"]
+preferred_form = "等--leh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 14; normalized source characters 1504:1510; written form 等--leh"
+url = "https://tsbp.tgb.org.tw/2016/04/e_76.html"
+
+[[sources]]
+row = 8855
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

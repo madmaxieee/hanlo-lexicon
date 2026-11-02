@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thâng-thuā"
+id = 4882
+moe_forms = ["蟲豸"]
+preferred_form = "蟲thuā"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 525:530; written form 蟲thuā"
+url = "https://tsbp.tgb.org.tw/2016/04/e_76.html"
+
+[[sources]]
+row = 12598
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

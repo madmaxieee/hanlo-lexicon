@@ -1,0 +1,21 @@
+alternate_readings = ["tshūn-pān"]
+canonical_tl = "tshûn-pān"
+id = 4877
+moe_forms = ["存範"]
+preferred_form = "tshûn-pān"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 24; normalized source characters 2300:2309; written form tshûn-pān"
+url = "https://tsbp.tgb.org.tw/2016/04/e_76.html"
+
+[[sources]]
+row = 209
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 2407
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

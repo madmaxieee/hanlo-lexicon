@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lang-lang"
+id = 4900
+moe_forms = ["櫳櫳"]
+preferred_form = "lang-lang"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 968:977; written form lang-lang"
+url = "https://tsbp.tgb.org.tw/2016/03/blog-post_66.html"
+
+[[sources]]
+row = 29076
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

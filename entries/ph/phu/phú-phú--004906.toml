@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phú-phú"
+id = 4906
+moe_forms = ["殕殕"]
+preferred_form = "phú-phú"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 1050:1057; written form phú-phú"
+url = "https://tsbp.tgb.org.tw/2016/03/blog-post_66.html"
+
+[[sources]]
+row = 8537
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

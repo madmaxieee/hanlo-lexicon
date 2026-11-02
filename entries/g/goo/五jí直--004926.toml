@@ -1,0 +1,16 @@
+alternate_readings = ["gōo-lí-ti̍t"]
+canonical_tl = "gōo-jí-ti̍t"
+id = 4926
+moe_forms = ["五子直"]
+preferred_form = "五jí直"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 10; normalized source characters 90:94; written form 五jí直"
+url = "https://tsbp.tgb.org.tw/2016/03/blog-post.html"
+
+[[sources]]
+row = 13896
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

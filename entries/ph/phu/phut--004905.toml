@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phut"
+id = 4905
+moe_forms = ["刜"]
+preferred_form = "phut"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 48; normalized source characters 2670:2674; written form phut"
+url = "https://tsbp.tgb.org.tw/2016/03/e_7.html"
+
+[[sources]]
+row = 2946
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

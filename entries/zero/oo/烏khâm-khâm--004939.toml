@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "oo-khâm-khâm"
+hanji_forms = ["烏黔黔"]
+id = 4939
+moe_forms = []
+preferred_form = "烏khâm-khâm"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 283:293; written form 烏khâm-khâm"
+url = "https://tsbp.tgb.org.tw/2016/03/e-tap-tap.html"
+
+[[sources]]
+row = 29406
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

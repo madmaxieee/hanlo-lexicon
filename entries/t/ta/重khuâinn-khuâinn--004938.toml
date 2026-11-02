@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "tāng-khuâinn-khuâinn"
+id = 4938
+moe_forms = []
+preferred_form = "重khuâinn-khuâinn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 898:914; written form 重khuâinn-khuâinn"
+url = "https://tsbp.tgb.org.tw/2016/03/e-tap-tap.html"

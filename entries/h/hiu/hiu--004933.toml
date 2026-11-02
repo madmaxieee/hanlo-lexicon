@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "hiu"
+id = 4933
+identity_note = "MOE entry 4777 (詞目 row 4777), 咻【替】 / hiu, shouting or calling out, attested in 大聲hiu--出-來 and kā我hiu; distinct from existing entry 4514 休 / hiu, MOE entry 2049 (詞目 row 2050), resting or ceasing."
+moe_forms = ["咻"]
+preferred_form = "hiu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 58; normalized source characters 3301:3304; written form hiu"
+url = "https://tsbp.tgb.org.tw/2016/03/e_7.html"
+
+[[sources]]
+row = 4777
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,31 @@
+alternate_readings = ["phàng-kìnn"]
+canonical_tl = "phàng-kiàn"
+hanji_forms = ["拍毋見"]
+id = 4936
+moe_forms = ["拍毋見"]
+preferred_form = "phàng見"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 1015:1021; written form phàng見"
+url = "https://tsbp.tgb.org.tw/2016/03/an-ne-e.html"
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 389:395; written form phàng見"
+url = "https://tsbp.tgb.org.tw/2016/03/e-tap-tap.html"
+
+[[sources]]
+row = 15
+sheet = "合音唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 16
+sheet = "合音唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 3984
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

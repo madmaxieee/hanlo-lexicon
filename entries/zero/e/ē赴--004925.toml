@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ē-hù"
+id = 4925
+moe_forms = ["會赴"]
+preferred_form = "ē赴"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 31; normalized source characters 2031:2033; written form ē赴"
+url = "https://tsbp.tgb.org.tw/2016/03/blog-post_1.html"
+
+[[sources]]
+row = 28059
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

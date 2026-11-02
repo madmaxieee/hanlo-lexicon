@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ànn-io"
+id = 4891
+moe_forms = ["向腰"]
+preferred_form = "ànn腰"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 32; normalized source characters 1506:1510; written form ànn腰"
+url = "https://tsbp.tgb.org.tw/2016/03/e_7.html"
+
+[[sources]]
+row = 2234
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

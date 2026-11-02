@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kap-tsuā"
+id = 4896
+moe_forms = ["敆逝"]
+preferred_form = "kap-tsuā"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 107:115; written form kap-tsuā"
+url = "https://tsbp.tgb.org.tw/2016/03/blog-post.html"
+
+[[sources]]
+row = 6045
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

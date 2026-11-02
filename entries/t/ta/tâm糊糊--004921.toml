@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tâm-kôo-kôo"
+id = 4921
+moe_forms = ["澹糊糊"]
+preferred_form = "tâm糊糊"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 380:385; written form tâm糊糊"
+url = "https://tsbp.tgb.org.tw/2016/03/e_7.html"
+
+[[sources]]
+row = 11760
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

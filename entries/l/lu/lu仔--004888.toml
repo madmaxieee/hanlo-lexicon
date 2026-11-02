@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lu-á"
+id = 4888
+moe_forms = ["攄仔"]
+preferred_form = "lu仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 18:21; written form lu仔"
+url = "https://tsbp.tgb.org.tw/2016/03/blog-post_66.html"
+
+[[sources]]
+row = 12483
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

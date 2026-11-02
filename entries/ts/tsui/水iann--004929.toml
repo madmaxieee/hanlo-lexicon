@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsuí-iann"
+id = 4929
+moe_forms = ["水泱"]
+preferred_form = "水iann"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 2; normalized source characters 7:12; written form 水iann"
+url = "https://tsbp.tgb.org.tw/2016/03/blog-post.html"
+
+[[sources]]
+row = 13931
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

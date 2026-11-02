@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "àu-kóo"
+id = 4924
+moe_forms = ["漚古"]
+preferred_form = "àu古"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 115:118; written form àu古"
+url = "https://tsbp.tgb.org.tw/2016/03/e_7.html"
+
+[[sources]]
+row = 14434
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

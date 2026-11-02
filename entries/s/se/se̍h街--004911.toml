@@ -1,0 +1,16 @@
+alternate_readings = ["se̍h-kue"]
+canonical_tl = "se̍h-ke"
+id = 4911
+moe_forms = ["踅街"]
+preferred_form = "se̍h街"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 229:234; written form se̍h街"
+url = "https://tsbp.tgb.org.tw/2016/03/e-tap-tap.html"
+
+[[sources]]
+row = 10888
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

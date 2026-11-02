@@ -1,0 +1,16 @@
+alternate_readings = ["kiânn-buē-khui-kha"]
+canonical_tl = "kiânn-bē-khui-kha"
+id = 4893
+moe_forms = ["行袂開跤"]
+preferred_form = "行bē開跤"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 48; normalized source characters 2607:2612; written form 行bē開跤"
+url = "https://tsbp.tgb.org.tw/2016/03/e_7.html"
+
+[[sources]]
+row = 14025
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

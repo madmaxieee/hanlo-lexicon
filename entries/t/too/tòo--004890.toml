@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tòo"
+id = 4890
+moe_forms = ["𪐞"]
+preferred_form = "tòo"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 21; normalized source characters 1288:1291; written form tòo"
+url = "https://tsbp.tgb.org.tw/2016/03/an-ne-e.html"
+
+[[sources]]
+row = 13533
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

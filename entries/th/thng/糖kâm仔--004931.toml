@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thn̂g-kâm-á"
+id = 4931
+moe_forms = ["糖含仔"]
+preferred_form = "糖kâm仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 911:916; written form 糖kâm仔"
+url = "https://tsbp.tgb.org.tw/2016/03/an-ne-e.html"
+
+[[sources]]
+row = 11838
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "iānn-iānn-pue"
+id = 4895
+moe_forms = ["颺颺飛"]
+preferred_form = "iānn-iānn飛"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 56; normalized source characters 3165:3175; written form iānn-iānn飛"
+url = "https://tsbp.tgb.org.tw/2016/03/e_7.html"
+
+[[sources]]
+row = 12751
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

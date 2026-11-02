@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshia-tó"
+id = 4919
+moe_forms = ["捙倒"]
+preferred_form = "tshia倒"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 52; normalized source characters 2953:2959; written form tshia倒"
+url = "https://tsbp.tgb.org.tw/2016/03/e_7.html"
+
+[[sources]]
+row = 14197
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

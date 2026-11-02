@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kueh-lang-kha"
+id = 4899
+moe_forms = ["胳胴跤"]
+preferred_form = "kueh-lang-kha"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 322:335; written form kueh-lang-kha"
+url = "https://tsbp.tgb.org.tw/2016/03/e-tap-tap.html"
+
+[[sources]]
+row = 10185
+sheet = "詞彙比較"
+snapshot = "moe-kautian-3e0b2023e0bd"

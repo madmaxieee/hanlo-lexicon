@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tsîn"
+id = 4935
+identity_note = "MOE entry 12811 (詞目 row 12805), 繩 / tsîn, sighting or looking closely, attested in 倚去tsîn khah真--leh; distinct from existing entry 3724 秦 / tsîn, MOE entry 21948 (詞目 row 25792), the surname/state Qin."
+moe_forms = ["繩"]
+preferred_form = "tsîn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 1028:1032; written form tsîn"
+url = "https://tsbp.tgb.org.tw/2016/03/blog-post_66.html"
+
+[[sources]]
+row = 12805
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

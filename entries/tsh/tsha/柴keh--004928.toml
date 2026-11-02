@@ -1,0 +1,16 @@
+alternate_readings = ["tshâ-kueh"]
+canonical_tl = "tshâ-keh"
+id = 4928
+moe_forms = ["柴鍥"]
+preferred_form = "柴keh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 34; normalized source characters 1684:1688; written form 柴keh"
+url = "https://tsbp.tgb.org.tw/2016/03/e_7.html"
+
+[[sources]]
+row = 6144
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

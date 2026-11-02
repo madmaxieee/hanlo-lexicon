@@ -1,0 +1,16 @@
+alternate_readings = ["kîng-tsin"]
+canonical_tl = "khîng-tsin"
+id = 4887
+moe_forms = ["窮真"]
+preferred_form = "khîng真"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 638:644; written form Khîng真"
+url = "https://tsbp.tgb.org.tw/2016/03/e_7.html"
+
+[[sources]]
+row = 14727
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

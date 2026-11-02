@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "liam-kha"
+id = 4901
+moe_forms = ["跕跤"]
+preferred_form = "liam跤"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 2; normalized source characters 24:29; written form Liam跤"
+url = "https://tsbp.tgb.org.tw/2016/03/e_48.html"
+
+[[sources]]
+row = 14974
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

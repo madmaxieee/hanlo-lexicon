@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsa̍t-thóng-thóng"
+id = 4917
+moe_forms = ["實捅捅"]
+preferred_form = "tsa̍t-thóng-thóng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 986:1003; written form tsa̍t-thóng-thóng"
+url = "https://tsbp.tgb.org.tw/2016/03/blog-post_66.html"
+
+[[sources]]
+row = 15173
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

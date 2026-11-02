@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phiàn-siáu--ê"
+id = 4932
+moe_forms = ["騙痟的"]
+preferred_form = "騙痟--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 1135:1140; written form 騙痟--ê"
+url = "https://tsbp.tgb.org.tw/2016/03/e-tap-tap.html"
+
+[[sources]]
+row = 14693
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

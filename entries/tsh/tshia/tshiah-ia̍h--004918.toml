@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshiah-ia̍h"
+id = 4918
+moe_forms = ["刺疫"]
+preferred_form = "tshiah-ia̍h"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 66; normalized source characters 3940:3951; written form tshiah-ia̍h"
+url = "https://tsbp.tgb.org.tw/2016/03/e_7.html"
+
+[[sources]]
+row = 3649
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

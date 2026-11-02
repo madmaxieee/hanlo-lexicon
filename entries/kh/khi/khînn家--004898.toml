@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khînn-ke"
+id = 4898
+moe_forms = ["拑家"]
+preferred_form = "khînn家"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 117:123; written form khînn家"
+url = "https://tsbp.tgb.org.tw/2016/03/blog-post_24.html"
+
+[[sources]]
+row = 4065
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

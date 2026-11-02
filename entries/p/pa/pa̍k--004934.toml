@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "pa̍k"
+id = 4934
+identity_note = "MOE entry 13444 (詞目 row 13438), 贌 / pa̍k, leasing or contracting land/property, attested in kā伊ê菝仔園pa̍k hōo別人去管理; distinct from existing entry 3759 縛 / pa̍k, MOE entry 11830 (詞目 row 11826), tying or binding."
+moe_forms = ["贌"]
+preferred_form = "pa̍k"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 230:234; written form pa̍k"
+url = "https://tsbp.tgb.org.tw/2016/03/e_7.html"
+
+[[sources]]
+row = 13438
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -498,10 +498,8 @@ def cached_moe(root):
     return pin, path, raw
 
 
-def moe_data(root):
-    pin, _, raw = cached_moe(root)
-    if pin['format'] != 'moe-ods':
-        raise Error('Unsupported MOE source format.')
+def decode_moe(pin, raw):
+    """Decode verified original bytes, retaining source sheet/row identities."""
     sheets = ods_sheets(raw)
     if '詞目' not in sheets:
         raise Error('MOE ODS is missing the headword sheet.')
@@ -529,6 +527,68 @@ def moe_data(root):
         record['definitions'] = definitions.get(record['record_id'], [])
         record['variant_forms'] = variants.get(annotation_key(record['headword']), [])
     return pin, sheets, records
+
+
+def moe_payload_bytes(data):
+    return json.dumps(data, ensure_ascii=False, separators=(',', ':'), allow_nan=False).encode('utf-8')
+
+
+def read_decoded_moe(path, pin, decoder_sha256):
+    cache = json.loads(path.read_bytes())
+    if (type(cache['version']) is not int or cache['version'] != 1
+            or cache['pin'] != pin or cache['decoder_sha256'] != decoder_sha256):
+        raise ValueError('Stale decoded MOE cache.')
+    data = cache['data']
+    if hashlib.sha256(moe_payload_bytes(data)).hexdigest() != cache['data_sha256']:
+        raise ValueError('Decoded MOE cache checksum mismatch.')
+    sheets, records = data['sheets'], data['records']
+    if not isinstance(sheets, dict) or '詞目' not in sheets or not isinstance(records, list):
+        raise ValueError('Invalid decoded MOE cache shape.')
+    for name, rows in sheets.items():
+        if (not isinstance(name, str) or not isinstance(rows, list)
+                or any(not isinstance(row, list) or len(row) != 2
+                       or type(row[0]) is not int or row[0] < 1
+                       or not isinstance(row[1], list)
+                       or any(not isinstance(cell, str) for cell in row[1]) for row in rows)):
+            raise ValueError('Invalid decoded MOE sheet.')
+    fields = {'headword', 'reading', 'record_id', 'column', 'source', 'definitions', 'variant_forms'}
+    for record in records:
+        if (not isinstance(record, dict) or set(record) != fields
+                or any(not isinstance(record[field], str)
+                       for field in ('headword', 'reading', 'record_id', 'column'))
+                or any(not isinstance(record[field], list)
+                       or any(not isinstance(value, str) for value in record[field])
+                       for field in ('definitions', 'variant_forms'))):
+            raise ValueError('Invalid decoded MOE record.')
+        source = record['source']
+        if (not isinstance(source, dict) or set(source) != {'snapshot', 'sheet', 'row'}
+                or source['snapshot'] != pin['id'] or source['sheet'] not in sheets
+                or type(source['row']) is not int or source['row'] < 1):
+            raise ValueError('Invalid decoded MOE source.')
+    return pin, {name: [(number, cells) for number, cells in rows]
+                 for name, rows in sheets.items()}, records
+
+
+def moe_data(root):
+    # Always verify original bytes, even when a decoded cache is available.
+    pin, original_path, raw = cached_moe(root)
+    if pin['format'] != 'moe-ods':
+        raise Error('Unsupported MOE source format.')
+    path = original_path.with_name('decoded-v1.json')
+    decoder_sha256 = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    try:
+        return read_decoded_moe(path, pin, decoder_sha256)
+    except (OSError, ValueError, KeyError, TypeError, RecursionError):
+        pass  # Disposable cache: recover from the verified original source.
+    result = decode_moe(pin, raw)
+    data = {'sheets': result[1], 'records': result[2]}
+    cache = {'version': 1, 'pin': pin, 'decoder_sha256': decoder_sha256,
+             'data_sha256': hashlib.sha256(moe_payload_bytes(data)).hexdigest(), 'data': data}
+    try:
+        atomic_write(path, moe_payload_bytes(cache))
+    except OSError:
+        pass  # Read-only/unavailable cache storage must not prevent lookups.
+    return result
 
 
 def lkk_data(root):

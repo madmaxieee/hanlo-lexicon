@@ -21,6 +21,16 @@ Subsequent lookups read only the cached copy and check its checksum. A download
 failure or checksum mismatch stops the operation; there is no unverified fallback
 or automatic repinning. Remove a corrupt cache file to reacquire the same pin.
 
+Dictionary lookups also maintain `decoded-v1.json` beside the original ODS.
+This disposable, compact UTF-8 JSON cache retains all decoded sheets, original
+row numbers, lookup records and provenance. Every lookup still verifies the
+original ODS checksum. Changes to the pin, cache version or maintenance
+implementation invalidate the decoded cache; a payload checksum and shape checks
+detect damaged cache data. Missing, stale or corrupt decoded data is rebuilt
+from the verified ODS and saved atomically. If decoded cache storage is unavailable,
+lookups use the original decoder. Deleting this JSON file is always safe.
+The cache adds no dependencies and is never a source citation.
+
 MOE lookup reads the original ODS headword, alternate/contraction/colloquial reading,
 dialect, word-comparison, name, surname, variant-character, and definition sheets.
 Results retain original headwords/readings and cite the snapshot, sheet, and row.

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ián"
+id = 5022
+moe_forms = ["偃"]
+preferred_form = "ián"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 181:184; written form ián"
+url = "https://tsbp.tgb.org.tw/2016/02/seh-seh-hootioh-ma-aihoo-e.html"
+
+[[sources]]
+row = 6906
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

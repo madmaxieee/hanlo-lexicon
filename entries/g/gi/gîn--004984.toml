@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "gîn"
+id = 4984
+moe_forms = ["睨"]
+preferred_form = "gîn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 1452:1455; written form gîn"
+url = "https://tsbp.tgb.org.tw/2016/02/mih.html"
+
+[[sources]]
+row = 9736
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

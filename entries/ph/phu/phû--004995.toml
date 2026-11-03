@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phû"
+id = 4995
+moe_forms = ["烰"]
+preferred_form = "phû"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 508:511; written form phû"
+url = "https://tsbp.tgb.org.tw/2016/02/mih.html"
+
+[[sources]]
+row = 7512
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

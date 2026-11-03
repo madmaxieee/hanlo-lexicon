@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hong-mua"
+id = 5018
+moe_forms = ["風幔"]
+preferred_form = "風mua"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 18; normalized source characters 240:244; written form 風mua"
+url = "https://tsbp.tgb.org.tw/2016/02/sui-e.html"
+
+[[sources]]
+row = 14938
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

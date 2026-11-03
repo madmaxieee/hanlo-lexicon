@@ -1,0 +1,21 @@
+alternate_readings = ["thit-thô gín-á"]
+canonical_tl = "tshit-thô-gín-á"
+id = 5004
+moe_forms = ["𨑨迌囡仔"]
+preferred_form = "tshit-thô囡仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 302:313; written form tshit-thô囡仔"
+url = "https://tsbp.tgb.org.tw/2016/02/lanmai-mih.html"
+
+[[sources]]
+row = 1032
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 13518
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

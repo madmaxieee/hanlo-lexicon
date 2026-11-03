@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pòo-lu-á"
+id = 5008
+moe_forms = ["布攄仔"]
+preferred_form = "布lu仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 1493:1497; written form 布lu仔"
+url = "https://tsbp.tgb.org.tw/2016/02/mih.html"
+
+[[sources]]
+row = 13966
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

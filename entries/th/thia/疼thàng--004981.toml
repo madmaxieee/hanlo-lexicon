@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thiànn-thàng"
+id = 4981
+moe_forms = ["疼痛"]
+preferred_form = "疼thàng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 25; normalized source characters 1458:1464; written form 疼thàng"
+url = "https://tsbp.tgb.org.tw/2016/02/mih-emih.html"
+
+[[sources]]
+row = 6361
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

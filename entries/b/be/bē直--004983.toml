@@ -1,0 +1,16 @@
+alternate_readings = ["buē-ti̍t"]
+canonical_tl = "bē-ti̍t"
+id = 4983
+moe_forms = ["袂直"]
+preferred_form = "bē直"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 326:329; written form bē直"
+url = "https://tsbp.tgb.org.tw/2016/02/mih.html"
+
+[[sources]]
+row = 6646
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

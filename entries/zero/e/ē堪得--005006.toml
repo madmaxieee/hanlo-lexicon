@@ -1,0 +1,31 @@
+alternate_readings = ["ē-kham-eh", "ē-kham-lit", "ē-kham-tsit"]
+canonical_tl = "ē-kham-tit"
+id = 5006
+moe_forms = ["會堪得"]
+preferred_form = "ē堪得"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 868:871; written form ē堪得"
+url = "https://tsbp.tgb.org.tw/2016/02/mih.html"
+
+[[sources]]
+row = 767
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 768
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 769
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 9610
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

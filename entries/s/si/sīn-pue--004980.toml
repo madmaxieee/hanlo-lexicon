@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sīn-pue"
+id = 4980
+moe_forms = ["象桮"]
+preferred_form = "sīn-pue"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 230:237; written form sīn-pue"
+url = "https://tsbp.tgb.org.tw/2016/02/an-ne-e.html"
+
+[[sources]]
+row = 10267
+sheet = "詞彙比較"
+snapshot = "moe-kautian-3e0b2023e0bd"

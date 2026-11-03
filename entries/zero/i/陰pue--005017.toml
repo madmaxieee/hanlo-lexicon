@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "im-pue"
+id = 5017
+moe_forms = ["陰桮"]
+preferred_form = "陰pue"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 83:87; written form 陰pue"
+url = "https://tsbp.tgb.org.tw/2016/02/an-ne-e.html"
+
+[[sources]]
+row = 8050
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

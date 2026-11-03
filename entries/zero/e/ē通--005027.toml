@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ē-thong"
+id = 5027
+moe_forms = ["會通"]
+preferred_form = "ē通"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 742:744; written form ē通"
+url = "https://tsbp.tgb.org.tw/2016/02/sa-e.html"
+
+[[sources]]
+row = 27656
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,21 @@
+alternate_readings = ["huat-gê"]
+canonical_tl = "puh-gê"
+id = 4978
+moe_forms = ["發芽"]
+preferred_form = "puh芽"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 19:23; written form puh芽"
+url = "https://tsbp.tgb.org.tw/2016/02/blog-post_12.html"
+
+[[sources]]
+row = 719
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 8722
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

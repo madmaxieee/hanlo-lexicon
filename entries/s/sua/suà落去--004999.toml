@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "suà--lo̍h-khì"
+id = 4999
+moe_forms = ["紲落去"]
+preferred_form = "suà落去"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 62; normalized source characters 3035:3040; written form sòa落去"
+url = "https://tsbp.tgb.org.tw/2016/02/e_5.html"
+
+[[sources]]
+row = 7763
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

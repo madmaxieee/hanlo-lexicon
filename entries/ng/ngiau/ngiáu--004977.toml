@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ngiáu"
+id = 4977
+moe_forms = ["撓"]
+preferred_form = "ngiáu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 1301:1306; written form ngiáu"
+url = "https://tsbp.tgb.org.tw/2016/02/mih.html"
+
+[[sources]]
+row = 11056
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

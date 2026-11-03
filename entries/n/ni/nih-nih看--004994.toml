@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "nih-nih-khuànn"
+id = 4994
+moe_forms = ["𥍉𥍉看"]
+preferred_form = "nih-nih看"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 27:35; written form nih-nih看"
+url = "https://tsbp.tgb.org.tw/2016/02/e_12.html"
+
+[[sources]]
+row = 13524
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ù"
+id = 5005
+moe_forms = ["焐"]
+preferred_form = "ù"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 1332:1333; written form ù"
+url = "https://tsbp.tgb.org.tw/2016/02/mih.html"
+
+[[sources]]
+row = 7565
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

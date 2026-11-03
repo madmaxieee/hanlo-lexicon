@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ē-tàng"
+id = 5026
+moe_forms = ["會當"]
+preferred_form = "ē當"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 740:742; written form ē當"
+url = "https://tsbp.tgb.org.tw/2016/02/seh-seh-hootioh-ma-aihoo-e.html"
+
+[[sources]]
+row = 9614
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

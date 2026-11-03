@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kō-kō-liàn"
+id = 4990
+moe_forms = ["翱翱輾"]
+preferred_form = "kō-kō輾"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 4; normalized source characters 40:46; written form kō-kō輾"
+url = "https://tsbp.tgb.org.tw/2016/02/blog-post.html"
+
+[[sources]]
+row = 11876
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

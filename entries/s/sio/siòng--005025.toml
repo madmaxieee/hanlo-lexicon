@@ -1,0 +1,21 @@
+alternate_readings = ["siàng"]
+canonical_tl = "siòng"
+id = 5025
+moe_forms = ["相"]
+preferred_form = "siòng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 1441:1446; written form siòng"
+url = "https://tsbp.tgb.org.tw/2016/02/mih.html"
+
+[[sources]]
+row = 416
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 5226
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

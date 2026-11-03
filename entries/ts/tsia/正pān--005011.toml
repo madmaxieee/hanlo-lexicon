@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsiànn-pān"
+id = 5011
+moe_forms = ["正範"]
+preferred_form = "正pān"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 25; normalized source characters 1795:1799; written form 正pān"
+url = "https://tsbp.tgb.org.tw/2016/02/seh-seh-hootioh-ma-aihoo-e.html"
+
+[[sources]]
+row = 13968
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

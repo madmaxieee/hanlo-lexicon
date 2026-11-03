@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hám"
+id = 4986
+moe_forms = ["撼"]
+preferred_form = "hám"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 1082:1085; written form hám"
+url = "https://tsbp.tgb.org.tw/2016/02/sa-e.html"
+
+[[sources]]
+row = 11637
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

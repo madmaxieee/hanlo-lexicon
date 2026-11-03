@@ -1,0 +1,16 @@
+alternate_readings = ["thut-tshê"]
+canonical_tl = "thut-tshuê"
+id = 5028
+moe_forms = ["脫箠"]
+preferred_form = "thut-tshuê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "詞目 脫箠, entry 7803"
+url = "https://sutian.moe.edu.tw/zh-hant/su/7803/"
+
+[[sources]]
+row = 7801
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

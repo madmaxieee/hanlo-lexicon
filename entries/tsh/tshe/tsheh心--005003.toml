@@ -1,0 +1,16 @@
+alternate_readings = ["tshueh-sim"]
+canonical_tl = "tsheh-sim"
+id = 5003
+moe_forms = ["慼心"]
+preferred_form = "tsheh心"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 332:338; written form tsheh心"
+url = "https://tsbp.tgb.org.tw/2016/02/blog-post_12.html"
+
+[[sources]]
+row = 11061
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

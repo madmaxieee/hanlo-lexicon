@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tio̍h-sî"
+id = 5001
+moe_forms = ["著時"]
+preferred_form = "tio̍h時"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 49:55; written form tio̍h時"
+url = "https://tsbp.tgb.org.tw/2016/02/mih-ebeh.html"
+
+[[sources]]
+row = 9007
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

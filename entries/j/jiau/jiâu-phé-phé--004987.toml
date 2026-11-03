@@ -1,0 +1,16 @@
+alternate_readings = ["liâu-phé-phé"]
+canonical_tl = "jiâu-phé-phé"
+id = 4987
+moe_forms = ["皺襞襞"]
+preferred_form = "jiâu-phé-phé"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 312:324; written form jiâu-phé-phé"
+url = "https://tsbp.tgb.org.tw/2016/02/blog-post_12.html"
+
+[[sources]]
+row = 11234
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

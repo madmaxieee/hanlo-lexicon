@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sio-hōng-hōng"
+id = 5014
+moe_forms = ["燒烘烘"]
+preferred_form = "燒hōng-hōng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 87:97; written form 燒hōng-hōng"
+url = "https://tsbp.tgb.org.tw/2016/02/e_12.html"
+
+[[sources]]
+row = 14476
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kō"
+id = 4989
+moe_forms = ["滒"]
+preferred_form = "kō"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 654:656; written form kō"
+url = "https://tsbp.tgb.org.tw/2016/02/mih-ebeh.html"
+
+[[sources]]
+row = 9683
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

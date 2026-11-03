@@ -1,0 +1,16 @@
+alternate_readings = ["muá-sì-kuè"]
+canonical_tl = "muá-sì-kè"
+id = 5013
+moe_forms = ["滿四界"]
+preferred_form = "滿sì-kè"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 8:14; written form 滿sì-kè"
+url = "https://tsbp.tgb.org.tw/2016/02/e_12.html"
+
+[[sources]]
+row = 10575
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

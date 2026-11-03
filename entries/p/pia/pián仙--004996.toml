@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pián-sian"
+id = 4996
+moe_forms = ["諞仙"]
+preferred_form = "pián仙"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 1049:1054; written form pián仙"
+url = "https://tsbp.tgb.org.tw/2016/02/seh-seh-hootioh-ma-aihoo-e.html"
+
+[[sources]]
+row = 27856
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

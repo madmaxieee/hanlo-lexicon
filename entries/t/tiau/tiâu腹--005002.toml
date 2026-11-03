@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tiâu-pak"
+id = 5002
+moe_forms = ["牢腹"]
+preferred_form = "tiâu腹"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 7:12; written form tiâu腹"
+url = "https://tsbp.tgb.org.tw/2016/02/mih-emih.html"
+
+[[sources]]
+row = 14049
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

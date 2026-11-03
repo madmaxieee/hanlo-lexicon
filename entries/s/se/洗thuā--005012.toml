@@ -1,0 +1,16 @@
+alternate_readings = ["sué-thuā"]
+canonical_tl = "sé-thuā"
+id = 5012
+moe_forms = ["洗汰"]
+preferred_form = "洗thuā"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 725:730; written form 洗thuā"
+url = "https://tsbp.tgb.org.tw/2016/02/mih-ebeh.html"
+
+[[sources]]
+row = 5138
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

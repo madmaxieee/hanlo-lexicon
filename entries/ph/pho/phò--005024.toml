@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phò"
+id = 5024
+moe_forms = ["泡"]
+preferred_form = "phò"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 810:813; written form phò"
+url = "https://tsbp.tgb.org.tw/2016/02/mih-ebeh.html"
+
+[[sources]]
+row = 4313
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

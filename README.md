@@ -11,7 +11,7 @@ starting from the [LKK word list](sources/lkk-2024-05-10/word-list.tsv).
 - `decisions/`: editorial decisions affecting multiple entries.
 - `schema/`: the entry schema and field conventions.
 - `tools/`: maintenance commands and CSV builds.
-- `.agents/skills/maintain-lexicon/`: project-local vocabulary maintenance skill.
+- `.agents/skills/`: project-local vocabulary maintenance and candidate review skills.
 - `.github/workflows/`: CSV build artifacts and tagged CSV releases.
 
 Entries are filed by the complete consonantal initial of the first syllable of
@@ -49,7 +49,8 @@ write `dist/lexicon-canonical.csv` and `dist/lexicon-all-canonical.csv`, respect
 See `tools/README.md` for examples and GitHub Actions build/release instructions.
 Optional `hanji_forms` records Hanji spellings independently of MOE inclusion;
 it is lookup metadata and does not add CSV output rows. The TSBP discovery and
-review tools are documented in `tools/tsbp/README.md`.
+review workflow uses the [review-tsbp-roman skill](.agents/skills/review-tsbp-roman/SKILL.md);
+see `tools/tsbp/README.md` for tool and test documentation.
 For read-only pure-Hanji corpus matching, overlap analysis, and combo coverage,
 see [pure-Hanji discovery](tools/README.md#pure-hanji-corpus-discovery).
 Both GitHub workflows generate both CSV versions. Tagged releases include

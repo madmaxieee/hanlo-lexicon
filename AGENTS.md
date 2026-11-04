@@ -28,3 +28,13 @@
 - Store meaningful notes in TOML fields, not comments. Omit unknown optional fields.
 - Write project documentation in English; preserve Taiwanese and source-language data.
 - Use Conventional Commit descriptions. Do not upload or configure a remote implicitly.
+
+## Agent skills
+
+- For domain terminology or decision changes, read `GLOSSARY.md` and
+  `docs/agents/domain.md`; consult the relevant records indexed in `decisions/README.md`.
+- Engineering specs and tickets use local Markdown under `.scratch/`;
+  see `docs/agents/issue-tracker.md` and `docs/agents/triage-labels.md`.
+- Use the project-local editorial skills for vocabulary work. General engineering
+  skills supplement them; all entry creation still uses the maintenance writer.
+  Serialize entry creation across workspaces to avoid independent ID allocation.

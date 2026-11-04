@@ -163,28 +163,14 @@ The preview validates issue/corpus/candidate fingerprints and selected original
 MOE references, then runs offline existing-entry/LKK/MOE checks. Structured custom
 requests receive a separate `custom_previews` proposal and dictionary report.
 Both ordinary approval `checks` and custom previews include
-`related_moe_entries` from the maintenance tool's combo-matched word-shape search
-(AB → XAB / ABX / XYAB / ABXY; ABC → AB / BC / XABC / ABCX). These retain
-original MOE evidence and require separate review. They are pre-import audit
-data, not the final recommendation list or additional approvals/imports.
-After the authorized batch and its conflict resolutions, run `lexicon.py related`
-again with the imported entry IDs. Publish its new-only Markdown index and
-evidence pages, not a table assembled from the earlier check payloads.
-Every shared Hanji and aligned
-TL syllable must match exactly, including tone and neutral markers; Hanji alone
-and pronunciation similarity are insufficient. Article-only romanized approvals have no Hanji seed; a structured custom
-request can supply verified Hanji when needed.
-Related words retain the current seed's preferred spelling at shared positions;
-shorter words remove its extra units, and only added positions need combo-based
-writing choices. Full inventory conflicts remain audit evidence rather than
-overriding the seed. Dictionary variants have separate suggestions and cannot
-make the main headword look unresolved. Existing-entry candidates and explicit
-rejections are omitted from the new-only index and retained in JSON.
-Every related word needs
-individual human review. Use the independent `lexicon.py related HANJI --out ...
---markdown ...` workflow to record that review and `lexicon.py import-related ...`
-to preview or apply the individually approved words as `reviewed`; ordinary TSBP
-approvals do not approve their related suggestions.
+`related_moe_entries` as pre-import audit evidence. After the authorized batch and
+its conflict resolutions, follow the maintenance skill's
+[related-word procedure](../maintain-lexicon/SKILL.md#standalone-related-word-review)
+using the imported entry IDs and current inventory. It governs separate adoption,
+human and machine review, and provenance. Ordinary TSBP approvals do not authorize
+related suggestions. Article-only romanized approvals supply no Hanji seed;
+a structured custom request can supply verified Hanji when needed.
+
 `--apply` imports only explicit ordinary approvals, using the unchanged
 maintenance writer, duplicate checks and ID allocation. It does not execute free
 text or automatically add custom proposals. Resolve their sources and any

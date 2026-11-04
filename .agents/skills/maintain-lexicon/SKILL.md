@@ -24,40 +24,11 @@ Use `python3 tools/lexicon.py`; do not invent an ID or hand-format generated TOM
    definitions and original snapshot/sheet/row references for review. A same-form
    or same-reading hit is not proof of lexical identity. MOE presence is useful
    evidence and does not prohibit an LKK writing recommendation.
-   Treat check-time `related_moe_entries` as pre-import audit data. Complete
-   the authorized import and resolve its conflicts first, then rerun the
-   standalone related workflow against the current inventory, scoped to the
-   imported entry IDs. Publish the new-only Markdown index with original MOE
-   readings/definitions, matching patterns and source rows; do not copy stale
-   per-request checks into the recommendation list. Existing-entry candidates
-   and explicitly rejected words stay in JSON but are hidden from that index. Start from supplied Hanji
-   (`preferred_form`, `moe_forms`, `hanji_forms`) or the explicitly cited MOE
-   entry's Hanji, never by reading similarity or a homophone's Hanji. A relation
-   requires every shared Hanji/TL combo to match exactly, including tone and
-   neutral markers. Compare complete canonical or explicitly recorded alternate
-   readings separately; never combine syllables across alternatives. Hanji-only
-   overlap is insufficient: 中ng / tiong-ng cannot match 中央公園 /
-   Tiong-iong Kong-hn̂g because 央/ng and 央/iong differ. Unalignable readings
-   cannot prove a relation. For a
-   two-Hanji form AB, suggest XAB, ABX, XYAB and ABXY; for three Hanji ABC,
-   suggest AB, BC, XABC and ABCX. These are literal word-shape candidates, not
-   claims of semantic relationship. Retain the matching current seed spelling
-   at shared positions. For shorter AB/BC words, remove the extra aligned seed
-   units; no new spelling decision is needed. For longer words, use the current
-   combo inventory only for added positions. Repeated added combos can therefore
-   reuse evidence from the freshly imported seed. Retain full inventory conflicts
-   as audit evidence without reopening an adopted seed spelling. Unknown or
-   conflicting added positions need human spelling decisions; never choose by
-   majority. Keep canonical-headword proposals separate from dictionary-variant
-   evidence so an unknown variant glyph does not demote the main spelling.
-   Related entries normally require individual human review. The maintainer's
-   standing exception permits batch-authorized consistent proposals to be
-   screened against dictionary and combo evidence and imported as
-   `machine-reviewed`, without claiming individual human review. Record the
-   model/agent, scope and original evidence. Conflicting or incomplete added
-   positions still need explicit resolution. Shorter words inherit their spelling
-   but still need word-level adoption. The original entry's approval does not approve its
-   related words. If the request has no verified Hanji, do not invent a seed.
+   Keep check-time `related_moe_entries` as pre-import audit data. After the
+   authorized import and its conflict resolutions, follow
+   [standalone related-word review](#standalone-related-word-review) using the
+   resulting entry IDs and current inventory. The original word's approval does
+   not authorize its related suggestions.
 4. For an existing word, edit the existing entry rather than creating another.
    For an unrelated homograph, supply a short `identity_note` explaining the
    distinction. Do not split a word merely because it has related senses or
@@ -82,41 +53,50 @@ Use `python3 tools/lexicon.py`; do not invent an ID or hand-format generated TOM
 
 ## Standalone related-word review
 
-Related discovery is independently available through `tools/lexicon.py related
-HANJI [HANJI ...] --out /path/to/review.json --markdown /path/to/review.md`.
-No import request is required. Seed readings come from matching existing entries;
-use `--entry-id ID` (repeatable) to restrict the source identities. Only when no
-existing seed entry is recorded can the exact MOE seed form supply readings.
-Do not substitute other dictionary readings for an unalignable existing entry.
-Use only matched reading options and the recorded `combo_matches` proofs; the
-existing-seed column must not attribute a suggestion to a glyph-only match.
-When following a batch import, generate this report only after that batch and
-its conflict resolutions are complete. Use the resulting entry IDs as the scope.
-The Markdown output must hide related words already represented by existing
-entries and explicit rejections, while preserving those identities in JSON.
-Shared writing comes from the exact matching seed; shorten it by aligned unit
-removal or extend it using fresh combo evidence only at added positions.
-Use the readable report to present
-each dictionary identity, reading choices, proposed writing and both sides of
-combo conflicts. All decisions initially remain `pending`, regardless of combo
-consistency. Record a human's explicit entry-by-entry decisions only in each
-item's `review` object; approval must select the whole preferred form, canonical
-reading and any alternates, resolving conflicts and unknown positions.
+Use this procedure for standalone discovery and post-import recommendations.
+See the [related-word command reference](../../../tools/related-words.md) for
+commands, matching rules, report fields, and import flags.
 
-For a batch-authorized consistent proposal, set its review object's
-`review_status` to `machine-reviewed`, retain the selected spelling/readings,
-record contextual dictionary/combo screening provenance, and mark the batch
-decision approved. This is import authorization, not individual human review;
-do not upgrade these entries to `reviewed`. Existing-entry overlaps stay pending.
-
-After human review, `import-related /path/to/review.json` previews only individual
-`approved` decisions; add `--apply` when their local import is authorized. These
-entries are imported as `reviewed`, preserving original MOE sources, without a
-`rule_generated` flag. Pending/rejected items are never imported. An overall
-request to import suggestions does not establish individual human review.
-Do not rewrite sealed report evidence. If entries, dictionary or implementation
-change, regenerate the report and review the updated evidence before import.
-Existing-entry conflicts still follow the resolution rules below.
+1. Establish a verified Hanji seed from recorded forms or an explicitly cited MOE
+   identity. A homophone or reading-only match does not supply Hanji. Seed readings
+   come from matching existing entries; only when no seed entry exists can the
+   exact MOE form supply them. An unalignable existing reading does not permit a
+   different dictionary reading as a fallback. Use the recorded `combo_matches`
+   proofs and each complete sourced reading to verify the relation.
+2. After a batch import, finish its conflict resolutions before generating the
+   report. Scope it to the resulting entry IDs and current inventory. Present the
+   new-only Markdown index with original MOE readings, definitions, matching
+   patterns, source rows, and linked evidence pages. Existing-entry candidates and
+   explicit rejections stay in JSON but are hidden from that index; pre-import
+   checks remain audit evidence rather than current recommendations.
+3. Retain the matching seed spelling at shared positions. Shorter words remove
+   extra aligned units; longer words use fresh combo evidence only for added
+   positions, including evidence from the newly imported seed. Keep inventory
+   conflicts as audit evidence without reopening the adopted seed spelling.
+   Present both sides of conflicts and obtain explicit choices for unknown or
+   conflicting positions; never select by majority. Keep canonical-headword
+   proposals separate from dictionary variants so an uncertain variant does not
+   demote the main proposal.
+4. Keep decisions `pending` until separately authorized. Each approval selects the
+   complete preferred form, canonical reading, and any alternates in that item's
+   `review` object. Shorter words inherit spelling but still need word-level
+   adoption. Choose the review mode by the authority actually exercised:
+   - Individual human review uses `reviewed` after the maintainer explicitly
+     selects that word's spelling and readings, resolving any unknowns or conflicts.
+   - The standing exception permits batch-authorized, contextually screened
+     consistent complete proposals to use `machine-reviewed`. This includes
+     shorter words with complete inherited spellings. Retain the selected
+     spelling/readings and record the model/agent, scope, and original
+     dictionary/combo evidence in `editorial_rationale` and `sources`. Batch
+     authorization alone is not individual human review. Conflicting or incomplete
+     proposals still need explicit resolution; existing-entry overlaps remain
+     pending under the [conflict rule](#import-conflicts-require-maintainer-review).
+5. Preview `import-related`, then apply only the separately authorized approved
+   decisions. Preserve the selected review status and original MOE sources;
+   human-adopted recommendations omit `rule_generated`. Pending and rejected
+   suggestions remain unimported. Edit only the report's `review` objects, keeping
+   sealed evidence unchanged. If entries, dictionary, or implementation change,
+   regenerate and review the new evidence before importing remaining suggestions.
 
 ## Import conflicts require maintainer review
 

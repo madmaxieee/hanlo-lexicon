@@ -2,87 +2,55 @@
 
 A community-curated collection of Taiwanese Han-Lo writing recommendations,
 starting from the [LKK word list](sources/lkk-2024-05-10/word-list.tsv).
+Editable vocabulary records preserve stable identities, verified readings, and
+original evidence. CSV exports provide input/output mappings for TaigiKeyboard.
 
-## Layout
+## Find the right document
 
-- `entries/<initial>/<prefix>/*.toml`: editable vocabulary records.
-- `rules/`: conventions and context-dependent writing patterns.
-- `sources/`: unmodified source snapshots and their metadata.
-- `decisions/`: editorial decisions affecting multiple entries.
-- `schema/`: the entry schema and field conventions.
-- `tools/`: maintenance commands and CSV builds.
-- `.agents/skills/`: project-local vocabulary maintenance and candidate review skills.
-- `.github/workflows/`: CSV build artifacts and tagged CSV releases.
+- [Glossary](GLOSSARY.md): shared language for words, writing, evidence, and review.
+- [Entry schema](schema/README.md): fields, source references, identity, and filing.
+- [Maintenance guide](tools/README.md): lookup, editing, exports, and discovery commands.
+- [Editorial decisions](decisions/README.md): standing decisions and historical import records.
+- [Source rights](RIGHTS.md): reuse terms and distribution constraints.
 
-Entries are filed by the complete consonantal initial of the first syllable of
-`canonical_tl`, then that initial plus the complete vowel sequence. For example,
-`beh` files under `b/be/`, `bu` under `b/bu/`, and `bueh` under `b/bue/`.
-Tone marks and final consonants do not affect the prefix. Only occupied
-directories are created. `zero/` holds zero-initial entries, including syllabic nasals.
-Use `kh`, `ph`, `th`, `ts`, and `tsh` as separate directories. Alternate readings
-stay with their entry even when their initials differ.
+## Maintain vocabulary
 
-Each record has a permanent integer ID. Filenames combine the preferred written
-form with a zero-padded ID, such as `bái--000007.toml`.
-Correcting a canonical reading may move a file without changing its ID.
-Optional `rule_generated = true` distinguishes preferred spellings inferred only
-from writing rules from source-backed or curated recommendations. It does not
-replace review status or source citations.
-Preserve unrelated homographs even when spelling and reading both match, using a
-distinct identity note. Canonical readings select a filing reference, not a superior dialect.
+Use the [maintain-lexicon skill](.agents/skills/maintain-lexicon/SKILL.md) for entry
+additions, corrections, homographs, and related-word review. It connects offline
+LKK/MOE checks, evidence review, ID allocation, and validation. MOE's exact pinned
+snapshot is downloaded on first use; later lookups work offline.
 
-TOML files are the editable source. Build a CSV locally with
-`python3 tools/lexicon.py build-csv`; the result is `dist/lexicon.csv` with columns
-`tl,preferred_form` and no header row, for TaigiKeyboard import. Add `--header`
-to include the column names. This default export excludes pure-Hanji preferred forms.
-Use `python3 tools/lexicon.py build-csv --include-pure-hanji` to write
-`dist/lexicon-all.csv` containing all forms. Alternate outputs preserve the
-preferred form's Han characters and change its romanized syllables to match the
-alternate reading.
-Alternates with fewer syllables than the canonical reading are treated as
-contractions and use the full alternate reading as both suggested form and TL.
-Other Hanji-only readings retain the same suggested Hanji. Identical
-CSV rows are deduplicated while distinct TOML word identities are preserved.
-Add `--canonical-only` to either command to export only each entry's
-`canonical_tl,preferred_form` pair, skipping alternate readings. These exports
-write `dist/lexicon-canonical.csv` and `dist/lexicon-all-canonical.csv`, respectively.
-See `tools/README.md` for examples and GitHub Actions build/release instructions.
-Optional `hanji_forms` records Hanji spellings independently of MOE inclusion;
-it is lookup metadata and does not add CSV output rows. The TSBP discovery and
-review workflow uses the [review-tsbp-roman skill](.agents/skills/review-tsbp-roman/SKILL.md);
-see `tools/tsbp/README.md` for tool and test documentation.
-For read-only pure-Hanji corpus matching, overlap analysis, and combo coverage,
-see [pure-Hanji discovery](tools/README.md#pure-hanji-corpus-discovery).
-Both GitHub workflows generate both CSV versions. Tagged releases include
-`lexicon.csv`, `lexicon-all.csv`, `SHA256SUMS`, and `RIGHTS.md`.
-JSON exports and contribution forms are not implemented.
+For corpus work, choose the workflow by writing system:
 
-See `schema/README.md` for record conventions and `RIGHTS.md` for source rights.
+- [TSBP Roman and mixed-script review](.agents/skills/review-tsbp-roman/SKILL.md)
+  covers harvesting, language screening, review exports, and authorized imports.
+- [Pure-Hanji review](.agents/skills/review-hanji/SKILL.md) screens harvested
+  candidates in context. Start with [discovery commands](tools/hanji-discovery.md)
+  when no harvest exists.
 
-## Shortcuts with just
+## Build and check
 
-With `just` installed, run `just` to list commands. Recipes use the project folder
-as their working directory, including when invoked from a subdirectory.
+With `just` installed, run `just` to list recipes. Common commands are:
 
-| Command | Result |
-| --- | --- |
-| `just export` | `dist/lexicon.csv`, including alternate readings |
-| `just export-all` | `dist/lexicon-all.csv`, including pure Hanji |
-| `just export-canonical` | `dist/lexicon-canonical.csv`, canonical readings only |
-| `just export-all-canonical` | `dist/lexicon-all-canonical.csv`, all forms, canonical readings only |
-| `just validate` | Validate entries and source references |
-| `just format-check` | Check formatting without edits |
-| `just format` | Apply canonical formatting and entry paths |
-| `just test` | Run the maintenance tool tests |
-| `just check` | Run validation, formatting checks, and tests |
+```sh
+just export       # Default TaigiKeyboard CSV, including alternate readings
+just export-all   # Include pure-Hanji preferred forms
+just check        # Validate, check formatting, and run maintenance tests
+```
 
-The Python commands remain available without `just`.
+Without `just`, use the Python commands in the [maintenance guide](tools/README.md).
+See [CSV exports and releases](tools/csv.md) for headers, canonical-only exports,
+alternate-spelling behavior, and GitHub build artifacts.
 
-## Maintain entries
+## Repository layout
 
-Use the `maintain-lexicon` project skill or the commands in `tools/README.md`.
-The tool checks existing entries, the full LKK snapshot, and a checksum-pinned
-copy of the original MOE ODS. On first use the tool downloads that exact snapshot
-from TaigiKeyboard GitHub into ignored `.cache/dictionaries/moe/`; later lookups
-work offline. The next unused ID is tracked only in `id-sequence.toml`; the tool
-allocates new IDs under a local writer lock.
+- `entries/`: editable vocabulary TOML, filed by canonical TL initial and vowel prefix.
+- `sources/` and `references/`: original snapshots, metadata, and dictionary pins.
+- `schema/` and `decisions/`: record conventions and editorial decisions.
+- `tools/` and `tests/`: maintenance commands, corpus tools, and their tests.
+- `.agents/skills/`: project-specific editorial and jj workspace workflows.
+- `docs/agents/`: engineering-skill configuration and documentation reading rules.
+- `.github/workflows/`: CSV builds and tagged releases.
+
+Generated caches and `dist/` are disposable local artifacts. TOML records remain
+the editable source. See [agent instructions](AGENTS.md) before making changes.

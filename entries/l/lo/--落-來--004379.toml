@@ -1,6 +1,6 @@
 alternate_readings = []
 canonical_tl = "--lo̍h-lâi"
-editorial_rationale = "The maintainer adopts the neutral-marked form --落-來 with reading --lo̍h-lâi; the original article uses this literal form for rain dripping down."
+editorial_rationale = "The maintainer adopts the neutral-marked form --落-來 with reading --lo̍h-lâi; the original article uses this literal form for rain dripping down. Additional sources are the occurrences cited for entry 5032 (suà--落-來), which contains this complement."
 hanji_forms = ["--落-來"]
 id = 4379
 moe_forms = []
@@ -11,3 +11,12 @@ schema_version = 1
 [[sources]]
 locator = "Article text line 13; normalized source characters 421:426; written form --落-來"
 url = "https://tsbp.tgb.org.tw/2016/05/an-ne.html"
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 161:169; written form suà--落-來 (contains --落-來)"
+url = "https://tsbp.tgb.org.tw/2012/03/e-e-kapbong-elongai-ekoh-uisua.html"
+
+[[sources]]
+row = 14285
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,18 @@
+alternate_readings = []
+canonical_tl = "--sian-sinn"
+editorial_rationale = "TSBP writes this neutral-tone form with a leading --. MOE 先生 / sian-sinn supplies the Hanji and base reading; the neutral marker follows the source spelling. The maintainer approved this custom request in review."
+hanji_forms = ["--先-生"]
+id = 5147
+moe_forms = []
+preferred_form = "--先-生"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 609:614; written form --先-生"
+url = "https://tsbp.tgb.org.tw/2015/04/blog-post_44.html"
+
+[[sources]]
+row = 2060
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

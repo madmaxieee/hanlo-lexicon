@@ -1,0 +1,18 @@
+alternate_readings = ["--lī"]
+canonical_tl = "--jī"
+editorial_rationale = "TSBP writes this neutral-tone form with a leading --. MOE 字 / jī, lī supplies the Hanji and base readings; the neutral marker follows the source spelling. The maintainer approved this custom request in review, with alternate --lī."
+hanji_forms = ["--字"]
+id = 5146
+moe_forms = []
+preferred_form = "--字"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 118:121; written form --字"
+url = "https://tsbp.tgb.org.tw/2015/03/blog-post_75.html"
+
+[[sources]]
+row = 2277
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

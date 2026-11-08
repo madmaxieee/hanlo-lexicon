@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "--nooh"
+id = 5145
+moe_forms = []
+preferred_form = "--nooh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 673:679; written form --nooh"
+url = "https://tsbp.tgb.org.tw/2015/03/e_7.html"

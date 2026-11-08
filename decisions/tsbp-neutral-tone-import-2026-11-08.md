@@ -64,6 +64,31 @@ and `--uè`.
 None of the 109 exact-MOE entries imported earlier cites one of the omitted
 articles.
 
+## Second maintainer review batch
+
+The maintainer's second export is `.cache/tsbp-neutral-review-3/review-1.json`.
+It imported:
+
+- 5144 `--mah` and 5145 `--nooh`, through `import_review.py` with article
+  evidence.
+- 5146 `--字` / `--jī`, with alternate `--lī` as the maintainer specified. It cites
+  MOE 字 (詞目 row 2277) and one article.
+- 5147 `--先-生` / `--sian-sinn`. It cites MOE 先生 (詞目 row 2060) and one article.
+
+The maintainer ignored `--lìn` and `邊--á`. This drops the `厝--lìn` custom
+request, so entry 5029 stays unchanged. Existing entry 1156, `邊--a`, also stays
+unchanged.
+
+The maintainer then changed entry 5029 to `厝--nih` / `tshù--nih`, with alternate
+`tshù--lí` and Hanji `厝--裡`. Where the corpus spells out the reading, `nih` is
+preferred: `厝--nih` and `tshù--nih` occur 29 times, plus 6 `tshù--ni̍h`, against
+5 `tshù--lí`. The 381 Hanji `厝--裡` occurrences do not show the reading. The entry
+now also cites an article that writes `厝--nih`.
+
+The 84 passages ignored in this export are excluded from later queues together
+with the earlier ones. Fourteen more candidates have no evidence left and leave
+the queue.
+
 ## Harvest rules
 
 - Romanized syllables were validated and converted from POJ to TL with the

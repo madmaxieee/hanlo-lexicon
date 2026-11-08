@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "--mah"
+id = 5144
+moe_forms = []
+preferred_form = "--mah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 175:180; written form --mah"
+url = "https://tsbp.tgb.org.tw/2015/04/khah-leh.html"

@@ -1,0 +1,22 @@
+alternate_readings = ["tshù--lí"]
+canonical_tl = "tshù--nih"
+editorial_rationale = "The maintainer chose 厝--nih / tshù--nih as the recommended form, with tshù--lí as an alternate reading. In the TSBP corpus, spelled-out second syllables favor nih (厝--nih and tshù--nih, 29 occurrences) over lí (tshù--lí, 5); the Hanji 厝--裡 (381 occurrences) does not show the reading."
+hanji_forms = ["厝--裡"]
+id = 5029
+moe_forms = ["厝裡"]
+preferred_form = "厝--nih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 25; normalized source characters 1654:1660; written form 厝--nih"
+url = "https://tsbp.tgb.org.tw/2020/04/kap-gun-tau-e-1-pha.html"
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 514:518; written form 厝--裡"
+url = "https://tsbp.tgb.org.tw/2012/07/blog-post_2094.html"
+
+[[sources]]
+row = 14592
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -34,12 +34,12 @@ With `just` installed, run `just` to list recipes. Common commands are:
 
 ```sh
 just export       # Default TaigiKeyboard CSV, including alternate readings
-just export-all   # Include pure-Hanji preferred forms
+just export-all   # Every CSV variant, including canonical and contractions only
 just check        # Validate, check formatting, and run maintenance tests
 ```
 
 Without `just`, use the Python commands in the [maintenance guide](tools/README.md).
-See [CSV exports and releases](tools/csv.md) for headers, canonical-only exports,
+See [CSV exports and releases](tools/csv.md) for headers, canonical-and-contractions exports,
 alternate-spelling behavior, and GitHub build artifacts.
 
 ## Repository layout

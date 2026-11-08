@@ -39,7 +39,7 @@ See the [command reference](entries.md#batch-imports).
 
 ## Build CSV
 
-Export default, all-form, and canonical-only CSVs with alternate-reading rules.
+Export default and canonical-and-contractions CSVs with alternate-reading rules.
 See the [command reference](csv.md#build-csv).
 
 ## CSV releases

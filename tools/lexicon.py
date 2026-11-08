@@ -874,6 +874,14 @@ def is_hanji(form):
     )
 
 
+def syllables(reading):
+    return list(re.finditer(r'[^\s-]+', reading))
+
+
+def is_contraction(canonical, reading):
+    return len(syllables(reading)) < len(syllables(canonical))
+
+
 def written_form(form, canonical, reading):
     """Render a sourced alternate in the same Han/romanized writing pattern.
 
@@ -881,9 +889,8 @@ def written_form(form, canonical, reading):
     Otherwise mixed forms require one Han character or romanized syllable per
     reading syllable, with matching romanization.
     """
-    primary = list(re.finditer(r'[^\s-]+', canonical))
-    alternate = list(re.finditer(r'[^\s-]+', reading))
-    if len(alternate) < len(primary):
+    primary, alternate = syllables(canonical), syllables(reading)
+    if is_contraction(canonical, reading):
         return reading
     if is_hanji(form):
         return form
@@ -933,17 +940,19 @@ def spelling_readings(entry):
             for reading in [canonical, *entry['alternate_readings']]]
 
 
-def build_csv(root, include_pure_hanji=False, canonical_only=False, header=False):
+def build_csv(root, canonical_and_contractions=False, header=False):
     """Build a flat spelling/reading CSV without changing editorial records."""
     with writer_lock(root):
         current = entries(root)
         validate(root, current=current)
         rows = set()
         for _, entry in current:
-            if not include_pure_hanji and is_hanji(entry['preferred_form']):
+            if is_hanji(entry['preferred_form']) and '-' not in entry['preferred_form']:
                 continue
-            if canonical_only:
+            if canonical_and_contractions:
                 rows.add((entry['preferred_form'], entry['canonical_tl']))
+                rows.update((reading, reading) for reading in entry['alternate_readings']
+                            if is_contraction(entry['canonical_tl'], reading))
             else:
                 rows.update(spelling_readings(entry))
         stream = io.StringIO(newline='')
@@ -951,9 +960,7 @@ def build_csv(root, include_pure_hanji=False, canonical_only=False, header=False
         if header:
             writer.writerow(('tl', 'preferred_form'))
         writer.writerows((reading, form) for form, reading in sorted(rows))
-        name = 'lexicon-all' if include_pure_hanji else 'lexicon'
-        if canonical_only:
-            name += '-canonical'
+        name = 'lexicon-canonical-contractions' if canonical_and_contractions else 'lexicon'
         target = root / 'dist' / f'{name}.csv'
         atomic_write(target, stream.getvalue())
     return {'csv': str(target.relative_to(root)), 'entries': len(current), 'rows': len(rows)}
@@ -968,10 +975,8 @@ def main():
     csv_export = sub.add_parser('build-csv')
     csv_export.add_argument('--header', action='store_true',
                             help='Include a tl,preferred_form header (default: no header).')
-    csv_export.add_argument('--include-pure-hanji', action='store_true',
-                            help='Include pure-Hanji preferred forms and write dist/lexicon-all.csv (default: exclude them in dist/lexicon.csv).')
-    csv_export.add_argument('--canonical-only', action='store_true',
-                            help='Export only preferred_form/canonical_tl pairs, skipping alternate readings; add -canonical to the output filename.')
+    csv_export.add_argument('--canonical-and-contractions', action='store_true',
+                            help='Export canonical readings and contractions, skipping other alternate readings; add -canonical-contractions to the output filename.')
     formatting = sub.add_parser('format')
     formatting.add_argument('--check', action='store_true')
     for name in ('check', 'add'):
@@ -1002,8 +1007,8 @@ def main():
         elif args.command == 'next-id':
             result = {'next_id': next_id(root, entries(root)), 'reserved': False}
         elif args.command == 'build-csv':
-            result = build_csv(root, include_pure_hanji=args.include_pure_hanji,
-                               canonical_only=args.canonical_only, header=args.header)
+            result = build_csv(root, canonical_and_contractions=args.canonical_and_contractions,
+                               header=args.header)
         elif args.command == 'validate' or args.command == 'format' and args.check:
             result = validate(root)
         elif args.command == 'format':

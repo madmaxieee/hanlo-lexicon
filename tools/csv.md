@@ -8,19 +8,16 @@ Run commands from the repository root.
 
 ```sh
 python3 tools/lexicon.py build-csv
-python3 tools/lexicon.py build-csv --include-pure-hanji
-python3 tools/lexicon.py build-csv --canonical-only
-python3 tools/lexicon.py build-csv --include-pure-hanji --canonical-only
+python3 tools/lexicon.py build-csv --canonical-and-contractions
 ```
 
 The default command validates the repository and atomically writes
-`dist/lexicon.csv`, excluding entries whose preferred forms are pure Hanji.
-`--include-pure-hanji` writes `dist/lexicon-all.csv` with all entries instead,
-leaving the default file untouched. Filtering uses `preferred_form`, independently
-of Hanji metadata in `moe_forms` or `hanji_forms`. Punctuation, spaces and combining
-marks do not make a pure-Hanji form mixed: `後--日` is excluded by default.
-Both UTF-8 files have columns `tl,preferred_form`, no header row by default for
-TaigiKeyboard import, LF line endings, and rows
+`dist/lexicon.csv`. Exports always exclude entries whose preferred forms are pure
+Hanji. Filtering uses `preferred_form`, independently of Hanji metadata in
+`moe_forms` or `hanji_forms`. Any ASCII hyphen makes a form exportable, so
+`後--日`, `落--去`, `--落-來`, and `--啊` are included. Other punctuation, spaces
+and combining marks do not. Both UTF-8 files have columns `tl,preferred_form`,
+no header row by default for TaigiKeyboard import, LF line endings, and rows
 sorted by written form and then reading using Unicode code-point order. Identical
 rows are emitted once, including rows shared by unrelated homographs. The TOML
 records, IDs, source snapshots, and allocation counter are unchanged.
@@ -29,25 +26,27 @@ Add `--header` to any build variant to include the exact `tl,preferred_form`
 header row. This writes to the same output filename; the reported row count
 counts data rows only. An empty export without a header is a zero-byte file.
 
-Use `--canonical-only` to export only each included entry's `preferred_form` with
-its `canonical_tl`, without generating any alternate-reading rows. It writes
-`dist/lexicon-canonical.csv`, or `dist/lexicon-all-canonical.csv` when combined with
-`--include-pure-hanji`, leaving the regular exports untouched. Sorting,
-deduplication, source validation, and the pure-Hanji filter work the same way.
-Alternate readings remain in the TOML records. Canonical-only builds do not try
-to align alternate spellings, so an unalignable alternate does not block them.
+Use `--canonical-and-contractions` to export each included entry's
+`preferred_form` with its `canonical_tl`, plus a row for each contraction, while
+skipping other alternate readings. It writes `dist/lexicon-canonical-contractions.csv`,
+leaving the regular export untouched. Contraction rows
+follow the rule below. Sorting, deduplication, source validation, and the
+pure-Hanji filter work the same way. Skipped alternate readings remain in the TOML
+records. These builds do not try to align alternate spellings, so an unalignable
+non-contraction alternate does not block them.
 
 Each included entry contributes its `preferred_form` with its `canonical_tl`.
-Unless `--canonical-only` is set, each `alternate_readings` value also contributes:
+Each `alternate_readings` value also contributes, except that
+`--canonical-and-contractions` keeps only the contraction rule:
 
 - If the alternate has fewer syllables than the canonical reading, treat it as a
   contraction and use the complete alternate reading as both written form and TL,
   regardless of the preferred form's writing system. For example, `tann仔` with
   canonical `tann-á` and alternate `ta̋nn` produces `tann-á,tann仔` and `ta̋nn,ta̋nn`.
   The pure-Hanji entry filter still applies before generating rows.
-- Otherwise, if the preferred form contains only Hanji, retain it for each reading.
-  Punctuation, spaces, and combining marks are ignored for this classification,
-  so `後--日` retains its written form for both `āu--ji̍t` and `āu--li̍t`.
+- Otherwise, if the preferred form contains only Hanji apart from hyphens and
+  other separators, retain it for each reading: `後--日` produces both
+  `āu--ji̍t,後--日` and `āu--li̍t,後--日`.
 - For fully romanized forms, use each alternate reading as its written output.
 - For mixed forms, preserve Han characters and separators, and replace only the
   romanized syllables with the corresponding syllables of the alternate reading.
@@ -71,8 +70,7 @@ beh,beh
 bueh,bueh
 ```
 
-A Hanji entry `欲` with readings `beh` and `bueh` produces `beh,欲` and `bueh,欲`
-only in the inclusive export. A mixed entry `想beh` with readings `siūnn-beh` and
+A mixed entry `想beh` with readings `siūnn-beh` and
 `siūnn-bueh` produces
 `siūnn-beh,想beh` and `siūnn-bueh,想bueh`. Likewise, `beh食飯` with alternate
 `bueh-tsiah-pn̄g` produces `bueh-tsiah-pn̄g,bueh食飯`. If only a Han-written
@@ -90,9 +88,9 @@ build shares the maintenance writer lock to avoid racing with `add` or `format`.
 MOE is fetched and verified only when required by source citations, using the
 same pinned cache as validation.
 
-The manual **Build CSV** GitHub Actions workflow runs tests and both commands,
-then makes `lexicon.csv` and `lexicon-all.csv` available in the
-`hanlo-lexicon-csv` run artifact. It can be run from the repository's Actions tab.
+The manual **Build CSV** GitHub Actions workflow runs tests and both build
+commands, then makes `lexicon.csv` and `lexicon-canonical-contractions.csv`
+available in the `hanlo-lexicon-csv` run artifact. It can be run from the repository's Actions tab.
 Local builds need no GitHub account
 or remote. JSON exports remain unimplemented.
 
@@ -105,8 +103,9 @@ It publishes a release tagged with the UTC date, such as `v2026.11.08`; later
 releases on the same day get `v2026.11.08.2`, `v2026.11.08.3`, and so on. If the
 commit already has a tag, the push makes no new release. The workflow tests the
 maintenance tools, checks formatting, validates the data, and builds both CSVs
-with the local commands. It packages `lexicon.csv`, `lexicon-all.csv`, `RIGHTS.md`,
-and `SHA256SUMS` covering both CSVs and the rights file, then creates a draft
+with the local commands. It packages `lexicon.csv`,
+`lexicon-canonical-contractions.csv`, `RIGHTS.md`, and `SHA256SUMS` covering the
+CSVs and the rights file, then creates a draft
 release with those assets before publishing it. Tags with a
 hyphen, such as `v0.1.0-rc.1`, become prereleases. Existing releases are never
 overwritten; a failed publish can leave a draft for the maintainer to inspect.

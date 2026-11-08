@@ -419,8 +419,7 @@ class MaintenanceTests(unittest.TestCase):
         self.run_cli('add', str(self.request(form='想beh', reading='siūnn-beh',
                                            alternate_readings=['siūnn-bueh'])))
         self.run_cli('add', str(self.request(form='欲', alternate_readings=['bueh'])))
-        for flags in ([], ['--include-pure-hanji'], ['--canonical-only'],
-                      ['--include-pure-hanji', '--canonical-only']):
+        for flags in ([], ['--canonical-and-contractions']):
             with self.subTest(flags=flags):
                 result = self.run_cli('build-csv', *flags)
                 target = self.root / result['csv']
@@ -440,16 +439,7 @@ class MaintenanceTests(unittest.TestCase):
             ['beh-tsiah-pn̄g', 'beh食飯'],
             ['bueh-tsiah-pn̄g', 'bueh食飯'],
         ])
-        default = (self.root / 'dist/lexicon.csv').read_bytes()
-        result = self.run_cli('build-csv', '--include-pure-hanji')
-        self.assertEqual(result['csv'], 'dist/lexicon-all.csv')
-        self.assertEqual(result['rows'], 4)
-        self.assertEqual((self.root / 'dist/lexicon.csv').read_bytes(), default)
-        self.assertEqual(self.csv_rows('lexicon-all.csv'), [
-            ['beh-tsiah-pn̄g', 'beh食飯'],
-            ['bueh-tsiah-pn̄g', 'bueh食飯'],
-            ['beh', '欲'], ['bueh', '欲'],
-        ])
+        self.run_cli('build-csv', '--include-pure-hanji', expected=2)
 
     def test_mixed_alternates_change_only_romanized_syllables(self):
         cases = [
@@ -464,41 +454,36 @@ class MaintenanceTests(unittest.TestCase):
                 self.assertEqual(lex.written_form(form, canonical, alternate), expected)
         self.assertEqual(lex.written_form('想bèh', 'siūnn-bèh', 'siūnn-bueh'), '想bueh')
 
-    def test_canonical_only_filters_deduplicates_and_keeps_regular_exports(self):
+    def test_canonical_and_contractions_skips_other_alternates_and_keeps_regular_exports(self):
         self.run_cli('add', str(self.request(alternate_readings=['bueh'])))
         self.run_cli('add', str(self.request(alternate_readings=['bueh'], identity_note='A separate fixture lexeme.')))
         self.run_cli('add', str(self.request(form='欲', alternate_readings=['bueh'])))
         self.run_cli('add', str(self.request(form='想beh', reading='siūnn-beh', alternate_readings=['siūnn-bueh'])))
+        self.run_cli('add', str(self.request(form='tann仔', reading='tann-á', alternate_readings=['ta̋nn', 'tan-á'])))
+        self.run_cli('add', str(self.request(form='今仔', reading='tann-á', alternate_readings=['ta̋nn'])))
         self.run_cli('build-csv')
-        self.run_cli('build-csv', '--include-pure-hanji')
-        regular = {name: (self.root / 'dist' / name).read_bytes()
-                   for name in ('lexicon.csv', 'lexicon-all.csv')}
+        regular = (self.root / 'dist/lexicon.csv').read_bytes()
         entries = {path: path.read_bytes() for path, _ in lex.entries(self.root)}
-        result = self.run_cli('build-csv', '--canonical-only')
-        self.assertEqual(result, {'csv': 'dist/lexicon-canonical.csv', 'entries': 4, 'rows': 2})
-        self.assertEqual(self.csv_rows('lexicon-canonical.csv'), [
-            ['beh', 'beh'], ['siūnn-beh', '想beh'],
+        result = self.run_cli('build-csv', '--canonical-and-contractions')
+        self.assertEqual(result, {'csv': 'dist/lexicon-canonical-contractions.csv', 'entries': 6, 'rows': 4})
+        self.assertEqual(self.csv_rows('lexicon-canonical-contractions.csv'), [
+            ['beh', 'beh'], ['tann-á', 'tann仔'], ['ta̋nn', 'ta̋nn'], ['siūnn-beh', '想beh'],
         ])
-        result = self.run_cli('build-csv', '--canonical-only', '--include-pure-hanji')
-        self.assertEqual(result, {'csv': 'dist/lexicon-all-canonical.csv', 'entries': 4, 'rows': 3})
-        self.assertEqual(self.csv_rows('lexicon-all-canonical.csv'), [
-            ['beh', 'beh'], ['siūnn-beh', '想beh'], ['beh', '欲'],
-        ])
-        self.assertEqual({name: (self.root / 'dist' / name).read_bytes() for name in regular}, regular)
+        self.assertEqual((self.root / 'dist/lexicon.csv').read_bytes(), regular)
         self.assertEqual({path: path.read_bytes() for path, _ in lex.entries(self.root)}, entries)
 
-    def test_canonical_only_does_not_align_alternates_but_still_validates(self):
+    def test_canonical_and_contractions_does_not_align_alternates_but_still_validates(self):
         self.run_cli('add', str(self.request(form='想beh', reading='siūnn-beh', alternate_readings=['siūnn-bueh-ah'])))
         self.run_cli('build-csv', expected=2)
-        self.assertEqual(self.run_cli('build-csv', '--canonical-only')['rows'], 1)
-        self.assertEqual(self.csv_rows('lexicon-canonical.csv'), [
+        self.assertEqual(self.run_cli('build-csv', '--canonical-and-contractions')['rows'], 1)
+        self.assertEqual(self.csv_rows('lexicon-canonical-contractions.csv'), [
             ['siūnn-beh', '想beh'],
         ])
-        target = self.root / 'dist/lexicon-canonical.csv'
+        target = self.root / 'dist/lexicon-canonical-contractions.csv'
         before = target.read_bytes()
         source = self.root / 'sources/lkk-fixture/word-list.tsv'
         source.write_bytes(source.read_bytes() + b'changed')
-        self.run_cli('build-csv', '--canonical-only', expected=2)
+        self.run_cli('build-csv', '--canonical-and-contractions', expected=2)
         self.assertEqual(target.read_bytes(), before)
 
     def test_ambiguous_mixed_alternate_fails_before_csv_replacement(self):
@@ -523,10 +508,6 @@ class MaintenanceTests(unittest.TestCase):
         self.assertEqual(self.csv_rows(), [
             ['tann-á', 'tann仔'], ['ta̋nn', 'ta̋nn'],
         ])
-        self.run_cli('build-csv', '--include-pure-hanji')
-        self.assertEqual(self.csv_rows('lexicon-all.csv'), [
-            ['tann-á', 'tann仔'], ['ta̋nn', 'ta̋nn'], ['tann-á', '今仔'],
-        ])
         self.assertEqual({path: path.read_bytes() for path, _ in lex.entries(self.root)}, before)
         # Spaces and double hyphens delimit syllables; preserve the reading verbatim.
         self.assertEqual(lex.written_form('tann仔好', 'tann-á hó', 'ta̋nn--hó'), 'ta̋nn--hó')
@@ -543,32 +524,37 @@ class MaintenanceTests(unittest.TestCase):
         self.assertEqual((self.root / 'id-sequence.toml').read_bytes(), counter)
         self.assertEqual(self.run_cli('validate')['entries'], 3)
 
-    def test_build_csv_preserves_unicode_quotes_and_neutral_markers(self):
+    def test_build_csv_exports_hyphenated_hanji_and_preserves_neutral_markers(self):
         self.run_cli('add', str(self.request(form='後--日', reading='āu--ji̍t', alternate_readings=['āu--li̍t'])))
-        self.run_cli('add', str(self.request(form='「欲,愛」', reading='bóng')))
+        self.run_cli('add', str(self.request(form='--啊', reading='--ah')))
+        self.run_cli('add', str(self.request(form='欲', reading='beh')))
         self.run_cli('build-csv')
-        self.assertEqual(self.csv_rows(), [])
-        self.run_cli('build-csv', '--include-pure-hanji')
-        target = self.root / 'dist/lexicon-all.csv'
+        # Hyphens make a Hanji form exportable.
+        self.assertEqual(self.csv_rows(), [
+            ['--ah', '--啊'], ['āu--ji̍t', '後--日'], ['āu--li̍t', '後--日'],
+        ])
+        self.run_cli('add', str(self.request(form='後--ji̍t', reading='āu--ji̍t', alternate_readings=['āu--li̍t'])))
+        self.run_cli('build-csv')
+        target = self.root / 'dist/lexicon.csv'
         before = target.read_bytes()
         self.assertNotIn(b'\r', before)
-        self.assertEqual(self.csv_rows('lexicon-all.csv'), [
-            ['bóng', '「欲,愛」'],
+        self.assertEqual(self.csv_rows(), [
+            ['--ah', '--啊'], ['āu--ji̍t', '後--ji̍t'], ['āu--li̍t', '後--li̍t'],
             ['āu--ji̍t', '後--日'], ['āu--li̍t', '後--日'],
         ])
-        self.run_cli('build-csv', '--include-pure-hanji')
+        self.run_cli('build-csv')
         self.assertEqual(target.read_bytes(), before)
 
     def test_build_csv_rejects_invalid_data_before_replacing_output(self):
         self.run_cli('add', str(self.request()))
         self.run_cli('build-csv')
-        self.run_cli('build-csv', '--include-pure-hanji')
+        self.run_cli('build-csv', '--canonical-and-contractions')
         before = {name: (self.root / 'dist' / name).read_bytes()
-                  for name in ('lexicon.csv', 'lexicon-all.csv')}
+                  for name in ('lexicon.csv', 'lexicon-canonical-contractions.csv')}
         source = self.root / 'sources/lkk-fixture/word-list.tsv'
         source.write_bytes(source.read_bytes() + b'changed')
         self.run_cli('build-csv', expected=2)
-        self.run_cli('build-csv', '--include-pure-hanji', expected=2)
+        self.run_cli('build-csv', '--canonical-and-contractions', expected=2)
         self.assertEqual({name: (self.root / 'dist' / name).read_bytes() for name in before}, before)
         self.assertFalse((self.root / '.lexicon.lock').exists())
 

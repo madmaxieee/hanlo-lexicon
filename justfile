@@ -6,17 +6,12 @@ default:
 export:
     python3 tools/lexicon.py build-csv
 
-# Export all entries, including pure Hanji and alternate readings.
-export-all:
-    python3 tools/lexicon.py build-csv --include-pure-hanji
+# Export Han-Lo and romanized entries with canonical readings and contractions.
+export-canonical-contractions:
+    python3 tools/lexicon.py build-csv --canonical-and-contractions
 
-# Export Han-Lo and romanized entries with canonical readings only.
-export-canonical:
-    python3 tools/lexicon.py build-csv --canonical-only
-
-# Export all entries with canonical readings only.
-export-all-canonical:
-    python3 tools/lexicon.py build-csv --include-pure-hanji --canonical-only
+# Export every CSV variant.
+export-all: export export-canonical-contractions
 
 # Validate entries, IDs, formatting, and source references.
 validate:

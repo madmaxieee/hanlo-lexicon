@@ -18,15 +18,15 @@ jobs:
           python-version: "3.11"
       - name: Test maintenance tools
         run: python3 -m unittest discover -s tests -v
-      - name: Validate entries and build both CSV exports
+      - name: Validate entries and build all CSV exports
         run: |
           python3 tools/lexicon.py build-csv
-          python3 tools/lexicon.py build-csv --include-pure-hanji
+          python3 tools/lexicon.py build-csv --canonical-and-contractions
       - name: Upload CSV artifact
         uses: actions/upload-artifact@v7
         with:
           name: hanlo-lexicon-csv
           path: |
             dist/lexicon.csv
-            dist/lexicon-all.csv
+            dist/lexicon-canonical-contractions.csv
           if-no-files-found: error

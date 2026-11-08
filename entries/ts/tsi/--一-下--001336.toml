@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "--tsi̍t-ē"
+editorial_rationale = "The maintainer explicitly adopted the neutral-marked form --一-下 with reading --tsi̍t-ē, converting this entry in place. MOE identity 4 sense 1 describes the verb suffix, with the example Sió-tán--tsi̍t-ē; the cited TSBP article uses the literal form 看--一-下. Entries 5038 (等--一-下), 5106 (眠--一-下) and 5114 (tsi̍p--一-下) contain this suffix."
+id = 1336
+moe_forms = ["一下"]
+preferred_form = "--一-下"
+review_status = "reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 226:231; written form --一-下 (in 看--一-下)"
+url = "https://tsbp.tgb.org.tw/2012/07/blog-post_2094.html"
+
+[[sources]]
+row = 5
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 851
+snapshot = "lkk-2024-05-10"

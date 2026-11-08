@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "--khí-lâi"
+editorial_rationale = "The maintainer explicitly adopted the neutral-marked form --起-來 with reading --khí-lâi, converting this entry in place. MOE identity 6716 sense 4 covers the post-verb complement with neutral-tone readings such as Khuànn--khí-lâi; the cited TSBP article uses the literal form 收--起-來. Entry 5131 (tshuah--起-來) contains this complement. Earlier provenance for the plain form 起來: corpus-backed Hanji proposal screened in sampled source context by gpt-6-luna (medium reasoning), MOE identity 6716; issue 389 model-review SHA-256 371dcaebc2b6a4d1f23d6cf549e53365bb960ff95e749551c9302e360ba11224."
+id = 2648
+moe_forms = ["起來"]
+preferred_form = "--起-來"
+review_status = "reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 330:335; written form --起-來 (in 收--起-來)"
+url = "https://tsbp.tgb.org.tw/2012/04/e.html"
+
+[[sources]]
+locator = "Issue 389; article text line 9; corpus Unicode code points 1107:1109; literal form 起來"
+url = "https://tsbp.tgb.org.tw/2016/08/blog-post_932.html"
+
+[[sources]]
+row = 6715
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

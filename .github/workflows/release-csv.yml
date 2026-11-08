@@ -2,6 +2,15 @@ name: Release CSV
 
 "on":
   push:
+    branches:
+      - main
+    paths:
+      - "entries/**"
+      - "sources/**"
+      - "references/**"
+      - "tools/**.py"
+      - "RIGHTS.md"
+      - ".github/workflows/release-csv.yml"
     tags:
       - "v*"
   workflow_dispatch:
@@ -28,8 +37,8 @@ jobs:
         env:
           REF: ${{ github.ref }}
         run: |
-          if [[ "$REF" != refs/tags/v* ]]; then
-            echo 'Publishing requires an existing v* tag.' >&2
+          if [[ "$REF" != refs/tags/v* && "$REF" != refs/heads/main ]]; then
+            echo 'Publishing requires main or an existing v* tag.' >&2
             exit 1
           fi
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -81,9 +90,28 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
+          REF: ${{ github.ref }}
           RELEASE_TAG: ${{ github.ref_name }}
           COMMIT_SHA: ${{ github.sha }}
         run: |
+          tag_args=(--verify-tag)
+          if [[ "$REF" == refs/heads/main ]]; then
+            released=$(gh api "repos/$GH_REPO/tags" --paginate \
+              --jq ".[] | select(.commit.sha == \"$COMMIT_SHA\") | .name")
+            if [[ -n "$released" ]]; then
+              echo "Commit already released as: $released"
+              exit 0
+            fi
+            base="v$(date -u +%Y.%m.%d)"
+            RELEASE_TAG="$base"
+            n=1
+            while gh api "repos/$GH_REPO/git/ref/tags/$RELEASE_TAG" --silent 2>/dev/null \
+              || gh release view "$RELEASE_TAG" >/dev/null 2>&1; do
+              n=$((n + 1))
+              RELEASE_TAG="$base.$n"
+            done
+            tag_args=(--target "$COMMIT_SHA")
+          fi
           cat > release-notes.md <<EOF
           Taiwanese Han-Lo writing recommendations, built from commit ${COMMIT_SHA}.
 
@@ -98,6 +126,6 @@ jobs:
             prerelease=(--prerelease)
           fi
           gh release create "$RELEASE_TAG" dist/lexicon.csv dist/lexicon-all.csv dist/RIGHTS.md dist/SHA256SUMS \
-            --verify-tag --draft --title "$RELEASE_TAG" \
+            "${tag_args[@]}" --draft --title "$RELEASE_TAG" \
             --notes-file release-notes.md "${prerelease[@]}"
           gh release edit "$RELEASE_TAG" --draft=false

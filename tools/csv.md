@@ -98,7 +98,12 @@ or remote. JSON exports remain unimplemented.
 
 ## CSV releases
 
-The **Release CSV** workflow runs on pushes of tags matching `v*`. It tests the
+The **Release CSV** workflow runs on pushes to `main` and on pushes of tags
+matching `v*`. A push to `main` runs only when it changes `entries/`, `sources/`,
+`references/`, Python files under `tools/`, `RIGHTS.md`, or the workflow itself.
+It publishes a release tagged with the UTC date, such as `v2026.11.08`; later
+releases on the same day get `v2026.11.08.2`, `v2026.11.08.3`, and so on. If the
+commit already has a tag, the push makes no new release. The workflow tests the
 maintenance tools, checks formatting, validates the data, and builds both CSVs
 with the local commands. It packages `lexicon.csv`, `lexicon-all.csv`, `RIGHTS.md`,
 and `SHA256SUMS` covering both CSVs and the rights file, then creates a draft

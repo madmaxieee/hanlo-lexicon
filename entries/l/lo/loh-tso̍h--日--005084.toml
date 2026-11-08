@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "loh-tso̍h--ji̍t"
+id = 5084
+moe_forms = ["落昨日"]
+preferred_form = "loh-tso̍h--日"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 612:624; written form Loh-tso̍h--日"
+url = "https://tsbp.tgb.org.tw/2015/07/niau-leh.html"
+
+[[sources]]
+row = 9926
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

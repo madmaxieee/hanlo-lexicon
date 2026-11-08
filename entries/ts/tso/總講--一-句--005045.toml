@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsóng-kóng--tsi̍t-kù"
+id = 5045
+moe_forms = ["總講一句"]
+preferred_form = "總講--一-句"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 1293:1300; written form 總講--一-句"
+url = "https://tsbp.tgb.org.tw/2013/05/iau-lehthang.html"
+
+[[sources]]
+row = 13831
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

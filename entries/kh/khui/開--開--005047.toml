@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khui--khui"
+id = 5047
+moe_forms = ["開開"]
+preferred_form = "開--開"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 1182:1186; written form 開--開"
+url = "https://tsbp.tgb.org.tw/2013/12/blog-post.html"
+
+[[sources]]
+row = 9186
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

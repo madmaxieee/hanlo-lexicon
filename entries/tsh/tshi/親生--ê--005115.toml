@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshin-senn--ê"
+id = 5115
+moe_forms = ["親生的"]
+preferred_form = "親生--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 768:773; written form 親生--ê"
+url = "https://tsbp.tgb.org.tw/2015/10/blog-post_28.html"
+
+[[sources]]
+row = 27859
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

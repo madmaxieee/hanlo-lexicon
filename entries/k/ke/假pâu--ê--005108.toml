@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ké-pâu--ê"
+id = 5108
+moe_forms = ["假包的"]
+preferred_form = "假pâu--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 63; normalized source characters 3903:3910; written form 假pâu--ê"
+url = "https://tsbp.tgb.org.tw/2015/07/blog-post_49.html"
+
+[[sources]]
+row = 28950
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

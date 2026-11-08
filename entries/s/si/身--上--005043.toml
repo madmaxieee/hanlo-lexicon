@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sin--siōng"
+id = 5043
+moe_forms = ["身上"]
+preferred_form = "身--上"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 31; normalized source characters 1568:1572; written form 身--上"
+url = "https://tsbp.tgb.org.tw/2015/02/e_3.html"
+
+[[sources]]
+row = 19142
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

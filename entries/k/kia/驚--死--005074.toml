@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kiann--sí"
+id = 5074
+moe_forms = ["驚死"]
+preferred_form = "驚--死"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 69; normalized source characters 3631:3635; written form 驚--死"
+url = "https://tsbp.tgb.org.tw/2015/09/e_35.html"
+
+[[sources]]
+row = 13284
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

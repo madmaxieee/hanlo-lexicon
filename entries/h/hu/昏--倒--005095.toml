@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hūn--tó"
+id = 5095
+moe_forms = ["昏倒"]
+preferred_form = "昏--倒"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 35; normalized source characters 2968:2972; written form 昏--倒"
+url = "https://tsbp.tgb.org.tw/2015/01/tshit-tho_31.html"
+
+[[sources]]
+row = 4225
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

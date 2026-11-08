@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "suah--tio̍h"
+id = 5098
+moe_forms = ["煞著"]
+preferred_form = "煞--著"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 537:541; written form 煞--著"
+url = "https://tsbp.tgb.org.tw/2012/04/blog-post_29.html"
+
+[[sources]]
+row = 9707
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

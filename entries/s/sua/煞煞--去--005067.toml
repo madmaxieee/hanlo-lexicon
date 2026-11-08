@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "suah-suah--khì"
+id = 5067
+moe_forms = ["煞煞去"]
+preferred_form = "煞煞--去"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 64:69; written form 煞煞--去"
+url = "https://tsbp.tgb.org.tw/2015/04/17e.html"
+
+[[sources]]
+row = 14385
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

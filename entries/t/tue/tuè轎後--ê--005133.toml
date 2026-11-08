@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tuè-kiō-āu--ê"
+id = 5133
+moe_forms = ["綴轎後的"]
+preferred_form = "tuè轎後--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 107; normalized source characters 3680:3688; written form tuè轎後--ê"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_64.html"
+
+[[sources]]
+row = 10774
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

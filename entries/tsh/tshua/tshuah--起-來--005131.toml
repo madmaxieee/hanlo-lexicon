@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshuah--khí-lâi"
+id = 5131
+moe_forms = ["掣起來"]
+preferred_form = "tshuah--起-來"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 31; normalized source characters 3441:3452; written form tshuah--起-來"
+url = "https://tsbp.tgb.org.tw/2015/08/blog-post_41.html"
+
+[[sources]]
+row = 28640
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

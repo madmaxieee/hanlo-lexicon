@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "liâu--lo̍h-khì"
+id = 5055
+moe_forms = ["蹽落去"]
+preferred_form = "liâu--落-去"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 218:227; written form liâu--落-去"
+url = "https://tsbp.tgb.org.tw/2015/03/blog-post_7.html"
+
+[[sources]]
+row = 13442
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

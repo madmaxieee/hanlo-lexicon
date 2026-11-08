@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hip--sí"
+id = 5107
+moe_forms = ["翕死"]
+preferred_form = "hip--死"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 2362:2368; written form hip--死"
+url = "https://tsbp.tgb.org.tw/2015/03/blog-post_24.html"
+
+[[sources]]
+row = 8907
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

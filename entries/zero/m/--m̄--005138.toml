@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "--m̄"
+id = 5138
+moe_forms = []
+preferred_form = "--m̄"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 1057:1061; written form --m̄"
+url = "https://tsbp.tgb.org.tw/2012/04/sui-e.html"

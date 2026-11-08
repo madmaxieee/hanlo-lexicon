@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lāu--khì"
+id = 5071
+moe_forms = ["老去"]
+preferred_form = "老--去"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 1679:1683; written form 老--去"
+url = "https://tsbp.tgb.org.tw/2013/12/e.html"
+
+[[sources]]
+row = 2638
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pháinn--khì"
+id = 5040
+moe_forms = ["歹去"]
+preferred_form = "歹--去"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 31; normalized source characters 1728:1732; written form 歹--去"
+url = "https://tsbp.tgb.org.tw/2015/01/100hann2019.html"
+
+[[sources]]
+row = 26700
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

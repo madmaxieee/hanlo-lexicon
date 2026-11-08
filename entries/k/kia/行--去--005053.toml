@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kiânn--khì"
+id = 5053
+moe_forms = ["行去"]
+preferred_form = "行--去"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 181:185; written form 行--去"
+url = "https://tsbp.tgb.org.tw/2015/01/blog-post_75.html"
+
+[[sources]]
+row = 14024
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "--niâ"
+id = 5142
+moe_forms = []
+preferred_form = "--niâ"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 39; normalized source characters 639:644; written form --niâ"
+url = "https://tsbp.tgb.org.tw/2012/11/blog-post_1.html"

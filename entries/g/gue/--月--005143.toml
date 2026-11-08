@@ -1,0 +1,18 @@
+alternate_readings = []
+canonical_tl = "--gue̍h"
+editorial_rationale = "TSBP writes this neutral-tone form with a leading --. MOE 月 / gue̍h supplies the Hanji and base reading; the neutral marker follows the source spelling. The maintainer approved this custom request in review."
+hanji_forms = ["--月"]
+id = 5143
+moe_forms = []
+preferred_form = "--月"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 203:206; written form --月"
+url = "https://tsbp.tgb.org.tw/2014/10/i-bo-lahebola.html"
+
+[[sources]]
+row = 804
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

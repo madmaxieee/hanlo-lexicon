@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tāu-tshài-té--ê"
+id = 5136
+moe_forms = ["豆菜底的"]
+preferred_form = "豆菜底--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 435:441; written form 豆菜底--ê"
+url = "https://tsbp.tgb.org.tw/2013/04/ho-pa-pa-e.html"
+
+[[sources]]
+row = 3474
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

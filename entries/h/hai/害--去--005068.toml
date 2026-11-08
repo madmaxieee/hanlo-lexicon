@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hāi--khì"
+id = 5068
+moe_forms = ["害去"]
+preferred_form = "害--去"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 27; normalized source characters 2702:2706; written form 害--去"
+url = "https://tsbp.tgb.org.tw/2015/01/dna.html"
+
+[[sources]]
+row = 5907
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

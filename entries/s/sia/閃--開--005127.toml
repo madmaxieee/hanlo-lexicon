@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "siám--khui"
+id = 5127
+moe_forms = ["閃開"]
+preferred_form = "閃--開"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 49; normalized source characters 2052:2056; written form 閃--開"
+url = "https://tsbp.tgb.org.tw/2015/09/e_57.html"
+
+[[sources]]
+row = 6862
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

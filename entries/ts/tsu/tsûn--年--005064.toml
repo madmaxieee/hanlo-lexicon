@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsûn--nî"
+id = 5064
+moe_forms = ["前年"]
+preferred_form = "tsûn--年"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 2316:2323; written form Tsûn--年"
+url = "https://tsbp.tgb.org.tw/2013/11/blog-post.html"
+
+[[sources]]
+row = 4718
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lāi-hâng--ê"
+id = 5085
+moe_forms = ["內行的"]
+preferred_form = "內行--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 165:170; written form 內行--ê"
+url = "https://tsbp.tgb.org.tw/2015/03/e_55.html"
+
+[[sources]]
+row = 655
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

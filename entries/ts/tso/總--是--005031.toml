@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsóng--sī"
+id = 5031
+moe_forms = ["總是"]
+preferred_form = "總--是"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 21; normalized source characters 2062:2066; written form 總--是"
+url = "https://tsbp.tgb.org.tw/2012/05/sui-epha.html"
+
+[[sources]]
+row = 12253
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

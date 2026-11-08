@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "--lih"
+id = 5057
+moe_forms = ["哩"]
+preferred_form = "--lih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 27; normalized source characters 1418:1423; written form --lih"
+url = "https://tsbp.tgb.org.tw/2015/02/e_3.html"
+
+[[sources]]
+row = 5793
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

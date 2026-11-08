@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "--pah"
+id = 5141
+moe_forms = []
+preferred_form = "--pah"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 18; normalized source characters 1502:1507; written form --pah"
+url = "https://tsbp.tgb.org.tw/2012/04/blog-post_29.html"

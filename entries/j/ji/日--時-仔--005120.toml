@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ji̍t--sî-á"
+id = 5120
+moe_forms = ["日時仔"]
+preferred_form = "日--時-仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 1016:1022; written form 日--時-仔"
+url = "https://tsbp.tgb.org.tw/2015/03/blog-post_24.html"
+
+[[sources]]
+row = 1024
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

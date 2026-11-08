@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ping--ê"
+id = 5112
+moe_forms = ["冰的"]
+preferred_form = "冰--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 624:628; written form 冰--ê"
+url = "https://tsbp.tgb.org.tw/2015/11/an-ne-lim-ah.html"
+
+[[sources]]
+row = 28070
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tuā-tsûn--nî"
+id = 5117
+moe_forms = ["大前年"]
+preferred_form = "大tsûn--年"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 470:478; written form 大tsûn--年"
+url = "https://tsbp.tgb.org.tw/2016/06/e_01657329949.html"
+
+[[sources]]
+row = 378
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

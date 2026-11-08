@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thiann--tio̍h"
+id = 5034
+moe_forms = ["聽著"]
+preferred_form = "聽--著"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 881:885; written form 聽--著"
+url = "https://tsbp.tgb.org.tw/2012/09/eaisai-e-mayday.html"
+
+[[sources]]
+row = 13235
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "suann--lí"
+id = 5063
+moe_forms = ["山裡"]
+preferred_form = "山--裡"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 326:330; written form 山--裡"
+url = "https://tsbp.tgb.org.tw/2015/01/blog-post_26.html"
+
+[[sources]]
+row = 28508
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

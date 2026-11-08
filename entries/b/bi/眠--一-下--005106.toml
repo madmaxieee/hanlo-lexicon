@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bîn--tsi̍t-ē"
+id = 5106
+moe_forms = ["眠一下"]
+preferred_form = "眠--一-下"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 43; normalized source characters 426:432; written form 眠--一-下"
+url = "https://tsbp.tgb.org.tw/2022/08/blog-post_42.html"
+
+[[sources]]
+row = 6380
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

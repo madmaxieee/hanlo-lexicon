@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsng-siáu--ê"
+id = 5116
+moe_forms = ["裝痟的"]
+preferred_form = "裝痟--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 1279:1284; written form 裝痟--ê"
+url = "https://tsbp.tgb.org.tw/2015/05/blog-post_15.html"
+
+[[sources]]
+row = 10029
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

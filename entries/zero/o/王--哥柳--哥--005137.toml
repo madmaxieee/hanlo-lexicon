@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "Ông--ko-Liú--ko"
+id = 5137
+moe_forms = ["王哥柳哥"]
+preferred_form = "王--哥柳--哥"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 985:993; written form 王--哥柳--哥"
+url = "https://tsbp.tgb.org.tw/2015/01/kap.html"
+
+[[sources]]
+row = 1256
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

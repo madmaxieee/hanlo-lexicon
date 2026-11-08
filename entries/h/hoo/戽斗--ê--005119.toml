@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hòo-táu--ê"
+id = 5119
+moe_forms = ["戽斗的"]
+preferred_form = "戽斗--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 320:325; written form 戽斗--ê"
+url = "https://tsbp.tgb.org.tw/2015/11/blog-post_11.html"
+
+[[sources]]
+row = 3895
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

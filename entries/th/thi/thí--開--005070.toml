@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thí--khui"
+id = 5070
+moe_forms = ["褫開"]
+preferred_form = "thí--開"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 573:579; written form thí--開"
+url = "https://tsbp.tgb.org.tw/2015/04/kahe.html"
+
+[[sources]]
+row = 11889
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

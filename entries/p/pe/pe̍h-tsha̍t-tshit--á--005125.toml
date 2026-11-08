@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pe̍h-tsha̍t-tshit--á"
+id = 5125
+moe_forms = ["白賊七仔"]
+preferred_form = "pe̍h-tsha̍t-tshit--á"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 44:64; written form Pe̍h-chha̍t-chhit--á"
+url = "https://tsbp.tgb.org.tw/2020/05/hau-siau-gi-a.html"
+
+[[sources]]
+row = 1989
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

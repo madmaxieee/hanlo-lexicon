@@ -1,0 +1,16 @@
+alternate_readings = ["tshù--nih"]
+canonical_tl = "tshù--lí"
+id = 5029
+moe_forms = ["厝裡"]
+preferred_form = "厝--裡"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 514:518; written form 厝--裡"
+url = "https://tsbp.tgb.org.tw/2012/07/blog-post_2094.html"
+
+[[sources]]
+row = 14592
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

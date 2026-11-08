@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kuânn--lâng"
+id = 5037
+moe_forms = ["寒人"]
+preferred_form = "寒--人"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 152:156; written form 寒--人"
+url = "https://tsbp.tgb.org.tw/2012/03/blog-post_21.html"
+
+[[sources]]
+row = 8292
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "uānn-thiap--ê"
+id = 5104
+moe_forms = ["換帖的"]
+preferred_form = "換帖--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 1367:1372; written form 換帖--ê"
+url = "https://tsbp.tgb.org.tw/2015/03/blog-post_40.html"
+
+[[sources]]
+row = 8440
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

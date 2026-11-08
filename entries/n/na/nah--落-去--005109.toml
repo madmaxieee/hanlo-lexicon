@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "nah--lo̍h-khì"
+id = 5109
+moe_forms = ["凹落去"]
+preferred_form = "nah--落-去"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 962:970; written form nah--落-去"
+url = "https://tsbp.tgb.org.tw/2015/04/blog-post_81.html"
+
+[[sources]]
+row = 1574
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

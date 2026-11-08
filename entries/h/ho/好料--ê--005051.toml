@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hó-liāu--ê"
+id = 5051
+moe_forms = ["好料的"]
+preferred_form = "好料--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 926:931; written form 好料--ê"
+url = "https://tsbp.tgb.org.tw/2012/09/blog-post_27.html"
+
+[[sources]]
+row = 14956
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phuà--khui"
+id = 5086
+moe_forms = ["破開"]
+preferred_form = "破--開"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 784:788; written form 破--開"
+url = "https://tsbp.tgb.org.tw/2015/05/blog-post_34.html"
+
+[[sources]]
+row = 6408
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

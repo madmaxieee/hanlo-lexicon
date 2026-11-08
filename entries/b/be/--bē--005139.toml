@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "--bē"
+id = 5139
+moe_forms = []
+preferred_form = "--bē"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 663:667; written form --bē"
+url = "https://tsbp.tgb.org.tw/2012/09/blog-post_27.html"

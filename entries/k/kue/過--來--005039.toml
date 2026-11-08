@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kuè--lâi"
+id = 5039
+moe_forms = ["過來"]
+preferred_form = "過--來"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 27; normalized source characters 1260:1264; written form 過--來"
+url = "https://tsbp.tgb.org.tw/2015/01/100hann2019.html"
+
+[[sources]]
+row = 20186
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

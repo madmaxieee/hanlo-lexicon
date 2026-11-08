@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sîn--khì"
+id = 5073
+moe_forms = ["神去"]
+preferred_form = "神--去"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 841:845; written form 神--去"
+url = "https://tsbp.tgb.org.tw/2015/02/e_5.html"
+
+[[sources]]
+row = 6435
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

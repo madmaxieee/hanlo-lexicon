@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshuā-thâu--ê"
+id = 5100
+moe_forms = ["𤆬頭的"]
+preferred_form = "tshuā頭--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 682:691; written form tshuā頭--ê"
+url = "https://tsbp.tgb.org.tw/2015/06/e-e.html"
+
+[[sources]]
+row = 26583
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

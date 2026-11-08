@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsò--lâng"
+id = 5080
+moe_forms = ["做人"]
+preferred_form = "做--人"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 361:365; written form 做--人"
+url = "https://tsbp.tgb.org.tw/2015/02/tue-siau.html"
+
+[[sources]]
+row = 6920
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

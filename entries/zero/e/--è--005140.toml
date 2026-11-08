@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "--è"
+id = 5140
+moe_forms = []
+preferred_form = "--è"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 41; normalized source characters 2889:2892; written form --è"
+url = "https://tsbp.tgb.org.tw/2012/09/blog-post_27.html"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "gō--sí"
+id = 5092
+moe_forms = ["餓死"]
+preferred_form = "餓--死"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 9; normalized source characters 490:494; written form 餓--死"
+url = "https://tsbp.tgb.org.tw/2015/11/blog-post_66.html"
+
+[[sources]]
+row = 11540
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

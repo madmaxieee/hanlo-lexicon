@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bô-huat--i"
+id = 5090
+moe_forms = ["無法伊"]
+preferred_form = "無法--伊"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 77:82; written form 無法--伊"
+url = "https://tsbp.tgb.org.tw/2015/04/17e.html"
+
+[[sources]]
+row = 8609
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

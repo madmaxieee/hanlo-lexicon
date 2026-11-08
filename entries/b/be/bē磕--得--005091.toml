@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bē-kha̍p--tit"
+id = 5091
+moe_forms = ["袂磕得"]
+preferred_form = "bē磕--得"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 75:81; written form Bē磕--得"
+url = "https://tsbp.tgb.org.tw/2015/12/2024tiohang-ku-siong.html"
+
+[[sources]]
+row = 14236
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

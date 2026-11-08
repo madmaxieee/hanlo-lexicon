@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ióng--ê"
+id = 5069
+moe_forms = ["養的"]
+preferred_form = "養--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 37; normalized source characters 3355:3359; written form 養--ê"
+url = "https://tsbp.tgb.org.tw/2015/03/e.html"
+
+[[sources]]
+row = 11550
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

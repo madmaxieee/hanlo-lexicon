@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sè--ê"
+id = 5059
+moe_forms = ["細的"]
+preferred_form = "細--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 518:522; written form 細--ê"
+url = "https://tsbp.tgb.org.tw/2012/12/ongatiau.html"
+
+[[sources]]
+row = 14576
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

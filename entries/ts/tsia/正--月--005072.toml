@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsiann--gue̍h"
+id = 5072
+moe_forms = ["正月"]
+preferred_form = "正--月"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 2182:2186; written form 正--月"
+url = "https://tsbp.tgb.org.tw/2013/07/e.html"
+
+[[sources]]
+row = 1681
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

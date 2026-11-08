@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kiu--khì"
+id = 5096
+moe_forms = ["勼去"]
+preferred_form = "勼--去"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 165:169; written form 勼--去"
+url = "https://tsbp.tgb.org.tw/2013/02/blog-post.html"
+
+[[sources]]
+row = 29107
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

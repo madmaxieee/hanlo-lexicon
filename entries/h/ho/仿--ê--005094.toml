@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hóng--ê"
+id = 5094
+moe_forms = ["仿的"]
+preferred_form = "仿--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 2277:2281; written form 仿--ê"
+url = "https://tsbp.tgb.org.tw/2015/04/tng100e.html"
+
+[[sources]]
+row = 28949
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

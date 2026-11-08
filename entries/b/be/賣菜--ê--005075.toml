@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bē-tshài--ê"
+id = 5075
+moe_forms = ["賣菜的"]
+preferred_form = "賣菜--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 228:233; written form 賣菜--ê"
+url = "https://tsbp.tgb.org.tw/2013/06/blog-post.html"
+
+[[sources]]
+row = 28089
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

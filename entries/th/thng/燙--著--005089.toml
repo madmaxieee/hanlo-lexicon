@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "thǹg--tio̍h"
+id = 5089
+moe_forms = ["燙著"]
+preferred_form = "燙--著"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 371:375; written form 燙--著"
+url = "https://tsbp.tgb.org.tw/2015/01/blog-post_6.html"
+
+[[sources]]
+row = 27840
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

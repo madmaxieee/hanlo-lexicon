@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tú-tio̍h--á"
+id = 5135
+moe_forms = ["拄著仔"]
+preferred_form = "拄著--á"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 33:38; written form 拄著--á"
+url = "https://tsbp.tgb.org.tw/2015/03/e_6.html"
+
+[[sources]]
+row = 15490
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

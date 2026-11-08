@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "ḿ--á"
+id = 5082
+moe_forms = ["姆仔"]
+preferred_form = "姆--仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 12:16; written form 姆--仔"
+url = "https://tsbp.tgb.org.tw/2015/02/346.html"
+
+[[sources]]
+row = 3771
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

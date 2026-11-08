@@ -1,0 +1,21 @@
+alternate_readings = ["si̍p--tsi̍t-ē"]
+canonical_tl = "tsi̍p--tsi̍t-ē"
+id = 5114
+moe_forms = ["𠯗一下"]
+preferred_form = "tsi̍p--一-下"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 39; normalized source characters 3261:3271; written form tsi̍p--一-下"
+url = "https://tsbp.tgb.org.tw/2015/09/sann-kap-ahhit-tsun.html"
+
+[[sources]]
+row = 1025
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 13451
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "siak--tó"
+id = 5126
+moe_forms = ["摔倒"]
+preferred_form = "摔--倒"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 17; normalized source characters 1190:1194; written form 摔--倒"
+url = "https://tsbp.tgb.org.tw/2015/12/blog-post_92.html"
+
+[[sources]]
+row = 10511
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

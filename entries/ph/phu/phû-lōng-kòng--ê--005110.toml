@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phû-lōng-kòng--ê"
+id = 5110
+moe_forms = ["浮浪貢的"]
+preferred_form = "phû-lōng-kòng--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 105; normalized source characters 5094:5110; written form phû-lōng-kòng--ê"
+url = "https://tsbp.tgb.org.tw/2015/11/sann-kap-ah.html"
+
+[[sources]]
+row = 27280
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

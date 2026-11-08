@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "uè--lâng"
+id = 5065
+moe_forms = ["穢人"]
+preferred_form = "uè--人"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 1619:1624; written form uè--人"
+url = "https://tsbp.tgb.org.tw/2014/10/i-bo-lahebola.html"
+
+[[sources]]
+row = 12519
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

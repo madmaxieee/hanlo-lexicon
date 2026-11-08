@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tuā--ê"
+id = 5042
+moe_forms = ["大的"]
+preferred_form = "大--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 37; normalized source characters 2598:2602; written form 大--ê"
+url = "https://tsbp.tgb.org.tw/2012/09/blog-post_27.html"
+
+[[sources]]
+row = 14575
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

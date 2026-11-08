@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sí--khì"
+id = 5036
+moe_forms = ["死去"]
+preferred_form = "死--去"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 1385:1389; written form 死--去"
+url = "https://tsbp.tgb.org.tw/2012/05/e.html"
+
+[[sources]]
+row = 22231
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

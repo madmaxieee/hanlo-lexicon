@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tán--tsi̍t-ē"
+id = 5038
+moe_forms = ["等一下"]
+preferred_form = "等--一-下"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 19; normalized source characters 1135:1141; written form 等--一-下"
+url = "https://tsbp.tgb.org.tw/2013/06/blog-post_10.html"
+
+[[sources]]
+row = 8833
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

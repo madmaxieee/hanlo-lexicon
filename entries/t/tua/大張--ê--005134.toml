@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tuā-tiunn--ê"
+id = 5134
+moe_forms = ["大張的"]
+preferred_form = "大張--ê"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 176:181; written form 大張--ê"
+url = "https://tsbp.tgb.org.tw/2015/08/ma-la-song.html"
+
+[[sources]]
+row = 13888
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

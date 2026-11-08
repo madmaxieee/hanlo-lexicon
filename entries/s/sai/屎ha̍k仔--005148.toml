@@ -1,0 +1,28 @@
+alternate_readings = []
+canonical_tl = "sái-ha̍k-á"
+id = 5148
+moe_forms = ["屎礐仔"]
+preferred_form = "屎ha̍k仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Tng-leh消失ê田庄生活; normalized corpus tsbp:2015-06_tng-lehe, text characters 161:167 (zero-based, end-exclusive); paragraph containing 屎ha̍k仔."
+url = "https://tsbp.tgb.org.tw/2015/06/tng-lehe.html"
+
+[[sources]]
+locator = "台文向前行; normalized corpus tsbp:2015-02_blog-post_53, text characters 498:504 (zero-based, end-exclusive); paragraph containing 屎ha̍k仔."
+url = "https://tsbp.tgb.org.tw/2015/02/blog-post_53.html"
+
+[[sources]]
+locator = "林半仙ê故事; normalized corpus tsbp:2015-12_e_11, text characters 355:361 (zero-based, end-exclusive); paragraph containing 屎ha̍k仔."
+url = "https://tsbp.tgb.org.tw/2015/12/e_11.html"
+
+[[sources]]
+locator = "阿瑞 --ā話仙 - Ha̍k仔; normalized corpus tsbp:2015-10_hak, text characters 358:364 (zero-based, end-exclusive); paragraph containing 屎ha̍k仔."
+url = "https://tsbp.tgb.org.tw/2015/10/hak.html"
+
+[[sources]]
+row = 4892
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

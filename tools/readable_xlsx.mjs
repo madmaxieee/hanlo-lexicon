@@ -7,7 +7,7 @@ import { execFileSync } from 'node:child_process';
 
 const require = createRequire(import.meta.url);
 const { Workbook, SpreadsheetFile } = await import(pathToFileURL(require.resolve('@oai/artifact-tool')).href);
-const output = path.resolve(process.argv[2] || 'dist/readable');
+const output = path.resolve(process.argv[2] || 'dist/lkk-supplement');
 const data = JSON.parse(await fs.readFile(path.join(output, 'lexicon-readable.json'), 'utf8'));
 const values = [data.headers, ...data.rows.map(row => [...row])];
 for (const row of values.slice(1)) {

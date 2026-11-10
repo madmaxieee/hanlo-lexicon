@@ -49,7 +49,7 @@ See the [command reference](csv.md#csv-releases).
 
 ## Reader-facing export
 
-Build an LKK-shaped table with derived Mandarin, located source excerpts and
+Build an LKK-shaped supplement with derived Mandarin, located source excerpts and
 optional clickable workbook links. See [reader-facing export](readable.md).
 
 ## Tests

@@ -58,8 +58,22 @@ class ReaderTests(unittest.TestCase):
                  patch.object(reader.lx, 'decode_moe', return_value=(pin, sheets, [])):
                 result = reader.derive(Path(directory), corpus)
         self.assertEqual([r[0] for r in result['rows']], ['2'])
-        self.assertEqual(result['rows'][0][6:8], ['要吃飯', 'beh食飯'])
+        self.assertEqual(result['rows'][0][6:8], ['要吃飯', '【beh食飯】'])
+        self.assertEqual(result['provenance'][0]['raw_example'], 'beh食飯')
         self.assertEqual(result['provenance'][0]['corpus_excerpt']['match_span'], [0, 5])
+
+    def test_short_excerpt_preserves_tokens_and_only_display_has_brackets(self):
+        from source_excerpts import short_bounds, display_excerpt
+        text = '甲' * 80 + 'very-long-roman-word beh very-long-following-word' + '乙' * 80
+        a = text.index('beh')
+        b = a + 3
+        left, right = short_bounds(text, a, b)
+        raw = text[left:right]
+        self.assertTrue(raw.startswith('very-long-roman-word'))
+        self.assertTrue(raw.endswith('very-long-following-word'))
+        decorated = display_excerpt(raw, {'excerpt_span': [left, right], 'match_span': [a, b]})
+        self.assertIn('【beh】', decorated)
+        self.assertNotIn('【', raw)
 
 
 if __name__ == '__main__':

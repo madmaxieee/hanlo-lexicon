@@ -1,4 +1,4 @@
-"""Derive reader-facing rows from original sources; never write vocabulary records."""
+"""Derive an LKK supplement from original sources; never write vocabulary records."""
 
 import argparse
 from collections import defaultdict
@@ -12,7 +12,8 @@ import xml.etree.ElementTree as ET
 import zipfile
 
 import lexicon as lx
-from source_excerpts import SPAN, cited_excerpt
+from source_excerpts import SPAN, cited_excerpt, display_excerpt
+from lkk_supplement import LKKCoverage
 
 
 HEADERS = ['詞條ID', '建議用字', '音讀', '數字版音讀', '又音', '教育部推薦漢字',
@@ -43,6 +44,7 @@ def derive(root, corpus):
     pin, _, raw = lx.cached_moe(root)
     _, sheets, records = lx.decode_moe(pin, raw)
     moe = {(r['source']['sheet'], r['source']['row']): r for r in records}
+    coverage = LKKCoverage(lkk, records)
     comparisons = defaultdict(list)
     for number, record in sheet_records(sheets, '詞彙比較'):
         for reading in lx.reading_keys(record.get('羅馬字', '')):
@@ -74,7 +76,17 @@ def derive(root, corpus):
         form, eid = entry['preferred_form'], entry['id']
         if lx.is_hanji(form) and '-' not in form:
             continue
-        lkk_sources = [s for s in entry['sources'] if s.get('snapshot') in lkk]
+        if coverage.original(entry, lkk):
+            audit.append({'id': eid, 'reason': 'Original LKK item'})
+            continue
+        cited_moe = [moe[(s['sheet'], s['row'])] for s in entry['sources']
+                     if s.get('snapshot') == pin['id'] and (s.get('sheet'), s['row']) in moe]
+        references = [*entry['moe_forms'], *entry.get('hanji_forms', []),
+                      *(r['headword'] for r in cited_moe)]
+        proof = coverage.reconstructed(entry, references)
+        if proof:
+            audit.append({'id': eid, 'reason': 'Reconstructed from unambiguous original LKK combos', 'proof': proof})
+            continue
         independent = []
         for source in entry['sources']:
             match = SPAN.search(source.get('locator', ''))
@@ -84,20 +96,11 @@ def derive(root, corpus):
             if not any(x <= a and b <= y and (x < a or b < y)
                        for x, y, _ in spans[source['url']]):
                 independent.append(source)
-        if not lkk_sources and not independent:
-            audit.append({'id': eid, 'reason': 'No LKK backing or uncontained corpus citation'})
+        if not independent:
+            audit.append({'id': eid, 'reason': 'No uncontained corpus citation'})
             continue
         mandarin, mandarin_sources, example, example_source = [], [], '', ''
         evidence = None
-        for source in lkk_sources:
-            cells = lkk[source['snapshot']][1][source['row'] - 1]
-            location = f"{source['snapshot']}:字表:{source['row']}"
-            if cells[6]:
-                mandarin.append(cells[6]); mandarin_sources.append(location)
-            if not example and cells[7]:
-                example, example_source = cells[7], location
-        cited_moe = [moe[(s['sheet'], s['row'])] for s in entry['sources']
-                     if s.get('snapshot') == pin['id'] and (s.get('sheet'), s['row']) in moe]
         if not mandarin:
             readings = {lx.key(r) for r in [entry['canonical_tl'], *entry['alternate_readings']]}
             forms = {lx.annotation_key(f) for f in entry['moe_forms']}
@@ -107,7 +110,7 @@ def derive(root, corpus):
                     for value, location in comparisons.get((headword, reading), []):
                         if value:
                             mandarin.append(value); mandarin_sources.append(location)
-        # Prefer an actual cited occurrence to dictionary or list examples.
+        # Prefer an actual cited occurrence to dictionary examples.
         for source in independent:
             try:
                 example, example_source, evidence = cited_excerpt(source, documents)
@@ -125,14 +128,15 @@ def derive(root, corpus):
                      for r in cited_moe if r['record_id']]
         row = [str(eid), form, entry['canonical_tl'], numeric_reading(entry['canonical_tl']),
                ', '.join(entry['alternate_readings']), ', '.join(entry['moe_forms']),
-               ' / '.join(dict.fromkeys(mandarin)), example, ', '.join(entry.get('hanji_forms', [])),
+               ' / '.join(dict.fromkeys(mandarin)), display_excerpt(example, evidence) if evidence else example, ', '.join(entry.get('hanji_forms', [])),
                next(iter(moe_links), ''), evidence['url'] if evidence else next(iter(urls), ''),
                '; '.join(dict.fromkeys(mandarin_sources)), example_source]
         rows.append(row)
         provenance.append({'id': eid, 'mandarin_sources': list(dict.fromkeys(mandarin_sources)),
-                           'example_source': example_source, 'corpus_excerpt': evidence})
+                           'example_source': example_source, 'raw_example': example, 'corpus_excerpt': evidence})
     rows.sort(key=lambda row: (lx.key(row[2]), int(row[0])))
     return {'headers': HEADERS, 'rows': rows, 'provenance': provenance, 'audit': audit,
+            'lkk_combo_alignment_skips': coverage.skipped,
             'corpus_sha256': hashlib.sha256(corpus_bytes).hexdigest(), 'moe_sha256': pin['sha256'],
             'coverage': {'entries': len(rows), 'mandarin': sum(bool(r[6]) for r in rows),
                          'examples': sum(bool(r[7]) for r in rows)}}
@@ -142,7 +146,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument('--corpus', type=Path, help='Read-only normalized TSBP JSONL')
-    parser.add_argument('--out', type=Path, default=Path('dist/readable'))
+    parser.add_argument('--out', type=Path, default=Path('dist/lkk-supplement'))
     parser.add_argument('--link-xlsx', type=Path, help='Attach native hyperlinks to the rendered workbook')
     args = parser.parse_args()
     if args.link_xlsx:

@@ -47,6 +47,11 @@ See the [command reference](csv.md#build-csv).
 Build artifacts and explicitly publish tagged releases.
 See the [command reference](csv.md#csv-releases).
 
+## Reader-facing export
+
+Build an LKK-shaped table with derived Mandarin, located source excerpts and
+optional clickable workbook links. See [reader-facing export](readable.md).
+
 ## Tests
 
 ```sh

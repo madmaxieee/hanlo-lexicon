@@ -171,6 +171,21 @@ human and machine review, and provenance. Ordinary TSBP approvals do not authori
 related suggestions. Article-only romanized approvals supply no Hanji seed;
 a structured custom request can supply verified Hanji when needed.
 
+Inspect `source_excerpt` in each ready approval or structured custom preview.
+It must show the literal source spelling in a meaningful passage for the proposed
+word, with its article URL, document ID, match/excerpt coordinates and text hash.
+The importer derives this excerpt from the checksum-pinned corpus and blocks
+unresolvable occurrences before allocation. Older pilots without corpus paths or
+document IDs need regeneration. Verify that a shorter match is independently used,
+rather than accepting a compound substring as a standalone example.
+
+Preserve the literal occurrence and coordinates in the entry's URL/locator citation,
+including when adopting a different preferred spelling. Keep copied excerpts in
+generated reports; the reader exporter derives examples from those citations.
+Mandarin mappings are also derived at export time. See
+[reader-facing export](../../../tools/readable.md) for source priority and missing
+evidence behavior. Neither extraction nor a populated example raises review status.
+
 `--apply` imports only explicit ordinary approvals, using the unchanged
 maintenance writer, duplicate checks and ID allocation. It does not execute free
 text or automatically add custom proposals. Resolve their sources and any

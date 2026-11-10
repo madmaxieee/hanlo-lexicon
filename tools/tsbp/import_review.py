@@ -17,6 +17,9 @@ from review_context import corpus_texts
 from review_settings import save_settings, validate_segments
 from review_filters import annotate_coverage, filter_occurrences
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from source_excerpts import cited_excerpt
+
 
 def nfc(value):
     return unicodedata.normalize('NFC', value)
@@ -37,6 +40,18 @@ def article_source(group):
     return {'url': occurrence['url'], 'locator':
         f"Article text line {occurrence['line']}; normalized source characters "
         f"{occurrence['anchor_start']}:{occurrence['anchor_end']}; written form {occurrence['anchor']}"}
+
+
+def source_excerpt(group, texts):
+    """Verify import evidence now; copy the excerpt only to the generated report."""
+    source = article_source(group)
+    occurrence = group['occurrences'][0]
+    document_id = occurrence.get('document_id')
+    if texts is None or document_id not in texts:
+        raise ValueError('Source excerpt requires the checksum-pinned corpus and document ID; regenerate the harvest')
+    text, location, evidence = cited_excerpt(source, {
+        source['url']: {'id': document_id, 'text': texts[document_id]}})
+    return {'text': text, 'source_location': location, **evidence}
 
 
 def source_anchor_request(approval, group):
@@ -272,6 +287,7 @@ def main():
         item = {'anchor_key': custom['anchor_key'], 'status': 'needs_review'}
         try:
             request = build_custom_request(custom, groups[custom['anchor_key']])
+            item['source_excerpt'] = source_excerpt(groups[custom['anchor_key']], texts)
             item.update(request=request, checks=lexicon.check(root, request, current, evidence, lookup))
             lexicon.verify_sources(request, *evidence)
         except (ValueError, KeyError, TypeError, lexicon.Error) as error:
@@ -292,6 +308,7 @@ def main():
             if group['key'] in mapped_forms:
                 raise ValueError('A mapped source spelling cannot also be approved for import')
             request = build_request(approval, group, bundle.get('ignored_forms', []), evidence[1][2])
+            item['source_excerpt'] = source_excerpt(group, texts)
             report = lexicon.check(root, request, current, evidence, lookup)
             lexicon.verify_sources(request, *evidence)
             item['written_forms'] = [{'preferred_form': form, 'tl': reading}

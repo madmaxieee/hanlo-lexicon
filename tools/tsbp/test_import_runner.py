@@ -33,17 +33,21 @@ class RunnerTests(unittest.TestCase):
         pilot.mkdir()
         groups = [{'key': word, 'display': word, 'normalized_tl': word,
                    'parser_compatible': True, 'dedup_lookup_forms': [word],
-                   'occurrences': [{'url': 'https://example.com/article', 'line': n,
+                   'occurrences': [{'url': 'https://example.com/article', 'line': n, 'document_id': f'doc-{n}',
                                     'anchor_start': 0, 'anchor_end': len(word), 'anchor': word}]}
                   for n, word in enumerate(words, 1)]
         raw = json.dumps(groups, ensure_ascii=False)
         digest = hashlib.sha256(raw.encode()).hexdigest()
         (pilot / 'groups.json').write_text(raw)
+        corpus = pilot / 'corpus.jsonl'
+        corpus.write_text('\n'.join(json.dumps({'id': f'doc-{n}', 'text': word}, ensure_ascii=False)
+                                    for n, word in enumerate(words, 1)) + '\n')
+        corpus_digest = hashlib.sha256(corpus.read_bytes()).hexdigest()
         pin = fixtures.lex.moe_data(fixture.root)[0]
         (pilot / 'summary.json').write_text(json.dumps({
-            'issue': 390, 'corpus_sha256': 'fixture', 'review_groups_sha256': digest,
+            'issue': 390, 'corpus_sha256': corpus_digest, 'corpus_path': str(corpus), 'review_groups_sha256': digest,
             'lexicon_root': str(fixture.root), 'moe': {'snapshot': pin['id'], 'sha256': pin['sha256']}}))
-        bundle = {'schema_version': 1, 'issue': 390, 'corpus_sha256': 'fixture',
+        bundle = {'schema_version': 1, 'issue': 390, 'corpus_sha256': corpus_digest,
                   'groups_sha256': digest, 'moe_snapshot': pin['id'],
                   'approvals': [{'anchor_key': word, 'approved': True, 'preferred_form': word,
                                  'import_mode': 'source_anchor', 'source_reading': word} for word in words]}
@@ -68,6 +72,8 @@ class RunnerTests(unittest.TestCase):
         preview = json.loads(output.getvalue())
         self.assertEqual([item['status'] for item in preview['items']], ['blocked', 'ready', 'ready'])
         self.assertEqual(preview['created'], [])
+        self.assertEqual(preview['items'][1]['source_excerpt']['text'], 'tîng')
+        self.assertEqual(preview['items'][1]['source_excerpt']['match_span'], [0, 4])
         output = io.StringIO()
         with mock.patch.object(sys, 'argv', args + ['--apply']), redirect_stdout(output):
             review_main()
@@ -78,6 +84,7 @@ class RunnerTests(unittest.TestCase):
             self.assertEqual(entry['review_status'], 'imported')
             if entry['id'] > 1:
                 self.assertEqual(entry['sources'][0]['url'], 'https://example.com/article')
+                self.assertNotIn('source_excerpt', entry)
         self.assertEqual(fixtures.lex.validate(fixture.root)['entries'], 3)
 
     def test_ready_approvals_use_one_batch_and_merged_sources_share_the_result(self):
@@ -174,15 +181,18 @@ class RunnerTests(unittest.TestCase):
             pilot = fixture.root / 'pilot'
             pilot.mkdir()
             group = {'key': 'liô', 'occurrences': [{'url': 'https://example.com/article',
-                     'line': 1, 'anchor_start': 0, 'anchor_end': 3, 'anchor': 'liô'}]}
+                     'line': 1, 'document_id': 'doc', 'anchor_start': 0, 'anchor_end': 3, 'anchor': 'liô'}]}
             raw = json.dumps([group], ensure_ascii=False)
             digest = hashlib.sha256(raw.encode()).hexdigest()
             (pilot / 'groups.json').write_text(raw)
             pin = fixtures.lex.moe_data(fixture.root)[0]
-            summary = {'issue': 390, 'corpus_sha256': 'fixture', 'review_groups_sha256': digest,
+            corpus = pilot / 'corpus.jsonl'
+            corpus.write_text(json.dumps({'id': 'doc', 'text': 'liô心'}, ensure_ascii=False) + '\n')
+            corpus_digest = hashlib.sha256(corpus.read_bytes()).hexdigest()
+            summary = {'issue': 390, 'corpus_sha256': corpus_digest, 'corpus_path': str(corpus), 'review_groups_sha256': digest,
                        'lexicon_root': str(fixture.root), 'moe': {'snapshot': pin['id'], 'sha256': pin['sha256']}}
             (pilot / 'summary.json').write_text(json.dumps(summary))
-            bundle = {'schema_version': 1, 'issue': 390, 'corpus_sha256': 'fixture',
+            bundle = {'schema_version': 1, 'issue': 390, 'corpus_sha256': corpus_digest,
                       'groups_sha256': digest, 'moe_snapshot': pin['id'], 'approvals': [],
                       'custom_requests': [{'anchor_key': 'liô', 'prompt': '', 'preferred_form': 'liô心',
                                            'hanji': '𠞭心', 'reading': 'liô-sim'}]}
@@ -196,12 +206,36 @@ class RunnerTests(unittest.TestCase):
             self.assertEqual(result['created'], [])
             self.assertEqual(result['custom_previews'][0]['status'], 'needs_review')
             self.assertEqual(result['custom_previews'][0]['request']['hanji_forms'], ['𠞭心'])
+            self.assertEqual(result['custom_previews'][0]['source_excerpt']['text'], 'liô心')
             self.assertEqual(result['custom_previews'][0]['checks']['moe_checked']['snapshot'], pin['id'])
             self.assertEqual(fixtures.lex.entries(fixture.root), [])
             self.assertEqual(fixtures.lex.next_id(fixture.root, []), 1)
         finally:
             sys.argv = previous
             fixture.tearDown()
+
+    def test_unresolvable_source_excerpt_blocks_import_without_allocating(self):
+        fixture = self.fixture()
+        pilot, review = self.make_pilot(fixture, ['bueh'])
+        groups_path = pilot / 'groups.json'
+        groups = json.loads(groups_path.read_text())
+        groups[0]['occurrences'][0]['anchor_end'] = 3
+        groups_path.write_text(json.dumps(groups, ensure_ascii=False))
+        digest = hashlib.sha256(groups_path.read_bytes()).hexdigest()
+        summary = json.loads((pilot / 'summary.json').read_text())
+        summary['review_groups_sha256'] = digest
+        (pilot / 'summary.json').write_text(json.dumps(summary))
+        bundle = json.loads(review.read_text())
+        bundle['groups_sha256'] = digest
+        review.write_text(json.dumps(bundle))
+        output = io.StringIO()
+        with mock.patch.object(sys, 'argv', ['import_review.py', str(review), '--pilot', str(pilot), '--apply']), redirect_stdout(output):
+            review_main()
+        result = json.loads(output.getvalue())
+        self.assertEqual(result['items'][0]['status'], 'blocked')
+        self.assertIn('no longer matches', result['items'][0]['reason'])
+        self.assertEqual(fixtures.lex.entries(fixture.root), [])
+        self.assertEqual(fixtures.lex.next_id(fixture.root, []), 1)
 
     def test_duplicate_approvals_merge_sources_only_for_same_word_and_choices(self):
         def item(anchor, word, source, status):

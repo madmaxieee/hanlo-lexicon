@@ -11,6 +11,13 @@ authorized imports. Its [review controls reference](../../.agents/skills/review-
 covers MOE selection, custom handling, exclusions and presentation refreshes.
 For command-line options, run the relevant Python script with `--help`.
 
+Import previews include a `source_excerpt` resolved from the pinned corpus, with
+the literal passage, URL, document ID, excerpt/match coordinates and text hash.
+An unresolved occurrence blocks that approval before ID allocation. Entry records
+retain source locators; excerpts stay in generated reports and are re-derived by
+the [reader-facing export](../readable.md). Inspect the passage for lexical context
+before approval; extraction alone does not establish an independent word or sense.
+
 ## Tests
 
 ```sh

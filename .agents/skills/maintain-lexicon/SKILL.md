@@ -132,6 +132,11 @@ identity: compare the original MOE entry IDs and evidence, and retain separate
 romanized recommendations when the maintainer explicitly chooses distinct words.
 Record an evidence-backed `identity_note` for a deliberate separate entry.
 
+Standing resolution: a word that only shares a reading with an existing entry but is
+not the same word (different MOE headword/definition or curated Hanji) is a separate
+entry with an `identity_note`; do not ask again. See
+[the decision](../../../decisions/same-reading-distinct-words-2026-11-12.md).
+
 ## Corrections and IDs
 
 Preserve IDs on spelling or reading corrections. After a deliberate edit, run

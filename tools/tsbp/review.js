@@ -30,8 +30,7 @@ const sectionPageSize=20;
 let sectionPage=0;
 const occurrenceLimits=new Map();
 let firstAppearance=new Map();
-const expandedRepeats=new Set();
-const repeatId=(section,group)=>section.id+'|'+group.key;
+const cardFoldId=(sectionId,key)=>disclosureId(key,'fold:'+sectionId);
 function occurrenceRows(group,rejected=false) {
   const rows=rejected?(group.machine_rejected_occurrences||[]):group.occurrences;
   const key=disclosureId(group.key,rejected?'rejected':'occurrences');
@@ -419,13 +418,16 @@ function matchStatus(group,rows=group.occurrences) {
   return rows.every(segmentIgnored)?'Segment ignored':rows.every(row=>row.tracked_coverage?.length)?'Covered by tracked word':sourceMapping(group)?'Mapped source spelling':tracked.has(group.key)?'Tracked form':unparseable.has(group.key)?'Parser did not recognize':machineRejected.has(group.key)?'Model rejected':isIgnored(group)?'Ignored':hasCustomRequest(item)?'Custom request saved':item.approved&&approvable(group)?'Approved import':'Pending';
 }
 function matchCard({group,rows},section) {
+  // Later passages of an approved word fold by default; a manual fold or unfold overrides that.
   const repeated=section&&firstAppearance.get(group.key)!==section.id&&matchStatus(group,rows)==='Approved import';
-  if(repeated&&!expandedRepeats.has(repeatId(section,group)))
-    return '<article class="match-card repeat-folded" data-key="'+esc(group.key)+'"><button class="repeat-toggle" type="button" data-section="'+esc(section.id)+'" data-key="'+esc(group.key)+'" aria-expanded="false"><span class="repeat-name">'+esc(group.display)+'</span><span class="match-status approval-good">Approved import</span><span class="muted">Already approved earlier · show</span></button></article>';
+  const folded=section&&(state.disclosures[cardFoldId(section.id,group.key)]??repeated);
+  const foldButton=(label,className,extra='')=>'<button class="card-fold-toggle '+className+'" type="button" data-section="'+esc(section.id)+'" data-key="'+esc(group.key)+'" data-folded="'+(folded?'yes':'no')+'" aria-expanded="'+!folded+'"'+extra+'>'+label+'</button>';
+  if(folded)
+    return '<article class="match-card card-folded'+(excluded(group)?' known':'')+'" data-key="'+esc(group.key)+'">'+foldButton('<span class="fold-name">'+esc(group.display)+'</span><span class="match-status '+(decision(group).approved?'approval-good':'')+'">'+matchStatus(group,rows)+'</span><span class="muted">'+(repeated?'Already approved earlier · show':'Folded · show')+'</span>','fold-row')+'</article>';
   const row=rows[0],item=decision(group),omit=excluded(group)||rows.every(r=>segmentIgnored(r)||r.tracked_coverage?.length);
   const fixed=rows.every(r=>segmentIgnored(r)||r.tracked_coverage?.length)||sourceMapping(group)||tracked.has(group.key)||unparseable.has(group.key)||machineRejected.has(group.key);
   const status=matchStatus(group,rows);
-  return '<article class="match-card'+(omit?' known':'')+'" data-key="'+esc(group.key)+'"><div class="match-header"><div><h3>'+esc(group.display)+'</h3><div class="muted">'+(group.normalized_tl?'TL lookup: '+esc(group.normalized_tl)+' · ':'')+group.occurrences.length+' occurrence'+(group.occurrences.length===1?'':'s')+' in '+group.article_count+' article'+(group.article_count===1?'':'s')+'</div></div><div class="match-actions"><span class="match-status '+(item.approved?'approval-good':'')+'">'+status+'</span>'+(repeated?'<button class="repeat-fold" type="button" data-section="'+esc(section.id)+'" data-key="'+esc(group.key)+'" aria-expanded="true">Fold</button>':'')+'<label><input class="ignore-box" type="checkbox" data-key="'+esc(group.key)+'" aria-label="Ignore '+esc(group.key)+'" '+(omit?'checked ':'')+(fixed?'disabled':'')+'> Ignore match</label><div class="note-controls"><button class="copy-note" data-key="'+esc(group.key)+'" data-occurrence="'+group.occurrences.indexOf(row)+'" type="button" title="Copy note" aria-label="Copy note for '+esc(group.display)+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg></button><span class="muted" role="status"></span><textarea hidden readonly aria-label="Anchor note"></textarea></div></div></div>'+
+  return '<article class="match-card'+(omit?' known':'')+'" data-key="'+esc(group.key)+'"><div class="match-header"><div><h3>'+esc(group.display)+'</h3><div class="muted">'+(group.normalized_tl?'TL lookup: '+esc(group.normalized_tl)+' · ':'')+group.occurrences.length+' occurrence'+(group.occurrences.length===1?'':'s')+' in '+group.article_count+' article'+(group.article_count===1?'':'s')+'</div></div><div class="match-actions"><span class="match-status '+(item.approved?'approval-good':'')+'">'+status+'</span>'+(section?foldButton('Fold','fold-button',' title="Fold to one row" aria-label="Fold '+esc(group.display)+'"'):'')+'<label><input class="ignore-box" type="checkbox" data-key="'+esc(group.key)+'" aria-label="Ignore '+esc(group.key)+'" '+(omit?'checked ':'')+(fixed?'disabled':'')+'> Ignore match</label><div class="note-controls"><button class="copy-note" data-key="'+esc(group.key)+'" data-occurrence="'+group.occurrences.indexOf(row)+'" type="button" title="Copy note" aria-label="Copy note for '+esc(group.display)+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></svg></button><span class="muted" role="status"></span><textarea hidden readonly aria-label="Anchor note"></textarea></div></div></div>'+
     rows.map(row=>'<div class="candidate-context">'+snippet(row)+'</div>'+screeningNote(row)+coverageNote(row)).join('')+moePanel(group)+
     '<details '+panelAttrs(group,'occurrences','all-occurrences')+'><summary>All '+group.occurrences.length+' source occurrences</summary><div class="occurrence-results"></div></details>'+
     (group.machine_rejected_occurrences?.length?'<details '+panelAttrs(group,'rejected','rejected-occurrences')+'><summary>Model-rejected occurrences ('+group.machine_rejected_occurrences.length+')</summary><div class="occurrence-results"></div></details>':'')+'</article>';
@@ -459,9 +461,8 @@ function render() {
   document.querySelectorAll('.ignore-segment').forEach(button=>button.onclick=()=>{
     const section=sectionsById.get(button.dataset.section);setSegmentIgnored(section,!sectionIgnored(section));render();
   });
-  document.querySelectorAll('.repeat-toggle,.repeat-fold').forEach(button=>button.onclick=()=>{
-    const id=button.dataset.section+'|'+button.dataset.key;
-    expandedRepeats.has(id)?expandedRepeats.delete(id):expandedRepeats.add(id);render();
+  document.querySelectorAll('.card-fold-toggle').forEach(button=>button.onclick=()=>{
+    state.disclosures[cardFoldId(button.dataset.section,button.dataset.key)]=button.dataset.folded!=='yes';save();render();
   });
   document.querySelectorAll('.review-disclosure').forEach(detail=>detail.ontoggle=()=>{
     if(detail.isConnected===false)return;

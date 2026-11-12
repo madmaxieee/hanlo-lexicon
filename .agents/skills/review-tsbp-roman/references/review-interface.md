@@ -141,12 +141,13 @@ choices back into local workflow settings; a static HTML page cannot write that
 file directly. An export predating segment ignores preserves the saved segment
 settings; an explicit empty `ignored_segments` array clears them.
 
-### Approved words fold in later passages
+### Fold match cards
 
-A word keeps one decision across its passages. After the first passage in review
-order, later passages of an approved word collapse to a single row showing the word
-and its green **Approved import** status. Select the row to expand that passage,
-and **Fold** to collapse it again. Expansion is not saved and changes no decision.
+Each match card has a **Fold** button that collapses that passage to one row showing
+the word and its status; select the row to expand it again. Later passages of an
+approved word, after its first passage in review order, fold by default. A manual
+fold or unfold overrides that default, saves locally with other panel state and is
+included in **Export review.json**. Folding changes no decision.
 
 ### Browse excluded candidates without loading the entire queue
 

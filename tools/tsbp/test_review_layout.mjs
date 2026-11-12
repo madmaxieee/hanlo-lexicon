@@ -231,19 +231,30 @@ test('ignored-segments filter shows restore controls without unrelated tracked r
   assert.doesNotMatch(nodes.get('rows').innerHTML,/<h3>second<\/h3>/);
 });
 
-test('later passages of an approved word fold to one clickable row',()=>{
-  const {page,nodes}=setup([group('roman',[occurrence('roman',1,1,6,'a'),occurrence('roman',30,30,35,'a')]),
-    group('second',[occurrence('second',10,10,16,'a')])],{extra:{article_inventory:[{id:'a'}]}});
+test('cards fold to one clickable row manually, and later approved passages fold by default',()=>{
+  const groups=[group('roman',[occurrence('roman',1,1,6,'a'),occurrence('roman',30,30,35,'a')]),
+    group('second',[occurrence('second',10,10,16,'a')])];
+  const {page,nodes,saved}=setup(groups,{extra:{article_inventory:[{id:'a'}]}});
   const html=()=>nodes.get('rows').innerHTML;
-  vm.runInContext("decision(byKey.get('roman')).approved=true;render()",page);
-  assert.equal(html().match(/repeat-toggle/g).length,1);
+  const sections=value(page,'reviewSections(data.groups).map(s=>s.id)');
+  vm.runInContext('render()',page);
+  assert.equal(html().match(/fold-button/g).length,3);
+  assert.doesNotMatch(html(),/card-folded/);
+  // Manually fold the first, unapproved card.
+  vm.runInContext("state.disclosures[cardFoldId("+JSON.stringify(sections[0])+",'roman')]=true;save();render()",page);
   assert.equal(html().match(/<h3>roman<\/h3>/g).length,1);
+  assert.match(html(),/Folded · show/);
+  vm.runInContext("state.disclosures[cardFoldId("+JSON.stringify(sections[0])+",'roman')]=false;render()",page);
+  vm.runInContext("decision(byKey.get('roman')).approved=true;render()",page);
+  assert.equal(html().match(/card-folded/g).length,1);
   assert.match(html(),/Already approved earlier · show/);
+  assert.equal(html().match(/<h3>roman<\/h3>/g).length,1);
   assert.equal(html().match(/<h3>second<\/h3>/g).length,1);
-  vm.runInContext("expandedRepeats.add(repeatId(reviewSections(data.groups)[2],byKey.get('roman')));render()",page);
+  // Unfolding a later approved passage overrides the default and survives reload.
+  vm.runInContext("state.disclosures[cardFoldId("+JSON.stringify(sections[2])+",'roman')]=false;save();render()",page);
   assert.equal(html().match(/<h3>roman<\/h3>/g).length,2);
-  assert.match(html(),/repeat-fold/);
-  assert.doesNotMatch(html(),/repeat-toggle/);
-  vm.runInContext("decision(byKey.get('roman')).approved=false;render()",page);
-  assert.doesNotMatch(html(),/repeat-toggle|repeat-fold/);
+  const reload=setup(groups,{saved,extra:{article_inventory:[{id:'a'}]}});
+  vm.runInContext('render()',reload.page);
+  assert.doesNotMatch(reload.nodes.get('rows').innerHTML,/card-folded/);
+  assert.ok(Object.keys(value(page,'reviewExport().ui_state.disclosures')).some(id=>id.includes('fold:')));
 });

@@ -12,9 +12,11 @@ python3 tools/lexicon.py build-csv --canonical-and-contractions
 ```
 
 The default command validates the repository and atomically writes
-`dist/lexicon.csv`. Exports always exclude entries whose preferred forms are pure
-Hanji. Filtering uses `preferred_form`, independently of Hanji metadata in
-`moe_forms` or `hanji_forms`. Any ASCII hyphen makes a form exportable, so
+`dist/lexicon.csv`. Each output form is the `preferred_form` or one of the entry's
+`accepted_forms`; every output form renders the entry's readings the same way.
+Exports always exclude pure-Hanji output forms, form by form: an entry preferring
+`磕` with accepted `kha̍p` exports only `kha̍p`. Filtering ignores Hanji metadata
+in `moe_forms` or `hanji_forms`. Any ASCII hyphen makes a form exportable, so
 `後--日`, `落--去`, `--落-來`, and `--啊` are included. Other punctuation, spaces
 and combining marks do not. Both UTF-8 files have columns `tl,preferred_form`,
 no header row by default for TaigiKeyboard import, LF line endings, and rows

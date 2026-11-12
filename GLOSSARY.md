@@ -42,6 +42,14 @@ The adopted written output for an entry. It may differ from a source spelling or
 the MOE headword.
 _Avoid_: using “MOE form” to mean the adopted recommendation.
 
+**Accepted form**:
+A written form that is also valid output for an entry without being its
+recommendation, such as `kha̍p` for the entry preferring `磕`. It renders the
+entry's readings like the preferred form, is exported to the keyboard CSV, and
+counts as tracked for duplicate checks and harvests. Reader-facing lists show
+only the preferred form.
+_Avoid_: “alternate preferred form”, “variant”; an accepted form is not a separate word.
+
 **Canonical TL**:
 The verified TL reading selected as an entry's filing reference. It does not
 rank dialects or exclude supported alternate readings.

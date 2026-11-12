@@ -267,7 +267,7 @@ def main():
     texts = corpus_texts({**summary, 'groups': raw_groups})
     records = [{'id': entry['id'], 'preferred_form': entry['preferred_form'],
                 'canonical_tl': entry['canonical_tl'],
-                'multi_syllable_written_forms': sorted({form for form, reading in lexicon.spelling_readings(entry)
+                'multi_syllable_written_forms': sorted({form for form, reading in lexicon.output_pairs(entry)
                                                         if len(re.findall(r'[^\s-]+', reading)) >= 2})}
                for _, entry in current]
     covered = annotate_coverage(raw_groups, records, texts)

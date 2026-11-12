@@ -22,6 +22,12 @@ format files, and validate this schema.
   `hanji_forms = ["𠞭心"]` without asserting a MOE compound entry. Cite supporting
   evidence in `sources`; omit the field when unknown. These forms participate in
   offline lookups and duplicate checks, but do not generate recommended CSV rows.
+- `accepted_forms`: optional nonempty array of written forms that are valid output
+  for the same word but are not its recommendation. Each must differ from the
+  preferred form and render the canonical and alternate readings under the same
+  alignment rules. They export to the keyboard CSV (pure Hanji still filtered),
+  participate in duplicate checks and harvest deduplication, and are omitted from
+  reader-facing lists. Cite the evidence for each form in `sources`.
 - `review_status`: `imported` for records without recorded contextual review;
   `machine-reviewed` for records screened by a model against source context,
   without individual human review; `reviewed` for explicitly human-reviewed

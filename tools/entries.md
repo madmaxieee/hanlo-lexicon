@@ -28,6 +28,9 @@ Use optional `hanji_forms` for source-backed or explicitly curated Hanji forms
 without asserting MOE inclusion. These forms are included in existing-entry,
 LKK and MOE checks; same-form matches still require editorial identity review.
 Hanji metadata does not generate CSV output rows. Omit it when unknown.
+Use optional `accepted_forms` for other written forms of the same word that remain
+valid output but are not recommended. A candidate whose form and reading match an
+accepted form is reported as `accepted_pair` and refused like an exact pair.
 
 `check`, `add`, and per-request `add-batch` reports also expose
 `related_moe_entries` as pre-import audit data. They do not authorize or import

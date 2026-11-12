@@ -352,7 +352,8 @@ def existing_index(current):
     for _, entry in current:
         identity = entry['id']
         entries[identity] = entry
-        for form in [entry['preferred_form'], *entry['moe_forms'], *entry.get('hanji_forms', [])]:
+        for form in [entry['preferred_form'], *entry['moe_forms'], *entry.get('hanji_forms', []),
+                     *entry.get('accepted_forms', [])]:
             forms[lex.annotation_key(form)].add(identity)
         for reading in [entry['canonical_tl'], *entry['alternate_readings']]:
             readings[lex.key(reading)].add(identity)

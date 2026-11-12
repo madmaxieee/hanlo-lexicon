@@ -32,7 +32,8 @@ Use `python3 tools/lexicon.py`; do not invent an ID or hand-format generated TOM
 4. For an existing word, edit the existing entry rather than creating another.
    For an unrelated homograph, supply a short `identity_note` explaining the
    distinction. Do not split a word merely because it has related senses or
-   alternate pronunciations. If identity remains unclear, ask for the context
+   alternate pronunciations. When the maintainer allows another spelling of the
+   same word as output without preferring it, add it to `accepted_forms`. If identity remains unclear, ask for the context
    needed to resolve it before adding.
 5. Add original evidence to `sources`: cite an LKK snapshot/row, the checked MOE
    snapshot/sheet/row, or a published URL plus precise `locator`. Never cite a

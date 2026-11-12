@@ -11,7 +11,8 @@ provenance, corpus/dictionary checksums, coverage and excluded/unresolved rows.
 Entry TOML and source snapshots are read-only. CSV contains literal text; when
 importing into a spreadsheet, disable conversion of text to formulas/numbers.
 
-The export excludes pure Hanji using the keyboard export's hyphen rule. It excludes
+The export lists only preferred forms; accepted forms stay in the keyboard CSV.
+It excludes pure Hanji using the keyboard export's hyphen rule. It excludes
 original LKK items, identified by an LKK source citation or an exact original
 preferred-form/canonical-reading pair. Remaining entries need a recorded corpus span not
 strictly contained in another entry's cited span in the same article. This is an

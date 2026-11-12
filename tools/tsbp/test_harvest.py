@@ -178,6 +178,25 @@ class ExtractionTests(unittest.TestCase):
             _, after_delete = preferred_index(root)
             self.assertNotIn('想bueh', after_delete)
 
+    def test_preferred_index_tracks_accepted_forms_for_every_reading(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / 'tools').mkdir()
+            shutil.copyfile(Path(__file__).resolve().parents[1] / 'lexicon.py', root / 'tools/lexicon.py')
+            (root / 'schema').mkdir()
+            shutil.copyfile(Path(__file__).resolve().parents[2] / 'schema/entry.schema.json',
+                            root / 'schema/entry.schema.json')
+            entries = root / 'entries' / 'm' / 'mi'
+            entries.mkdir(parents=True)
+            (entries / 'one.toml').write_text(
+                'id = 1\npreferred_form = "mî-tsinn"\ncanonical_tl = "mî-tsinn"\nalternate_readings = ["mî-tsiânn"]\n'
+                'accepted_forms = ["綿tsinn"]\nmoe_forms = []\nreview_status = "imported"\nschema_version = 1\n'
+                '\n[[sources]]\nurl = "https://example.com/fixture"\nlocator = "test word"\n')
+            records, index = preferred_index(root)
+            self.assertEqual(set(index), {'mî-tsinn', 'mî-tsiânn', '綿tsinn', '綿tsiânn'})
+            self.assertEqual(records[0]['accepted_forms'], ['綿tsinn'])
+            self.assertIn('綿tsinn', records[0]['multi_syllable_written_forms'])
+
     def test_magazine_context_does_not_exclude_other_bong_occurrences(self):
         text = '《台文通訊BONG報》kap拍暗bong。台文通訊BONG報'
         rows = list(occurrences(doc(text), 6, ['台文通訊BONG報']))

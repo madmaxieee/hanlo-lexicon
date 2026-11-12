@@ -180,6 +180,34 @@ class MaintenanceTests(unittest.TestCase):
         entry = tomllib.loads((self.root / result['created']).read_text())
         self.assertNotIn('hanji_forms', entry)
 
+    def test_accepted_forms_export_per_form_and_participate_in_checks(self):
+        hanji = self.run_cli('add', str(self.request(form='磕', reading='kha̍p', accepted_forms=['kha̍p'])))
+        mixed = self.run_cli('add', str(self.request(form='mî-tsinn', reading='mî-tsinn',
+                                                    alternate_readings=['mî-tsiânn'], accepted_forms=['綿tsinn'])))
+        entry = tomllib.loads((self.root / mixed['created']).read_text())
+        self.assertEqual(entry['accepted_forms'], ['綿tsinn'])
+        self.run_cli('format', '--check')
+        self.run_cli('build-csv')
+        # The pure-Hanji preferred form is filtered, its romanized accepted form is exported.
+        self.assertEqual(self.csv_rows(), [['kha̍p', 'kha̍p'], ['mî-tsinn', 'mî-tsinn'], ['mî-tsiânn', 'mî-tsiânn'],
+                                           ['mî-tsinn', '綿tsinn'], ['mî-tsiânn', '綿tsiânn']])
+        self.run_cli('build-csv', '--canonical-and-contractions')
+        self.assertEqual(self.csv_rows('lexicon-canonical-contractions.csv'),
+                         [['kha̍p', 'kha̍p'], ['mî-tsinn', 'mî-tsinn'], ['mî-tsinn', '綿tsinn']])
+        found = self.run_cli('check', str(self.request(form='kha̍p', reading='kha̍p')))
+        self.assertEqual([(row['id'], row['match']) for row in found['existing_entries']], [(hanji['id'], 'accepted_pair')])
+        other = self.run_cli('check', str(self.request(form='kha̍p', reading='khap')))
+        self.assertEqual(other['existing_entries'][0]['match'], 'accepted_form')
+        self.run_cli('add', str(self.request(form='kha̍p', reading='kha̍p')), expected=2)
+
+    def test_accepted_forms_must_be_distinct_one_line_and_alignable(self):
+        for values in [[], ['beh'], ['欲', '欲'], ['欲\n'], ['bueh食']]:
+            with self.subTest(values=values):
+                self.run_cli('add', str(self.request(accepted_forms=values)), expected=2)
+        self.assertEqual(self.run_cli('next-id')['next_id'], 1)
+        result = self.run_cli('add', str(self.request()))
+        self.assertNotIn('accepted_forms', tomllib.loads((self.root / result['created']).read_text()))
+
     def test_duplicate_and_alias_checks_do_not_consume_an_id(self):
         request = self.request(alternate_readings=['bueh'])
         self.run_cli('add', str(request))

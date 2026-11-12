@@ -2,6 +2,16 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
+    "accepted_forms": {
+      "description": "Written forms that are valid keyboard output for this entry but are not its recommendation; they render every reading like the preferred form and participate in duplicate checks and harvest deduplication.",
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
     "alternate_readings": {
       "items": {
         "minLength": 1,

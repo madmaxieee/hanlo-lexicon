@@ -59,7 +59,7 @@ lexicon entries. Show excluded rows exposes them with a Tracked form label.
 
 Tracked entries are loaded through the maintenance tool's per-workspace SQLite
 snapshot cache. Unchanged TOML is reused, while changed/deleted/renamed files are
-refreshed. Preferred spellings, generated alternate outputs and exact original-file
+refreshed. Preferred spellings, accepted forms, generated alternate outputs and exact original-file
 hashes retain the same review/report representation. The cache is derived local
 data, never a source citation; original MOE checksum checks remain unchanged.
 

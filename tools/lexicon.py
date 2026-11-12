@@ -92,7 +92,7 @@ def entry_files(root):
 
 def canonical_entry(entry):
     result = dict(entry)
-    for field in ('alternate_readings', 'moe_forms', 'hanji_forms'):
+    for field in ('alternate_readings', 'moe_forms', 'hanji_forms', 'accepted_forms'):
         if field in result:
             result[field] = sorted(result[field], key=lambda text: (key(text), text))
     result['sources'] = sorted(result['sources'], key=lambda source: json.dumps(source, ensure_ascii=False, sort_keys=True))
@@ -209,6 +209,15 @@ def verify_entry(root, entry, lookup_only=False, schema=None):
         raise Error('Hanji forms must contain only Hanji and separators on one line.')
     if any('\n' in entry[field] or '\r' in entry[field] for field in ('preferred_form', 'canonical_tl')):
         raise Error('Written forms and canonical readings must fit on one line.')
+    accepted = entry.get('accepted_forms', [])
+    if len({key(form) for form in [entry['preferred_form'], *accepted]}) != len(accepted) + 1:
+        raise Error('Accepted forms must be distinct from each other and from the preferred form.')
+    if any('\n' in form or '\r' in form for form in accepted):
+        raise Error('Accepted forms must fit on one line.')
+    # Every accepted form must render every reading, exactly like the preferred form.
+    for form in accepted:
+        for reading in readings:
+            written_form(form, entry['canonical_tl'], reading)
     if len(filename(entry['preferred_form'], entry['id']).encode('utf-8')) > 240:
         raise Error('Preferred form is too long for a portable filename.')
     for source in entry.get('sources', []):
@@ -242,7 +251,8 @@ def entries(root, schema=None):
 
 def entry_keys(entry):
     return ({key(entry['preferred_form']), *(key(form) for form in entry['moe_forms']),
-             *(key(form) for form in entry.get('hanji_forms', []))},
+             *(key(form) for form in entry.get('hanji_forms', [])),
+             *(key(form) for form in entry.get('accepted_forms', []))},
             {key(entry['canonical_tl']), *(key(reading) for reading in entry['alternate_readings'])})
 
 
@@ -712,7 +722,8 @@ def check(root, candidate, current=None, evidence=None, lookup=None, schema=None
     lkk, moe = evidence if evidence else (lkk_data(root), moe_data(root))
     preferred = key(candidate['preferred_form'])
     forms = {preferred, *(key(form) for form in candidate['moe_forms']),
-             *(key(form) for form in candidate.get('hanji_forms', []))}
+             *(key(form) for form in candidate.get('hanji_forms', [])),
+             *(key(form) for form in candidate.get('accepted_forms', []))}
     readings = {key(candidate['canonical_tl']), *(key(reading) for reading in candidate['alternate_readings'])}
     combo_current = current
     if lookup is not None:
@@ -723,11 +734,12 @@ def check(root, candidate, current=None, evidence=None, lookup=None, schema=None
     for path, entry in current:
         same_form = key(entry['preferred_form']) == preferred
         shared_reading = bool(readings & {key(entry['canonical_tl']), *(key(reading) for reading in entry['alternate_readings'])})
+        accepted = {key(form) for form in entry.get('accepted_forms', [])}
         related_forms = {key(entry['preferred_form']), *(key(form) for form in entry['moe_forms']),
-                         *(key(form) for form in entry.get('hanji_forms', []))}
+                         *(key(form) for form in entry.get('hanji_forms', [])), *accepted}
         if same_form or shared_reading or forms & related_forms:
             exact = same_form and key(entry['canonical_tl']) == key(candidate['canonical_tl'])
-            existing.append({'id': entry['id'], 'path': str(path.relative_to(root)), 'preferred_form': entry['preferred_form'], 'canonical_tl': entry['canonical_tl'], 'identity_note': entry.get('identity_note'), 'match': 'exact_pair' if exact else 'alias_pair' if same_form and shared_reading else 'same_form' if same_form else 'related_reading_or_form'})
+            existing.append({'id': entry['id'], 'path': str(path.relative_to(root)), 'preferred_form': entry['preferred_form'], 'canonical_tl': entry['canonical_tl'], 'identity_note': entry.get('identity_note'), 'match': 'exact_pair' if exact else 'alias_pair' if same_form and shared_reading else 'same_form' if same_form else 'accepted_pair' if preferred in accepted and shared_reading else 'accepted_form' if preferred in accepted else 'related_reading_or_form'})
     lkk_matches = []
     lkk_rows = lookup.lkk.matching(forms, readings) if lookup is not None else (
         (snapshot, number, row) for snapshot, (_, rows) in lkk.items()
@@ -840,7 +852,7 @@ def add_batch(root, candidates, dry_run=False, expected_state=None):
                 verify_entry(root, entry, schema=schema)
                 report = check(root, candidate, current, evidence, lookup, schema=schema)
                 for match in report['existing_entries']:
-                    if match['match'] in ('exact_pair', 'alias_pair'):
+                    if match['match'] in ('exact_pair', 'alias_pair', 'accepted_pair'):
                         note = key(candidate.get('identity_note', ''))
                         if not note or note == key(match.get('identity_note') or ''):
                             raise Error(f'Existing entry {match["id"]} already covers this form/reading. '
@@ -940,6 +952,20 @@ def spelling_readings(entry):
             for reading in [canonical, *entry['alternate_readings']]]
 
 
+def output_pairs(entry):
+    """Recommended pairs followed by accepted-form pairs; one editorial identity."""
+    pairs = spelling_readings(entry)
+    for form in entry.get('accepted_forms', []):
+        pairs.extend((written_form(form, entry['canonical_tl'], reading), reading)
+                     for reading in [entry['canonical_tl'], *entry['alternate_readings']])
+    return pairs
+
+
+def exportable(form):
+    """Keyboard exports omit pure Hanji; any ASCII hyphen keeps a form."""
+    return not is_hanji(form) or '-' in form
+
+
 def build_csv(root, canonical_and_contractions=False, header=False):
     """Build a flat spelling/reading CSV without changing editorial records."""
     with writer_lock(root):
@@ -947,14 +973,16 @@ def build_csv(root, canonical_and_contractions=False, header=False):
         validate(root, current=current)
         rows = set()
         for _, entry in current:
-            if is_hanji(entry['preferred_form']) and '-' not in entry['preferred_form']:
+            forms = [form for form in [entry['preferred_form'], *entry.get('accepted_forms', [])]
+                     if exportable(form)]
+            if not forms:
                 continue
             if canonical_and_contractions:
-                rows.add((entry['preferred_form'], entry['canonical_tl']))
+                rows.update((form, entry['canonical_tl']) for form in forms)
                 rows.update((reading, reading) for reading in entry['alternate_readings']
                             if is_contraction(entry['canonical_tl'], reading))
             else:
-                rows.update(spelling_readings(entry))
+                rows.update(pair for pair in output_pairs(entry) if exportable(pair[0]))
         stream = io.StringIO(newline='')
         writer = csv.writer(stream, lineterminator='\n')
         if header:

@@ -35,9 +35,11 @@ def preferred_index(root):
     spec.loader.exec_module(lexicon)
     records = []
     for path, entry, digest in lexicon.entry_snapshot(root):
-        pairs = lexicon.spelling_readings(entry)
+        # Accepted forms are valid output, so later harvests treat them as tracked.
+        pairs = lexicon.output_pairs(entry)
         records.append({"id": entry["id"], "preferred_form": entry["preferred_form"], "canonical_tl": entry["canonical_tl"],
                         **({'hanji_forms': entry['hanji_forms']} if entry.get('hanji_forms') else {}),
+                        **({'accepted_forms': entry['accepted_forms']} if entry.get('accepted_forms') else {}),
                         "written_forms": sorted({form for form, _ in pairs}),
                         "multi_syllable_written_forms": sorted({form for form, reading in pairs
                                                                if len(re.findall(r'[^\s-]+', reading)) >= 2}),

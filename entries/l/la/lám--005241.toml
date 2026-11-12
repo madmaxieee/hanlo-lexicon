@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "lám"
+id = 5241
+identity_note = "MOE 荏 (weak, frail); a separate word from entry 2298 攬, which shares the reading lám."
+moe_forms = ["荏"]
+preferred_form = "lám"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 436:439; written form lám"
+url = "https://tsbp.tgb.org.tw/2016/01/e-saukhap.html"
+
+[[sources]]
+row = 6628
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

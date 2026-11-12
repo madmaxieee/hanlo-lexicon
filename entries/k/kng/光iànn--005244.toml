@@ -1,0 +1,12 @@
+alternate_readings = []
+canonical_tl = "kng-iànn"
+hanji_forms = ["光映"]
+id = 5244
+moe_forms = []
+preferred_form = "光iànn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 2; normalized source characters 14:18; written form iànn"
+url = "https://tsbp.tgb.org.tw/2016/01/sio-tng.html"

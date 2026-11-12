@@ -1,0 +1,22 @@
+alternate_readings = ["tsìnn"]
+canonical_tl = "tsènn"
+id = 5243
+identity_note = "MOE 諍 (to argue); a separate word from entry 294 tsìnn (糋, to fry), whose reading is this entry's alternate tsìnn."
+moe_forms = ["諍"]
+preferred_form = "tsènn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 121; normalized source characters 6027:6032; written form tsènn"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 11379
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 259
+sheet = "語音差異"
+snapshot = "moe-kautian-3e0b2023e0bd"

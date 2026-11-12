@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "sannh"
+id = 5242
+identity_note = "MOE 煞 sannh (breath caught after exertion; being gripped by something); a separate MOE word from entries 208 and 1395, which are read suah."
+moe_forms = ["煞"]
+preferred_form = "sannh"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 46; normalized source characters 2627:2632; written form sannh"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 9690
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kuânn-sih-sih"
+id = 5245
+moe_forms = []
+preferred_form = "寒sih-sih"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 56:63; written form sih-sih"
+url = "https://tsbp.tgb.org.tw/2016/01/hipkah.html"

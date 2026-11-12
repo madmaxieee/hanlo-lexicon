@@ -1,3 +1,4 @@
+accepted_forms = ["kha̍p"]
 alternate_readings = []
 canonical_tl = "kha̍p"
 id = 1043
@@ -5,6 +6,15 @@ moe_forms = []
 preferred_form = "磕"
 review_status = "imported"
 schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 240:245; written form kha̍p"
+url = "https://tsbp.tgb.org.tw/2016/01/e-saukhap.html"
+
+[[sources]]
+row = 11237
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
 
 [[sources]]
 row = 266

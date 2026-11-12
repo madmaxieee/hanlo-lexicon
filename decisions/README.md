@@ -14,6 +14,8 @@ also preserves its original scope and entry-level resolutions.
   writing and the deliberate 甲 conflict; 【替】 remains a contextual preference.
 - [Curated Hanji and 𠞭](hanji-forms-2026-10-20.md): Hanji metadata can record a
   curated form without asserting whole-word MOE inclusion or changing output.
+- [Accepted forms](accepted-forms-2026-11-13.md): other valid spellings of a word
+  export to the keyboard CSV and count as tracked, without being preferred.
 - [Same-reading words are separate entries](same-reading-distinct-words-2026-11-12.md):
   unrelated words sharing a reading get their own entry with an `identity_note`;
   keyboard CSV still emits one row.

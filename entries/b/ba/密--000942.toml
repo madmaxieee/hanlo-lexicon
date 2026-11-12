@@ -1,3 +1,4 @@
+accepted_forms = ["ba̍t"]
 alternate_readings = []
 canonical_tl = "ba̍t"
 id = 942
@@ -7,5 +8,14 @@ review_status = "imported"
 schema_version = 1
 
 [[sources]]
+locator = "Article text line 30; normalized source characters 1601:1605; written form ba̍t"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
 row = 51
 snapshot = "lkk-2024-05-10"
+
+[[sources]]
+row = 7136
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

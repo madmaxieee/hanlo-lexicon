@@ -1,3 +1,4 @@
+accepted_forms = ["綿tsinn"]
 alternate_readings = []
 canonical_tl = "mî-tsinn"
 id = 4271
@@ -5,6 +6,10 @@ moe_forms = ["綿精"]
 preferred_form = "mî-tsinn"
 review_status = "imported"
 schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 872:877; written form 綿chiⁿ"
+url = "https://tsbp.tgb.org.tw/2016/01/bong-ue-e.html"
 
 [[sources]]
 locator = "Article text line 51; normalized source characters 3431:3439; written form mî-tsinn"

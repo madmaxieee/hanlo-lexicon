@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lo̍k-kho̍k-bé"
+id = 5193
+moe_forms = ["碌硞馬"]
+preferred_form = "lo̍k-kho̍k馬"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 138:149; written form lo̍k-kho̍k馬"
+url = "https://tsbp.tgb.org.tw/2016/01/sio-tng.html"
+
+[[sources]]
+row = 9792
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

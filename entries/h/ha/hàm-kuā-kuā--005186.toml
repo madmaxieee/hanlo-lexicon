@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hàm-kuā-kuā"
+id = 5186
+moe_forms = ["譀呱呱"]
+preferred_form = "hàm-kuā-kuā"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 115; normalized source characters 5628:5639; written form hàm-kuā-kuā"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 12879
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

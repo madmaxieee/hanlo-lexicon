@@ -1,0 +1,16 @@
+alternate_readings = ["buē-kiàn-siàu"]
+canonical_tl = "bē-kiàn-siàu"
+id = 5180
+moe_forms = ["袂見笑"]
+preferred_form = "bē見笑"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 21; normalized source characters 1359:1363; written form bē見笑"
+url = "https://tsbp.tgb.org.tw/2016/01/m.html"
+
+[[sources]]
+row = 6641
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

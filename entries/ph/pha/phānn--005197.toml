@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "phānn"
+id = 5197
+moe_forms = ["奅"]
+preferred_form = "phānn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 107; normalized source characters 5451:5456; written form phānn"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 3756
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

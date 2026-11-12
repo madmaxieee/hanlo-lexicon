@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sio-tú-tn̄g"
+id = 5207
+moe_forms = ["相拄搪"]
+preferred_form = "sio拄tn̄g"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 116:124; written form sio拄tn̄g"
+url = "https://tsbp.tgb.org.tw/2016/01/sio-tng.html"
+
+[[sources]]
+row = 29211
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

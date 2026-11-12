@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "at-tshiú-pà"
+id = 5177
+moe_forms = ["遏手把"]
+preferred_form = "at手pà"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 89; normalized source characters 2666:2671; written form at手pà"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_64.html"
+
+[[sources]]
+row = 10162
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

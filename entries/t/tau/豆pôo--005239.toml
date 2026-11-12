@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tāu-pôo"
+id = 5239
+moe_forms = ["豆酺"]
+preferred_form = "豆pôo"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 118:122; written form 豆pôo"
+url = "https://tsbp.tgb.org.tw/2016/01/e-saukhap.html"
+
+[[sources]]
+row = 3495
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

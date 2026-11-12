@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "kuân-kuân"
+id = 5170
+moe_forms = []
+preferred_form = "kuân-kuân"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 492:501; written form kuân-kuân"
+url = "https://tsbp.tgb.org.tw/2016/01/sa-khah-kuaneai.html"

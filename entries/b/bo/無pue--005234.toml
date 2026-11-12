@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "bô-pue"
+id = 5234
+moe_forms = ["無桮"]
+preferred_form = "無pue"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 129; normalized source characters 6556:6560; written form 無pue"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 27552
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

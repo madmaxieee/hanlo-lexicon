@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "lām-sú"
+id = 5194
+moe_forms = ["濫使"]
+preferred_form = "lām使"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 179:183; written form lām使"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 12211
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

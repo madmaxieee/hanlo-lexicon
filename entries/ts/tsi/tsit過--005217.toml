@@ -1,0 +1,16 @@
+alternate_readings = ["tsit-kè"]
+canonical_tl = "tsit-kuè"
+id = 5217
+moe_forms = ["這過"]
+preferred_form = "tsit過"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 81; normalized source characters 4077:4082; written form tsit過"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 7977
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

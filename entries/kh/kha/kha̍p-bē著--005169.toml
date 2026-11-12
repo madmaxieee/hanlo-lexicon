@@ -1,0 +1,16 @@
+alternate_readings = ["kha̍p-buē-tio̍h"]
+canonical_tl = "kha̍p-bē-tio̍h"
+id = 5169
+moe_forms = ["磕袂著"]
+preferred_form = "kha̍p-bē著"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 457:466; written form kha̍p-bē著"
+url = "https://tsbp.tgb.org.tw/2016/01/e-saukhap.html"
+
+[[sources]]
+row = 11261
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

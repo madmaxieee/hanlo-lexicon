@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khióng-hat"
+id = 5229
+moe_forms = ["恐喝"]
+preferred_form = "恐hat"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 1442:1446; written form 恐hat"
+url = "https://tsbp.tgb.org.tw/2016/01/m.html"
+
+[[sources]]
+row = 15097
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

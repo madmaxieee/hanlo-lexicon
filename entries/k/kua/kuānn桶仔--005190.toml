@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kuānn-tháng-á"
+id = 5190
+moe_forms = ["捾桶仔"]
+preferred_form = "kuānn桶仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 695:702; written form kuānn桶仔"
+url = "https://tsbp.tgb.org.tw/2016/01/e-tsiah.html"
+
+[[sources]]
+row = 7376
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

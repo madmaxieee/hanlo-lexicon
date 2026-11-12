@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pìnn-bô-báng"
+id = 5201
+moe_forms = ["變無魍"]
+preferred_form = "pìnn無báng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 36; normalized source characters 1867:1876; written form pìnn無báng"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 14549
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

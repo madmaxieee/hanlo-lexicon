@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tài-sin-miā"
+id = 5220
+moe_forms = ["帶身命"]
+preferred_form = "tài身命"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 816:821; written form tài身命"
+url = "https://tsbp.tgb.org.tw/2016/01/bong-ue-e.html"
+
+[[sources]]
+row = 7195
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

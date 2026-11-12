@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "gōng-gōng"
+id = 5183
+moe_forms = ["戇戇"]
+preferred_form = "gōng-gōng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 1158:1167; written form gōng-gōng"
+url = "https://tsbp.tgb.org.tw/2016/01/e-tsiah.html"
+
+[[sources]]
+row = 13424
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

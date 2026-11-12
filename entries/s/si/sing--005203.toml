@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "sing"
+id = 5203
+moe_forms = ["芟"]
+preferred_form = "sing"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 962:966; written form seng"
+url = "https://tsbp.tgb.org.tw/2016/01/bong-ue-e.html"
+
+[[sources]]
+row = 4423
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 75
+sheet = "語音差異"
+snapshot = "moe-kautian-3e0b2023e0bd"

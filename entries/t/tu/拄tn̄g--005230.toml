@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tú-tn̄g"
+id = 5230
+moe_forms = ["拄搪"]
+preferred_form = "拄tn̄g"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 119:124; written form 拄tn̄g"
+url = "https://tsbp.tgb.org.tw/2016/01/sio-tng.html"
+
+[[sources]]
+row = 4118
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

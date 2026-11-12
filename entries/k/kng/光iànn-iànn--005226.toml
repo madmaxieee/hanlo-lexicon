@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kng-iànn-iànn"
+id = 5226
+moe_forms = ["光映映"]
+preferred_form = "光iànn-iànn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 21; normalized source characters 1340:1350; written form 光iànn-iànn"
+url = "https://tsbp.tgb.org.tw/2016/01/bong-ue.html"
+
+[[sources]]
+row = 14896
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

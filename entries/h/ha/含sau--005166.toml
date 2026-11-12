@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hâm-sau"
+id = 5166
+moe_forms = ["含梢"]
+preferred_form = "含sau"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 3:7; written form 含sau"
+url = "https://tsbp.tgb.org.tw/2016/01/e-saukhap.html"
+
+[[sources]]
+row = 3000
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

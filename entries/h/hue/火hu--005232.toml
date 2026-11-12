@@ -1,0 +1,16 @@
+alternate_readings = ["hé-hu"]
+canonical_tl = "hué-hu"
+id = 5232
+moe_forms = ["火烌"]
+preferred_form = "火hu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 42; normalized source characters 2221:2224; written form 火hu"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 1258
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

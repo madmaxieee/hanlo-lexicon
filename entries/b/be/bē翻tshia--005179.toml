@@ -1,0 +1,16 @@
+alternate_readings = ["buē-huan-tshia"]
+canonical_tl = "bē-huan-tshia"
+id = 5179
+moe_forms = ["袂翻捙"]
+preferred_form = "bē翻tshia"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 959:967; written form bē翻tshia"
+url = "https://tsbp.tgb.org.tw/2016/01/e-saukhap.html"
+
+[[sources]]
+row = 13605
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

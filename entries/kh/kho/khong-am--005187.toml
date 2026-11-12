@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "khong-am"
+id = 5187
+moe_forms = ["悾闇"]
+preferred_form = "khong-am"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 760:768; written form khong-am"
+url = "https://tsbp.tgb.org.tw/2016/01/bong-ue.html"
+
+[[sources]]
+row = 7279
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

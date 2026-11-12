@@ -1,0 +1,16 @@
+alternate_readings = ["sio-lióng"]
+canonical_tl = "sio-jiáng"
+id = 5205
+moe_forms = ["相嚷"]
+preferred_form = "sio-jiáng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 93; normalized source characters 4720:4729; written form sio-jióng"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 5300
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

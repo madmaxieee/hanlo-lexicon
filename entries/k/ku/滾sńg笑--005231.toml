@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kún-sńg-tshiò"
+id = 5231
+moe_forms = ["滾耍笑"]
+preferred_form = "滾sńg笑"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 121; normalized source characters 6051:6056; written form 滾sńg笑"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 13794
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

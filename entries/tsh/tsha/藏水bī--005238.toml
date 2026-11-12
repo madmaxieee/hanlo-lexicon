@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshàng-tsuí-bī"
+id = 5238
+moe_forms = ["藏水沬"]
+preferred_form = "藏水bī"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 186:190; written form 藏水bī"
+url = "https://tsbp.tgb.org.tw/2016/01/hipkah.html"
+
+[[sources]]
+row = 12592
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

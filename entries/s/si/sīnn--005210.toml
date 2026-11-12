@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sīnn"
+id = 5210
+moe_forms = ["豉"]
+preferred_form = "sīnn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 114:118; written form sīnn"
+url = "https://tsbp.tgb.org.tw/2016/01/e-saukhap.html"
+
+[[sources]]
+row = 7847
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

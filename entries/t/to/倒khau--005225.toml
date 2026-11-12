@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tò-khau"
+id = 5225
+moe_forms = ["倒剾"]
+preferred_form = "倒khau"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 334:339; written form 倒khau"
+url = "https://tsbp.tgb.org.tw/2016/01/tuie.html"
+
+[[sources]]
+row = 5761
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

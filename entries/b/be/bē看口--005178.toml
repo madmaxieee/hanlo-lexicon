@@ -1,0 +1,16 @@
+alternate_readings = ["buē-khuànn-kháu"]
+canonical_tl = "bē-khuànn-kháu"
+id = 5178
+moe_forms = ["袂看口"]
+preferred_form = "bē看口"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 117; normalized source characters 4033:4037; written form bē看口"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_64.html"
+
+[[sources]]
+row = 29080
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

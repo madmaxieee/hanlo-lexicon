@@ -1,0 +1,16 @@
+alternate_readings = ["mn̍gh-tsia̍h"]
+canonical_tl = "mi̍h-tsia̍h"
+id = 5195
+moe_forms = ["物食"]
+preferred_form = "mi̍h食"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 64; normalized source characters 3287:3292; written form mi̍h食"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 4351
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

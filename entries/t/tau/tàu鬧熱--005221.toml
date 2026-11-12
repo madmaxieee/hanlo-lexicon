@@ -1,0 +1,16 @@
+alternate_readings = ["tàu-lāu-lia̍t"]
+canonical_tl = "tàu-lāu-jia̍t"
+id = 5221
+moe_forms = ["鬥鬧熱"]
+preferred_form = "tàu鬧熱"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 115; normalized source characters 5731:5736; written form tàu鬧熱"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 6881
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sio-tsim"
+id = 5206
+moe_forms = ["相唚"]
+preferred_form = "sio唚"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 52:56; written form sio唚"
+url = "https://tsbp.tgb.org.tw/2016/01/sio-tng.html"
+
+[[sources]]
+row = 5263
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

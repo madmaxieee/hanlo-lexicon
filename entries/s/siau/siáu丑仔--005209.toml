@@ -1,0 +1,21 @@
+alternate_readings = ["siáu-thiúnn-á"]
+canonical_tl = "siáu-thiú-á"
+id = 5209
+moe_forms = ["小丑仔"]
+preferred_form = "siáu丑仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 99; normalized source characters 3334:3340; written form siáu丑仔"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_64.html"
+
+[[sources]]
+row = 19
+sheet = "又唸作"
+snapshot = "moe-kautian-3e0b2023e0bd"
+
+[[sources]]
+row = 245
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

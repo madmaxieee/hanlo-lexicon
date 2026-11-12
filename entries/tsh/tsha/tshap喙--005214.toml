@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshap-tshuì"
+id = 5214
+moe_forms = ["插喙"]
+preferred_form = "tshap喙"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 26; normalized source characters 1017:1023; written form tshap喙"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 8385
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

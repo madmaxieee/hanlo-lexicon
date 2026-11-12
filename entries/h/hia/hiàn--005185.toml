@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hiàn"
+id = 5185
+moe_forms = ["羶"]
+preferred_form = "hiàn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 15; normalized source characters 1267:1271; written form hiàn"
+url = "https://tsbp.tgb.org.tw/2016/01/sa-khah-kuaneai.html"
+
+[[sources]]
+row = 12809
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

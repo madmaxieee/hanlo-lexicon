@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pih-tshiú-ńg"
+id = 5199
+moe_forms = ["撆手䘼"]
+preferred_form = "pih手ńg"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 42; normalized source characters 2239:2245; written form pih手ńg"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 11062
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

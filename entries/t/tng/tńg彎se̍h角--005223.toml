@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tńg-uan-se̍h-kak"
+id = 5223
+moe_forms = ["轉彎踅角"]
+preferred_form = "tńg彎se̍h角"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 87; normalized source characters 4444:4453; written form tńg彎se̍h角"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 12641
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

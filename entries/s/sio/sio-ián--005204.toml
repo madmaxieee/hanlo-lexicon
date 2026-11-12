@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "sio-ián"
+id = 5204
+moe_forms = ["相偃"]
+preferred_form = "sio-ián"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 194:201; written form sio-ián"
+url = "https://tsbp.tgb.org.tw/2016/01/sio-tng.html"
+
+[[sources]]
+row = 5271
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tsiânn-iūnn"
+id = 5218
+moe_forms = ["成樣"]
+preferred_form = "tsiânn樣"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 1; normalized source characters 158:165; written form tsiânn樣"
+url = "https://tsbp.tgb.org.tw/2016/01/sa-khah-kuaneai.html"
+
+[[sources]]
+row = 14826
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

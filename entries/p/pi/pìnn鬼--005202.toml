@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "pìnn-kuí"
+id = 5202
+moe_forms = ["變鬼"]
+preferred_form = "pìnn鬼"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 21; normalized source characters 858:863; written form pìnn鬼"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 13300
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

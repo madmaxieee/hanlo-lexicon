@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshap-siâu"
+id = 5181
+moe_forms = ["插潲"]
+preferred_form = "tshap-siâu"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 587:597; written form chhap-siâu"
+url = "https://tsbp.tgb.org.tw/2016/01/m.html"
+
+[[sources]]
+row = 8394
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

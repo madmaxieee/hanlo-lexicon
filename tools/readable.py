@@ -17,7 +17,7 @@ from lkk_supplement import LKKCoverage
 
 
 HEADERS = ['詞條ID', '建議用字', '音讀', '數字版音讀', '又音', '教育部推薦漢字',
-           '對應華語', '用例', '異用字', '教育部辭典', '來源文章', '華語出處', '用例出處']
+           '對應華語', '用例', '異用字', '教育部辭典', '用例來源']
 TONES = dict(zip('\u0301\u0300\u0302\u030c\u0304\u030d\u030b', '2356789'))
 
 
@@ -50,6 +50,11 @@ def derive(root, corpus):
         for reading in lx.reading_keys(record.get('羅馬字', '')):
             comparisons[(lx.annotation_key(record.get('漢字', '')), reading)].append(
                 (record.get('華語詞目', ''), f"{pin['id']}:詞彙比較:{number}"))
+    definitions = defaultdict(list)
+    for number, record in sheet_records(sheets, '義項'):
+        if record.get('詞目id') and record.get('解說'):
+            definitions[record.get('詞目id', '')].append(
+                (record['解說'], f"{pin['id']}:義項:{number}"))
     examples = defaultdict(list)
     for number, record in sheet_records(sheets, '例句'):
         if record.get('漢字'):
@@ -110,6 +115,12 @@ def derive(root, corpus):
                     for value, location in comparisons.get((headword, reading), []):
                         if value:
                             mandarin.append(value); mandarin_sources.append(location)
+        if not mandarin:
+            # Use only the cited dictionary identity, never a reading-only match.
+            for record in cited_moe:
+                for value, location in definitions.get(record['record_id'], []):
+                    mandarin.append(value)
+                    mandarin_sources.append(location)
         # Prefer an actual cited occurrence to dictionary examples.
         for source in independent:
             try:
@@ -123,14 +134,12 @@ def derive(root, corpus):
                 if candidates:
                     example, example_source = candidates[0]
                     break
-        urls = list(dict.fromkeys(s['url'] for s in independent))
         moe_links = [f"https://sutian.moe.edu.tw/zh-hant/su/{r['record_id']}/"
                      for r in cited_moe if r['record_id']]
         row = [str(eid), form, entry['canonical_tl'], numeric_reading(entry['canonical_tl']),
                ', '.join(entry['alternate_readings']), ', '.join(entry['moe_forms']),
                ' / '.join(dict.fromkeys(mandarin)), display_excerpt(example, evidence) if evidence else example, ', '.join(entry.get('hanji_forms', [])),
-               next(iter(moe_links), ''), evidence['url'] if evidence else next(iter(urls), ''),
-               '; '.join(dict.fromkeys(mandarin_sources)), example_source]
+               next(iter(moe_links), ''), evidence['url'] if evidence else (next(iter(moe_links), '') if example else '')]
         rows.append(row)
         provenance.append({'id': eid, 'mandarin_sources': list(dict.fromkeys(mandarin_sources)),
                            'example_source': example_source, 'raw_example': example, 'corpus_excerpt': evidence})
@@ -178,15 +187,15 @@ def attach_links(path, rows):
     links = ET.Element(f'{{{ns}}}hyperlinks')
     used = {r.get('Id') for r in rels}
     for i, row in enumerate(rows, 2):
-        for j, col in [(9, 'J'), (10, 'K')]:
-            if not row[j]:
+        for col, url in [('J', row[9]), ('K', row[10])]:
+            if not url:
                 continue
             identity = f'readerLink{col}{i}'
             if identity in used:
                 raise ValueError('Workbook already contains reader links; render it again first')
             ET.SubElement(links, f'{{{ns}}}hyperlink', {'ref': f'{col}{i}', f'{{{rns}}}id': identity})
             ET.SubElement(rels, f'{{{relns}}}Relationship', {
-                'Id': identity, 'Type': rns + '/hyperlink', 'Target': row[j], 'TargetMode': 'External'})
+                'Id': identity, 'Type': rns + '/hyperlink', 'Target': url, 'TargetMode': 'External'})
     index = next((i for i, child in enumerate(sheet) if child.tag.split('}')[-1] in
                   ['pageMargins', 'pageSetup', 'drawing', 'tableParts']), len(sheet))
     sheet.insert(index, links)

@@ -36,7 +36,11 @@ This is output filtering, not deletion or a new editorial identity decision.
   neutral `--` markers. Tone numbers describe the written reading, not tone sandhi.
 - Mandarin comes from MOE `詞彙比較` rows matching
   verified Hanji and a canonical/alternate reading. Multiple explicit mappings
-  are retained. Dictionary definitions are not converted into Mandarin glosses.
+  are retained. Where no explicit mapping exists, the column contains the full
+  original `義項.解說` definitions linked to the entry's cited MOE headword ID.
+  These fallback cells are dictionary explanations rather than concise Mandarin
+  equivalents; they are copied without summarization or sense selection. Both
+  kinds retain their original sheet/row references in JSON provenance.
 - Examples prefer a verifiable, uncontained cited corpus occurrence. The excerpt
   is an unchanged punctuation-bounded clause when at most 64 code points long.
   Longer clauses use 16 code points before the match and 20 after, expanded to
@@ -44,7 +48,9 @@ This is output filtering, not deletion or a new editorial identity decision.
   Original spelling, including POJ, is preserved. Examples linked to cited MOE
   headword IDs are fallbacks. MOE examples are
   dictionary examples; no corpus-specific sense selection is implied.
-- `華語出處` and `用例出處` retain snapshot/sheet/row or URL/character coordinates.
+- `用例來源` links to the article or dictionary supplying the example. Exact
+  locations and Mandarin source references remain in JSON provenance rather than
+  visible columns.
   Corpus provenance additionally retains the original locator, document ID,
   excerpt/match spans, and coordinate-text SHA-256 in JSON. Offsets are zero-based,
   end-exclusive Unicode code points. NFC text is tried first, then original text
@@ -67,10 +73,11 @@ node tools/readable_xlsx.mjs dist/lkk-supplement
 
 `NODE_PATH` can point to an external dependency directory. No package installation
 or repository-local dependencies are required by the Python exporter. The renderer
-writes `lexicon-readable.xlsx` with text cells, filters, frozen headers and native
-MOE/article hyperlinks, plus a preview PNG. Native links are attached with the
+writes a plain `lexicon-readable.xlsx` with text cells and native hyperlinks for
+the MOE page and example source, plus a preview PNG. It uses default
+spreadsheet formatting without colors, tables or frozen panes. Native links are attached with the
 standard-library OOXML helper because Artifact Tool lacks native link authoring.
-The two source columns appear at the right of the original LKK columns.
+The example source column appears at the right of the original LKK columns.
 
 Source reuse notices remain in [RIGHTS.md](../RIGHTS.md); generating local output
 does not publish it or change source terms.

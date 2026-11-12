@@ -136,10 +136,16 @@ Exports and the importer verify the screening fingerprint, and approvals with
 only rejected evidence are blocked. These language-screen decisions alone do
 not qualify an entry as `machine-reviewed`.
 
-The raw candidate file stays unchanged for audit. If corpus/candidates change,
-archive the old `machine-screen.json`, rerun discovery and prepare a new pass;
-stale screening is rejected. To reconsider a decision, review its sealed source
-packet, retain the review history and collect the corrected result again.
+The raw candidate file stays unchanged for audit. Do not rerun model screening
+merely because a reharvest changed the candidates, such as after an import dedupes
+them; the maintainer's standing instruction is to rerun it only when explicitly
+requested. The tool rejects screening whose corpus or candidate fingerprint no
+longer matches, so a reharvest after an import needs the existing decisions
+carried forward without new model calls. If that is not yet supported, tell the
+maintainer instead of preparing a new model pass. When the maintainer does request
+a rerun, archive the old `machine-screen.json`, rerun discovery and prepare a new
+pass. To reconsider a decision, review its sealed source packet, retain the review
+history and collect the corrected result again.
 
 ## Review candidates
 

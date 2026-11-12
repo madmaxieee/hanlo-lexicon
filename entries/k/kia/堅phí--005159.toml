@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "kian-phí"
+id = 5159
+moe_forms = ["堅疕"]
+preferred_form = "堅phí"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 29; normalized source characters 732:736; written form 堅phí"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_64.html"
+
+[[sources]]
+row = 7093
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

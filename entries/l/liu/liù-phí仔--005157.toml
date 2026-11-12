@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "liù-phí-á"
+id = 5157
+moe_forms = ["遛疕仔"]
+preferred_form = "liù-phí仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 29; normalized source characters 741:749; written form liù-phí仔"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_64.html"
+
+[[sources]]
+row = 10875
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

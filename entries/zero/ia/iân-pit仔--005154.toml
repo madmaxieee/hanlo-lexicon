@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "iân-pit-á"
+id = 5154
+moe_forms = ["鉛筆仔"]
+preferred_form = "iân-pit仔"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 7; normalized source characters 770:778; written form iân-pit仔"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_27.html"
+
+[[sources]]
+row = 12155
+sheet = "詞彙比較"
+snapshot = "moe-kautian-3e0b2023e0bd"

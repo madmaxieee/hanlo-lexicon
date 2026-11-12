@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tú-tshiāng"
+id = 5158
+moe_forms = ["拄䢢"]
+preferred_form = "tú-tshiāng"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 636:646; written form tú-tshiāng"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_27.html"
+
+[[sources]]
+row = 3972
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

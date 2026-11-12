@@ -1,0 +1,17 @@
+alternate_readings = ["lué"]
+canonical_tl = "lé"
+id = 5162
+identity_note = "MOE 詈 (咒罵, to curse); a separate word from 禮 (entry 4438), which shares the reading lé."
+moe_forms = ["詈"]
+preferred_form = "lé"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 13; normalized source characters 327:329; written form lé"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_64.html"
+
+[[sources]]
+row = 9028
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

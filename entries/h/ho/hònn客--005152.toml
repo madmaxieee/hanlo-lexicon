@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "hònn-kheh"
+id = 5152
+moe_forms = ["好客"]
+preferred_form = "hònn客"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 12; normalized source characters 88:93; written form Hònn客"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_45.html"
+
+[[sources]]
+row = 2342
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

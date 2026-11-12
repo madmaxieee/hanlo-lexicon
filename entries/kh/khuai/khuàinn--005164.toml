@@ -1,0 +1,11 @@
+alternate_readings = []
+canonical_tl = "khuàinn"
+id = 5164
+moe_forms = []
+preferred_form = "khuàinn"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 230:237; written form khuàinn"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_64.html"

@@ -1,0 +1,16 @@
+alternate_readings = []
+canonical_tl = "tshiú-tsat"
+id = 5160
+moe_forms = ["手節"]
+preferred_form = "手tsat"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 25; normalized source characters 613:618; written form 手tsat"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_64.html"
+
+[[sources]]
+row = 15555
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

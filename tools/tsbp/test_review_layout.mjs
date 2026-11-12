@@ -230,3 +230,20 @@ test('ignored-segments filter shows restore controls without unrelated tracked r
   assert.match(nodes.get('rows').innerHTML,/Restore segment/);
   assert.doesNotMatch(nodes.get('rows').innerHTML,/<h3>second<\/h3>/);
 });
+
+test('later passages of an approved word fold to one clickable row',()=>{
+  const {page,nodes}=setup([group('roman',[occurrence('roman',1,1,6,'a'),occurrence('roman',30,30,35,'a')]),
+    group('second',[occurrence('second',10,10,16,'a')])],{extra:{article_inventory:[{id:'a'}]}});
+  const html=()=>nodes.get('rows').innerHTML;
+  vm.runInContext("decision(byKey.get('roman')).approved=true;render()",page);
+  assert.equal(html().match(/repeat-toggle/g).length,1);
+  assert.equal(html().match(/<h3>roman<\/h3>/g).length,1);
+  assert.match(html(),/Already approved earlier · show/);
+  assert.equal(html().match(/<h3>second<\/h3>/g).length,1);
+  vm.runInContext("expandedRepeats.add(repeatId(reviewSections(data.groups)[2],byKey.get('roman')));render()",page);
+  assert.equal(html().match(/<h3>roman<\/h3>/g).length,2);
+  assert.match(html(),/repeat-fold/);
+  assert.doesNotMatch(html(),/repeat-toggle/);
+  vm.runInContext("decision(byKey.get('roman')).approved=false;render()",page);
+  assert.doesNotMatch(html(),/repeat-toggle|repeat-fold/);
+});

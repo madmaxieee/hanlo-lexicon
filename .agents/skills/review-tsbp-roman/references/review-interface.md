@@ -141,6 +141,13 @@ choices back into local workflow settings; a static HTML page cannot write that
 file directly. An export predating segment ignores preserves the saved segment
 settings; an explicit empty `ignored_segments` array clears them.
 
+### Approved words fold in later passages
+
+A word keeps one decision across its passages. After the first passage in review
+order, later passages of an approved word collapse to a single row showing the word
+and its green **Approved import** status. Select the row to expand that passage,
+and **Fold** to collapse it again. Expansion is not saved and changes no decision.
+
 ### Browse excluded candidates without loading the entire queue
 
 **Show excluded rows** reveals candidates hidden by match/segment ignores,

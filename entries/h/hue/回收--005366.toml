@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "huê-siu"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts by gpt-6-luna (medium reasoning), with coordinator checks; MOE identity 23207. Batch import authorized without individual human review. Issue 384 model-review SHA-256 e447cfac6a01aac67d93825c505542c18ea15f6e831ccb1aef7b3899b2da8374."
+id = 5366
+moe_forms = []
+preferred_form = "回收"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 384; article text line 21; corpus Unicode code points 1211:1213; literal form 回收"
+url = "https://tsbp.tgb.org.tw/2016/03/an-ne-e.html"
+
+[[sources]]
+row = 19872
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "kenn-ti̍t"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts by gpt-6-luna (medium reasoning), with coordinator checks; MOE identity 20342. Batch import authorized without individual human review. Issue 384 model-review SHA-256 e447cfac6a01aac67d93825c505542c18ea15f6e831ccb1aef7b3899b2da8374."
+id = 5246
+moe_forms = []
+preferred_form = "驚蟄"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 384; article text line 4; corpus Unicode code points 32:34; literal form 驚蟄"
+url = "https://tsbp.tgb.org.tw/2016/03/blog-post_90.html"
+
+[[sources]]
+locator = "Issue 384; article text line 9; corpus Unicode code points 499:501; literal form 驚蟄"
+url = "https://tsbp.tgb.org.tw/2016/03/e_7.html"
+
+[[sources]]
+row = 24216
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

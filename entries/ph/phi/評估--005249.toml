@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "phîng-kóo"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts by gpt-6-luna (medium reasoning), with coordinator checks; MOE identity 22375. Batch import authorized without individual human review. Issue 384 model-review SHA-256 e447cfac6a01aac67d93825c505542c18ea15f6e831ccb1aef7b3899b2da8374."
+id = 5249
+moe_forms = []
+preferred_form = "評估"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 384; article text line 25; corpus Unicode code points 1757:1759; literal form 評估"
+url = "https://tsbp.tgb.org.tw/2016/03/ti.html"
+
+[[sources]]
+locator = "Issue 384; article text line 25; corpus Unicode code points 1819:1821; literal form 評估"
+url = "https://tsbp.tgb.org.tw/2016/03/ti.html"
+
+[[sources]]
+row = 19040
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

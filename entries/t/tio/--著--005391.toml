@@ -1,0 +1,22 @@
+alternate_readings = []
+canonical_tl = "--tio̍h"
+editorial_rationale = "Maintainer requested adding --著 / --tio̍h as a standalone neutral-tone post-verbal complement entry rather than enumerating all verb--著 compounds. MOE 著 (word 8981, 詞目 row 8979) senses 5–8 cover this post-verbal particle/complement, while TSBP writes --著 (e.g. 看--著) and --tio̍h (e.g. khòaⁿ--tio̍h) across articles. Distinct from non-neutral entry 237 (tio̍h)."
+hanji_forms = ["--著"]
+id = 5391
+moe_forms = []
+preferred_form = "--著"
+review_status = "imported"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 11; normalized source characters 955:958; written form --著 (in 看--著)"
+url = "https://tsbp.tgb.org.tw/2012/08/blog-post_26.html"
+
+[[sources]]
+locator = "Article text line 5; normalized source characters 578:585; written form --tio̍h (in khòaⁿ--tio̍h)"
+url = "https://tsbp.tgb.org.tw/2015/05/be-phok-ke-phok-be.html"
+
+[[sources]]
+row = 8979
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

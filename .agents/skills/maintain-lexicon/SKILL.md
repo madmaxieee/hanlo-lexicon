@@ -12,147 +12,55 @@ Use `python3 tools/lexicon.py`; do not invent an ID or hand-format generated TOM
 ## Add a requested word
 
 1. Establish the requested written form, a verified canonical TL reading, and
-   whether it is an existing lexeme or a distinct word. Search offline; do not
-   guess a reading, convert POJ into TL, or use Mandarin text as a Taiwanese form.
+   whether the candidate is an existing lexeme or a distinct word (using offline
+   dictionary lookups rather than guessing readings, converting POJ, or using
+   Mandarin text as Taiwanese).
 2. Write a temporary JSON request with `preferred_form`, `canonical_tl`, and any
-   known `alternate_readings` or `moe_forms`. Run `check REQUEST.json`. This checks
-   existing entries, the full LKK snapshot, and the pinned original MOE ODS,
-   including alternative/dialect readings and variant characters. On first use it
-   downloads the pinned snapshot from TaigiKeyboard GitHub into the ignored cache.
-   Download/checksum failures stop the operation; do not skip the MOE check.
-3. Inspect matches by sense, etymology, and reading. The output includes MOE
-   definitions and original snapshot/sheet/row references for review. A same-form
-   or same-reading hit is not proof of lexical identity. MOE presence is useful
-   evidence and does not prohibit an LKK writing recommendation.
-   Keep check-time `related_moe_entries` as pre-import audit data. After the
-   authorized import and its conflict resolutions, follow
-   [standalone related-word review](#standalone-related-word-review) using the
-   resulting entry IDs and current inventory. The original word's approval does
-   not authorize its related suggestions.
-4. For an existing word, edit the existing entry rather than creating another.
-   For an unrelated homograph, supply a short `identity_note` explaining the
-   distinction. Do not split a word merely because it has related senses or
-   alternate pronunciations. When the maintainer allows another spelling of the
-   same word as output without preferring it, add it to `accepted_forms`. If identity remains unclear, ask for the context
-   needed to resolve it before adding.
-5. Add original evidence to `sources`: cite an LKK snapshot/row, the checked MOE
-   snapshot/sheet/row, or a published URL plus precise `locator`. Never cite a
-   cleaned personal CSV as independent evidence or copy raw source cells into
-   entries. Do not reintroduce removed meanings, example, or variant-spelling
-   fields. Definitions shown during lookup remain external review evidence.
-6. Run `add REQUEST.json`. It repeats the checks under a writer lock, allocates
-   the next integer, and creates the canonical file. Default to `imported` for
-   unreviewed records. After contextual model screening, explicitly request
-   `review_status: "machine-reviewed"` and record the model, review scope, and
-   evidence in `editorial_rationale` and `sources`. Mechanical checks alone do
-   not qualify. Reserve `reviewed` for explicit human review; batch import
-   authorization alone does not qualify as individual review. A request to add a
-   word already authorizes this local addition; there is no separate blanket approval step.
+   known `alternate_readings` or `moe_forms`. Run `check REQUEST.json` to check
+   existing entries, LKK, and the pinned MOE ODS (populating the ignored cache on
+   first use and stopping on download or checksum errors).
+3. Inspect matches by sense, etymology, and reading (`query <text> --moe` shows
+   MOE senses and examples). Treat shared spelling or reading as review evidence
+   rather than proof of identity; keep check-time `related_moe_entries` as
+   pre-import audit data and handle related words separately after import.
+4. For an existing word, edit the existing entry. For an unrelated homograph,
+   add a distinct `identity_note` (keep related senses and alternate readings
+   in one entry). Add non-preferred valid output spellings to `accepted_forms`.
+   Ask for context if lexical identity remains unclear.
+5. Cite original evidence in `sources` (an LKK snapshot/row, checked MOE
+   snapshot/sheet/row, or published HTTP(S) URL + `locator`), preserving source
+   wording without inventing meanings, examples, or extra fields.
+6. Run `add REQUEST.json` to recheck under the writer lock, allocate the next ID,
+   and write the canonical TOML. Leave unreviewed additions as `imported`; use
+   `machine-reviewed` after contextual model screening (recording model, scope,
+   and evidence in `editorial_rationale` and `sources`), and reserve `reviewed`
+   for explicit human review.
 7. Run `validate` and `format --check`. Report the resulting file/ID, relevant
-   dictionary matches, and unresolved editorial issues. Keep the repository local
-   and leave commit/publish actions to the user's instruction.
+   dictionary matches, and any open editorial questions; keep the repository local
+   unless asked to publish.
 
 ## Standalone related-word review
 
-Use this procedure for standalone discovery and post-import recommendations.
-See the [related-word command reference](../../../tools/related-words.md) for
-commands, matching rules, report fields, and import flags.
-
-1. Establish a verified Hanji seed from recorded forms or an explicitly cited MOE
-   identity. A homophone or reading-only match does not supply Hanji. Seed readings
-   come from matching existing entries; only when no seed entry exists can the
-   exact MOE form supply them. An unalignable existing reading does not permit a
-   different dictionary reading as a fallback. Use the recorded `combo_matches`
-   proofs and each complete sourced reading to verify the relation.
-2. After a batch import, finish its conflict resolutions before generating the
-   report. Scope it to the resulting entry IDs and current inventory. Present the
-   new-only Markdown index with original MOE readings, definitions, matching
-   patterns, source rows, and linked evidence pages. Existing-entry candidates and
-   explicit rejections stay in JSON but are hidden from that index; pre-import
-   checks remain audit evidence rather than current recommendations.
-3. Retain the matching seed spelling at shared positions. Shorter words remove
-   extra aligned units; longer words use fresh combo evidence only for added
-   positions, including evidence from the newly imported seed. Keep inventory
-   conflicts as audit evidence without reopening the adopted seed spelling.
-   Present both sides of conflicts and obtain explicit choices for unknown or
-   conflicting positions; never select by majority. Keep canonical-headword
-   proposals separate from dictionary variants so an uncertain variant does not
-   demote the main proposal.
-4. Keep decisions `pending` until separately authorized. Each approval selects the
-   complete preferred form, canonical reading, and any alternates in that item's
-   `review` object. Shorter words inherit spelling but still need word-level
-   adoption. Choose the review mode by the authority actually exercised:
-   - Individual human review uses `reviewed` after the maintainer explicitly
-     selects that word's spelling and readings, resolving any unknowns or conflicts.
-   - The standing exception permits batch-authorized, contextually screened
-     consistent complete proposals to use `machine-reviewed`. This includes
-     shorter words with complete inherited spellings. Retain the selected
-     spelling/readings and record the model/agent, scope, and original
-     dictionary/combo evidence in `editorial_rationale` and `sources`. Batch
-     authorization alone is not individual human review. Conflicting or incomplete
-     proposals still need explicit resolution; existing-entry overlaps remain
-     pending under the [conflict rule](#import-conflicts-require-maintainer-review).
-5. Preview `import-related`, then apply only the separately authorized approved
-   decisions. Preserve the selected review status and original MOE sources;
-   human-adopted recommendations omit `rule_generated`. Pending and rejected
-   suggestions remain unimported. Edit only the report's `review` objects, keeping
-   sealed evidence unchanged. If entries, dictionary, or implementation change,
-   regenerate and review the new evidence before importing remaining suggestions.
+For standalone discovery or post-import related-word review, read
+[related-word-review.md](references/related-word-review.md) and
+[related-words.md](../../../tools/related-words.md).
 
 ## Import conflicts require maintainer review
 
-For the same written form and canonical reading, always prefer a substantive MOE
-entry with actual definitions over an `附錄－百家姓` surname appendix duplicate.
-Use the substantive entry's original source row and retain the appendix identity
-only in the import audit as excluded. This is the maintainer's standing resolution;
-do not ask again for this duplicate pattern or invent a definition when none exists.
-The preference selects dictionary identity; it does not establish that a corpus
-span uses any particular sense or is an independent word.
-
-Sharing a canonical reading alone is not an import conflict. When written forms
-and dictionary identities differ, inspect the source context and continue if it
-supports both proposals. Do not create a human-review hold solely for homophones.
-Questions about a matched span occurring only inside a compound are separate
-from duplicate identity and must state that actual evidence concern.
-
-Present import conflicts directly in the conversation as a readable table or
-short list, not through a structured question tool.
-
-When an import approval overlaps an existing entry, show the maintainer the
-approved form/reading, existing ID and form/readings, relevant source identities,
-and the proposed resolution. Prompt for an explicit decision before changing the
-existing preferred form, adding or merging readings, treating the approval as
-already handled, or creating a separate word. A general request to import, or an
-ordinary approval in a review export, does not resolve a conflict with an existing
-entry. Continue nonconflicting imports while the conflicting cases await review.
-
-Apply a resolution already explicitly given by the maintainer in the current
-conversation without asking again. Preserve existing IDs and forms when the
-maintainer chooses to keep them. Shared Hanji alone does not establish lexical
-identity: compare the original MOE entry IDs and evidence, and retain separate
-romanized recommendations when the maintainer explicitly chooses distinct words.
-Record an evidence-backed `identity_note` for a deliberate separate entry.
-
-Standing resolution: a word that only shares a reading with an existing entry but is
-not the same word (different MOE headword/definition or curated Hanji) is a separate
-entry with an `identity_note`; do not ask again. See
-[the decision](../../../decisions/same-reading-distinct-words-2026-11-12.md).
+When an import candidate overlaps an existing entry or hits a surname-appendix
+or same-reading case, read [import-conflicts.md](references/import-conflicts.md).
 
 ## Corrections and IDs
 
-Preserve IDs on spelling or reading corrections. After a deliberate edit, run
-`format` to sort keys/sets and rename the file from its preferred form and canonical
-TL initial; then run `validate`. Cite evidence for added facts and leave unknown
-optional notes absent.
+Preserve IDs on spelling or reading edits. After manual edits, run `format`
+(which sorts keys/sets and renames/moves files from preferred form and canonical
+TL) and then `validate`. Cite evidence for added facts and omit unknown optional
+fields.
 
-`next-id` is only a preview. `add` owns allocation through `id-sequence.toml`.
-Never decrement the counter or recycle a deleted/reserved ID. Local writers are
-serialized, but independent clones can allocate the same number: resolve such
-collisions before merging, update affected references, and advance the counter.
-Do not silently renumber already published entries.
+`next-id` previews only; `add` owns allocation through `id-sequence.toml` and
+keeps reserved/deleted IDs monotonic without recycling. Resolve cross-clone ID
+collisions before merging without renumbering published entries.
 
-The MOE copy lives in ignored `.cache/dictionaries/moe/<sha256>/kautian.ods`. Its
-GitHub revision, download URL, checksum, and source description are tracked in
-`references/moe.toml`. First use fetches that exact pin; later lookups stay offline.
-Never repin or substitute a dictionary after a checksum mismatch. On an explicit
-source refresh, inspect the new edition and terms before changing the pin.
+MOE data lives in ignored `.cache/dictionaries/moe/<sha256>/kautian.ods`,
+pinned in `references/moe.toml`. Keep the pin verified; on an explicit refresh,
+inspect the new edition and terms before updating the pin.

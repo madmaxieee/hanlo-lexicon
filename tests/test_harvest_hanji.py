@@ -99,6 +99,21 @@ class HanjiHarvestTests(unittest.TestCase):
         self.assertEqual(index['1']['readings'][0]['sources'][0]['original_reading'], '【文】ká, kah')
         self.assertEqual(list(harvest.trie_for(index)), ['甲'])
 
+    def test_only_loanword_appendix_entries_are_indexed(self):
+        records = [
+            {**record(1, '甲', 'kah'), 'entry_type': '主詞目', 'category': '其他'},
+            {**record(2, '乙', 'it'), 'entry_type': '附錄', 'category': '外來詞'},
+            {**record(3, '丙', 'píng'), 'entry_type': '附錄', 'category': '節氣'},
+            {**record(3, '丙', 'pīng', '又唸作', row=9), 'entry_type': '附錄', 'category': '節氣'},
+            {**record(4, '丁', 'ting'), 'entry_type': '附錄', 'category': '山脈'},
+            {**record(5, '戊', 'bōo'), 'entry_type': '附錄', 'category': '全部,五畫'},
+            {**record(6, '己', 'kí'), 'entry_type': '附錄', 'category': '全部,首字三畫'},
+            {**record(7, '庚', 'king'), 'entry_type': '附錄', 'category': ''},
+        ]
+        index = harvest.dictionary_index(records)
+        self.assertEqual(list(index), ['1', '2'])
+
+
     def test_nested_and_crossing_matches_are_preserved_without_selecting_a_segmentation(self):
         records = [record(1, '甲乙', 'a-it'), record(2, '乙丙', 'it-píng'),
                    record(3, '甲', 'a'), record(4, '乙', 'it'), record(5, '丙', 'píng')]

@@ -45,9 +45,10 @@ Hanji. Glyph variation selectors remain attached; explicit MOE annotations are
 ignored for matching and preserved in the evidence.
 
 Suggestions cover numbered MOE `詞目` identities and their recorded variants,
-without comparison/name/surname-sheet duplicates. They retain dictionary order,
-original headwords, readings, definitions, source rows, and `relations` recording
-`base_form`, `matched_form`, `pattern`, and `combo_matches`. Only reading choices
+without comparison/name/surname-sheet duplicates or non-`外來詞` `附錄` entries
+(such as place/station names, `節氣`, `百家姓`, and `俗諺`). They retain
+dictionary order, original headwords, readings, definitions, source rows, and
+`relations` recording `base_form`, `matched_form`, `pattern`, and `combo_matches`. Only reading choices
 with a shared combo match are offered. Homographs remain separate, the requested
 word is omitted, and suggestions do not recursively seed further suggestions.
 The word shapes do not establish semantic kinship.

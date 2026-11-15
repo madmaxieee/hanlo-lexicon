@@ -78,6 +78,8 @@ def dictionary_index(records):
     for record in records:
         if record['source']['sheet'] != '詞目' or not str(record['record_id']).isdigit():
             continue
+        if lex.is_excluded_moe_appendix(record):
+            continue
         identity = str(record['record_id'])
         form = clean(record['headword'])
         if not pure(form):

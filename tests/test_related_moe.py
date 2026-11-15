@@ -139,6 +139,28 @@ class RelatedMoeTests(unittest.TestCase):
         self.assertIn('checksum mismatch', error)
         self.assertEqual(lex.entries(self.root), [])
 
+    def test_only_loanword_appendix_entries_are_suggested_from_appendix_rows(self):
+        sheets = {
+            '詞目': [['詞目id', '詞目類型', '漢字', '羅馬字', '分類'],
+                     [10, '附錄', '甲乙丙', 'kah-it-ping', '外來詞'],
+                     [11, '附錄', '甲乙丁', 'kah-it-ting', '節氣'],
+                     [12, '附錄', '甲乙戊', 'kah-it-boo', '山脈'],
+                     [13, '附錄', '甲乙己', 'kah-it-ki', '全部,五畫'],
+                     [14, '附錄', '甲乙庚', 'kah-it-king', '']],
+            '義項': [['詞目id', '義項id', '解說'], [10, 1, 'Loanword.']],
+        }
+        path = self.root / 'appendix-related.ods'
+        support.make_ods(path, sheets)
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        pin = self.root / 'references/moe.toml'
+        pin.write_text(pin.read_text().replace(lex.load_toml(pin)['sha256'], digest))
+        self.moe_path = self.root / '.cache/dictionaries/moe' / digest / 'kautian.ods'
+        self.moe_path.parent.mkdir(parents=True, exist_ok=True)
+        path.replace(self.moe_path)
+        result = self.suggestions()
+        self.assertEqual([row['record_id'] for row in result], ['10'])
+
 
 if __name__ == '__main__':
     unittest.main()
+

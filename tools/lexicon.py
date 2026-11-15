@@ -508,18 +508,25 @@ def cached_moe(root):
     return pin, path, raw
 
 
+def is_excluded_moe_appendix(record):
+    """Exclude MOE 附錄 entries other than 外來詞 from discovery/proposals."""
+    return record.get('entry_type') == '附錄' and record.get('category') != '外來詞'
+
+
 def decode_moe(pin, raw):
     """Decode verified original bytes, retaining source sheet/row identities."""
     sheets = ods_sheets(raw)
     if '詞目' not in sheets:
         raise Error('MOE ODS is missing the headword sheet.')
-    records, definitions, variants = [], {}, {}
+    records, definitions, variants, word_metadata = [], {}, {}, {}
     for name, rows in sheets.items():
         if not rows:
             continue
         header = rows[0][1]
         for row_number, cells in rows[1:]:
             record = dict(zip(header, cells))
+            if name == '詞目' and record.get('詞目id'):
+                word_metadata[record['詞目id']] = (record.get('詞目類型', ''), record.get('分類', ''))
             if name == '義項':
                 definitions.setdefault(record.get('詞目id', ''), []).append(record.get('解說', ''))
             elif name == '異用字':
@@ -536,6 +543,9 @@ def decode_moe(pin, raw):
     for record in records:
         record['definitions'] = definitions.get(record['record_id'], [])
         record['variant_forms'] = variants.get(annotation_key(record['headword']), [])
+        entry_type, category = word_metadata.get(record['record_id'], ('', '')) if record['record_id'] else ('', '')
+        record['entry_type'] = entry_type
+        record['category'] = category
     return pin, sheets, records
 
 
@@ -561,11 +571,12 @@ def read_decoded_moe(path, pin, decoder_sha256):
                        or not isinstance(row[1], list)
                        or any(not isinstance(cell, str) for cell in row[1]) for row in rows)):
             raise ValueError('Invalid decoded MOE sheet.')
-    fields = {'headword', 'reading', 'record_id', 'column', 'source', 'definitions', 'variant_forms'}
+    fields = {'headword', 'reading', 'record_id', 'column', 'source',
+              'definitions', 'variant_forms', 'entry_type', 'category'}
     for record in records:
         if (not isinstance(record, dict) or set(record) != fields
                 or any(not isinstance(record[field], str)
-                       for field in ('headword', 'reading', 'record_id', 'column'))
+                       for field in ('headword', 'reading', 'record_id', 'column', 'entry_type', 'category'))
                 or any(not isinstance(record[field], list)
                        or any(not isinstance(value, str) for value in record[field])
                        for field in ('definitions', 'variant_forms'))):
@@ -668,6 +679,8 @@ class RelatedMoeIndex:
         self.source_records = {tuple(sorted(record['source'].items())): record for record in records}
         for record in records:
             if record['source']['sheet'] != '詞目' or not record['record_id'].isdecimal():
+                continue
+            if is_excluded_moe_appendix(record):
                 continue
             number = len(self.records)
             self.records.append(record)

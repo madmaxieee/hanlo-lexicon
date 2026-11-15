@@ -41,10 +41,12 @@ that intersects one. Exclusions do not join text or create new word boundaries.
 ### Matching and uncertainty
 
 - A trie finds all literal, contiguous canonical Hanji headwords from numbered
-  MOE `詞目` records. Single characters, nested compounds, and crossing overlaps
-  remain in the output. Alternate Hanji spellings, names/surnames, and comparison
-  rows do not create candidates. An unmatched character is never assigned a
-  reading by inference. Romanization, punctuation, and spaces are not traversed.
+  MOE `詞目` records, excluding `詞目類型 = 附錄` rows outside `分類 = 外來詞`
+  (places, stations, landmarks, old place names, `節氣`, `百家姓`, and `俗諺`).
+  Single characters, nested compounds, and crossing overlaps remain in the output.
+  Alternate Hanji spellings, names/surnames, and comparison rows do not create
+  candidates. An unmatched character is never assigned a reading by inference.
+  Romanization, punctuation, and spaces are not traversed.
 - Each candidate retains its distinct MOE identity, definitions for review, original
   sheet/row/column references, main readings in source order, and supported alternate,
   colloquial, contracted, and dialect readings. The first main reading supplies a

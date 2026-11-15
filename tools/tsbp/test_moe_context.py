@@ -391,6 +391,21 @@ class MoeContextTests(unittest.TestCase):
         apply_final_exclusions(result, set(), {'跤tsiah': [{'id': 2, 'preferred_form': '跤tsiah'}]})
         self.assertEqual(result[0]['preferred_matches'][0]['id'], 2)
 
+    def test_excludes_non_loanword_appendix_records_while_keeping_loanwords(self):
+        groups = groups_for('kah-it')
+        records = [
+            {**record('甲乙', 'kah-it', '1'), 'entry_type': '附錄', 'category': '外來詞'},
+            {**record('丙丁', 'kah-it', '2'), 'entry_type': '附錄', 'category': '節氣'},
+            {**record('戊己', 'kah-it', '3'), 'entry_type': '附錄', 'category': '西部幹線——山線'},
+            {**record('庚辛', 'kah-it', '4'), 'entry_type': '附錄', 'category': '全部,七畫'},
+            {**record('壬癸', 'kah-it', '5'), 'entry_type': '附錄', 'category': ''},
+        ]
+        related = build_lookups(groups, records)
+        self.assertEqual({r['record_id'] for r in related['kah-it']}, {'1'})
+        result, _ = regroup(groups, {'test:1': 'kah-it'}, related)
+        self.assertEqual({m['record_id'] for g in result for m in g['moe_matches']}, {'1'})
+
 
 if __name__ == '__main__':
     unittest.main()
+

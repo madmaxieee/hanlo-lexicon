@@ -21,6 +21,9 @@ also preserves its original scope and entry-level resolutions.
   keyboard CSV still emits one row.
 - [Post-import related recommendations](tsbp-386-batch2-import-2026-10-26.md#post-import-related-recommendation-workflow):
   regenerate against the current inventory and retain the matching seed spelling.
+- [MOE appendix exclusion beyond 外來詞](moe-appendix-exclusion-2026-11-15.md):
+  discovery excludes all non-`外來詞` MOE `附錄` entries (places, stations,
+  `節氣`, `百家姓`, `俗諺`), and 38 prior entries were removed.
 
 ## Import history
 

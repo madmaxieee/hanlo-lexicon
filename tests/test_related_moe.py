@@ -146,7 +146,8 @@ class RelatedMoeTests(unittest.TestCase):
                      [11, '附錄', '甲乙丁', 'kah-it-ting', '節氣'],
                      [12, '附錄', '甲乙戊', 'kah-it-boo', '山脈'],
                      [13, '附錄', '甲乙己', 'kah-it-ki', '全部,五畫'],
-                     [14, '附錄', '甲乙庚', 'kah-it-king', '']],
+                     [14, '附錄', '甲乙庚', 'kah-it-king', ''],
+                     [15, '單字不成詞者', '甲乙辛', 'kah-it-sin', '']],
             '義項': [['詞目id', '義項id', '解說'], [10, 1, 'Loanword.']],
         }
         path = self.root / 'appendix-related.ods'

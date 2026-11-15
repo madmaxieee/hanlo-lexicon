@@ -24,6 +24,9 @@ also preserves its original scope and entry-level resolutions.
 - [MOE appendix exclusion beyond 外來詞](moe-appendix-exclusion-2026-11-15.md):
   discovery excludes all non-`外來詞` MOE `附錄` entries (places, stations,
   `節氣`, `百家姓`, `俗諺`), and 38 prior entries were removed.
+- [MOE single-character non-word exclusion (`單字不成詞者`)](moe-single-char-nonword-exclusion-2026-11-15.md):
+  discovery excludes `詞目類型 = 單字不成詞者`, and 27 pure-Hanji imports were
+  removed while retaining `435` `hah`, `447` `phiàn`, `4916` `thut`, and `4941` `uâ`.
 
 ## Import history
 

@@ -513,6 +513,11 @@ def is_excluded_moe_appendix(record):
     return record.get('entry_type') == '附錄' and record.get('category') != '外來詞'
 
 
+def is_excluded_moe_discovery_entry(record):
+    """Exclude non-外來詞 附錄 and bound 單字不成詞者 MOE entries from discovery."""
+    return is_excluded_moe_appendix(record) or record.get('entry_type') == '單字不成詞者'
+
+
 def decode_moe(pin, raw):
     """Decode verified original bytes, retaining source sheet/row identities."""
     sheets = ods_sheets(raw)
@@ -680,7 +685,7 @@ class RelatedMoeIndex:
         for record in records:
             if record['source']['sheet'] != '詞目' or not record['record_id'].isdecimal():
                 continue
-            if is_excluded_moe_appendix(record):
+            if is_excluded_moe_discovery_entry(record):
                 continue
             number = len(self.records)
             self.records.append(record)

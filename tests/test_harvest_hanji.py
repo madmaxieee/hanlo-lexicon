@@ -109,6 +109,8 @@ class HanjiHarvestTests(unittest.TestCase):
             {**record(5, '戊', 'bōo'), 'entry_type': '附錄', 'category': '全部,五畫'},
             {**record(6, '己', 'kí'), 'entry_type': '附錄', 'category': '全部,首字三畫'},
             {**record(7, '庚', 'king'), 'entry_type': '附錄', 'category': ''},
+            {**record(8, '辛', 'sin'), 'entry_type': '單字不成詞者', 'category': ''},
+            {**record(8, '辛', 'sîn', '又唸作', row=10), 'entry_type': '單字不成詞者', 'category': ''},
         ]
         index = harvest.dictionary_index(records)
         self.assertEqual(list(index), ['1', '2'])

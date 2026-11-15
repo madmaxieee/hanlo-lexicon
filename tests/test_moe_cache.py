@@ -109,8 +109,9 @@ class MoeCacheTests(unittest.TestCase):
             '詞目': [['詞目id', '詞目類型', '漢字', '羅馬字', '分類'],
                      [10, '附錄', '甲', 'kah', '外來詞'],
                      [11, '附錄', '乙', 'it', '節氣'],
-                     [12, '附錄', '丙', 'ping', '山脈']],
-            '又唸作': [['詞目id', '漢字', '羅馬字'], [11, '乙', 'i̍t']],
+                     [12, '附錄', '丙', 'ping', '山脈'],
+                     [13, '單字不成詞者', '戊', 'boo', '']],
+            '又唸作': [['詞目id', '漢字', '羅馬字'], [11, '乙', 'i̍t'], [13, '戊', 'bōo']],
             '姓': [['漢字', '羅馬字'], ['丁', 'Ting']],
         })
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
@@ -124,6 +125,8 @@ class MoeCacheTests(unittest.TestCase):
         self.assertEqual((by_key[('詞目', '10')]['entry_type'], by_key[('詞目', '10')]['category']), ('附錄', '外來詞'))
         self.assertEqual((by_key[('詞目', '11')]['entry_type'], by_key[('詞目', '11')]['category']), ('附錄', '節氣'))
         self.assertEqual((by_key[('又唸作', '11')]['entry_type'], by_key[('又唸作', '11')]['category']), ('附錄', '節氣'))
+        self.assertEqual((by_key[('詞目', '13')]['entry_type'], by_key[('詞目', '13')]['category']), ('單字不成詞者', ''))
+        self.assertEqual((by_key[('又唸作', '13')]['entry_type'], by_key[('又唸作', '13')]['category']), ('單字不成詞者', ''))
         self.assertEqual((by_key[('姓', '')]['entry_type'], by_key[('姓', '')]['category']), ('', ''))
         with mock.patch.object(lex, 'ods_sheets', side_effect=AssertionError('warm cache must skip XML')):
             self.assertEqual(lex.moe_data(self.root), expected)

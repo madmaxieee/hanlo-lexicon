@@ -65,6 +65,10 @@ def is_excluded_appendix(record):
     return record.get('entry_type') == '附錄' and record.get('category') != '外來詞'
 
 
+def is_excluded_moe_entry(record):
+    return is_excluded_appendix(record) or record.get('entry_type') == '單字不成詞者'
+
+
 def build_lookups(groups, records):
     requests = defaultdict(list)
     for group in groups:
@@ -84,7 +88,7 @@ def build_lookups(groups, records):
                     fragment, start, end, whole))
     lookups = {g['key']: [] for g in groups}
     for record in records:
-        if is_excluded_appendix(record):
+        if is_excluded_moe_entry(record):
             continue
         for reading in sorted({strip_annotations(value) for value in re.split(r'[,，、/]', record['reading']) if value.strip()}):
             normalized = norm(reading)

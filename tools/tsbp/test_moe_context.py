@@ -399,6 +399,7 @@ class MoeContextTests(unittest.TestCase):
             {**record('戊己', 'kah-it', '3'), 'entry_type': '附錄', 'category': '西部幹線——山線'},
             {**record('庚辛', 'kah-it', '4'), 'entry_type': '附錄', 'category': '全部,七畫'},
             {**record('壬癸', 'kah-it', '5'), 'entry_type': '附錄', 'category': ''},
+            {**record('子丑', 'kah-it', '6'), 'entry_type': '單字不成詞者', 'category': ''},
         ]
         related = build_lookups(groups, records)
         self.assertEqual({r['record_id'] for r in related['kah-it']}, {'1'})

@@ -42,7 +42,8 @@ that intersects one. Exclusions do not join text or create new word boundaries.
 
 - A trie finds all literal, contiguous canonical Hanji headwords from numbered
   MOE `詞目` records, excluding `詞目類型 = 附錄` rows outside `分類 = 外來詞`
-  (places, stations, landmarks, old place names, `節氣`, `百家姓`, and `俗諺`).
+  (places, stations, landmarks, old place names, `節氣`, `百家姓`, and `俗諺`)
+  as well as `詞目類型 = 單字不成詞者`.
   Single characters, nested compounds, and crossing overlaps remain in the output.
   Alternate Hanji spellings, names/surnames, and comparison rows do not create
   candidates. An unmatched character is never assigned a reading by inference.

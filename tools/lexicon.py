@@ -717,6 +717,50 @@ class RelatedMoeIndex:
                 for number in sorted(relations)]
 
 
+def match_moe_records(records, forms, readings):
+    matches = []
+    for record in records:
+        form_match = bool(forms & {annotation_key(record['headword']), *(annotation_key(form) for form in record['variant_forms'])})
+        reading_match = bool(readings & reading_keys(record['reading']))
+        if form_match or reading_match:
+            matches.append(dict(record, match='form_and_reading' if form_match and reading_match else 'same_form' if form_match else 'same_reading'))
+    return matches
+
+
+def query_moe(root, forms, readings):
+    pin, sheets, records = moe_data(root)
+    matches = match_moe_records(records, forms, readings)
+    record_ids = {match['record_id'] for match in matches if match['record_id']}
+    examples_by_sense = {}
+    if record_ids and '例句' in sheets and sheets['例句']:
+        header = sheets['例句'][0][1]
+        for _, cells in sheets['例句'][1:]:
+            row = dict(zip(header, cells))
+            word_id = row.get('詞目id', '')
+            if word_id in record_ids:
+                examples_by_sense.setdefault((word_id, row.get('義項id', '')), []).append({
+                    'hanji': row.get('漢字', ''),
+                    'reading': row.get('羅馬字', ''),
+                    'mandarin': row.get('華語', ''),
+                })
+    senses_by_word = {}
+    if record_ids and '義項' in sheets and sheets['義項']:
+        header = sheets['義項'][0][1]
+        for _, cells in sheets['義項'][1:]:
+            row = dict(zip(header, cells))
+            word_id = row.get('詞目id', '')
+            if word_id in record_ids:
+                sense_id = row.get('義項id', '')
+                senses_by_word.setdefault(word_id, []).append({
+                    'sense_id': sense_id,
+                    'pos': row.get('詞性', ''),
+                    'definition': row.get('解說', ''),
+                    'examples': examples_by_sense.get((word_id, sense_id), []),
+                })
+    enriched = [dict(match, senses=senses_by_word.get(match['record_id'], [])) for match in matches]
+    return {'snapshot': pin['id'], 'sha256': pin['sha256']}, enriched
+
+
 def check(root, candidate, current=None, evidence=None, lookup=None, schema=None):
     verify_entry(root, dict(candidate, id=candidate.get('id', 1)), lookup_only=True, schema=schema)
     lkk, moe = evidence if evidence else (lkk_data(root), moe_data(root))
@@ -750,12 +794,8 @@ def check(root, candidate, current=None, evidence=None, lookup=None, schema=None
             source_readings.add(key(row[1]))
         if key(row[1]) in forms or key(row[5]) in forms or readings & source_readings:
             lkk_matches.append({'preferred_form': row[1], 'reading': row[2], 'alternate_readings': row[4], 'moe_form': row[5], 'context': row[6], 'source': {'snapshot': snapshot_id, 'row': row_number}})
-    moe_matches = []
-    for record in lookup.moe.matching(forms, readings) if lookup is not None else moe[2]:
-        form_match = bool(forms & {annotation_key(record['headword']), *(annotation_key(form) for form in record['variant_forms'])})
-        reading_match = bool(readings & reading_keys(record['reading']))
-        if form_match or reading_match:
-            moe_matches.append(dict(record, match='form_and_reading' if form_match and reading_match else 'same_form' if form_match else 'same_reading'))
+    moe_records = lookup.moe.matching(forms, readings) if lookup is not None else moe[2]
+    moe_matches = match_moe_records(moe_records, forms, readings)
     related = lookup.related_moe if lookup is not None else RelatedMoeIndex(moe[2])
     suggestions = related.suggest(candidate, moe_matches)
     if suggestions:
@@ -1013,9 +1053,10 @@ def main():
     batch = sub.add_parser('add-batch', help='Preflight and import a JSON array with shared checks.')
     batch.add_argument('requests', type=Path)
     batch.add_argument('--dry-run', action='store_true', help='Show the checked plan without reserving IDs or writing entries.')
-    query = sub.add_parser('query', help='Find existing entries by exact form, reading, or ID; no dictionary checks.')
+    query = sub.add_parser('query', help='Find existing entries by exact form, reading, or ID; optionally inspect MOE with --moe (pass -- before forms starting with --).')
     query.add_argument('text', nargs='?')
     query.add_argument('--id', type=int, dest='entry_id')
+    query.add_argument('--moe', action='store_true', help='Also inspect matching pinned MOE dictionary entries with senses and examples.')
     query.add_argument('--no-cache', action='store_true', help='Read and validate all entry TOML directly.')
     related = sub.add_parser('related', help='Find MOE entries with matching Hanji/TL combos and propose spellings for human review.')
     related.add_argument('hanji', nargs='+')
@@ -1083,6 +1124,18 @@ def main():
             matches = query_entries(root, forms, readings, args.entry_id, use_cache=not args.no_cache)
             result = {'count': len(matches), 'entries': [
                 {'path': str(path.relative_to(root)), 'entry': entry} for path, entry in matches]}
+            if args.moe:
+                if args.entry_id is not None:
+                    moe_forms, moe_readings = set(), set()
+                    for _, entry in matches:
+                        entry_forms, entry_readings = entry_keys(entry)
+                        moe_forms.update(entry_forms)
+                        moe_readings.update(entry_readings)
+                else:
+                    moe_forms, moe_readings = forms, readings
+                moe_checked, moe_matches = query_moe(root, moe_forms, moe_readings)
+                result['moe_checked'] = moe_checked
+                result['moe_matches'] = moe_matches
         elif args.command == 'add-batch':
             result = add_batch(root, batch_requests(args.requests), dry_run=args.dry_run)
         elif args.command == 'add':

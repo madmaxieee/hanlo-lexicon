@@ -44,14 +44,18 @@ evidence, not a prohibition on a community spelling recommendation.
 python3 tools/lexicon.py query 'mí-sooh'
 python3 tools/lexicon.py query --id 689
 python3 tools/lexicon.py query 'mí-sooh' --no-cache
+python3 tools/lexicon.py query '著' --moe
+python3 tools/lexicon.py query --moe -- '--著'
 ```
 
 `query` returns complete existing entry records and their TOML paths. Text matches
 preferred, MOE or Hanji forms, canonical TL and alternate readings exactly after
 NFC/case/whitespace normalization. Tones and single/double hyphens stay distinct;
-homographs remain separate records. Query by text or by ID, not both. This is an
-entry-only query: it needs no dictionary download and does not replace the full
-offline `check` required before import.
+homographs remain separate records. Place flags such as `--moe` before `--` when
+querying text starting with `--`. Query by text or by ID, not both. By default
+this is an entry-only query that needs no dictionary download and does not replace
+the full offline `check` required before import; pass `--moe` to also inspect
+matching pinned MOE records with senses, parts of speech, and examples.
 
 The disposable SQLite index lives at `.cache/entries.sqlite3`, separately in each
 workspace. TOML remains authoritative. Every cached query discovers the current

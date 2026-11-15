@@ -1,9 +1,10 @@
 # TSBP discovery and review
 
 These scripts harvest Roman and mixed-script candidates from a local normalized
-TSBP JSONL corpus and generate a standalone HTML review. The corpus is read-only;
-generated artifacts stay in a separate local pilot output directory outside
-version control.
+TSBP JSONL corpus (conventionally at `../taigi-corpus/data/normalized/tsbp.jsonl`
+next to this repository) and generate a standalone HTML review. The corpus is
+read-only; generated artifacts stay in a separate local pilot output directory
+outside version control.
 
 Use the project-local [review-tsbp-roman skill](../../.agents/skills/review-tsbp-roman/SKILL.md)
 for harvesting, contextual model screening, review exports, source mappings and

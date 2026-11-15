@@ -598,6 +598,41 @@ class MaintenanceTests(unittest.TestCase):
         self.assertEqual(self.run_cli('build-csv', '--header')['rows'], 0)
         self.assertEqual(target.read_bytes(), b'tl,preferred_form\n')
 
+    def test_query_moe_includes_senses_and_examples_and_handles_double_hyphen(self):
+        make_ods(self.moe_path, extra_sheets={
+            '義項': [['詞目id', '義項id', '詞性', '解說'], [7, 1, '動詞', '要。'], [8, 1, '動詞', 'Fixture definition.']],
+            '例句': [['詞目id', '義項id', '例句順序', '漢字', '羅馬字', '華語', '音檔檔名'],
+                   [7, 1, 1, '欲食飯', 'beh tsia̍h-pn̄g', '要吃飯', '7-1-1']],
+        })
+        digest = hashlib.sha256(self.moe_path.read_bytes()).hexdigest()
+        cache = self.root / '.cache/dictionaries/moe' / digest / 'kautian.ods'
+        cache.parent.mkdir(parents=True, exist_ok=True)
+        self.moe_path.replace(cache)
+        self.moe_path = cache
+        pin_path = self.root / 'references/moe.toml'
+        pin_path.write_text(
+            pin_path.read_text().replace(hashlib.sha256(self.raw_moe).hexdigest(), digest))
+
+        added = self.run_cli('add', str(self.request(form='--啊', reading='--ah')))
+        by_form = self.run_cli('query', '--', '--啊')
+        self.assertEqual(by_form['count'], 1)
+        self.assertNotIn('moe_matches', by_form)
+
+        moe_by_text = self.run_cli('query', '欲', '--moe')
+        self.assertEqual(moe_by_text['moe_checked']['snapshot'], 'moe-fixture')
+        match = next(row for row in moe_by_text['moe_matches'] if row['source']['sheet'] == '詞目')
+        self.assertEqual(match['senses'], [{
+            'sense_id': '1',
+            'pos': '動詞',
+            'definition': '要。',
+            'examples': [{'hanji': '欲食飯', 'reading': 'beh tsia̍h-pn̄g', 'mandarin': '要吃飯'}],
+        }])
+
+        beh = self.run_cli('add', str(self.request(moe_forms=['欲'])))
+        moe_by_id = self.run_cli('query', '--id', str(beh['id']), '--moe')
+        self.assertTrue(any(row['record_id'] == '7' for row in moe_by_id['moe_matches']))
+        self.assertEqual(self.run_cli('query', '--moe', '--', '--啊')['entries'][0]['entry']['id'], added['id'])
+
 
 if __name__ == '__main__':
     unittest.main()

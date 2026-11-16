@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "ta̍t-kàu"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts by gpt-6-luna (medium reasoning), with coordinator checks; MOE identity 22230. Batch import authorized without individual human review. Issue 382 model-review SHA-256 80df80ec36cd0f865b9554a898c627be64a06aa71744db767727ca433f57bf71."
+id = 5764
+moe_forms = []
+preferred_form = "達到"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 382; article text line 15; corpus Unicode code points 1067:1069; literal form 達到"
+url = "https://tsbp.tgb.org.tw/2016/01/tuie.html"
+
+[[sources]]
+row = 18895
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

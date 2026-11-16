@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "huâi-gî"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts by gpt-6-luna (medium reasoning), with coordinator checks; MOE identity 12787. Batch import authorized without individual human review. Issue 382 model-review SHA-256 80df80ec36cd0f865b9554a898c627be64a06aa71744db767727ca433f57bf71."
+id = 5588
+moe_forms = []
+preferred_form = "懷疑"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 382; article text line 19; corpus Unicode code points 1493:1495; literal form 懷疑"
+url = "https://tsbp.tgb.org.tw/2016/01/lanmai-e.html"
+
+[[sources]]
+locator = "Issue 382; article text line 9; corpus Unicode code points 703:705; literal form 懷疑"
+url = "https://tsbp.tgb.org.tw/2016/01/lanmai-e.html"
+
+[[sources]]
+row = 12781
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

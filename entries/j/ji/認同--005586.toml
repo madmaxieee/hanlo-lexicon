@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "jīn-tông"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts by gpt-6-luna (medium reasoning), with coordinator checks; MOE identity 10830. Batch import authorized without individual human review. Issue 382 model-review SHA-256 80df80ec36cd0f865b9554a898c627be64a06aa71744db767727ca433f57bf71."
+id = 5586
+moe_forms = []
+preferred_form = "認同"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 382; article text line 27; corpus Unicode code points 1766:1768; literal form 認同"
+url = "https://tsbp.tgb.org.tw/2016/01/tuie.html"
+
+[[sources]]
+locator = "Issue 382; article text line 7; corpus Unicode code points 506:508; literal form 認同"
+url = "https://tsbp.tgb.org.tw/2016/01/tuie.html"
+
+[[sources]]
+row = 10827
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

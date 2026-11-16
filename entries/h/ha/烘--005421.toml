@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "hang"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts by gpt-6-luna (medium reasoning), with coordinator checks; MOE identity 6228. Batch import authorized without individual human review. Issue 382 model-review SHA-256 80df80ec36cd0f865b9554a898c627be64a06aa71744db767727ca433f57bf71."
+id = 5421
+moe_forms = []
+preferred_form = "烘"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 382; article text line 15; corpus Unicode code points 1227:1228; literal form 烘"
+url = "https://tsbp.tgb.org.tw/2016/01/sa-khah-kuaneai.html"
+
+[[sources]]
+locator = "Issue 382; article text line 15; corpus Unicode code points 1338:1339; literal form 烘"
+url = "https://tsbp.tgb.org.tw/2016/01/sa-khah-kuaneai.html"
+
+[[sources]]
+row = 6227
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

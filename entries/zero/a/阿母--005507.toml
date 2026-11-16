@@ -1,0 +1,25 @@
+alternate_readings = []
+canonical_tl = "a-bú"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts by gpt-6-luna (medium reasoning), with coordinator checks; MOE identity 4524. Batch import authorized without individual human review. Issue 382 model-review SHA-256 80df80ec36cd0f865b9554a898c627be64a06aa71744db767727ca433f57bf71."
+id = 5507
+moe_forms = []
+preferred_form = "阿母"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 382; article text line 1; corpus Unicode code points 103:105; literal form 阿母"
+url = "https://tsbp.tgb.org.tw/2016/01/e-tsiah.html"
+
+[[sources]]
+locator = "Issue 382; article text line 1; corpus Unicode code points 25:27; literal form 阿母"
+url = "https://tsbp.tgb.org.tw/2016/01/e-saukhap.html"
+
+[[sources]]
+locator = "Issue 382; article text line 64; corpus Unicode code points 3255:3257; literal form 阿母"
+url = "https://tsbp.tgb.org.tw/2016/01/sann-kap-ahe.html"
+
+[[sources]]
+row = 4524
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

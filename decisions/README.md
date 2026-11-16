@@ -44,6 +44,7 @@ Keep these records at their existing paths so entry citations and handoffs remai
 
 ### TSBP, by issue
 
+- Issue 382: [Hanji batch](tsbp-382-hanji-import-2026-11-17.md).
 - Issue 384: [Hanji batch](tsbp-384-hanji-import-2026-11-13.md).
 - Issue 385: [Roman batch 1](tsbp-385-batch1-import-2026-11-01.md),
   [Roman batch 2](tsbp-385-batch2-import-2026-11-01.md),

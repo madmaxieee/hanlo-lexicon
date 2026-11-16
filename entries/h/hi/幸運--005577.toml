@@ -1,0 +1,21 @@
+alternate_readings = []
+canonical_tl = "hīng-ūn"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts by gpt-6-luna (medium reasoning), with coordinator checks; MOE identity 3860. Batch import authorized without individual human review. Issue 382 model-review SHA-256 80df80ec36cd0f865b9554a898c627be64a06aa71744db767727ca433f57bf71."
+id = 5577
+moe_forms = []
+preferred_form = "幸運"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 382; article text line 127; corpus Unicode code points 4508:4510; literal form 幸運"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_64.html"
+
+[[sources]]
+locator = "Issue 382; article text line 141; corpus Unicode code points 5172:5174; literal form 幸運"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_64.html"
+
+[[sources]]
+row = 3860
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

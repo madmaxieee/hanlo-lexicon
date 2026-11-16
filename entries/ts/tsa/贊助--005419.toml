@@ -1,0 +1,25 @@
+alternate_readings = []
+canonical_tl = "tsàn-tsōo"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts by gpt-6-luna (medium reasoning), with coordinator checks; MOE identity 12880. Batch import authorized without individual human review. Issue 382 model-review SHA-256 80df80ec36cd0f865b9554a898c627be64a06aa71744db767727ca433f57bf71."
+id = 5419
+moe_forms = []
+preferred_form = "贊助"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 382; article text line 27; corpus Unicode code points 483:485; literal form 贊助"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_21.html"
+
+[[sources]]
+locator = "Issue 382; article text line 5; corpus Unicode code points 42:44; literal form 贊助"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_21.html"
+
+[[sources]]
+locator = "Issue 382; article text line 9; corpus Unicode code points 225:227; literal form 贊助"
+url = "https://tsbp.tgb.org.tw/2016/01/blog-post_21.html"
+
+[[sources]]
+row = 12874
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

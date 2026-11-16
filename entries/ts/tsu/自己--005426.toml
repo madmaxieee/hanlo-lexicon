@@ -1,0 +1,17 @@
+alternate_readings = []
+canonical_tl = "tsū-kí"
+editorial_rationale = "Corpus-backed Hanji proposal screened in up to three sampled source contexts by gpt-6-luna (medium reasoning), with coordinator checks; MOE identity 2615. Batch import authorized without individual human review. Issue 382 model-review SHA-256 80df80ec36cd0f865b9554a898c627be64a06aa71744db767727ca433f57bf71."
+id = 5426
+moe_forms = []
+preferred_form = "自己"
+review_status = "machine-reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Issue 382; article text line 17; corpus Unicode code points 1130:1132; literal form 自己"
+url = "https://tsbp.tgb.org.tw/2016/01/tuie.html"
+
+[[sources]]
+row = 2616
+sheet = "詞目"
+snapshot = "moe-kautian-3e0b2023e0bd"

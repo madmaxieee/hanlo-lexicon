@@ -1,0 +1,20 @@
+alternate_readings = []
+canonical_tl = "kóng--tsi̍t-siann"
+editorial_rationale = "Maintainer requested adding 講--一-聲 / kóng--tsi̍t-siann after reviewing all 6 TSBP Han-Lo occurrences of the intransitive neutral-tone expression ('say a word / let someone know', distinct from non-neutral 講一聲 introducing a direct quote). Absent from LKK and MOE."
+id = 5841
+moe_forms = []
+preferred_form = "講--一-聲"
+review_status = "reviewed"
+schema_version = 1
+
+[[sources]]
+locator = "Article text line 23; normalized source characters 1899:1905; written form 講--一-聲"
+url = "https://tsbp.tgb.org.tw/2022/05/blog-post_5.html"
+
+[[sources]]
+locator = "Article text line 3; normalized source characters 121:127; written form 講--一-聲"
+url = "https://tsbp.tgb.org.tw/2015/05/beh.html"
+
+[[sources]]
+locator = "Article text line 43; normalized source characters 2413:2419; written form 講--一-聲"
+url = "https://tsbp.tgb.org.tw/2015/12/blog-post_91.html"
